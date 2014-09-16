@@ -1,0 +1,30 @@
+﻿<Window x:Class="WpfUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="600.000" Width="800.000"
+        Icon="/Images/icon.ico">
+    
+    
+    <Grid>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_Menu" Click="MenuItem_Click"/>
+                    <MenuItem Name="SignOut" Header="_Sign out" Click="SignOut_Click"/>
+                    <Separator />
+                    <MenuItem Name="MenuConnect" Header="_Connect" Click="MenuConnect_Click"/>
+                    <Separator/>
+                    <MenuItem Header="_Exit" Click="MenuItem_Click_1" />
+                </MenuItem>
+                <MenuItem Header="_Help">
+                    <MenuItem Name="ResetPassword" Header="_Reset password" Click="ResetPassword_Click"/>
+                    <MenuItem Name="ChangePassword" Header="_Change password" Click="ChangePassword_Click"/>
+                    <Separator />
+                    <MenuItem Name="HowTo" Header="_How to" Click="HowTo_Click"/>
+                    <MenuItem Name="About" Header="_About" Click="About_Click"/>
+                </MenuItem>
+            </Menu>
+            <Frame x:Name="MainFrame" />
+        </DockPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,18 @@
+D:\Study\epam\step2\PLEX TRANINGS\!Final_Project\TicketShop\Common\bin\Debug\Common.dll
+D:\Study\epam\step2\PLEX TRANINGS\!Final_Project\TicketShop\Common\bin\Debug\Common.pdb
+D:\Study\epam\step2\PLEX TRANINGS\!Final_Project\TicketShop\Common\obj\Debug\Common.dll
+D:\Study\epam\step2\PLEX TRANINGS\!Final_Project\TicketShop\Common\obj\Debug\Common.pdb
+D:\Study\Programming\Projects\EnglishLearning\Common\bin\Debug\Common.dll
+D:\Study\Programming\Projects\EnglishLearning\Common\bin\Debug\Common.pdb
+D:\Study\Programming\Projects\EnglishLearning\Common\obj\Debug\Common.dll
+D:\Study\Programming\Projects\EnglishLearning\Common\obj\Debug\Common.pdb
+D:\Study\Programming\Projects\EnglishLearning2\Common\bin\Debug\Common.dll
+D:\Study\Programming\Projects\EnglishLearning2\Common\bin\Debug\Common.pdb
+D:\Study\Programming\Projects\EnglishLearning2\Common\obj\Debug\Common.dll
+D:\Study\Programming\Projects\EnglishLearning2\Common\obj\Debug\Common.pdb
+D:\Study\Programming\Projects\EnglishLearning2\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+D:\Study\Programming\Projects\EnglishLearning3\Common\bin\Debug\Common.dll
+D:\Study\Programming\Projects\EnglishLearning3\Common\bin\Debug\Common.pdb
+D:\Study\Programming\Projects\EnglishLearning3\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+D:\Study\Programming\Projects\EnglishLearning3\Common\obj\Debug\Common.dll
+D:\Study\Programming\Projects\EnglishLearning3\Common\obj\Debug\Common.pdb

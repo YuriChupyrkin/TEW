@@ -1,0 +1,117 @@
+﻿<Page x:Class="WpfUI.Pages.PickerTest"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+	Title="PickerTest">
+    <Page.Resources>
+        <Style x:Key="ButtonStyle2" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="rectangle">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FF323232"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Rectangle.RadiusX)" Storyboard.TargetName="rectangle">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="20"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Rectangle.RadiusY)" Storyboard.TargetName="rectangle">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="20"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="rectangle">
+                                                <EasingColorKeyFrame KeyTime="0" Value="Cyan"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="rectangle">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FF363636"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Rectangle.RadiusX)" Storyboard.TargetName="rectangle">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="20"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Rectangle.RadiusY)" Storyboard.TargetName="rectangle">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="20"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="rectangle">
+                                                <EasingColorKeyFrame KeyTime="0" Value="Red"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Rectangle.RadiusX)" Storyboard.TargetName="rectangle">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="20"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Rectangle.RadiusY)" Storyboard.TargetName="rectangle">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="20"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.OpacityMask)" Storyboard.TargetName="contentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <SolidColorBrush Color="#FF342828"/>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="rectangle">
+                                                <EasingColorKeyFrame KeyTime="0" Value="White"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="rectangle">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FFC5C5C5"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Rectangle.RadiusX)" Storyboard.TargetName="rectangle">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="20"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Rectangle.RadiusY)" Storyboard.TargetName="rectangle">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="20"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Rectangle x:Name="rectangle" Stroke="Black">
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="Black" Offset="0"/>
+                                        <GradientStop Color="White" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True"/>
+                            <Trigger Property="IsDefaulted" Value="True"/>
+                            <Trigger Property="IsMouseOver" Value="True"/>
+                            <Trigger Property="IsPressed" Value="True"/>
+                            <Trigger Property="IsEnabled" Value="False"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <ListBox x:Name="ListTestAnswers" HorizontalAlignment="Left" Height="238" Margin="209,238,0,0" VerticalAlignment="Top" Width="400" PreviewMouseDoubleClick="ListTestAnswers_PreviewMouseDoubleClick" FontSize="22" FontFamily="Comic Sans MS"/>
+        <Label x:Name="LabelTestWord" Content="" HorizontalAlignment="Left" Margin="209,162,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.186,0.621" FontSize="36" FontFamily="Comic Sans MS" Width="571"/>
+        <Button x:Name="BtnEnRuTest" Content="En-Ru test" HorizontalAlignment="Left" Height="44" Margin="50,95,0,0" Style="{DynamicResource ButtonStyle2}" VerticalAlignment="Top" Width="168" Foreground="Black" FontSize="18.667" FontFamily="Comic Sans MS" Click="BtnEnRuTest_Click"/>
+        <Button x:Name="BtnRuEnTest" Content="Ru-En test" HorizontalAlignment="Left" Height="43" Margin="575,96,0,0" Style="{DynamicResource ButtonStyle2}" VerticalAlignment="Top" Width="168" Foreground="Black" FontSize="18.667" FontFamily="Comic Sans MS" Click="BtnRuEnTest_Click" RenderTransformOrigin="3.704,-7.043"/>
+        <Label Content="Word-translation test" HorizontalAlignment="Left" Margin="138,10,0,0" VerticalAlignment="Top" Width="559" Height="66" FontSize="48" FontFamily="Cooper Black"/>
+        <Grid.Background>
+            <ImageBrush ImageSource ="/Images/bg.jpg"></ImageBrush>
+        </Grid.Background>
+    </Grid>
+</Page>
