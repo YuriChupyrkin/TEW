@@ -185,6 +185,11 @@ namespace EntityFrameworkDAL.Repositories
           _context.RussianWords.Remove(word);
           count++;
         }
+        else if (word.EnRuWords.Any() == false)
+        {
+          _context.RussianWords.Remove(word);
+          count++;
+        }
       }
       _context.SaveChanges();
       return count;
@@ -197,6 +202,11 @@ namespace EntityFrameworkDAL.Repositories
       foreach (var word in enWords)
       {
         if (string.IsNullOrWhiteSpace(word.EnWord))
+        {
+          _context.EnglishWords.Remove(word);
+          count++;
+        }
+        else if (word.EnRuWords.Any() == false)
         {
           _context.EnglishWords.Remove(word);
           count++;

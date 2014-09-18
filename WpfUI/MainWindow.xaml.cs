@@ -112,7 +112,26 @@ namespace WpfUI
       {
         SetAdminAuthentication();
       }
-      MessageBox.Show("Failure to Internet connect", "Connection");
+      else
+      {
+        MessageBox.Show("Failure to Internet connect", "Connection");
+      }
+    }
+
+    private void RemoveExcessWordsMenu_Click(object sender, RoutedEventArgs e)
+    {
+      try
+      {
+        var repositoryFactory = ApplicationContext.RepositoryFactory;
+        var removedCount = repositoryFactory.EnRuWordsRepository.ClearEnWords();
+        removedCount += repositoryFactory.EnRuWordsRepository.ClearRuWords();
+
+        MessageBox.Show(string.Format("{0} word(s) was removed", removedCount));
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show(ex.Message, "Words removing error");
+      }
     }
 
     #endregion

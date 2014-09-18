@@ -16,6 +16,9 @@
                     <Separator/>
                     <MenuItem Header="_Exit" Click="MenuItem_Click_1" />
                 </MenuItem>
+                <MenuItem Header="_Tools">
+                    <MenuItem Name="RemoveExcessWordsMenu" Header="_Remove excess words" Click="RemoveExcessWordsMenu_Click" />
+                </MenuItem>
                 <MenuItem Header="_Help">
                     <MenuItem Name="ResetPassword" Header="_Reset password" Click="ResetPassword_Click"/>
                     <MenuItem Name="ChangePassword" Header="_Change password" Click="ChangePassword_Click"/>
