@@ -160,18 +160,21 @@ namespace EntityFrameworkDAL.Repositories
     public void ChangeWordLevel(int enRuWordId, int levelShift)
     {
       var word = _context.EnRuWords.FirstOrDefault(r => r.Id == enRuWordId);
-      var nextLevel = word.WordLevel;
-      nextLevel = nextLevel + levelShift;
-      if (nextLevel < MinLevel)
+      //var nextLevel = word.WordLevel;
+      //nextLevel = nextLevel + levelShift;
+      //if (nextLevel < MinLevel)
+      //{
+      //  nextLevel = MinLevel;
+      //}
+      //if (nextLevel > MaxLevel)
+      //{
+      //  nextLevel = MaxLevel;
+      //}
+      if (word != null)
       {
-        nextLevel = MinLevel;
+        word.WordLevel = word.WordLevel + levelShift;
+        _context.SaveChanges();
       }
-      if (nextLevel > MaxLevel)
-      {
-        nextLevel = MaxLevel;
-      }
-      word.WordLevel = nextLevel;
-      _context.SaveChanges();
     }
 
     public int ClearRuWords()
@@ -214,6 +217,16 @@ namespace EntityFrameworkDAL.Repositories
       }
       _context.SaveChanges();
       return count;
+    }
+
+    public void ResetWordLevel(int userId)
+    {
+      var userWords = AllEnRuWords().Where(r => r.UserId == userId);
+      foreach (var userWord in userWords)
+      {
+        userWord.WordLevel = 0;
+      }
+      _context.SaveChanges();
     }
   }
 }

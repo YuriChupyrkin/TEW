@@ -15,5 +15,6 @@ namespace Domain.Repositories
     void DeleteEnRuWord(string enWord, int userId);
     int ClearEnWords();
     int ClearRuWords();
+    void ResetWordLevel(int userId);
   }
 }

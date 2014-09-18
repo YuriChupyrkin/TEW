@@ -7,6 +7,7 @@ using System.Windows.Input;
 using Domain.RepositoryFactories;
 using EnglishLearnBLL.Models;
 using EnglishLearnBLL.Tests;
+using EnglishLearnBLL.WordLevelManager;
 using WpfUI.Helpers;
 
 namespace WpfUI.Pages
@@ -17,6 +18,7 @@ namespace WpfUI.Pages
   public partial class PickerTest : Page
   {
     private readonly IRepositoryFactory _repositoryFactory;
+    private readonly WordLevelManager _wordLevelManager;
     private TestCreator _testCreator;
     private List<PickerTestModel> _testSet;
     private int _testIndex = 0;
@@ -32,6 +34,7 @@ namespace WpfUI.Pages
 
       ApplicationValidator.ExpectAuthorized();
       _repositoryFactory = ApplicationContext.RepositoryFactory;
+      _wordLevelManager = new WordLevelManager(_repositoryFactory);
     }
 
     #region events
@@ -138,15 +141,21 @@ namespace WpfUI.Pages
 
     private void SetLevel(bool isTrueAnswer, int wordId)
     {
-      var levelShift = 1;
+      //var levelShift = 1;
+      //if (_currentTestName.Equals(RuEnTest))
+      //{
+      //  levelShift = 2;
+      //}
+
+      //levelShift = isTrueAnswer ? levelShift : (0 - levelShift);
+      //_repositoryFactory.EnRuWordsRepository
+      //    .ChangeWordLevel(wordId, levelShift);
+      var testType = WordLevelManager.TestType.EnRuTest;
       if (_currentTestName.Equals(RuEnTest))
       {
-        levelShift = 2;
+        testType = WordLevelManager.TestType.RuEnTest;
       }
-
-      levelShift = isTrueAnswer ? levelShift : (0 - levelShift);
-      _repositoryFactory.EnRuWordsRepository
-          .ChangeWordLevel(wordId, levelShift);
+      _wordLevelManager.SetWordLevel(wordId, isTrueAnswer, testType);
     }
 
     private void TestIndexIncrement()

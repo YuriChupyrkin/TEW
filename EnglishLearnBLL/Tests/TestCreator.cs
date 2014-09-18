@@ -33,16 +33,17 @@ namespace EnglishLearnBLL.Tests
       }
 
       var enRuWordsForTest = enRuWords.OrderBy(r => r.WordLevel).Take(wordCount).ToList();
-     
+      var maxLevel = enRuWordsForTest.Last().WordLevel;
+
       if (wordCount == WordCount)
       {
         var rnd = new Random();
         for (var i = 0; i < wordCount; i++)
         {
-          if (enRuWordsForTest[i].WordLevel == 20)
+          if (enRuWordsForTest[i].WordLevel == maxLevel)
           {
             enRuWordsForTest[i] = enRuWords
-              .Where(r => r.WordLevel == 20 && !enRuWordsForTest.Contains(r))
+              .Where(r => r.WordLevel == maxLevel && !enRuWordsForTest.Contains(r))
               .OrderBy(r => rnd.Next()).ToList().First();
           }
         }

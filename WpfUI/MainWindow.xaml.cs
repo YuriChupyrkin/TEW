@@ -134,6 +134,16 @@ namespace WpfUI
       }
     }
 
+    private void ResetWordsLevelMenu_Click(object sender, RoutedEventArgs e)
+    {
+      if (DialogHelper.YesNoQuestionDialog("Reset word level?", "Reset"))
+      {
+        ApplicationValidator.ExpectAuthorized();
+        ApplicationContext.RepositoryFactory.EnRuWordsRepository
+          .ResetWordLevel(ApplicationContext.CurrentUser.Id);
+      }
+    }
+
     #endregion
 
     #region methods

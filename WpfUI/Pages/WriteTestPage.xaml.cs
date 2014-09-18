@@ -7,6 +7,7 @@ using System.Windows.Input;
 using Domain.RepositoryFactories;
 using EnglishLearnBLL.Models;
 using EnglishLearnBLL.Tests;
+using EnglishLearnBLL.WordLevelManager;
 using WpfUI.Helpers;
 
 namespace WpfUI.Pages
@@ -17,6 +18,7 @@ namespace WpfUI.Pages
   public partial class WriteTestPage : Page
   {
     private readonly IRepositoryFactory _repositoryFactory;
+    private readonly WordLevelManager _wordLevelManager;
     private TestCreator _testCreator;
     private List<WriteTestModel> _testSet;
     private int _testIndex;
@@ -30,6 +32,7 @@ namespace WpfUI.Pages
 
       ApplicationValidator.ExpectAuthorized();
       _repositoryFactory = ApplicationContext.RepositoryFactory;
+      _wordLevelManager = new WordLevelManager(_repositoryFactory);
       StartTest();
     }
 
@@ -127,10 +130,16 @@ namespace WpfUI.Pages
 
     private void SetLevel(bool isTrueAnswer, int wordId)
     {
-      var mark = _isHelpOn ? 3 : 4;
-      var levelShift = isTrueAnswer ? mark : (0 - mark);
-      _repositoryFactory.EnRuWordsRepository
-          .ChangeWordLevel(wordId, levelShift);
+      //var mark = _isHelpOn ? 3 : 4;
+      //var levelShift = isTrueAnswer ? mark : (0 - mark);
+      //_repositoryFactory.EnRuWordsRepository
+      //    .ChangeWordLevel(wordId, levelShift);
+      var testType = WordLevelManager.TestType.SpellingTest;
+      if (_isHelpOn)
+      {
+        testType = WordLevelManager.TestType.SpellingWithHelpTest;
+      }
+      _wordLevelManager.SetWordLevel(wordId, isTrueAnswer, testType);
     }
 
     private void TestResult()
