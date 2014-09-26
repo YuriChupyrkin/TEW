@@ -81,7 +81,8 @@ namespace EnglishLearnBLL.Tests
         {
           Word = ruWord,
           TrueAnswer = answerWord,
-          EnRuWordId = enRuWord.Id
+          EnRuWordId = enRuWord.Id,
+          Example = enRuWord.Context
         };
         writeTestModelList.Add(writeTestModel);
       }
@@ -139,6 +140,7 @@ namespace EnglishLearnBLL.Tests
         {
           AnswerId = answerIndex,
           Word = testedWord,
+          Example = enRuWordsForTest[i].Context,
           WordId = enRuWordsForTest[i].Id,
           Answers = randAnswer.ToList()
         };
@@ -190,7 +192,8 @@ namespace EnglishLearnBLL.Tests
           AnswerId = answerIndex,
           Word = testedWord,
           WordId = enRuWordsForTest[i].Id,
-          Answers = randAnswer.ToList()
+          Answers = randAnswer.ToList(),
+          Example = enRuWordsForTest[i].Context
         };
         pickerTestModel.Answers[answerIndex] = engAnswer;
 

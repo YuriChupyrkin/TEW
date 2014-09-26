@@ -29,12 +29,12 @@ namespace WpfUI.Pages
       if (selectedWord != null)
       {
         var isDelete = DialogHelper
-          .YesNoQuestionDialog("Delete word \"" + selectedWord.EnWord + "\"?", "Deleting");
+          .YesNoQuestionDialog("Delete word \"" + selectedWord.English + "\"?", "Deleting");
         if (isDelete)
         {
           var repositoryFactory = ApplicationContext.RepositoryFactory;
           repositoryFactory.EnRuWordsRepository
-            .DeleteEnRuWord(selectedWord.EnWord, ApplicationContext.CurrentUser.Id);
+            .DeleteEnRuWord(selectedWord.English, ApplicationContext.CurrentUser.Id);
           ViewWords();
         }
       }
@@ -51,7 +51,7 @@ namespace WpfUI.Pages
       var wordViewer = new WordViewer(ApplicationContext.RepositoryFactory);
 
       var words = wordViewer.ViewWords(userId)
-        .OrderByDescending(r => r.WordLevel);
+        .OrderByDescending(r => r.Level);
       LabelMyWords.Content = TitlePage + ": " + words.Count();
       DataGridWords.ItemsSource = words;
     }

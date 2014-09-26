@@ -23,9 +23,10 @@ namespace EnglishLearnBLL.View
 
       enRuWords.ForEach(r => viewList.Add(new EnRuWordViewModel
       {
-        EnWord = r.EnglishWord.EnWord,
-        RuWord = r.RussianWord.RuWord,
-        WordLevel = r.WordLevel
+        English = r.EnglishWord.EnWord,
+        Russian = r.RussianWord.RuWord,
+        Level = r.WordLevel,
+        Example = r.Context
       }));
 
       return viewList;

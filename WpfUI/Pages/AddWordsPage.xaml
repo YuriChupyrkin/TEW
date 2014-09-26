@@ -106,14 +106,16 @@
 
     <Grid>
         <Label Content="Add words&#xD;&#xA;" HorizontalAlignment="Left" Margin="254,10,0,0" VerticalAlignment="Top" Width="293" FontFamily="Cooper Black" FontSize="48" Height="73" RenderTransformOrigin="0.5,0.5"/>
-        <TextBox x:Name="TxtEnglishWord" HorizontalAlignment="Left" Height="42" Margin="89,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="319" TextChanged="TxtEnglishWord_TextChanged" FontSize="18" FontFamily="Comic Sans MS" KeyDown="TxtEnglishWord_KeyDown" GotFocus="TxtEnglishWord_GotFocus"/>
-        <ListBox x:Name="ListTranslate" HorizontalAlignment="Left" Height="195" Margin="89,304,0,0" VerticalAlignment="Top" Width="319" FontSize="18" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectedIndex="0" PreviewMouseDoubleClick="ListTranslate_PreviewMouseDoubleClick" FontFamily="Comic Sans MS" PreviewMouseLeftButtonUp="ListTranslate_PreviewMouseLeftButtonUp"/>
-        <Button x:Name="BtnSearch" Content="Translate" HorizontalAlignment="Left" Margin="427,140,0,0" VerticalAlignment="Top" Width="71" Click="BtnSearch_Click" Height="42" FontSize="14" Background="#FF00E8FF" Foreground="Black"/>
-        <TextBox x:Name="TxtRusTranslate" HorizontalAlignment="Left" Height="42" Margin="428,304,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="319" FontSize="18" FontFamily="Comic Sans MS" TextChanged="TxtRusTranslate_TextChanged" KeyUp="TxtRusTranslate_KeyUp" GotFocus="TxtRusTranslate_GotFocus"/>
-        <Button x:Name="BtnAdd" Content="Add" HorizontalAlignment="Left" Height="43" Margin="428,456,0,0" Style="{DynamicResource ButtonStyle2}" VerticalAlignment="Top" Width="141" Foreground="Black" FontSize="18.667" FontFamily="Comic Sans MS" Click="BtnAdd_Click"/>
-        <Label Content="English word" HorizontalAlignment="Left" Margin="89,109,0,0" VerticalAlignment="Top" Width="135" FontSize="16" FontFamily="Lucida Calligraphy"/>
-        <Label Content="Choose translate" HorizontalAlignment="Left" Margin="89,267,0,0" VerticalAlignment="Top" Width="158" FontSize="16" FontFamily="Lucida Calligraphy"/>
-        <Label Content="Your translate" HorizontalAlignment="Left" Margin="428,267,0,0" VerticalAlignment="Top" Width="189" FontSize="16" FontFamily="Lucida Calligraphy"/>
+        <TextBox x:Name="TxtEnglishWord" HorizontalAlignment="Left" Height="42" Margin="88,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="319" TextChanged="TxtEnglishWord_TextChanged" FontSize="18" FontFamily="Comic Sans MS" KeyDown="TxtEnglishWord_KeyDown" GotFocus="TxtEnglishWord_GotFocus"/>
+        <ListBox x:Name="ListTranslate" HorizontalAlignment="Left" Height="216" Margin="88,219,0,0" VerticalAlignment="Top" Width="319" FontSize="18" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectedIndex="0" PreviewMouseDoubleClick="ListTranslate_PreviewMouseDoubleClick" FontFamily="Comic Sans MS" PreviewMouseLeftButtonUp="ListTranslate_PreviewMouseLeftButtonUp" />
+        <Button x:Name="BtnSearch" Content="Translate" HorizontalAlignment="Left" Margin="426,111,0,0" VerticalAlignment="Top" Width="71" Click="BtnSearch_Click" Height="42" FontSize="14" Background="#FF00E8FF" Foreground="Black"/>
+        <TextBox x:Name="TxtRusTranslate" HorizontalAlignment="Left" Height="42" Margin="426,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="319" FontSize="18" FontFamily="Comic Sans MS" TextChanged="TxtRusTranslate_TextChanged" KeyUp="TxtRusTranslate_KeyUp" GotFocus="TxtRusTranslate_GotFocus" LostFocus="TxtRusTranslate_LostFocus"/>
+        <Button x:Name="BtnAdd" Content="Add" HorizontalAlignment="Left" Height="43" Margin="426,449,0,0" Style="{DynamicResource ButtonStyle2}" VerticalAlignment="Top" Width="141" Foreground="Black" FontSize="18.667" FontFamily="Comic Sans MS" Click="BtnAdd_Click"/>
+        <Label Content="English word" HorizontalAlignment="Left" Margin="88,80,0,0" VerticalAlignment="Top" Width="135" FontSize="16" FontFamily="Lucida Calligraphy"/>
+        <Label Content="Choose translate" HorizontalAlignment="Left" Margin="88,182,0,0" VerticalAlignment="Top" Width="158" FontSize="16" FontFamily="Lucida Calligraphy"/>
+        <Label Content="Your translate" HorizontalAlignment="Left" Margin="427,182,0,0" VerticalAlignment="Top" Width="189" FontSize="16" FontFamily="Lucida Calligraphy"/>
+        <Label Content="Example of use" HorizontalAlignment="Left" Margin="427,270,0,0" VerticalAlignment="Top" Width="189" FontSize="16" FontFamily="Lucida Calligraphy"/>
+        <TextBox x:Name="TxtExample" HorizontalAlignment="Left" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Height="122" Margin="426,313,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="319" FontSize="14" FontFamily="Comic Sans MS"/>
         <Grid.Background>
             <ImageBrush ImageSource ="/Images/bg.jpg"></ImageBrush>
         </Grid.Background>

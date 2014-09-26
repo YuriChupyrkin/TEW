@@ -35,6 +35,8 @@ namespace WpfUI.Pages
       ApplicationValidator.ExpectAuthorized();
       _repositoryFactory = ApplicationContext.RepositoryFactory;
       _wordLevelManager = new WordLevelManager(_repositoryFactory);
+
+      LabelExampleOfUseLabel.Visibility = Visibility.Hidden;
     }
 
     #region events
@@ -108,6 +110,7 @@ namespace WpfUI.Pages
       _testIndex = 0;
       _testCount = _testSet.Count;
       _failedCount = 0;
+      LabelExampleOfUseLabel.Visibility = Visibility.Visible;
       PrintCurrentTest();
     }
 
@@ -121,6 +124,25 @@ namespace WpfUI.Pages
       {
         ListTestAnswers.Items.Add(answer);
       }
+
+      var example = test.Example;
+      if (_currentTestName == RuEnTest)
+      {
+        var replacingValue = string.Format("[{0}]", test.Word);
+        var replacedValue = test.Answers[test.AnswerId];
+        if (example.Contains(replacedValue))
+        {
+          example = example.Replace(replacedValue, replacingValue);
+        }
+      }
+
+      var textBlock = new TextBlock()
+      {
+        Text = example,
+        TextWrapping = TextWrapping.Wrap
+      };
+
+      LabelExample.Content = textBlock;
     }
     private void CheckAnswer(string answer)
     {

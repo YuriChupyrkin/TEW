@@ -6,7 +6,7 @@ namespace Domain.Repositories
   public interface IEnRuWordsRepository : IGenericRepository
   {
     IEnumerable<string> GetTranslate(string enWord);
-    void AddTranslate(string engWord, string ruWord, int userId);
+    void AddTranslate(string engWord, string ruWord, string context, int userId);
     IDictionary<string, string> GetWordsForUser(int userId);
     IEnumerable<EnRuWord> AllEnRuWords();
     IEnumerable<RussianWord> AllRussianWords();

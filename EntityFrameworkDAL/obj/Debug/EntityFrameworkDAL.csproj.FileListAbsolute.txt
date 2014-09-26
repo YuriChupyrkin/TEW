@@ -48,3 +48,15 @@ D:\Study\Programming\Projects\EnglishLearning3\EntityFrameworkDAL\bin\Debug\Enti
 D:\Study\Programming\Projects\EnglishLearning3\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.csprojResolveAssemblyReference.cache
 D:\Study\Programming\Projects\EnglishLearning3\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.dll
 D:\Study\Programming\Projects\EnglishLearning3\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.pdb
+D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\bin\Debug\EntityFrameworkDAL.dll.config
+D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\bin\Debug\EntityFrameworkDAL.dll
+D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\bin\Debug\EntityFrameworkDAL.pdb
+D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\bin\Debug\Domain.dll
+D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\bin\Debug\EntityFramework.dll
+D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\bin\Debug\Domain.pdb
+D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\bin\Debug\EntityFramework.xml
+D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.csprojResolveAssemblyReference.cache
+D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.dll
+D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.pdb

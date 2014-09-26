@@ -22,15 +22,15 @@ namespace ConsoleUI.UserInterface
       var wordViewer = new WordViewer(ApplicationContext.RepositoryFactory);
 
       var words = wordViewer.ViewWords(userId)
-        .OrderByDescending(r => r.WordLevel);
+        .OrderByDescending(r => r.Level);
 
-      var resultString = words.Aggregate("My words:\n\n",
-        (current, word) => current + string.Format("{0} <-> {1} ({2})\n",
-          word.EnWord, word.RuWord, word.WordLevel));
+      //var resultString = words.Aggregate("My words:\n\n",
+      //  (current, word) => current + string.Format("{0} <-> {1} ({2})\n",
+      //    word.English, wordRussiand, worLevelel));
 
-      resultString += "\nTotal: " + words.Count();
+      //resultString += "\nTotal: " + words.Count();
 
-      ConsoleWriteHelper.WriteOnNewLine(resultString);
+      //ConsoleWriteHelper.WriteOnNewLine(resultString);
       ConsoleWriteHelper.WriteLine("Press any key");
       Console.ReadLine();
       ConsoleWriteHelper.StartMenu();

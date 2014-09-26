@@ -8,7 +8,7 @@
 	Title="MyWordPage">
 
     <Grid>
-        <DataGrid x:Name="DataGridWords" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top" Height="393" Width="763" ColumnWidth="240" Background="#FF514949" FontSize="14" FontFamily="Comic Sans MS" MouseDoubleClick="DataGridWords_MouseDoubleClick"/>
+        <DataGrid x:Name="DataGridWords" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top" Height="393" Width="763"  Background="#FF514949" FontSize="14" FontFamily="Comic Sans MS" MouseDoubleClick="DataGridWords_MouseDoubleClick"/>
         <Label x:Name="LabelMyWords" Content="My words" HorizontalAlignment="Left" Margin="211,10,0,0" VerticalAlignment="Top" Width="468" Height="65" FontFamily="Cooper Black" FontSize="48"/>
         <Grid.Background>
             <ImageBrush ImageSource ="/Images/bg.jpg"></ImageBrush>

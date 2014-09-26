@@ -105,13 +105,15 @@
     </Page.Resources>
 
     <Grid>
-        <Label x:Name="LabelTestWord" Content="Label" HorizontalAlignment="Center" Margin="190,266,10,0" VerticalAlignment="Top" Width="600" Height="55" FontSize="24" FontFamily="Comic Sans MS"/>
-        <TextBox x:Name="TxtAnwer"  HorizontalAlignment="Left" Height="43" Margin="190,335,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="406" PreviewKeyDown="TxtAnwer_PreviewKeyDown" FontSize="24" FontFamily="Comic Sans MS"/>
-        <Button x:Name="BtnAnswer" Content="ok" HorizontalAlignment="Left" Height="43" Margin="308,410,0,0" Style="{DynamicResource ButtonStyle2}" VerticalAlignment="Top" Width="140" Foreground="Black" FontSize="20" FontFamily="Comic Sans MS" Click="BtnAnswer_Click"/>
+        <Label x:Name="LabelTestWord" Content="Label" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="24,311,30,0" VerticalAlignment="Top" Width="746" Height="55" FontSize="24" FontFamily="Comic Sans MS"/>
+        <TextBox x:Name="TxtAnwer"  HorizontalAlignment="Left" Height="43" Margin="190,371,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="406" PreviewKeyDown="TxtAnwer_PreviewKeyDown" FontSize="24" FontFamily="Comic Sans MS"/>
+        <Button x:Name="BtnAnswer" Content="ok" HorizontalAlignment="Left" Height="43" Margin="308,446,0,0" Style="{DynamicResource ButtonStyle2}" VerticalAlignment="Top" Width="140" Foreground="Black" FontSize="20" FontFamily="Comic Sans MS" Click="BtnAnswer_Click"/>
         <Label Content="Spelling test" HorizontalAlignment="Left" Margin="231,10,0,0" VerticalAlignment="Top" Width="365" FontSize="48" FontFamily="Cooper Black"/>
-        <Button x:Name="BtnHelpMe" Content="Help me" HorizontalAlignment="Left" Margin="356,215,0,0" VerticalAlignment="Top" Width="76" Height="34" Click="BtnHelpMe_Click" Background="#FF00E8FF" FontSize="14"/>
-        <Label x:Name="LabelHelp" Content="Help:" HorizontalAlignment="Left" Margin="106,144,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Comic Sans MS" Width="102"/>
-        <Label x:Name="LabelLetters" Content="Letters" HorizontalAlignment="Left" Margin="208,144,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Comic Sans MS" Foreground="#FFE80404" Width="562"/>
+        <Button x:Name="BtnHelpMe" Content="Help me" HorizontalAlignment="Left" Margin="356,268,0,0" VerticalAlignment="Top" Width="76" Height="34" Click="BtnHelpMe_Click" Background="#FF00E8FF" FontSize="14"/>
+        <Label x:Name="LabelHelp" Content="Help:" HorizontalAlignment="Left" Margin="106,246,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Comic Sans MS" Width="102"/>
+        <Label x:Name="LabelLetters" Content="Letters" HorizontalAlignment="Left" Margin="208,246,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Comic Sans MS" Foreground="#FFE80404" Width="562"/>
+        <Label Content="example of use:" HorizontalAlignment="Left" Margin="320,77,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" Foreground="#FFEA0000" FontSize="14"/>
+        <Label x:Name="LabelExample" Content="" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,107,0,0" VerticalAlignment="Top" Width="780" Height="144" FontSize="16" FontFamily="Comic Sans MS"/>
         <Grid.Background>
             <ImageBrush ImageSource ="/Images/bg.jpg"></ImageBrush>
         </Grid.Background>

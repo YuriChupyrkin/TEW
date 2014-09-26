@@ -45,7 +45,7 @@ namespace EntityFrameworkDAL.Repositories
       return russianWords;
     }
 
-    public void AddTranslate(string engWord, string ruWord, int userId)
+    public void AddTranslate(string engWord, string ruWord, string context, int userId)
     {
       int engId = AddEngWord(engWord);
       int ruId = AddRusWord(ruWord);
@@ -57,6 +57,7 @@ namespace EntityFrameworkDAL.Repositories
       {
         enRuWordFromDb.RussianWordId = ruId;
         enRuWordFromDb.WordLevel = 0;
+        enRuWordFromDb.Context = context ?? string.Empty;
         _context.SaveChanges();
         return;
       }
@@ -65,6 +66,7 @@ namespace EntityFrameworkDAL.Repositories
       {
         RussianWordId = ruId,
         EnglishWordId = engId,
+        Context = context ?? string.Empty,
         UserId = userId,
         WordLevel = 0
       };
@@ -80,6 +82,7 @@ namespace EntityFrameworkDAL.Repositories
 
       if (russianWordFromDb == null)
       {
+        ruWord = ruWord.Trim();
         var russianWord = new RussianWord
         {
           RuWord = ruWord.ToLower()
@@ -107,6 +110,7 @@ namespace EntityFrameworkDAL.Repositories
 
       if (engWordFromDb == null)
       {
+        enWord = enWord.Trim();
         var englishWord = new EnglishWord
         {
           EnWord = enWord.ToLower()

@@ -19,3 +19,10 @@ D:\Study\Programming\Projects\EnglishLearning3\EnglishLearnBLL\bin\Debug\Domain.
 D:\Study\Programming\Projects\EnglishLearning3\EnglishLearnBLL\obj\Debug\EnglishLearnBLL.csprojResolveAssemblyReference.cache
 D:\Study\Programming\Projects\EnglishLearning3\EnglishLearnBLL\obj\Debug\EnglishLearnBLL.dll
 D:\Study\Programming\Projects\EnglishLearning3\EnglishLearnBLL\obj\Debug\EnglishLearnBLL.pdb
+D:\Study\Programming\Projects\EnglishLearning4\EnglishLearnBLL\bin\Debug\EnglishLearnBLL.dll
+D:\Study\Programming\Projects\EnglishLearning4\EnglishLearnBLL\bin\Debug\EnglishLearnBLL.pdb
+D:\Study\Programming\Projects\EnglishLearning4\EnglishLearnBLL\bin\Debug\Domain.dll
+D:\Study\Programming\Projects\EnglishLearning4\EnglishLearnBLL\bin\Debug\Domain.pdb
+D:\Study\Programming\Projects\EnglishLearning4\EnglishLearnBLL\obj\Debug\EnglishLearnBLL.csprojResolveAssemblyReference.cache
+D:\Study\Programming\Projects\EnglishLearning4\EnglishLearnBLL\obj\Debug\EnglishLearnBLL.dll
+D:\Study\Programming\Projects\EnglishLearning4\EnglishLearnBLL\obj\Debug\EnglishLearnBLL.pdb

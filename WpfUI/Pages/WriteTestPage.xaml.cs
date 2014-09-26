@@ -95,6 +95,18 @@ namespace WpfUI.Pages
       TxtAnwer.Focus();
       var currentTest = _testSet[_testIndex];
       LabelTestWord.Content = " " + currentTest.Word;
+
+      var example = currentTest.Example;
+      var replacingValue = string.Format("[{0}]", currentTest.Word);
+      example = example.Replace(currentTest.TrueAnswer, replacingValue);
+
+      var textBlock = new TextBlock()
+      {
+        Text = example, 
+        TextWrapping = TextWrapping.Wrap
+      };
+
+      LabelExample.Content = textBlock;
     }
 
     

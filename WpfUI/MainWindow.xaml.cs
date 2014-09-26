@@ -110,7 +110,7 @@ namespace WpfUI
     {
       if (IsOnlineVersion)
       {
-        SetAdminAuthentication();
+        //SetAdminAuthentication();
       }
       else
       {
@@ -164,8 +164,10 @@ namespace WpfUI
       ApplicationContext.AutoFacContainer = container;
       ApplicationContext.RepositoryFactory = repositoryFactory;
       ApplicationContext.EmailSender = container.BeginLifetimeScope().Resolve<IEmailSender>();
-      SetAdminAuthentication();
-      ApplicationContext.BingTranslater = new BingTranslater();
+
+      var checkConnection = IsOnlineVersion;
+      //SetAdminAuthentication();
+      //ApplicationContext.BingTranslater = new BingTranslater();
 
       Switcher.PageSwitcher = this;
 
@@ -185,33 +187,33 @@ namespace WpfUI
       MainFrame.Navigate(nextPage);
     }
 
-    public static void SetAdminAuthentication()
-    {
-      var task = new Task(CrateAdminAuthentication);
-      task.Start();
-    }
+    //public static void SetAdminAuthentication()
+    //{
+    //  var task = new Task(CrateAdminAuthentication);
+    //  task.Start();
+    //}
 
-    private static void CrateAdminAuthentication()
-    {
-      if (IsOnlineVersion)
-      {
-        try
-        {
-          var adminAuth = new AdminAuthentication(
-            "TrainerOfEnglishWords",
-            "LeTcA3cONe0r9IlwED1MBZ/5RMTeZsJdmqLpddpmKOg=");
+    //private static void CrateAdminAuthentication()
+    //{
+    //  if (IsOnlineVersion)
+    //  {
+    //    try
+    //    {
+    //      var adminAuth = new AdminAuthentication(
+    //        "TrainerOfEnglishWords",
+    //        "LeTcA3cONe0r9IlwED1MBZ/5RMTeZsJdmqLpddpmKOg=");
 
-          ApplicationContext.AdminAuthentication = adminAuth;
-        }
-        catch (Exception ex)
-        {
-          var message = string.Format("Online translator could not connect..." +
-                                      "\nYou will use offline version" +
-                                      "\n{0}", ex.Message);
-          MessageBox.Show(message, "connection error");
-        }
-      }
-    }
+    //      ApplicationContext.AdminAuthentication = adminAuth;
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //      var message = string.Format("Online translator could not connect..." +
+    //                                  "\nYou will use offline version" +
+    //                                  "\n{0}", ex.Message);
+    //      MessageBox.Show(message, "connection error");
+    //    }
+    //  }
+    //}
 
     private static bool CheckConnection()
     {

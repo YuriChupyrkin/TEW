@@ -83,7 +83,7 @@ namespace ConsoleUI.UserInterface
       try
       {
         var userId = ApplicationContext.CurrentUser.Id;
-        _repositoryFactory.EnRuWordsRepository.AddTranslate(enWord, ruWord, userId);
+        _repositoryFactory.EnRuWordsRepository.AddTranslate(enWord, ruWord, string.Empty, userId);
       }
       catch (Exception ex)
       {

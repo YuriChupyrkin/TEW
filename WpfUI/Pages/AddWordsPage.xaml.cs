@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Input;
 using Domain.RepositoryFactories;
 using WpfUI.Helpers;
@@ -17,6 +18,8 @@ namespace WpfUI.Pages
   {
     private readonly IRepositoryFactory _repositoryFactory;
     private const string MyTranslate = "My translate";
+
+    private string _selectedTranslate;
    
     public AddWordsPage()
     {
@@ -72,7 +75,14 @@ namespace WpfUI.Pages
 
     private void BtnAdd_Click(object sender, RoutedEventArgs e)
     {
-      AddWord(TxtRusTranslate.Text);
+      if (string.IsNullOrEmpty(_selectedTranslate))
+      {
+        AddWord(TxtRusTranslate.Text);
+      }
+      else
+      {
+        AddWord(_selectedTranslate);
+      }
     }
 
     private void TxtRusTranslate_TextChanged(object sender, TextChangedEventArgs e)
@@ -115,6 +125,11 @@ namespace WpfUI.Pages
       InputLanguageManager.Current.CurrentInputLanguage = new CultureInfo("RU-ru");
     }
 
+    private void TxtRusTranslate_LostFocus(object sender, RoutedEventArgs e)
+    {
+      InputLanguageManager.Current.CurrentInputLanguage = new CultureInfo("EN-us");
+    }
+
     private void ListTranslate_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
     {
       var item = ItemsControl
@@ -125,12 +140,16 @@ namespace WpfUI.Pages
         if (item.Content.ToString().Equals(MyTranslate))
         {
           TxtRusTranslate.Visibility = Visibility.Visible;
+          BtnAdd.IsEnabled = false;
+          _selectedTranslate = string.Empty;
           TxtRusTranslate.Focus();
         }
         else
         {
           TxtRusTranslate.Visibility = Visibility.Hidden;
           TxtRusTranslate.Text = string.Empty;
+          _selectedTranslate = item.Content.ToString();
+          BtnAdd.IsEnabled = true;
         }
       }
     }
@@ -152,7 +171,17 @@ namespace WpfUI.Pages
       try
       {
         var userId = ApplicationContext.CurrentUser.Id;
-        _repositoryFactory.EnRuWordsRepository.AddTranslate(enWord, rusWord, userId);
+        string example = TxtExample.Text;
+
+        const int maxLen = 500;
+
+        if (example.Length > maxLen)
+        {
+          example = example.Substring(0, maxLen);
+          example += "...";
+        }
+
+        _repositoryFactory.EnRuWordsRepository.AddTranslate(enWord, rusWord, example, userId);
       }
       catch (Exception ex)
       {
@@ -168,10 +197,12 @@ namespace WpfUI.Pages
       TxtRusTranslate.Text = string.Empty;
       TxtRusTranslate.Visibility = Visibility.Hidden;
       ListTranslate.Items.Clear();
+      TxtExample.Clear();
     }
 
     private async Task Search()
     {
+      TxtExample.Clear();
       ListTranslate.Items.Clear();
 
       var word = TxtEnglishWord.Text;
@@ -183,31 +214,29 @@ namespace WpfUI.Pages
         ListTranslate.Items.Add(translate);
       }
 
-      var bingTranslate = await AddTranslateFromBing();
+      var googleTranslate = await AddTranslateFromGoogle();
 
-      if (translates.Contains(bingTranslate) == false && bingTranslate.Length > 0)
+      foreach (var translate in googleTranslate)
       {
-        ListTranslate.Items.Add(bingTranslate);
+        if (translates.Contains(translate) == false && translate.Length > 0)
+        {
+          ListTranslate.Items.Add(translate);
+        }
       }
     }
 
-    private async Task<string> AddTranslateFromBing()
+    private async Task<string[]> AddTranslateFromGoogle()
     {
       if (MainWindow.IsOnlineVersion == false)
       {
-        return string.Empty;
+        return new string[0];
       }
 
-      if (ApplicationContext.AdminAuthentication == null)
-      {
-        MainWindow.SetAdminAuthentication();
-        return string.Empty;
-      }
+      var googleTranslator = new GoogleTranslater();
+      var result = await googleTranslator.GetTranslate(TxtEnglishWord.Text);
 
-      var translate = await ApplicationContext
-        .BingTranslater.GetTranslate(TxtEnglishWord.Text);
-
-      return translate.ToLower();
+      TxtExample.AppendText(result.Context);
+      return result.Translates;
     }
 
     #endregion
