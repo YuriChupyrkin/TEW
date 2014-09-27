@@ -13,7 +13,7 @@ namespace WpfUI
     public static IContainer AutoFacContainer { get; set; }
     public static IRepositoryFactory RepositoryFactory { get; set; }
     public static AdminAuthentication AdminAuthentication { get; set; }
-    public static BingTranslater BingTranslater { get; set; }
+    //public static BingTranslater BingTranslater { get; set; }
     public static IEmailSender EmailSender { get; set; }
   }
 }

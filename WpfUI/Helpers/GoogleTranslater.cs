@@ -15,17 +15,13 @@ namespace WpfUI.Helpers
     private const string TranslateUri =
       "https://translate.google.by/translate_a/single?client=t&sl=en&tl=ru&hl=ru&dt=bd&dt=ex&dt=ld&dt=md&dt=qc&dt=rw&dt=rm&dt=ss&dt=t&dt=at&dt=sw&ie=UTF-8&oe=UTF-8&otf=2&ssel=0&tsel=0&q=";
 
-    private DirectSoundOut _directSoundOut;
-    private AudioFileReader _audioFileReader;
-
     public GoogleTranslater()
     {
-      _directSoundOut = new DirectSoundOut();
     }
 
-    public async Task<TranslateWithContext> GetTranslate(string word)
+    public async Task<TranslateWithExamplecs> GetTranslate(string word)
     {
-      word = word.Replace(" ", "%20");
+      word = HttpUtility.UrlEncode(word);
       string uri = TranslateUri + word;
       string responseString = string.Empty;
 
@@ -47,9 +43,9 @@ namespace WpfUI.Helpers
       string[] translates = ParseGoogleResponse(responseString);
       string context = GetContext(responseString);
 
-      var translateContext = new TranslateWithContext
+      var translateContext = new TranslateWithExamplecs
       {
-        Context = context,
+        Example = context,
         Translates = translates
       };
 

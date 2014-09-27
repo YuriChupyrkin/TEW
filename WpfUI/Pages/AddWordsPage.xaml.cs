@@ -235,7 +235,7 @@ namespace WpfUI.Pages
 
     private async Task Speak(string word, string lang)
     {
-      if (MainWindow.IsOnlineVersion && MainWindow.IsSpeakWords)
+      if (MainWindow.IsOnlineVersion && MainWindow.IsSpeakEng)
       {
         await _googleTranslator.Speak(word, lang);
       }
@@ -250,7 +250,7 @@ namespace WpfUI.Pages
 
       var result = await _googleTranslator.GetTranslate(TxtEnglishWord.Text);
 
-      TxtExample.AppendText(result.Context);
+      TxtExample.AppendText(result.Example);
       return result.Translates;
     }
 

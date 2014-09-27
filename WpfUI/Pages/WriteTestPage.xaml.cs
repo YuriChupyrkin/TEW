@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -36,14 +35,14 @@ namespace WpfUI.Pages
       _wordLevelManager = new WordLevelManager(_repositoryFactory);
     }
 
-    public async Task StartTest()
+    public void StartTest()
     {
       _testCreator = new TestCreator(_repositoryFactory);
       _testSet = _testCreator.WriteTest(ApplicationContext.CurrentUser.Id).ToList();
       _testCount = _testSet.Count;
       _testIndex = 0;
       _failedCount = 0;
-      await PrintCurrentTest();
+      PrintCurrentTest();
     }
 
     #region events
@@ -83,8 +82,8 @@ namespace WpfUI.Pages
     #endregion
 
     #region methods
-   
-    private async Task PrintCurrentTest()
+
+    private void PrintCurrentTest()
     {
       if (_testSet.Count < 4)
       {
@@ -108,30 +107,30 @@ namespace WpfUI.Pages
       };
 
       LabelExample.Content = textBlock;
-      await Speak(currentTest.Word);
+      Speak(currentTest.Word);
     }
 
-    private async Task Speak(string word)
+    private void Speak(string word)
     {
-      if (MainWindow.IsOnlineVersion == false || MainWindow.IsSpeakWords == false)
+      if (MainWindow.IsOnlineVersion == false || MainWindow.IsSpeakRus == false)
       {
         return;
       }
 
       var translator = new GoogleTranslater();
-      await translator.Speak(word, "ru");
+      translator.Speak(word, "ru");
     }
-    
-    private async Task TestIndexIncrement()
+
+    private void TestIndexIncrement()
     {
       if (_testIndex < (_testCount - 1))
       {
         _testIndex++;
-        await PrintCurrentTest();
+        PrintCurrentTest();
       }
       else
       {
-        await TestResult();
+        TestResult();
       }
     }
 
@@ -154,10 +153,6 @@ namespace WpfUI.Pages
 
     private void SetLevel(bool isTrueAnswer, int wordId)
     {
-      //var mark = _isHelpOn ? 3 : 4;
-      //var levelShift = isTrueAnswer ? mark : (0 - mark);
-      //_repositoryFactory.EnRuWordsRepository
-      //    .ChangeWordLevel(wordId, levelShift);
       var testType = WordLevelManager.TestType.SpellingTest;
       if (_isHelpOn)
       {
@@ -166,21 +161,21 @@ namespace WpfUI.Pages
       _wordLevelManager.SetWordLevel(wordId, isTrueAnswer, testType);
     }
 
-    private async Task TestResult()
+    private void TestResult()
     {
       var result = string.Format("End of test!\n{0} error from {1} tests",
         _failedCount, _testCount);
       MessageBox.Show(result);
-      await RestartTest();
+      RestartTest();
     }
 
-    private async Task RestartTest()
+    private void RestartTest()
     {
       var startNewTest = DialogHelper.YesNoQuestionDialog(
         "Start new test", "Restart");
       if (startNewTest)
       {
-        await StartTest();
+        StartTest();
       }
       else
       {

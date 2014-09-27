@@ -13,7 +13,8 @@
                     <MenuItem Name="SignOut" Header="_Sign out" Click="SignOut_Click"/>
                     <Separator />
                     <MenuItem Name="MenuConnect" Header="_Connect" Click="MenuConnect_Click"/>
-                    <MenuItem Name="SpeakMenu" IsCheckable="True" Header="_Is speak words" Click="SpeakMenu_Click" />
+                    <MenuItem Name="SpeakEngMenu" IsCheckable="True" Header="_Is speak english" Click="SpeakEngMenu_Click" />
+                    <MenuItem Name="SpeakRusMenu" IsCheckable="True" Header="_Is speak russian" Click="SpeakRusMenu_Click" />
                     <Separator/>
                     <MenuItem Header="_Exit" Click="MenuItem_Click_1" />
                 </MenuItem>

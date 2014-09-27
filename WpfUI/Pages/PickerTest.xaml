@@ -110,7 +110,7 @@
         <Button x:Name="BtnEnRuTest" Content="En-Ru test" HorizontalAlignment="Left" Height="44" Margin="10,314,0,0" Style="{DynamicResource ButtonStyle2}" VerticalAlignment="Top" Width="168" Foreground="Black" FontSize="18.667" FontFamily="Comic Sans MS" Click="BtnEnRuTest_Click"/>
         <Button x:Name="BtnRuEnTest" Content="Ru-En test" HorizontalAlignment="Left" Height="43" Margin="10,387,0,0" Style="{DynamicResource ButtonStyle2}" VerticalAlignment="Top" Width="168" Foreground="Black" FontSize="18.667" FontFamily="Comic Sans MS" Click="BtnRuEnTest_Click" RenderTransformOrigin="3.704,-7.043"/>
         <Label Content="Word-translation test" HorizontalAlignment="Left" Margin="138,10,0,0" VerticalAlignment="Top" Width="559" Height="66" FontSize="48" FontFamily="Cooper Black"/>
-        <Label x:Name="LabelExampleOfUseLabel" Content="example of use:" HorizontalAlignment="Left" Margin="320,77,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" Foreground="#FFEA0000" FontSize="14"/>
+        <Label x:Name="LabelExampleOfUseLabel" Content="example of use:" HorizontalAlignment="Left" Margin="338,77,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" Foreground="#FFEA0000" FontSize="14"/>
         <Label x:Name="LabelExample" Content="" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,107,0,0" VerticalAlignment="Top" Width="780" Height="158" FontSize="16" FontFamily="Comic Sans MS"/>
         <Grid.Background>
             <ImageBrush ImageSource ="/Images/bg.jpg"></ImageBrush>

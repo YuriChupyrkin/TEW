@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -20,6 +19,7 @@ namespace WpfUI.Pages
   {
     private readonly IRepositoryFactory _repositoryFactory;
     private readonly WordLevelManager _wordLevelManager;
+    private readonly GoogleTranslater _googleTranslater;
     private TestCreator _testCreator;
     private List<PickerTestModel> _testSet;
     private int _testIndex;
@@ -36,6 +36,7 @@ namespace WpfUI.Pages
       ApplicationValidator.ExpectAuthorized();
       _repositoryFactory = ApplicationContext.RepositoryFactory;
       _wordLevelManager = new WordLevelManager(_repositoryFactory);
+      _googleTranslater = new GoogleTranslater();
 
       LabelExampleOfUseLabel.Visibility = Visibility.Hidden;
     }
@@ -86,21 +87,21 @@ namespace WpfUI.Pages
 
     #region methods
 
-    private async Task StartEnRuTest()
+    private void StartEnRuTest()
     {
       _testCreator = new TestCreator(ApplicationContext.RepositoryFactory);
       _testSet = _testCreator.EnglishRussianTest(ApplicationContext.CurrentUser.Id).ToList();
-      await StartTest();
+      StartTest();
     }
 
-    private async Task StartRuEnTest()
+    private void StartRuEnTest()
     {
       _testCreator = new TestCreator(ApplicationContext.RepositoryFactory);
       _testSet = _testCreator.RussianEnglishTest(ApplicationContext.CurrentUser.Id).ToList();
-      await StartTest();
+      StartTest();
     }
 
-    private async Task StartTest()
+    private void StartTest()
     {
       if (_testSet.Count < 4)
       {
@@ -112,10 +113,10 @@ namespace WpfUI.Pages
       _testCount = _testSet.Count;
       _failedCount = 0;
       LabelExampleOfUseLabel.Visibility = Visibility.Visible;
-      await PrintCurrentTest();
+      PrintCurrentTest();
     }
 
-    private async Task PrintCurrentTest()
+    private void PrintCurrentTest()
     {
       var test = _testSet[_testIndex];
 
@@ -144,24 +145,24 @@ namespace WpfUI.Pages
       };
 
       LabelExample.Content = textBlock;
-      await Speak(test.Word);
+      Speak(test.Word);
     }
 
-    private async Task Speak(string word)
+    private void Speak(string word)
     {
-      if (MainWindow.IsOnlineVersion == false || MainWindow.IsSpeakWords == false)
+      if (MainWindow.IsOnlineVersion == false)
       {
         return;
       }
-
-      var lang = "ru";
-      if (_currentTestName == EnRuTest)
+    
+      if (_currentTestName == EnRuTest && MainWindow.IsSpeakEng)
       {
-        lang = "en";
+        _googleTranslater.Speak(word, "en");
       }
-
-      var translator = new GoogleTranslater();
-      await translator.Speak(word, lang);
+      if (_currentTestName == RuEnTest && MainWindow.IsSpeakRus)
+      {
+        _googleTranslater.Speak(word, "ru");
+      }
     }
 
     private void CheckAnswer(string answer)
@@ -200,29 +201,29 @@ namespace WpfUI.Pages
       _wordLevelManager.SetWordLevel(wordId, isTrueAnswer, testType);
     }
 
-    private async Task TestIndexIncrement()
+    private void TestIndexIncrement()
     {
       if (_testIndex < (_testCount - 1))
       {
         _testIndex++;
-        await PrintCurrentTest();
+        PrintCurrentTest();
       }
       else
       {
-        await TestResult();
+        TestResult();
       }
     }
 
-    private async Task TestResult()
+    private void TestResult()
     {
       ListTestAnswers.IsEnabled = false;
       var result = string.Format("End of test!\n{0} error from {1} tests",
         _failedCount, _testCount);
       MessageBox.Show(result);
-      await RestartTest();
+      RestartTest();
     }
 
-    private async Task RestartTest()
+    private void RestartTest()
     {
       var startNewTest = DialogHelper.YesNoQuestionDialog(
         "Start new test", "Restart");
@@ -230,11 +231,11 @@ namespace WpfUI.Pages
       {
         if (_currentTestName.Equals(RuEnTest))
         {
-          await StartRuEnTest();
+          StartRuEnTest();
         }
         else
         {
-          await StartEnRuTest();
+          StartEnRuTest();
         }
       }
       else

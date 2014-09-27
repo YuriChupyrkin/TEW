@@ -21,7 +21,8 @@ namespace WpfUI
     public static MainWindow ThisWindow { get; set; }
     public static EventHandler<EventArgs> ChangeTitleEvent { get; set; }
 
-    public static bool IsSpeakWords { get; set; }
+    public static bool IsSpeakEng { get; set; }
+    public static bool IsSpeakRus { get; set; }
 
     public static bool IsOnlineVersion
     {
@@ -145,10 +146,16 @@ namespace WpfUI
     }
 
 
-    private void SpeakMenu_Click(object sender, RoutedEventArgs e)
+    private void SpeakEngMenu_Click(object sender, RoutedEventArgs e)
     {
-      IsSpeakWords = !IsSpeakWords;
-      SpeakMenu.IsChecked = IsSpeakWords;
+      IsSpeakEng = !IsSpeakEng;
+      SpeakEngMenu.IsChecked = IsSpeakEng;
+    }
+
+    private void SpeakRusMenu_Click(object sender, RoutedEventArgs e)
+    {
+      IsSpeakRus = !IsSpeakRus;
+      SpeakRusMenu.IsChecked = IsSpeakRus;
     }
 
     #endregion
@@ -173,8 +180,8 @@ namespace WpfUI
       ApplicationContext.EmailSender = container.BeginLifetimeScope().Resolve<IEmailSender>();
 
       var checkConnection = IsOnlineVersion;
-      IsSpeakWords = true;
-      SpeakMenu.IsChecked = true;
+      IsSpeakEng = true;
+      SpeakEngMenu.IsChecked = true;
       //SetAdminAuthentication();
       //ApplicationContext.BingTranslater = new BingTranslater();
 
@@ -241,5 +248,6 @@ namespace WpfUI
     }
     #endregion
 
+ 
   }
 }

@@ -88,7 +88,7 @@
     <Compile Include="Auth\AdminAuthentication.cs" />
     <Compile Include="Auth\UserProvider.cs" />
     <Compile Include="Autofac\AutofacModule.cs" />
-    <Compile Include="Entities\TranslateWithContext.cs" />
+    <Compile Include="Entities\TranslateWithExamplecs.cs" />
     <Compile Include="Helpers\ApplicationValidator.cs" />
     <Compile Include="Helpers\BingTranslater.cs" />
     <Compile Include="Helpers\DialogHelper.cs" />

@@ -112,7 +112,7 @@
         <Button x:Name="BtnHelpMe" Content="Help me" HorizontalAlignment="Left" Margin="356,268,0,0" VerticalAlignment="Top" Width="76" Height="34" Click="BtnHelpMe_Click" Background="#FF00E8FF" FontSize="14"/>
         <Label x:Name="LabelHelp" Content="Help:" HorizontalAlignment="Left" Margin="106,246,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Comic Sans MS" Width="102"/>
         <Label x:Name="LabelLetters" Content="Letters" HorizontalAlignment="Left" Margin="208,246,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Comic Sans MS" Foreground="#FFE80404" Width="562"/>
-        <Label Content="example of use:" HorizontalAlignment="Left" Margin="320,77,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" Foreground="#FFEA0000" FontSize="14"/>
+        <Label Content="example of use:" HorizontalAlignment="Left" Margin="356,75,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" Foreground="#FFEA0000" FontSize="14"/>
         <Label x:Name="LabelExample" Content="" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,107,0,0" VerticalAlignment="Top" Width="780" Height="144" FontSize="16" FontFamily="Comic Sans MS"/>
         <Grid.Background>
             <ImageBrush ImageSource ="/Images/bg.jpg"></ImageBrush>
