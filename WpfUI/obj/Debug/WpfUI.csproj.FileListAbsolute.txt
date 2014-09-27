@@ -190,3 +190,5 @@ D:\Study\Programming\Projects\EnglishLearning4\WpfUI\obj\Debug\WpfUI_MarkupCompi
 D:\Study\Programming\Projects\EnglishLearning4\WpfUI\obj\Debug\WpfUI.g.resources
 D:\Study\Programming\Projects\EnglishLearning4\WpfUI\obj\Debug\WpfUI.Properties.Resources.resources
 D:\Study\Programming\Projects\EnglishLearning4\WpfUI\obj\Debug\WpfUI.csproj.GenerateResource.Cache
+D:\Study\Programming\Projects\EnglishLearning4\WpfUI\bin\Debug\NAudio.dll
+D:\Study\Programming\Projects\EnglishLearning4\WpfUI\bin\Debug\NAudio.xml

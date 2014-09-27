@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 using WpfUI.Helpers;
 
@@ -30,7 +31,9 @@ namespace WpfUI.Pages
 
     private void BtnWriteTest_Click(object sender, System.Windows.RoutedEventArgs e)
     {
-      Switcher.Switch(new WriteTestPage());
+      var writeTestPage = new WriteTestPage();
+      Switcher.Switch(writeTestPage);
+      writeTestPage.StartTest();
     }
 
     private void BtnMyWords_Click(object sender, System.Windows.RoutedEventArgs e)

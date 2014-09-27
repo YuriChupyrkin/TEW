@@ -57,7 +57,7 @@ namespace EntityFrameworkDAL.Repositories
       {
         enRuWordFromDb.RussianWordId = ruId;
         enRuWordFromDb.WordLevel = 0;
-        enRuWordFromDb.Context = context ?? string.Empty;
+        enRuWordFromDb.Example = context ?? string.Empty;
         _context.SaveChanges();
         return;
       }
@@ -66,7 +66,7 @@ namespace EntityFrameworkDAL.Repositories
       {
         RussianWordId = ruId,
         EnglishWordId = engId,
-        Context = context ?? string.Empty,
+        Example = context ?? string.Empty,
         UserId = userId,
         WordLevel = 0
       };

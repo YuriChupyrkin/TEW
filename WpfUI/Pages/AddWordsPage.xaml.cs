@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Media;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,6 +20,7 @@ namespace WpfUI.Pages
   public partial class AddWordsPage : Page
   {
     private readonly IRepositoryFactory _repositoryFactory;
+    private readonly GoogleTranslater _googleTranslator;
     private const string MyTranslate = "My translate";
 
     private string _selectedTranslate;
@@ -27,10 +31,12 @@ namespace WpfUI.Pages
 
       ApplicationValidator.ExpectAuthorized();
 
-      TxtRusTranslate.Visibility = Visibility.Hidden;
+      TxtRusTranslate.IsEnabled = false;
       BtnAdd.IsEnabled = false;
  
       _repositoryFactory = ApplicationContext.RepositoryFactory;
+      _googleTranslator = new GoogleTranslater();
+
       TxtEnglishWord.Focus();
       BtnSearch.IsEnabled = false;
     }
@@ -64,7 +70,7 @@ namespace WpfUI.Pages
       {
         ListTranslate.Items.Clear();
         TxtRusTranslate.Clear();
-        TxtRusTranslate.Visibility = Visibility.Hidden;
+        TxtRusTranslate.IsEnabled = false;
         BtnSearch.IsEnabled = true;
       }
       else
@@ -139,14 +145,14 @@ namespace WpfUI.Pages
       {
         if (item.Content.ToString().Equals(MyTranslate))
         {
-          TxtRusTranslate.Visibility = Visibility.Visible;
+          TxtRusTranslate.IsEnabled = true;
           BtnAdd.IsEnabled = false;
           _selectedTranslate = string.Empty;
           TxtRusTranslate.Focus();
         }
         else
         {
-          TxtRusTranslate.Visibility = Visibility.Hidden;
+          TxtRusTranslate.IsEnabled = false;
           TxtRusTranslate.Text = string.Empty;
           _selectedTranslate = item.Content.ToString();
           BtnAdd.IsEnabled = true;
@@ -195,7 +201,7 @@ namespace WpfUI.Pages
     {
       TxtEnglishWord.Text = string.Empty;
       TxtRusTranslate.Text = string.Empty;
-      TxtRusTranslate.Visibility = Visibility.Hidden;
+      TxtRusTranslate.IsEnabled = false;
       ListTranslate.Items.Clear();
       TxtExample.Clear();
     }
@@ -223,6 +229,16 @@ namespace WpfUI.Pages
           ListTranslate.Items.Add(translate);
         }
       }
+
+      await Speak(word, "en");
+    }
+
+    private async Task Speak(string word, string lang)
+    {
+      if (MainWindow.IsOnlineVersion && MainWindow.IsSpeakWords)
+      {
+        await _googleTranslator.Speak(word, lang);
+      }
     }
 
     private async Task<string[]> AddTranslateFromGoogle()
@@ -232,8 +248,7 @@ namespace WpfUI.Pages
         return new string[0];
       }
 
-      var googleTranslator = new GoogleTranslater();
-      var result = await googleTranslator.GetTranslate(TxtEnglishWord.Text);
+      var result = await _googleTranslator.GetTranslate(TxtEnglishWord.Text);
 
       TxtExample.AppendText(result.Context);
       return result.Translates;

@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Net;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Autofac;
 using Common.Mail;
 using Domain.RepositoryFactories;
-using WpfUI.Auth;
 using WpfUI.Autofac;
 using WpfUI.Helpers;
 using WpfUI.Pages;
@@ -22,6 +20,8 @@ namespace WpfUI
 
     public static MainWindow ThisWindow { get; set; }
     public static EventHandler<EventArgs> ChangeTitleEvent { get; set; }
+
+    public static bool IsSpeakWords { get; set; }
 
     public static bool IsOnlineVersion
     {
@@ -144,6 +144,13 @@ namespace WpfUI
       }
     }
 
+
+    private void SpeakMenu_Click(object sender, RoutedEventArgs e)
+    {
+      IsSpeakWords = !IsSpeakWords;
+      SpeakMenu.IsChecked = IsSpeakWords;
+    }
+
     #endregion
 
     #region methods
@@ -166,6 +173,8 @@ namespace WpfUI
       ApplicationContext.EmailSender = container.BeginLifetimeScope().Resolve<IEmailSender>();
 
       var checkConnection = IsOnlineVersion;
+      IsSpeakWords = true;
+      SpeakMenu.IsChecked = true;
       //SetAdminAuthentication();
       //ApplicationContext.BingTranslater = new BingTranslater();
 
@@ -231,5 +240,6 @@ namespace WpfUI
       }
     }
     #endregion
+
   }
 }

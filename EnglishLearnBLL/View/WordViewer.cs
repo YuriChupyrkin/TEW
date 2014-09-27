@@ -26,7 +26,7 @@ namespace EnglishLearnBLL.View
         English = r.EnglishWord.EnWord,
         Russian = r.RussianWord.RuWord,
         Level = r.WordLevel,
-        Example = r.Context
+        Example = r.Example
       }));
 
       return viewList;

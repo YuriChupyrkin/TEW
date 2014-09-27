@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -24,7 +25,7 @@ namespace WpfUI.Pages
     private int _testIndex;
     private int _testCount;
     private int _failedCount;
-    private bool _isHelpOn = false;
+    private bool _isHelpOn ;
 
     public WriteTestPage()
     {
@@ -33,7 +34,16 @@ namespace WpfUI.Pages
       ApplicationValidator.ExpectAuthorized();
       _repositoryFactory = ApplicationContext.RepositoryFactory;
       _wordLevelManager = new WordLevelManager(_repositoryFactory);
-      StartTest();
+    }
+
+    public async Task StartTest()
+    {
+      _testCreator = new TestCreator(_repositoryFactory);
+      _testSet = _testCreator.WriteTest(ApplicationContext.CurrentUser.Id).ToList();
+      _testCount = _testSet.Count;
+      _testIndex = 0;
+      _failedCount = 0;
+      await PrintCurrentTest();
     }
 
     #region events
@@ -73,17 +83,8 @@ namespace WpfUI.Pages
     #endregion
 
     #region methods
-    private void StartTest()
-    {
-      _testCreator = new TestCreator(_repositoryFactory);
-      _testSet = _testCreator.WriteTest(ApplicationContext.CurrentUser.Id).ToList();
-      _testCount = _testSet.Count;
-      _testIndex = 0;
-      _failedCount = 0;
-      PrintCurrentTest();
-    }
-
-    private void PrintCurrentTest()
+   
+    private async Task PrintCurrentTest()
     {
       if (_testSet.Count < 4)
       {
@@ -100,26 +101,37 @@ namespace WpfUI.Pages
       var replacingValue = string.Format("[{0}]", currentTest.Word);
       example = example.Replace(currentTest.TrueAnswer, replacingValue);
 
-      var textBlock = new TextBlock()
+      var textBlock = new TextBlock
       {
         Text = example, 
         TextWrapping = TextWrapping.Wrap
       };
 
       LabelExample.Content = textBlock;
+      await Speak(currentTest.Word);
     }
 
+    private async Task Speak(string word)
+    {
+      if (MainWindow.IsOnlineVersion == false || MainWindow.IsSpeakWords == false)
+      {
+        return;
+      }
+
+      var translator = new GoogleTranslater();
+      await translator.Speak(word, "ru");
+    }
     
-    private void TestIndexIncrement()
+    private async Task TestIndexIncrement()
     {
       if (_testIndex < (_testCount - 1))
       {
         _testIndex++;
-        PrintCurrentTest();
+        await PrintCurrentTest();
       }
       else
       {
-        TestResult();
+        await TestResult();
       }
     }
 
@@ -154,21 +166,21 @@ namespace WpfUI.Pages
       _wordLevelManager.SetWordLevel(wordId, isTrueAnswer, testType);
     }
 
-    private void TestResult()
+    private async Task TestResult()
     {
       var result = string.Format("End of test!\n{0} error from {1} tests",
         _failedCount, _testCount);
       MessageBox.Show(result);
-      RestartTest();
+      await RestartTest();
     }
 
-    private void RestartTest()
+    private async Task RestartTest()
     {
       var startNewTest = DialogHelper.YesNoQuestionDialog(
         "Start new test", "Restart");
       if (startNewTest)
       {
-        StartTest();
+        await StartTest();
       }
       else
       {
@@ -205,5 +217,6 @@ namespace WpfUI.Pages
     }
 
     #endregion
+
   }
 }

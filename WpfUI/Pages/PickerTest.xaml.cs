@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -21,9 +22,9 @@ namespace WpfUI.Pages
     private readonly WordLevelManager _wordLevelManager;
     private TestCreator _testCreator;
     private List<PickerTestModel> _testSet;
-    private int _testIndex = 0;
-    private int _testCount = 0;
-    private int _failedCount = 0;
+    private int _testIndex;
+    private int _testCount;
+    private int _failedCount;
     private const string EnRuTest = "EnRu";
     private const string RuEnTest = "RuEn";
     private string _currentTestName;
@@ -85,21 +86,21 @@ namespace WpfUI.Pages
 
     #region methods
 
-    private void StartEnRuTest()
+    private async Task StartEnRuTest()
     {
       _testCreator = new TestCreator(ApplicationContext.RepositoryFactory);
       _testSet = _testCreator.EnglishRussianTest(ApplicationContext.CurrentUser.Id).ToList();
-      StartTest();
+      await StartTest();
     }
 
-    private void StartRuEnTest()
+    private async Task StartRuEnTest()
     {
       _testCreator = new TestCreator(ApplicationContext.RepositoryFactory);
       _testSet = _testCreator.RussianEnglishTest(ApplicationContext.CurrentUser.Id).ToList();
-      StartTest();
+      await StartTest();
     }
 
-    private void StartTest()
+    private async Task StartTest()
     {
       if (_testSet.Count < 4)
       {
@@ -111,10 +112,10 @@ namespace WpfUI.Pages
       _testCount = _testSet.Count;
       _failedCount = 0;
       LabelExampleOfUseLabel.Visibility = Visibility.Visible;
-      PrintCurrentTest();
+      await PrintCurrentTest();
     }
 
-    private void PrintCurrentTest()
+    private async Task PrintCurrentTest()
     {
       var test = _testSet[_testIndex];
 
@@ -136,14 +137,33 @@ namespace WpfUI.Pages
         }
       }
 
-      var textBlock = new TextBlock()
+      var textBlock = new TextBlock
       {
         Text = example,
         TextWrapping = TextWrapping.Wrap
       };
 
       LabelExample.Content = textBlock;
+      await Speak(test.Word);
     }
+
+    private async Task Speak(string word)
+    {
+      if (MainWindow.IsOnlineVersion == false || MainWindow.IsSpeakWords == false)
+      {
+        return;
+      }
+
+      var lang = "ru";
+      if (_currentTestName == EnRuTest)
+      {
+        lang = "en";
+      }
+
+      var translator = new GoogleTranslater();
+      await translator.Speak(word, lang);
+    }
+
     private void CheckAnswer(string answer)
     {
       var currentTest = _testSet[_testIndex];
@@ -180,29 +200,29 @@ namespace WpfUI.Pages
       _wordLevelManager.SetWordLevel(wordId, isTrueAnswer, testType);
     }
 
-    private void TestIndexIncrement()
+    private async Task TestIndexIncrement()
     {
       if (_testIndex < (_testCount - 1))
       {
         _testIndex++;
-        PrintCurrentTest();
+        await PrintCurrentTest();
       }
       else
       {
-        TestResult();
+        await TestResult();
       }
     }
 
-    private void TestResult()
+    private async Task TestResult()
     {
       ListTestAnswers.IsEnabled = false;
       var result = string.Format("End of test!\n{0} error from {1} tests",
         _failedCount, _testCount);
       MessageBox.Show(result);
-      RestartTest();
+      await RestartTest();
     }
 
-    private void RestartTest()
+    private async Task RestartTest()
     {
       var startNewTest = DialogHelper.YesNoQuestionDialog(
         "Start new test", "Restart");
@@ -210,11 +230,11 @@ namespace WpfUI.Pages
       {
         if (_currentTestName.Equals(RuEnTest))
         {
-          StartRuEnTest();
+          await StartRuEnTest();
         }
         else
         {
-          StartEnRuTest();
+          await StartEnRuTest();
         }
       }
       else

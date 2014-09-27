@@ -1,27 +1,39 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
+using NAudio.Wave;
 using WpfUI.Entities;
 
 namespace WpfUI.Helpers
 {
   internal class GoogleTranslater
   {
-    private const string Uri =
+    private const string TranslateUri =
       "https://translate.google.by/translate_a/single?client=t&sl=en&tl=ru&hl=ru&dt=bd&dt=ex&dt=ld&dt=md&dt=qc&dt=rw&dt=rm&dt=ss&dt=t&dt=at&dt=sw&ie=UTF-8&oe=UTF-8&otf=2&ssel=0&tsel=0&q=";
+
+    private DirectSoundOut _directSoundOut;
+    private AudioFileReader _audioFileReader;
+
+    public GoogleTranslater()
+    {
+      _directSoundOut = new DirectSoundOut();
+    }
 
     public async Task<TranslateWithContext> GetTranslate(string word)
     {
       word = word.Replace(" ", "%20");
-      string uri = Uri + word;
-      var responseString = string.Empty;
+      string uri = TranslateUri + word;
+      string responseString = string.Empty;
 
-      var httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
+      var httpWebRequest = (HttpWebRequest) WebRequest.Create(uri);
 
       try
       {
-        var response = await httpWebRequest.GetResponseAsync();
+        WebResponse response = await httpWebRequest.GetResponseAsync();
         using (var stream = new StreamReader(response.GetResponseStream()))
         {
           responseString = stream.ReadToEnd();
@@ -32,8 +44,8 @@ namespace WpfUI.Helpers
         throw new Exception(ex.Message, ex);
       }
 
-      var translates = ParseGoogleResponse(responseString);
-      var context = GetContext(responseString);
+      string[] translates = ParseGoogleResponse(responseString);
+      string context = GetContext(responseString);
 
       var translateContext = new TranslateWithContext
       {
@@ -44,12 +56,78 @@ namespace WpfUI.Helpers
       return translateContext;
     }
 
+    public async Task Speak(string word, string lang)
+    {
+      word = HttpUtility.UrlEncode(word);
+
+      if (lang != "ru" && lang != "en")
+      {
+        lang = "en";
+      }
+
+      string uri = string.Format(
+        "https://translate.google.by/translate_tts?ie=UTF-8&q={0}&tl={1}&total=1&idx=0&textlen=14&client=t&prev=input&sa=X",
+        word, lang);
+
+      var httpWebRequest = (HttpWebRequest) WebRequest.Create(uri);
+
+      try
+      {
+        var response = (HttpWebResponse) await httpWebRequest.GetResponseAsync();
+        long len = response.ContentLength;
+
+        Stream ms = new MemoryStream();
+
+        using (var stream = response.GetResponseStream())
+        {
+          var buffer = new byte[len];
+          int read;
+          while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
+          {
+            var pos = ms.Position;
+            ms.Position = ms.Length;
+            ms.Write(buffer, 0, read);
+            ms.Position = pos;
+          }
+        }
+
+        ms.Position = 0;
+        var thread = new Thread(PlayWord);
+        thread.Start(ms);     
+      }
+      catch (Exception ex)
+      {
+        throw new Exception(ex.Message, ex);
+      }
+    }
+
+    #region privates
+
+    private void PlayWord(object obj)
+    {
+      var ms = obj as MemoryStream;
+      using (WaveStream blockAlignedStream = new BlockAlignReductionStream(
+          WaveFormatConversionStream.CreatePcmStream(new Mp3FileReader(ms))))
+      {
+        using (var waveOut = new WaveOut(WaveCallbackInfo.FunctionCallback()))
+        {
+          waveOut.Init(blockAlignedStream);
+          waveOut.Play();
+          while (waveOut.PlaybackState == PlaybackState.Playing)
+          {
+            Thread.Sleep(100);
+          }
+        }
+      }
+      ms.Dispose();
+    }
+
     private string[] ParseGoogleResponse(string response)
     {
-      var tmpData = string.Empty;
+      string tmpData = string.Empty;
 
-      var bracketsCount = 0;
-      for (var i = 0; i < response.Length; i++)
+      int bracketsCount = 0;
+      for (int i = 0; i < response.Length; i++)
       {
         if (response[i] == '[')
         {
@@ -60,14 +138,14 @@ namespace WpfUI.Helpers
             if (tmpData[0] != '\"')
             {
               tmpData = GetFirst(response);
-              return new[] { tmpData };
+              return new[] {tmpData};
             }
             break;
           }
         }
       }
 
-      for (var i = 0; i < tmpData.Length; i++)
+      for (int i = 0; i < tmpData.Length; i++)
       {
         if (tmpData[i] == ']')
         {
@@ -77,16 +155,22 @@ namespace WpfUI.Helpers
       }
 
       tmpData = tmpData.Replace("\"", "");
-      var resultArray = tmpData.Split(',');
+      string[] resultArray = tmpData.Split(',');
+
+      if (resultArray.Length < 2)
+      {
+        tmpData = GetFirst(response);
+        return new[] { tmpData };
+      }
 
       return resultArray;
     }
 
     private string GetFirst(string response)
     {
-      var tmpData = string.Empty;
+      string tmpData = string.Empty;
 
-      var index = response.IndexOf("\"");
+      int index = response.IndexOf("\"");
 
       if (index == -1)
       {
@@ -107,9 +191,9 @@ namespace WpfUI.Helpers
 
     private string GetContext(string response)
     {
-      var tmpData = string.Empty;
+      string tmpData = string.Empty;
 
-      var index = response.IndexOf(".001\",\"");
+      int index = response.IndexOf(".001\",\"");
       if (index == -1)
       {
         return tmpData;
@@ -127,5 +211,7 @@ namespace WpfUI.Helpers
 
       return tmpData;
     }
+
+    #endregion
   }
 }

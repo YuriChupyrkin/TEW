@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.Text;
+using System.Text.RegularExpressions;
 using Autofac;
 using ConsoleUI.Autofac;
 using ConsoleUI.Helpers;
@@ -16,14 +18,7 @@ namespace ConsoleUI
 
     private static void Main(string[] args)
     {
-      var testStr = " test str ";
-      var tmp = testStr.Replace(" ", "*");
-      Console.WriteLine(tmp);
-
-      testStr = testStr.Trim();
-      tmp = testStr.Replace(" ", "*");
-      Console.WriteLine(tmp);
-
+      Console.WriteLine(DecodeQuotedPrintables("%D0%BF%D1%80%D0%B8%D0%B2%D0%B5%D1%82", new UTF8Encoding()));
       //Test();
       //////////// Start ///////////////////
       //Console.WindowWidth = 80;
@@ -40,6 +35,70 @@ namespace ConsoleUI
       //ConsoleWriteHelper.WarningMessage("Something wrong...");
       //Console.ReadLine();
     }
+
+    public static string DecodeQuotedPrintables(string input, Encoding encoding)
+    {
+      var regex = new Regex(@"\=(?<Symbol>[0-9A-Z]{2})", RegexOptions.Multiline);
+      var matches = regex.Matches(input);
+      var bytes = new byte[matches.Count];
+
+      for (var i = 0; i < matches.Count; i++)
+      {
+        bytes[i] = Convert.ToByte(matches[i].Groups["Symbol"].Value, 16);
+      }
+
+      return encoding.GetString(bytes);
+    }
+
+    private static void TestMP3(string word)
+    {
+      word = word.Replace(" ", "%20");
+
+      string uri =
+        string.Format(
+          "https://translate.google.by/translate_tts?ie=UTF-8&q={0}&tl=en&total=1&idx=0&textlen=14&client=t&prev=input&sa=X",
+          word);
+
+      var httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
+
+      try
+      {
+        HttpWebResponse response = (HttpWebResponse)httpWebRequest.GetResponse();
+        // Get the stream associated with the response.
+        Stream receiveStream = response.GetResponseStream();
+
+        byte[] buffer = new byte[32768];
+
+        while (true)
+        {
+          int read = receiveStream.Read(buffer, 0, buffer.Length);
+          if (read <= 0)
+            break;
+        }
+
+        var copyBuf = buffer;
+
+        
+      }
+      catch (Exception ex)
+      {
+        //swallow exceptions
+        Console.WriteLine(ex.Message);
+      }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     private static void Test()
     {
