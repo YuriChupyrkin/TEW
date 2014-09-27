@@ -65,7 +65,7 @@ namespace WpfUI.Pages
       catch (Exception ex)
       {
         MessageBox.Show(ex.Message, "Email send message error");
-        //MainWindow.SetAdminAuthentication();
+        MessageBox.Show("New password: " + newPassword);
         return;
       }
       MessageBox.Show("Your new password sent on email");
