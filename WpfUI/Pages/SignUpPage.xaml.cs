@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Common.Mail;
 using Domain.Entities;
 using WpfUI.Auth;
 using WpfUI.Helpers;
@@ -53,6 +55,10 @@ namespace WpfUI.Pages
           throw new Exception("sign up failed");
         }
         MessageBox.Show("Welcome " + user.Email);
+
+        var thread = new Thread(SendEmailAboutRegistration);
+        thread.Start(user.Email);
+
         Switcher.Switch(new MainPage());
       }
       catch (Exception ex)
@@ -98,6 +104,31 @@ namespace WpfUI.Pages
     {
       var userProvider = new UserProvider(ApplicationContext.RepositoryFactory);
       return userProvider.CreateUser(login, password);
+    }
+
+    private void SendEmailAboutRegistration(object newUser)
+    {
+      if (MainWindow.IsOnlineVersion == false)
+      {
+        return;
+      }
+
+      var userName = newUser as string;
+      try
+      {
+        string emailMessage = string.Format("Hi!\nAdded new user: {0}", userName);
+        IEmailSender emailSender = ApplicationContext.EmailSender;
+        emailSender.Send(
+          "socnetproject@yandex.ru",
+          "socnetadmin",
+          "yuri.chupyrkin@gmail.com",
+          "TEW Newcomer",
+          emailMessage);
+      }
+      catch 
+      {
+        //it's ok...
+      }
     }
 
     #endregion

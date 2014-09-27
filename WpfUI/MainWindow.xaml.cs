@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using Autofac;
@@ -91,10 +92,19 @@ namespace WpfUI
 
     private void HowTo_Click(object sender, RoutedEventArgs e)
     {
-      const string message = "Add word: 'Menu' -> 'Add words'.\n" +
-                             "Update word: 'Menu' -> 'Add words' -> enter new translate.\n" +
-                             "Delete word: 'Menu' -> 'My words' -> double click.\n";
-      MessageBox.Show(message, "How to");
+      var messageBuilder = new StringBuilder();
+      messageBuilder.AppendLine("Add word: 'Menu' -> 'Add words'.");
+      messageBuilder.AppendLine("Update word: 'Menu' -> 'Add words' -> enter new translate.");
+      messageBuilder.AppendLine("Delete word: 'Menu' -> 'My words' -> double click.");
+
+      messageBuilder.AppendLine();
+      messageBuilder.AppendLine("Tests:");
+      messageBuilder.AppendLine("English-Russian translate test. Max level of words: 5");
+      messageBuilder.AppendLine("Russian-English translate test. Max level of words: 10");
+      messageBuilder.AppendLine("Spelling test with help. Max level of words: 15");
+      messageBuilder.AppendLine("Spelling test without help. Max level of words: 20");
+
+      MessageBox.Show(messageBuilder.ToString(), "How to");
     }
 
     private void ResetPassword_Click(object sender, RoutedEventArgs e)
