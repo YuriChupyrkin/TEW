@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
@@ -151,7 +152,12 @@ namespace WpfUI.Helpers
       }
 
       tmpData = tmpData.Replace("\"", "");
+      var mainTranslate = GetFirst(response);
+
+      tmpData = string.Format("{0},{1}", mainTranslate, tmpData);
       string[] resultArray = tmpData.Split(',');
+
+      resultArray = resultArray.Distinct().ToArray();
 
       if (resultArray.Length < 2)
       {
