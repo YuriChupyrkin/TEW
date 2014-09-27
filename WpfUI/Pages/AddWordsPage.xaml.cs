@@ -202,6 +202,7 @@ namespace WpfUI.Pages
       TxtEnglishWord.Text = string.Empty;
       TxtRusTranslate.Text = string.Empty;
       TxtRusTranslate.IsEnabled = false;
+      BtnAdd.IsEnabled = false;
       ListTranslate.Items.Clear();
       TxtExample.Clear();
     }
