@@ -93,6 +93,7 @@
     <Compile Include="Helpers\BingTranslater.cs" />
     <Compile Include="Helpers\DialogHelper.cs" />
     <Compile Include="Helpers\GoogleTranslater.cs" />
+    <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Pages\AddWordsPage.xaml.cs">
       <DependentUpon>AddWordsPage.xaml</DependentUpon>
     </Compile>

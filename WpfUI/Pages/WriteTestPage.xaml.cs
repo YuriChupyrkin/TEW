@@ -97,8 +97,8 @@ namespace WpfUI.Pages
       LabelTestWord.Content = " " + currentTest.Word;
 
       var example = currentTest.Example;
-      var replacingValue = string.Format("[{0}]", currentTest.Word);
-      example = example.Replace(currentTest.TrueAnswer, replacingValue);
+
+      example = example.AsteriskReplace(currentTest.TrueAnswer);
 
       var textBlock = new TextBlock
       {
@@ -139,7 +139,7 @@ namespace WpfUI.Pages
       var answer = TxtAnwer.Text;
       var currentTest = _testSet[_testIndex];
 
-      if (answer.Equals(_testSet[_testIndex].TrueAnswer))
+      if (answer.Equals(_testSet[_testIndex].TrueAnswer, StringComparison.OrdinalIgnoreCase))
       {
         SetLevel(true, currentTest.EnRuWordId);
       }

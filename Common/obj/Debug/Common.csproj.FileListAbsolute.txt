@@ -20,3 +20,4 @@ D:\Study\Programming\Projects\EnglishLearning4\Common\bin\Debug\Common.dll
 D:\Study\Programming\Projects\EnglishLearning4\Common\bin\Debug\Common.pdb
 D:\Study\Programming\Projects\EnglishLearning4\Common\obj\Debug\Common.dll
 D:\Study\Programming\Projects\EnglishLearning4\Common\obj\Debug\Common.pdb
+D:\Study\Programming\Projects\EnglishLearning4\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
