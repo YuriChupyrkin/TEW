@@ -169,6 +169,30 @@ namespace WpfUI
       SpeakRusMenu.IsChecked = IsSpeakRus;
     }
 
+    private void ExportMenu_Click(object sender, RoutedEventArgs e)
+    {
+      if (ApplicationContext.CurrentUser == null)
+      {
+        MessageBox.Show("Sign in please");
+        return;
+      }
+
+      var wordsExporter = new WordsExporter(ApplicationContext.RepositoryFactory);
+      wordsExporter.Export(ApplicationContext.CurrentUser.Id);
+    }
+
+    private void ImportMenu_Click(object sender, RoutedEventArgs e)
+    {
+      if (ApplicationContext.CurrentUser == null)
+      {
+        MessageBox.Show("Sign in please");
+        return;
+      }
+
+      var wordsImporter = new WordsImporter(ApplicationContext.RepositoryFactory);
+      wordsImporter.Import(ApplicationContext.CurrentUser.Email);
+    }
+
     #endregion
 
     #region methods
@@ -258,18 +282,5 @@ namespace WpfUI
       }
     }
     #endregion
-
-
-    private void ExportMenu_Click(object sender, RoutedEventArgs e)
-    {
-      var we = new WordsExporter(ApplicationContext.RepositoryFactory);
-      we.Export(ApplicationContext.CurrentUser.Id);
-    }
-
-    private void ImportMenu_Click(object sender, RoutedEventArgs e)
-    {
-      var im = new WordsImporter(ApplicationContext.RepositoryFactory);
-      im.Import(ApplicationContext.CurrentUser.Email);
-    }
   }
 }

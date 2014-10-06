@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using Newtonsoft.Json;
 
 namespace Domain.Entities
 {
@@ -8,6 +9,8 @@ namespace Domain.Entities
     public string Password { get; set; }
     public virtual Role Role { get; set; }
     public int RoleId { get; set; }
+
+    [JsonIgnore]
     public virtual Collection<EnRuWord> EnRuWords { get; set; }
   }
 }

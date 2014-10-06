@@ -60,3 +60,5 @@ D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\bin\Debug\Enti
 D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.csprojResolveAssemblyReference.cache
 D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.dll
 D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.pdb
+D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\bin\Debug\Newtonsoft.Json.dll
+D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\bin\Debug\Newtonsoft.Json.xml

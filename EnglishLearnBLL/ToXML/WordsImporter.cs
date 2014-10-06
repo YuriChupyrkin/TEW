@@ -17,7 +17,7 @@ namespace EnglishLearnBLL.ToXML
 
     public void Import(string forUserName)
     {
-      string fileName = "Test";
+      string fileName = XmlNameHelper.XmlFileName;
       XDocument doc = XDocument.Load(fileName);
 
       XElement userEl = doc.Root.Elements().First();
@@ -27,25 +27,32 @@ namespace EnglishLearnBLL.ToXML
 
       if (user == null || user.Email != forUserName)
       {
-        return;
+        throw new Exception("Words import error! Incorrect user info");
       }
 
-      IEnumerable<XElement> words = doc.Root.Elements().Skip(1).Take(1);
-
-      foreach (XElement word in words)
+      try
       {
-        foreach (XElement wordElemets in word.Elements())
-        {
-          var enWord = wordElemets.Element("engWord").Value;
-          var ruWord = wordElemets.Element("rusWord").Value;
-          var level = int.Parse(wordElemets.Element("level").Value);
-          var example = wordElemets.Element("example").Value;
 
-          _repositoryFactory.EnRuWordsRepository
-            .AddTranslate(enWord, ruWord, example, user.Id, level);
+        IEnumerable<XElement> words = doc.Root.Elements().Skip(1).Take(1);
+
+        foreach (XElement word in words)
+        {
+          foreach (XElement wordElemets in word.Elements())
+          {
+            var enWord = wordElemets.Element(XmlNameHelper.EngWord).Value;
+            var ruWord = wordElemets.Element(XmlNameHelper.RusWord).Value;
+            var level = int.Parse(wordElemets.Element(XmlNameHelper.Level).Value);
+            var example = wordElemets.Element(XmlNameHelper.Example).Value;
+
+            _repositoryFactory.EnRuWordsRepository
+              .AddTranslate(enWord, ruWord, example, user.Id, level);
+          }
         }
       }
+      catch
+      {
+        throw new Exception("Words import error! file error");
+      }
     }
-
   }
 }

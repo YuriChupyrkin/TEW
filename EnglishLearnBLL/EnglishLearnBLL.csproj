@@ -47,6 +47,7 @@
     <Compile Include="Tests\TestCreator.cs" />
     <Compile Include="ToXML\WordsExporter.cs" />
     <Compile Include="ToXML\WordsImporter.cs" />
+    <Compile Include="ToXML\XmlNameHelper.cs" />
     <Compile Include="View\WordViewer.cs" />
     <Compile Include="WordLevelManager\WordLevelManager.cs" />
   </ItemGroup>

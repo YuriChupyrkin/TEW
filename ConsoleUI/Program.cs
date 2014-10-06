@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
 using Autofac;
 using ConsoleUI.Autofac;
 using Domain.RepositoryFactories;
+using EntityFrameworkDAL.RepositoryFactories;
+using Newtonsoft.Json;
 
 namespace ConsoleUI
 {
@@ -15,40 +16,48 @@ namespace ConsoleUI
 
     private static void Main(string[] args)
     {
-      //задаем путь к нашему рабочему файлу XML
-      string fileName = "Test";
-      //читаем данные из файла
-      XDocument doc = XDocument.Load(fileName);
-      //проходим по каждому элементу в найшей library
-      //(этот элемент сразу доступен через свойство doc.Root)
-      //foreach (XElement el in doc.Root.Elements())
-      //{
-      //  //Выводим имя элемента и значение аттрибута id
-      //  Console.WriteLine("{0} {1}", el.Name, el.Attribute("user").Value);
-      //  Console.WriteLine("  Attributes:");
-      //  //выводим в цикле все аттрибуты, заодно смотрим как они себя преобразуют в строку
-      //  foreach (XAttribute attr in el.Attributes())
-      //    Console.WriteLine("    {0}", attr);
-      //  Console.WriteLine("  Elements:");
-      //  //выводим в цикле названия всех дочерних элементов и их значения
-      //  foreach (XElement element in el.Elements())
-      //    Console.WriteLine("    {0}: {1}", element.Name, element.Value);
-      //}
-
-      XElement user = doc.Root.Elements().First();
-      Console.WriteLine(user.Value);
-
-      IEnumerable<XElement> words = doc.Root.Elements().Skip(1).Take(1);
-
-      foreach (XElement word in words)
+      var context = new EFRepositoryFactory();
+      var user = context.UserRepository.All().First(r => r.Email == "yu4e4ko@yandex.ru");
+      if (user == null)
       {
-        foreach (XElement wordElemets in word.Elements())
-          //foreach (XElement elements in wordElemets.Elements())
-          //{
-          //  Console.WriteLine("{0}: {1}", elements.Name, elements.Value);
-          //}
-          Console.WriteLine(wordElemets.Element("rusWord").Value);
+        Console.WriteLine("User is null");
+      }
+
+      var userWords = context.EnRuWordsRepository
+        .AllEnRuWords().Where(r => r.UserId == user.Id);
+
+      var words = new List<WordModel>();
+
+      foreach (var userWord in userWords)
+      {
+        var word = new WordModel
+        {
+          EnWord = userWord.EnglishWord.EnWord,
+          RuWord = userWord.RussianWord.RuWord,
+          Example = userWord.Example,
+          Level = userWord.WordLevel
+        };
+
+        words.Add(word);
+      }
+
+      var json = JsonConvert.SerializeObject(words);
+      Console.WriteLine(json);
+
+      var wordsFromJson = JsonConvert.DeserializeObject<IEnumerable<WordModel>>(json);
+
+      foreach (var wordModel in wordsFromJson)
+      {
+        Console.WriteLine(wordModel.EnWord);
       }
     }
+  }
+
+  public class WordModel
+  {
+    public string EnWord { get; set; }
+    public string RuWord { get; set; }
+    public string Example { get; set; }
+    public int Level { get; set; }
   }
 }

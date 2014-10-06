@@ -16,7 +16,7 @@ namespace EnglishLearnBLL.ToXML
     public void Export(int userId)
     {
       var doc = new XDocument();
-      var userWordsEl = new XElement("userWords");
+      var userWordsEl = new XElement(XmlNameHelper.UserWords);
       doc.Add(userWordsEl);
 
       var wordsFromDb = _repositoryFactory.EnRuWordsRepository.AllEnRuWords()
@@ -27,37 +27,37 @@ namespace EnglishLearnBLL.ToXML
         return;
       }
 
-      var userEl = new XElement("user");
+      var userEl = new XElement(XmlNameHelper.User);
       userEl.Value = wordsFromDb.First().User.Email;
       doc.Root.Add(userEl);
 
-      var wordsEl = new XElement("words");
+      var wordsEl = new XElement(XmlNameHelper.Words);
       doc.Root.Add(wordsEl);
 
       foreach (var enRuWord in wordsFromDb)
       {
-        var wordEl = new XElement("word");
+        var wordEl = new XElement(XmlNameHelper.Word);
 
-        var engWord = new XElement("engWord");
+        var engWord = new XElement(XmlNameHelper.EngWord);
         engWord.Value = enRuWord.EnglishWord.EnWord;
         wordEl.Add(engWord);
 
-        var rusWord = new XElement("rusWord");
+        var rusWord = new XElement(XmlNameHelper.RusWord);
         rusWord.Value = enRuWord.RussianWord.RuWord;
         wordEl.Add(rusWord);
 
-        var level = new XElement("level");
+        var level = new XElement(XmlNameHelper.Level);
         level.Value = enRuWord.WordLevel.ToString();
         wordEl.Add(level);
 
-        var example = new XElement("example");
+        var example = new XElement(XmlNameHelper.Example);
         example.Value = enRuWord.Example;
         wordEl.Add(example);
 
         wordsEl.Add(wordEl);
       }
 
-      doc.Save("Test");
+      doc.Save(XmlNameHelper.XmlFileName);
     }
   }
 }

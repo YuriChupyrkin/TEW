@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<userWords>
+  <user>yu4e4ko@yandex.ru</user>
+  <words>
+    <word>
+      <engWord>cat</engWord>
+      <rusWord>кот</rusWord>
+      <level>1</level>
+      <example>Domestic cats may breed much more frequently, as often as 3 times a year, as they are not typically limited by nutrition or climate.</example>
+    </word>
+    <word>
+      <engWord1>cow</engWord1>
+      <rusWord>корова</rusWord>
+      <level>1</level>
+      <example>a dairy cow</example>
+    </word>
+    <word>
+      <engWord>dog</engWord>
+      <rusWord>собака</rusWord>
+      <level>0</level>
+      <example>Shouts mingle with the barking and howling of dogs .</example>
+    </word>
+    <word>
+      <engWord>car</engWord>
+      <rusWord>автомобиль</rusWord>
+      <level>0</level>
+      <example>we're going by car</example>
+    </word>
+  </words>
+</userWords>
