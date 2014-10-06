@@ -45,7 +45,7 @@ namespace EntityFrameworkDAL.Repositories
       return russianWords;
     }
 
-    public void AddTranslate(string engWord, string ruWord, string context, int userId)
+    public void AddTranslate(string engWord, string ruWord, string example, int userId, int level = 0)
     {
       int engId = AddEngWord(engWord);
       int ruId = AddRusWord(ruWord);
@@ -56,8 +56,8 @@ namespace EntityFrameworkDAL.Repositories
       if (enRuWordFromDb != null)
       {
         enRuWordFromDb.RussianWordId = ruId;
-        enRuWordFromDb.WordLevel = 0;
-        enRuWordFromDb.Example = context ?? string.Empty;
+        enRuWordFromDb.WordLevel = level;
+        enRuWordFromDb.Example = example ?? string.Empty;
         _context.SaveChanges();
         return;
       }
@@ -66,9 +66,9 @@ namespace EntityFrameworkDAL.Repositories
       {
         RussianWordId = ruId,
         EnglishWordId = engId,
-        Example = context ?? string.Empty,
+        Example = example ?? string.Empty,
         UserId = userId,
-        WordLevel = 0
+        WordLevel = level
       };
 
       _context.EnRuWords.Add(enRuWord);
@@ -164,16 +164,7 @@ namespace EntityFrameworkDAL.Repositories
     public void ChangeWordLevel(int enRuWordId, int levelShift)
     {
       var word = _context.EnRuWords.FirstOrDefault(r => r.Id == enRuWordId);
-      //var nextLevel = word.WordLevel;
-      //nextLevel = nextLevel + levelShift;
-      //if (nextLevel < MinLevel)
-      //{
-      //  nextLevel = MinLevel;
-      //}
-      //if (nextLevel > MaxLevel)
-      //{
-      //  nextLevel = MaxLevel;
-      //}
+
       if (word != null)
       {
         word.WordLevel = word.WordLevel + levelShift;
@@ -231,6 +222,18 @@ namespace EntityFrameworkDAL.Repositories
         userWord.WordLevel = 0;
       }
       _context.SaveChanges();
+    }
+
+    public string GetRussianWordById(int id)
+    {
+      var rusWordObj = _context.RussianWords.Find(id);
+      return rusWordObj == null ? "null" : rusWordObj.RuWord;
+    }
+
+    public string GetEnglishWordById(int id)
+    {
+      var engWordObj = _context.EnglishWords.Find(id);
+      return engWordObj == null ? "null" : engWordObj.EnWord;
     }
   }
 }

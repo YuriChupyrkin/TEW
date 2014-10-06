@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using Autofac;
 using Common.Mail;
 using Domain.RepositoryFactories;
+using EnglishLearnBLL.ToXML;
 using WpfUI.Autofac;
 using WpfUI.Helpers;
 using WpfUI.Pages;
@@ -258,6 +259,17 @@ namespace WpfUI
     }
     #endregion
 
- 
+
+    private void ExportMenu_Click(object sender, RoutedEventArgs e)
+    {
+      var we = new WordsExporter(ApplicationContext.RepositoryFactory);
+      we.Export(ApplicationContext.CurrentUser.Id);
+    }
+
+    private void ImportMenu_Click(object sender, RoutedEventArgs e)
+    {
+      var im = new WordsImporter(ApplicationContext.RepositoryFactory);
+      im.Import(ApplicationContext.CurrentUser.Email);
+    }
   }
 }
