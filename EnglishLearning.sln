@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{8443D755-7417-49B7-A24E-65481E33F877}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishLearnBLL", "EnglishLearnBLL\EnglishLearnBLL.csproj", "{2EE7844A-B5CB-4D7C-9DD8-D4FCEA7F3A87}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfUI", "WpfUI\WpfUI.csproj", "{B5D8F0FC-BA5C-4D91-A440-A5E91FE947E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TewCloud", "TewCloud\TewCloud.csproj", "{4AD693EC-347C-48D4-B2E7-52882310A3FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{B5D8F0FC-BA5C-4D91-A440-A5E91FE947E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5D8F0FC-BA5C-4D91-A440-A5E91FE947E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5D8F0FC-BA5C-4D91-A440-A5E91FE947E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AD693EC-347C-48D4-B2E7-52882310A3FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AD693EC-347C-48D4-B2E7-52882310A3FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AD693EC-347C-48D4-B2E7-52882310A3FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AD693EC-347C-48D4-B2E7-52882310A3FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

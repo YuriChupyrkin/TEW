@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="Models\EnRuWordViewModel.cs" />
     <Compile Include="Models\PickerTestModel.cs" />
+    <Compile Include="Models\ResponseModel.cs" />
+    <Compile Include="Models\WordsCloudModel.cs" />
     <Compile Include="Models\WriteTestModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\TestCreator.cs" />

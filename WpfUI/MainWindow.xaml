@@ -12,6 +12,8 @@
                     <MenuItem Header="_Menu" Click="MenuItem_Click"/>
                     <MenuItem Name="SignOut" Header="_Sign out" Click="SignOut_Click"/>
                     <Separator />
+                    <MenuItem Header="_Synchronize" Name="SyncMenu" Click="SyncMenu_Click"/>
+                    <Separator />
                     <MenuItem Header="_Export" Name="ExportMenu" Click="ExportMenu_Click"/>
                     <MenuItem Header="_Import" Name="ImportMenu" Click="ImportMenu_Click"/>
                     <Separator />

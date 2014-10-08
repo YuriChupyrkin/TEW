@@ -56,6 +56,10 @@
     <Reference Include="NAudio">
       <HintPath>..\packages\NAudio.1.7.1\lib\net35\NAudio.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -94,6 +98,7 @@
     <Compile Include="Helpers\DialogHelper.cs" />
     <Compile Include="Helpers\GoogleTranslater.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
+    <Compile Include="Helpers\SynchronizeHelper.cs" />
     <Compile Include="Pages\AddWordsPage.xaml.cs">
       <DependentUpon>AddWordsPage.xaml</DependentUpon>
     </Compile>

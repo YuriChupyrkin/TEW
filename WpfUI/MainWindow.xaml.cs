@@ -193,6 +193,25 @@ namespace WpfUI
       wordsImporter.Import(ApplicationContext.CurrentUser.Email);
     }
 
+    private void SyncMenu_Click(object sender, RoutedEventArgs e)
+    {
+      if (IsOnlineVersion == false)
+      {
+        MessageBox.Show("It's offline mode...");
+        return;
+      }
+
+      var user = ApplicationContext.CurrentUser;
+
+      if (user == null)
+      {
+        MessageBox.Show("Sign in please");
+        return;
+      }
+
+      StartSync();
+    }
+
     #endregion
 
     #region methods
@@ -215,10 +234,14 @@ namespace WpfUI
       ApplicationContext.EmailSender = container.BeginLifetimeScope().Resolve<IEmailSender>();
 
       var checkConnection = IsOnlineVersion;
+      if (checkConnection)
+      {
+        var syncHelper = new SynchronizeHelper(ApplicationContext.RepositoryFactory);
+        syncHelper.IsServerOnline();
+      }
+
       IsSpeakEng = true;
       SpeakEngMenu.IsChecked = true;
-      //SetAdminAuthentication();
-      //ApplicationContext.BingTranslater = new BingTranslater();
 
       Switcher.PageSwitcher = this;
 
@@ -238,34 +261,6 @@ namespace WpfUI
       MainFrame.Navigate(nextPage);
     }
 
-    //public static void SetAdminAuthentication()
-    //{
-    //  var task = new Task(CrateAdminAuthentication);
-    //  task.Start();
-    //}
-
-    //private static void CrateAdminAuthentication()
-    //{
-    //  if (IsOnlineVersion)
-    //  {
-    //    try
-    //    {
-    //      var adminAuth = new AdminAuthentication(
-    //        "TrainerOfEnglishWords",
-    //        "LeTcA3cONe0r9IlwED1MBZ/5RMTeZsJdmqLpddpmKOg=");
-
-    //      ApplicationContext.AdminAuthentication = adminAuth;
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //      var message = string.Format("Online translator could not connect..." +
-    //                                  "\nYou will use offline version" +
-    //                                  "\n{0}", ex.Message);
-    //      MessageBox.Show(message, "connection error");
-    //    }
-    //  }
-    //}
-
     private static bool CheckConnection()
     {
       var client = new WebClient();
@@ -281,6 +276,47 @@ namespace WpfUI
         return false;
       }
     }
+
+    private void StartSync()
+    {
+      MessageBox.Show("please wait some time");
+
+      var user = ApplicationContext.CurrentUser;
+
+      if (user == null)
+      {
+        MessageBox.Show("Sign in please");
+        return;
+      }
+
+      var repositoryFactory = ApplicationContext.RepositoryFactory;
+      var syncHelper = new SynchronizeHelper(repositoryFactory);
+
+      var isServerOnline = syncHelper.IsServerOnline();
+
+      if (isServerOnline == false)
+      {
+        MessageBox.Show("Server is offline");
+        return;
+      }
+
+      var responseResult = syncHelper.SendMyWords(user);
+      if (responseResult.IsError)
+      {
+        MessageBox.Show(responseResult.ErrorMessage, "Error");
+        return;
+      }
+
+      responseResult = syncHelper.GetUserWords(user);
+      if (responseResult.IsError)
+      {
+        MessageBox.Show(responseResult.ErrorMessage, "Error");
+        return;
+      }
+
+      MessageBox.Show("Complete");
+    }
+
     #endregion
   }
 }
