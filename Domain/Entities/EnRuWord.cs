@@ -9,6 +9,8 @@ namespace Domain.Entities
     public string Example { get; set; }
     public int UserId { get; set; }
     public int WordLevel { get; set; }
+    public bool IsDeleted { get; set; }
+    public bool IsUpdated { get; set; }
 
     [JsonIgnore]
     public virtual User User { get; set; }

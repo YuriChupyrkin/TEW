@@ -18,5 +18,7 @@ namespace Domain.Repositories
     void ResetWordLevel(int userId);
     string GetRussianWordById(int id);
     string GetEnglishWordById(int id);
+    void MakeDeleted(string enWord, int userId);
+    void ChangeUpdateStatus(int enRuWordId, bool isUpdate);
   }
 }

@@ -58,6 +58,7 @@ namespace EntityFrameworkDAL.Repositories
         enRuWordFromDb.RussianWordId = ruId;
         enRuWordFromDb.WordLevel = level;
         enRuWordFromDb.Example = example ?? string.Empty;
+        enRuWordFromDb.IsDeleted = false;
         _context.SaveChanges();
         return;
       }
@@ -68,7 +69,8 @@ namespace EntityFrameworkDAL.Repositories
         EnglishWordId = engId,
         Example = example ?? string.Empty,
         UserId = userId,
-        WordLevel = level
+        WordLevel = level,
+        IsDeleted = false
       };
 
       _context.EnRuWords.Add(enRuWord);
@@ -92,7 +94,7 @@ namespace EntityFrameworkDAL.Repositories
         _context.SaveChanges();
 
         russianWordFromDb = _context.RussianWords
-        .FirstOrDefault(r => r.RuWord.Equals(ruWord, StringComparison.OrdinalIgnoreCase));
+          .FirstOrDefault(r => r.RuWord.Equals(ruWord, StringComparison.OrdinalIgnoreCase));
 
         if (russianWordFromDb == null)
         {
@@ -120,7 +122,7 @@ namespace EntityFrameworkDAL.Repositories
         _context.SaveChanges();
 
         engWordFromDb = _context.EnglishWords
-        .FirstOrDefault(r => r.EnWord.Equals(enWord, StringComparison.OrdinalIgnoreCase));
+          .FirstOrDefault(r => r.EnWord.Equals(enWord, StringComparison.OrdinalIgnoreCase));
 
         if (engWordFromDb == null)
         {
@@ -234,6 +236,27 @@ namespace EntityFrameworkDAL.Repositories
     {
       var engWordObj = _context.EnglishWords.Find(id);
       return engWordObj == null ? "null" : engWordObj.EnWord;
+    }
+
+
+    public void MakeDeleted(string enWord, int userId)
+    {
+      var enRuWord = AllEnRuWords().FirstOrDefault(r => r.EnglishWord.EnWord == enWord && r.UserId == userId);
+
+      if (enRuWord == null)
+      {
+        return;
+      }
+
+      enRuWord.IsDeleted = true;
+      _context.SaveChanges();
+    }
+
+    public void ChangeUpdateStatus(int enRuWordId, bool isUpdate)
+    {
+      var enRuWord = _context.EnRuWords.Find(enRuWordId);
+      enRuWord.IsUpdated = isUpdate;
+      _context.SaveChanges();
     }
   }
 }

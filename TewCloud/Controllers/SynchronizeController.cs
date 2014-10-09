@@ -9,6 +9,7 @@ using Domain.Entities;
 using Domain.RepositoryFactories;
 using Domain.UnitOfWork;
 using EnglishLearnBLL.Models;
+using WebGrease.Css.Extensions;
 
 namespace TewCloud.Controllers
 {
@@ -85,9 +86,13 @@ namespace TewCloud.Controllers
       }
 
       var enRuWords = _repositoryFactory.EnRuWordsRepository.AllEnRuWords()
-        .Where(r => r.UserId == user.Id);
+        .Where(r => r.UserId == user.Id && r.IsUpdated);
 
-      return CreateWordsCloudModel(userName, enRuWords);
+      var wordsCloudModel = CreateWordsCloudModel(userName, enRuWords);
+
+      enRuWords.ForEach(r => r.IsUpdated = false);
+
+      return wordsCloudModel;
     }
 
     private WordsCloudModel CreateWordsCloudModel(string userName, IEnumerable<EnRuWord> enRuWords)
@@ -97,11 +102,11 @@ namespace TewCloud.Controllers
         UserName = userName
       };
 
-      var words = new List<EnRuWordViewModel>();
+      var words = new List<WordViewModel>();
 
       foreach (var word in enRuWords)
       {
-        var viewModel = new EnRuWordViewModel
+        var viewModel = new WordViewModel
         {
           English = word.EnglishWord.EnWord,
           Russian = word.RussianWord.RuWord,
@@ -122,30 +127,61 @@ namespace TewCloud.Controllers
     private void AddUserWords(WordsCloudModel wordsModel)
     {
       var userId = GetUserId(wordsModel.UserName);
+      var userEnRuWords = _repositoryFactory.EnRuWordsRepository.AllEnRuWords().Where(r => r.UserId == userId);
 
-      foreach (var word in wordsModel.Words)
+      var enWordsFromModel = wordsModel.Words.Where(r => r.IsDeleted == false).Select(r => r.English);
+
+      foreach (var userEnRuWord in userEnRuWords)
       {
-        _repositoryFactory.EnRuWordsRepository
-          .AddTranslate(
-          word.English, 
-          word.Russian, 
-          word.English, 
-          userId, 
-          word.Level);
+        if (enWordsFromModel.Contains(userEnRuWord.EnglishWord.EnWord))
+        {
+          var wordFromModel = wordsModel.Words.FirstOrDefault(r => r.English == userEnRuWord.EnglishWord.EnWord);
+
+          if (wordFromModel.Russian != userEnRuWord.RussianWord.RuWord || wordFromModel.Level != userEnRuWord.WordLevel
+              || wordFromModel.Example != userEnRuWord.Example)
+          {
+            _repositoryFactory.EnRuWordsRepository
+            .AddTranslate(
+              wordFromModel.English,
+              wordFromModel.Russian,
+              wordFromModel.English,
+              userId,
+              wordFromModel.Level);
+
+            _repositoryFactory.EnRuWordsRepository.ChangeUpdateStatus(userEnRuWord.Id, true);
+          }
+        }
       }
 
-      var allWords = _repositoryFactory.EnRuWordsRepository
-        .AllEnRuWords().Where(r => r.UserId == userId);
+      var deleted = wordsModel.Words.Where(r => r.IsDeleted).Select(r => r.English);
 
-      var allwordsFromWordsModel = wordsModel.Words.Select(r => r.English);
-      foreach (var word in allWords)
+      foreach (var deletedWord in deleted)
       {
-        var engWord = word.EnglishWord.EnWord;
-        if (allwordsFromWordsModel.Contains(engWord) == false)
-        {
-          _repositoryFactory.EnRuWordsRepository.DeleteEnRuWord(engWord, userId);
-        }
-      }   
+        DeleteWord(deletedWord, userId);
+      }
+
+      //foreach (var word in wordsModel.Words)
+      //{
+      //  if (word.IsDeleted)
+      //  {
+      //    DeleteWord(word.English, userId);
+      //  }
+      //  else
+      //  {
+      //    _repositoryFactory.EnRuWordsRepository
+      //      .AddTranslate(
+      //        word.English,
+      //        word.Russian,
+      //        word.English,
+      //        userId,
+      //        word.Level);
+      //  }
+      //}
+    }
+
+    private void DeleteWord(string enWord, int userId)
+    {
+      _repositoryFactory.EnRuWordsRepository.DeleteEnRuWord(enWord, userId);
     }
 
     private int GetUserId(string userName)

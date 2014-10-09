@@ -16,6 +16,8 @@ namespace WpfUI.Helpers
     private const string _synchronizeController = "Synchronize";
 
     private readonly string _uri = "http://localhost:8081/api/";
+    //private readonly string _uri = "http://yu4e4ko.somee.com/TewCloud/api/";
+
     private readonly IRepositoryFactory _repositoryFactory;
 
     public SynchronizeHelper(IRepositoryFactory repositoryFactory, string uri)
@@ -82,12 +84,13 @@ namespace WpfUI.Helpers
 
       foreach (var word in userWords)
       {
-        var viewModel = new EnRuWordViewModel
+        var viewModel = new WordViewModel
         {
           English = word.EnglishWord.EnWord,
           Russian = word.RussianWord.RuWord,
           Level = word.WordLevel,
-          Example = word.Example
+          Example = word.Example,
+          IsDeleted = word.IsDeleted
         };
 
         cloudModel.Words.Add(viewModel);
@@ -109,7 +112,7 @@ namespace WpfUI.Helpers
 
       var httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
 
-      WordsCloudModel result = null;
+      WordsCloudModel result;
 
       try
       {
@@ -135,11 +138,22 @@ namespace WpfUI.Helpers
       }
 
       AddWordsFromResponse(result);
+      RemoveIsDeletedWords(user.Id);
 
       return new ResponseModel { IsError = false, ErrorMessage = string.Empty };
     }
 
     #region privates
+
+    private void RemoveIsDeletedWords(int userId)
+    {
+      var deletedWords = _repositoryFactory.EnRuWordsRepository.AllEnRuWords().Where(r => r.IsDeleted && r.UserId == userId);
+
+      foreach (var word in deletedWords)
+      {
+        _repositoryFactory.EnRuWordsRepository.DeleteEnRuWord(word.EnglishWord.EnWord, userId);
+      }
+    }
 
     private void AddWordsFromResponse(WordsCloudModel cloudModel)
     {

@@ -14,14 +14,14 @@ namespace EnglishLearnBLL.View
       _repositoryFactory = repositoryFactory;
     }
 
-    public IEnumerable<EnRuWordViewModel> ViewWords(int userId)
+    public IEnumerable<WordViewModel> ViewWords(int userId)
     {
-      var viewList = new List<EnRuWordViewModel>();
+      var viewList = new List<WordViewModel>();
 
       var enRuWords = _repositoryFactory.EnRuWordsRepository
-        .AllEnRuWords().Where(r => r.UserId == userId).ToList();
+        .AllEnRuWords().Where(r => r.UserId == userId && r.IsDeleted == false).ToList();
 
-      enRuWords.ForEach(r => viewList.Add(new EnRuWordViewModel
+      enRuWords.ForEach(r => viewList.Add(new WordViewModel
       {
         English = r.EnglishWord.EnWord,
         Russian = r.RussianWord.RuWord,

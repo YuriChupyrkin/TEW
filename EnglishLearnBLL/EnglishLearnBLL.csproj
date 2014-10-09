@@ -40,7 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\EnRuWordViewModel.cs" />
+    <Compile Include="Mapping\ModelMapper.cs" />
+    <Compile Include="Models\WordViewModel.cs" />
     <Compile Include="Models\PickerTestModel.cs" />
     <Compile Include="Models\ResponseModel.cs" />
     <Compile Include="Models\WordsCloudModel.cs" />

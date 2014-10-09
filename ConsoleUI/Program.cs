@@ -94,11 +94,11 @@ namespace ConsoleUI
       var userWords = context.EnRuWordsRepository
         .AllEnRuWords().Where(r => r.UserId == user.Id);
 
-      var words = new List<EnRuWordViewModel>();
+      var words = new List<WordViewModel>();
 
       foreach (var userWord in userWords)
       {
-        var word = new EnRuWordViewModel
+        var word = new WordViewModel
         {
           English = userWord.EnglishWord.EnWord,
           Russian = userWord.RussianWord.RuWord,

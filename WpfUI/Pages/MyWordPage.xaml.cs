@@ -24,7 +24,7 @@ namespace WpfUI.Pages
 
     private void DataGridWords_MouseDoubleClick(object sender, MouseButtonEventArgs e)
     {
-      var selectedWord = DataGridWords.SelectedValue as EnRuWordViewModel;
+      var selectedWord = DataGridWords.SelectedValue as WordViewModel;
 
       if (selectedWord != null)
       {
@@ -33,8 +33,10 @@ namespace WpfUI.Pages
         if (isDelete)
         {
           var repositoryFactory = ApplicationContext.RepositoryFactory;
-          repositoryFactory.EnRuWordsRepository
-            .DeleteEnRuWord(selectedWord.English, ApplicationContext.CurrentUser.Id);
+          //repositoryFactory.EnRuWordsRepository
+          //  .DeleteEnRuWord(selectedWord.English, ApplicationContext.CurrentUser.Id);
+
+          repositoryFactory.EnRuWordsRepository.MakeDeleted(selectedWord.English, ApplicationContext.CurrentUser.Id);
           ViewWords();
         }
       }
