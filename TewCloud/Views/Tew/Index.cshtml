@@ -4,5 +4,33 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>TEW Index</h2>
+<div class="row center-block main-text">
+    <h2 class="title-text">TEW</h2>
 
+    <div id="statContainer">
+        
+        <div class="stat-block">
+            <div id="userCount"></div>
+            <div id="wordsCount"></div>
+        </div>
+
+        <a href="#download" style="color: #00bfff" class="link-text">Download</a>
+    </div>
+
+    <div id="loadingContainer" style="text-align: center" class="display-none">
+        <img src="~/Content/Images/ajax-loader.gif" />
+    </div>
+</div>
+
+
+<div class="row">
+    <img src="~/Content/Images/london.jpg" class="image-resize" />
+
+</div>
+
+<div id="download" class="row center-block main-text">
+    @Html.Partial("DownloadView")
+</div>
+
+
+@Scripts.Render("~/bundles/tewScripts")

@@ -18,6 +18,8 @@ namespace WpfUI
   /// </summary>
   public partial class MainWindow : Window
   {
+    private const string Version = "(1.00___10/10/2014)"; 
+
     public const string AppName = "TEW";
 
     public static MainWindow ThisWindow { get; set; }
@@ -31,10 +33,10 @@ namespace WpfUI
       get
       {
         var isConnected = CheckConnection();
-        var title = string.Format("{0} (offline version)", AppName);
+        var title = string.Format("{0} offline version {1}", AppName, Version);
         if (isConnected)
         {
-          title = string.Format("{0} (online version)", AppName);
+          title = string.Format("{0} online version {1}", AppName, Version);
         }
         ChangeTitleEvent(title, null);
         return isConnected;
@@ -46,7 +48,7 @@ namespace WpfUI
       InitializeComponent();
       ResizeMode = ResizeMode.CanMinimize;
 
-      Title = "TEW";
+      Title = "TEW" + Version;
 
       StartApp();
       

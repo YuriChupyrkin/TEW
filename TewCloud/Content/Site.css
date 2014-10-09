@@ -1,6 +1,12 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+
+    background: url(Images/background1.jpg); 
+    background-size: cover;
+ 	background-attachment: fixed, fixed;
+
+    color: white;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -14,4 +20,47 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.display-block {
+    display: block;
+}
+
+.display-none {
+    display: none;
+}
+
+.image-resize {
+    margin-bottom: 50px;
+    margin-top: 50px;
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+
+    -moz-box-shadow: 0 0 10px #ccc; 
+    -webkit-box-shadow: 0 0 10px #ccc;
+    box-shadow: 0 0 10px #ccc;
+}
+
+.center-block {
+    text-align: center;
+}
+
+.stat-block {
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.title-text {
+    font-size: 48px;
+    color: #FFD700;
+}
+
+.main-text {
+    font-size: 28px;
+}
+
+.link-text {
+    font-style: italic;
+    text-decoration: underline;
 }

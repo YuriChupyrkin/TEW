@@ -56,8 +56,9 @@ namespace WpfUI.Pages
         }
         MessageBox.Show("Welcome " + user.Email);
 
-        var thread = new Thread(SendEmailAboutRegistration);
-        thread.Start(user.Email);
+        //var thread = new Thread(SendEmailAboutRegistration);
+        //thread.Start(user.Email);
+        System.Diagnostics.Process.Start(SynchronizeHelper.Uri);
 
         Switcher.Switch(new MainPage());
       }

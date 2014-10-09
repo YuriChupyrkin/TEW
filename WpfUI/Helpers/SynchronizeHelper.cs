@@ -12,23 +12,23 @@ namespace WpfUI.Helpers
 {
   internal sealed class SynchronizeHelper
   {
-    private const string _kickController = "Values";
-    private const string _synchronizeController = "Synchronize";
+    private const string _kickController = "api/Values";
+    private const string _synchronizeController = "api/Synchronize";
 
-    //private readonly string _uri = "http://localhost:8081/api/";
-    private readonly string _uri = "http://yu4e4ko.somee.com/TewCloud/api/";
+    //public const string Uri = "http://localhost:8081/";
+    public const string Uri = "http://yu4e4ko.somee.com/TewCloud/";
 
     private readonly IRepositoryFactory _repositoryFactory;
 
-    public SynchronizeHelper(IRepositoryFactory repositoryFactory, string uri)
-    {
-      if (string.IsNullOrEmpty(uri) == false)
-      {
-        _uri = uri;
-      }
+    //public SynchronizeHelper(IRepositoryFactory repositoryFactory, string uri)
+    //{
+    //  if (string.IsNullOrEmpty(uri) == false)
+    //  {
+    //    _uri = uri;
+    //  }
 
-      _repositoryFactory = repositoryFactory;
-    }
+    //  _repositoryFactory = repositoryFactory;
+    //}
 
     public SynchronizeHelper(IRepositoryFactory repositoryFactory)
     {
@@ -38,7 +38,7 @@ namespace WpfUI.Helpers
     public bool IsServerOnline()
     {
       const int checkLength = 7;
-      var uri = _uri + _kickController + "?length=" + checkLength;
+      var uri = Uri + _kickController + "?length=" + checkLength;
 
       var httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
 
@@ -108,7 +108,7 @@ namespace WpfUI.Helpers
         throw new Exception("User is null");
       }
 
-      var uri = _uri + _synchronizeController + "?userName=" + user.Email;
+      var uri = Uri + _synchronizeController + "?userName=" + user.Email;
 
       var httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
 
@@ -179,7 +179,7 @@ namespace WpfUI.Helpers
 
     private ResponseModel SendRequest(WordsCloudModel cloudModel)
     {
-      var uri = _uri + _synchronizeController;
+      var uri = Uri + _synchronizeController;
 
       var req = (HttpWebRequest)WebRequest.Create(uri);
       var enc = new UTF8Encoding();
