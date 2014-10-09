@@ -102,11 +102,11 @@ namespace TewCloud.Controllers
         UserName = userName
       };
 
-      var words = new List<WordViewModel>();
+      var words = new List<WordJsonModel>();
 
       foreach (var word in enRuWords)
       {
-        var viewModel = new WordViewModel
+        var viewModel = new WordJsonModel
         {
           English = word.EnglishWord.EnWord,
           Russian = word.RussianWord.RuWord,

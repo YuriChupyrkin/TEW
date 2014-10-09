@@ -3,26 +3,26 @@
   <user>yu4e4ko@yandex.ru</user>
   <words>
     <word>
-      <engWord>approach</engWord>
-      <rusWord>приближение</rusWord>
+      <engWord>cat</engWord>
+      <rusWord>кот</rusWord>
       <level>2</level>
       <example>the train approached the main line</example>
     </word>
     <word>
-      <engWord>grow</engWord>
-      <rusWord>расти</rusWord>
+      <engWord>cow</engWord>
+      <rusWord>корова</rusWord>
       <level>2</level>
       <example>he would watch Nick grow to manhood</example>
     </word>
     <word>
-      <engWord>promise</engWord>
-      <rusWord>обещание</rusWord>
+      <engWord>dog</engWord>
+      <rusWord>собака</rusWord>
       <level>2</level>
       <example>what happened to all those firm promises of support?</example>
     </word>
     <word>
-      <engWord>vastly</engWord>
-      <rusWord>значительно</rusWord>
+      <engWord>car</engWord>
+      <rusWord>автомобиль</rusWord>
       <level>2</level>
       <example></example>
     </word>
@@ -65,7 +65,7 @@
     <word>
       <engWord>pond</engWord>
       <rusWord>пруд</rusWord>
-      <level>2</level>
+      <level>3</level>
       <example>Projecting eaves and bamboo verandahs shaped views of gardens with ponds , streams and artificial hills.</example>
     </word>
     <word>
@@ -137,7 +137,7 @@
     <word>
       <engWord>obsolete</engWord>
       <rusWord>устарелый</rusWord>
-      <level>2</level>
+      <level>3</level>
       <example>the disposal of old and obsolete machinery</example>
     </word>
     <word>
@@ -179,7 +179,7 @@
     <word>
       <engWord>conversion</engWord>
       <rusWord>превращение</rusWord>
-      <level>2</level>
+      <level>3</level>
       <example>the conversion of food into body tissues</example>
     </word>
     <word>
@@ -197,7 +197,7 @@
     <word>
       <engWord>necessary</engWord>
       <rusWord>необходимое</rusWord>
-      <level>2</level>
+      <level>3</level>
       <example>members are admitted only after they have gained the necessary experience</example>
     </word>
     <word>
@@ -233,7 +233,7 @@
     <word>
       <engWord>subsequent</engWord>
       <rusWord>последующее</rusWord>
-      <level>2</level>
+      <level>3</level>
       <example>the theory was developed subsequent to the earthquake of 1906</example>
     </word>
     <word>
@@ -245,7 +245,7 @@
     <word>
       <engWord>issue</engWord>
       <rusWord>проблема</rusWord>
-      <level>2</level>
+      <level>3</level>
       <example>the issue of global warming</example>
     </word>
     <word>
@@ -335,7 +335,7 @@
     <word>
       <engWord>guideline</engWord>
       <rusWord>руководящее указание</rusWord>
-      <level>2</level>
+      <level>3</level>
       <example>The Health and Safety Executive also issued guidelines for working safely on the Bay.</example>
     </word>
     <word>
@@ -347,7 +347,7 @@
     <word>
       <engWord>law</engWord>
       <rusWord>закон</rusWord>
-      <level>2</level>
+      <level>3</level>
       <example>they were taken to court for breaking the law</example>
     </word>
     <word>
@@ -443,13 +443,13 @@
     <word>
       <engWord>smell</engWord>
       <rusWord>запах</rusWord>
-      <level>2</level>
+      <level>3</level>
       <example>a highly developed sense of smell</example>
     </word>
     <word>
       <engWord>mean</engWord>
       <rusWord>значит</rusWord>
-      <level>2</level>
+      <level>3</level>
       <example>acid output was calculated by taking the mean of all three samples</example>
     </word>
     <word>
@@ -569,7 +569,7 @@
     <word>
       <engWord>imagination</engWord>
       <rusWord>воображение</rusWord>
-      <level>2</level>
+      <level>3</level>
       <example>she'd never been blessed with a vivid imagination</example>
     </word>
     <word>
@@ -587,7 +587,7 @@
     <word>
       <engWord>insist</engWord>
       <rusWord>настаивать</rusWord>
-      <level>2</level>
+      <level>3</level>
       <example>she insisted on carrying her own bag</example>
     </word>
     <word>
@@ -695,13 +695,13 @@
     <word>
       <engWord>quiet</engWord>
       <rusWord>тихо</rusWord>
-      <level>2</level>
+      <level>3</level>
       <example>the car has a quiet, economical engine</example>
     </word>
     <word>
       <engWord>seem</engWord>
       <rusWord>казаться</rusWord>
-      <level>2</level>
+      <level>3</level>
       <example>Dawn seemed annoyed</example>
     </word>
     <word>
@@ -713,7 +713,7 @@
     <word>
       <engWord>generally</engWord>
       <rusWord>как правило</rusWord>
-      <level>2</level>
+      <level>3</level>
       <example>the term of a lease is generally 99 years</example>
     </word>
     <word>
@@ -749,7 +749,7 @@
     <word>
       <engWord>entry</engWord>
       <rusWord>запись</rusWord>
-      <level>2</level>
+      <level>3</level>
       <example>the door was locked, but he forced an entry</example>
     </word>
     <word>
@@ -761,7 +761,7 @@
     <word>
       <engWord>resurgence</engWord>
       <rusWord>возрождение</rusWord>
-      <level>2</level>
+      <level>3</level>
       <example>a resurgence of interest in religion</example>
     </word>
     <word>
@@ -779,7 +779,7 @@
     <word>
       <engWord>clutter</engWord>
       <rusWord>беспорядок</rusWord>
-      <level>2</level>
+      <level>3</level>
       <example>the attic is full of clutter</example>
     </word>
     <word>
@@ -803,7 +803,7 @@
     <word>
       <engWord>general-purpose</engWord>
       <rusWord>общего назначения</rusWord>
-      <level>2</level>
+      <level>3</level>
       <example>a general-purpose detergent</example>
     </word>
     <word>
@@ -815,7 +815,7 @@
     <word>
       <engWord>persistent</engWord>
       <rusWord>постоянный</rusWord>
-      <level>2</level>
+      <level>3</level>
       <example>one of the government's most persistent critics</example>
     </word>
     <word>
@@ -899,7 +899,7 @@
     <word>
       <engWord>gone</engWord>
       <rusWord>ушел</rusWord>
-      <level>2</level>
+      <level>3</level>
       <example></example>
     </word>
     <word>
@@ -941,7 +941,7 @@
     <word>
       <engWord>fade</engWord>
       <rusWord>постепенно исчезать</rusWord>
-      <level>2</level>
+      <level>3</level>
       <example>the noise faded away</example>
     </word>
     <word>
@@ -953,7 +953,7 @@
     <word>
       <engWord>sudden</engWord>
       <rusWord>внезапное</rusWord>
-      <level>2</level>
+      <level>3</level>
       <example>a sudden bright flash</example>
     </word>
     <word>
@@ -1001,7 +1001,7 @@
     <word>
       <engWord>breakthrough</engWord>
       <rusWord>прорыв</rusWord>
-      <level>2</level>
+      <level>3</level>
       <example>a major breakthrough in DNA researcha major breakthrough in DNA research</example>
     </word>
     <word>
@@ -1019,13 +1019,13 @@
     <word>
       <engWord>exhibition</engWord>
       <rusWord>выставка</rusWord>
-      <level>2</level>
+      <level>3</level>
       <example>an exhibition of French sculpture</example>
     </word>
     <word>
       <engWord>intend</engWord>
       <rusWord>намерены</rusWord>
-      <level>2</level>
+      <level>3</level>
       <example>the company intends to cut about 4,500 jobs</example>
     </word>
     <word>
@@ -1049,13 +1049,13 @@
     <word>
       <engWord>complain</engWord>
       <rusWord>пожаловаться</rusWord>
-      <level>2</level>
+      <level>3</level>
       <example>local authorities complained that they lacked sufficient resources</example>
     </word>
     <word>
       <engWord>disgusting</engWord>
       <rusWord>отвратительно</rusWord>
-      <level>2</level>
+      <level>3</level>
       <example>he had the most disgusting rotten teeth</example>
     </word>
     <word>
@@ -1099,6 +1099,18 @@
       <rusWord>рядом</rusWord>
       <level>2</level>
       <example>a bomb exploding somewhere near</example>
+    </word>
+    <word>
+      <engWord>interrupt</engWord>
+      <rusWord>прервать</rusWord>
+      <level>2</level>
+      <example>the buzzer interrupted his thoughts</example>
+    </word>
+    <word>
+      <engWord>decision</engWord>
+      <rusWord>решение</rusWord>
+      <level>0</level>
+      <example>I'll make the decision on my own</example>
     </word>
   </words>
 </userWords>

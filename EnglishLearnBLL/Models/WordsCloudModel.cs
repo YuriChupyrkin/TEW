@@ -6,10 +6,10 @@ namespace EnglishLearnBLL.Models
   {
     public WordsCloudModel()
     {
-      Words = new List<WordViewModel>();
+      Words = new List<WordJsonModel>();
     }
 
     public string UserName { get; set; }
-    public IList<WordViewModel> Words { get; set; } 
+    public IList<WordJsonModel> Words { get; set; } 
   }
 }

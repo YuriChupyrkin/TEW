@@ -6,14 +6,14 @@ namespace EnglishLearnBLL.Mapping
 {
   public class ModelMapper
   {
-    public static IEnumerable<WordViewModel> EnRuWordsToViewModels(
+    public static IEnumerable<WordJsonModel> EnRuWordsToViewModels(
       IEnumerable<EnRuWord> enRuWords)
     {
-      var models = new List<WordViewModel>();
+      var models = new List<WordJsonModel>();
 
       foreach (var enRuWord in enRuWords)
       {
-        var viewModel = new WordViewModel
+        var viewModel = new WordJsonModel
         {
           English = enRuWord.EnglishWord.EnWord,
           Russian = enRuWord.RussianWord.RuWord,

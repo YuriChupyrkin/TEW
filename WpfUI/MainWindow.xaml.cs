@@ -277,9 +277,9 @@ namespace WpfUI
       }
     }
 
-    private void StartSync()
+    internal static void StartSync()
     {
-      MessageBox.Show("please wait some time");
+      MessageBox.Show("please wait some time", "Synchronize");
 
       var user = ApplicationContext.CurrentUser;
 
@@ -296,25 +296,25 @@ namespace WpfUI
 
       if (isServerOnline == false)
       {
-        MessageBox.Show("Server is offline");
+        MessageBox.Show("Server is offline", "Synchronize");
         return;
       }
 
       var responseResult = syncHelper.SendMyWords(user);
       if (responseResult.IsError)
       {
-        MessageBox.Show(responseResult.ErrorMessage, "Error");
+        MessageBox.Show(responseResult.ErrorMessage, "Synchronize error");
         return;
       }
 
       responseResult = syncHelper.GetUserWords(user);
       if (responseResult.IsError)
       {
-        MessageBox.Show(responseResult.ErrorMessage, "Error");
+        MessageBox.Show(responseResult.ErrorMessage, "Synchronize error");
         return;
       }
 
-      MessageBox.Show("Complete");
+      MessageBox.Show("Success", "Synchronize");
     }
 
     #endregion

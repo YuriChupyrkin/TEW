@@ -15,8 +15,8 @@ namespace WpfUI.Helpers
     private const string _kickController = "Values";
     private const string _synchronizeController = "Synchronize";
 
-    private readonly string _uri = "http://localhost:8081/api/";
-    //private readonly string _uri = "http://yu4e4ko.somee.com/TewCloud/api/";
+    //private readonly string _uri = "http://localhost:8081/api/";
+    private readonly string _uri = "http://yu4e4ko.somee.com/TewCloud/api/";
 
     private readonly IRepositoryFactory _repositoryFactory;
 
@@ -84,7 +84,7 @@ namespace WpfUI.Helpers
 
       foreach (var word in userWords)
       {
-        var viewModel = new WordViewModel
+        var viewModel = new WordJsonModel
         {
           English = word.EnglishWord.EnWord,
           Russian = word.RussianWord.RuWord,

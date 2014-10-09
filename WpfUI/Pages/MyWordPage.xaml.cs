@@ -33,8 +33,6 @@ namespace WpfUI.Pages
         if (isDelete)
         {
           var repositoryFactory = ApplicationContext.RepositoryFactory;
-          //repositoryFactory.EnRuWordsRepository
-          //  .DeleteEnRuWord(selectedWord.English, ApplicationContext.CurrentUser.Id);
 
           repositoryFactory.EnRuWordsRepository.MakeDeleted(selectedWord.English, ApplicationContext.CurrentUser.Id);
           ViewWords();
@@ -55,6 +53,7 @@ namespace WpfUI.Pages
       var words = wordViewer.ViewWords(userId)
         .OrderByDescending(r => r.Level);
       LabelMyWords.Content = TitlePage + ": " + words.Count();
+
       DataGridWords.ItemsSource = words;
     }
 
