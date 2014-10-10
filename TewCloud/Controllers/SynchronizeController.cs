@@ -86,11 +86,14 @@ namespace TewCloud.Controllers
       }
 
       var enRuWords = _repositoryFactory.EnRuWordsRepository.AllEnRuWords()
-        .Where(r => r.UserId == user.Id && r.IsUpdated);
+        .Where(r => r.UserId == user.Id && r.IsUpdated == false);
 
       var wordsCloudModel = CreateWordsCloudModel(userName, enRuWords);
 
-      foreach (var enRuWord in enRuWords)
+      var updatedWord = _repositoryFactory.EnRuWordsRepository.AllEnRuWords()
+        .Where(r => r.UserId == user.Id && r.IsUpdated);
+
+      foreach (var enRuWord in updatedWord)
       {
         _repositoryFactory.EnRuWordsRepository.ChangeUpdateStatus(enRuWord.Id, false);
       }
