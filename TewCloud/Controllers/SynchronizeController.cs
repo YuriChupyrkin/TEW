@@ -127,29 +127,49 @@ namespace TewCloud.Controllers
     private void AddUserWords(WordsCloudModel wordsModel)
     {
       var userId = GetUserId(wordsModel.UserName);
+
       var userEnRuWords = _repositoryFactory.EnRuWordsRepository.AllEnRuWords().Where(r => r.UserId == userId);
+      var userExistWords = userEnRuWords.Select(r => r.EnglishWord.EnWord);
 
       var enWordsFromModel = wordsModel.Words.Where(r => r.IsDeleted == false).Select(r => r.English);
 
-      foreach (var userEnRuWord in userEnRuWords)
+      foreach (var wordFromModel in enWordsFromModel)
       {
-        if (enWordsFromModel.Contains(userEnRuWord.EnglishWord.EnWord))
+        if (userExistWords.Contains(wordFromModel))
         {
-          var wordFromModel = wordsModel.Words.FirstOrDefault(r => r.English == userEnRuWord.EnglishWord.EnWord);
+          var userEnRuWord = userEnRuWords.FirstOrDefault(r => r.EnglishWord.EnWord == wordFromModel);
+          var modelItem = wordsModel.Words.FirstOrDefault(r => r.English == wordFromModel);
 
-          if (wordFromModel.Russian != userEnRuWord.RussianWord.RuWord || wordFromModel.Level != userEnRuWord.WordLevel
-              || wordFromModel.Example != userEnRuWord.Example)
+          if (modelItem.Russian != userEnRuWord.RussianWord.RuWord || modelItem.Level != userEnRuWord.WordLevel
+              || modelItem.Example != userEnRuWord.Example)
           {
             _repositoryFactory.EnRuWordsRepository
-            .AddTranslate(
-              wordFromModel.English,
-              wordFromModel.Russian,
-              wordFromModel.English,
-              userId,
-              wordFromModel.Level);
+              .AddTranslate(
+                modelItem.English,
+                modelItem.Russian,
+                modelItem.Example,
+                userId,
+                modelItem.Level);
 
             _repositoryFactory.EnRuWordsRepository.ChangeUpdateStatus(userEnRuWord.Id, true);
           }
+        }
+        else
+        {
+          var modelItem = wordsModel.Words.FirstOrDefault(r => r.English == wordFromModel);
+
+          _repositoryFactory.EnRuWordsRepository
+              .AddTranslate(
+                modelItem.English,
+                modelItem.Russian,
+                modelItem.Example,
+                userId,
+                modelItem.Level);
+
+          var id = _repositoryFactory.EnRuWordsRepository.AllEnRuWords()
+              .FirstOrDefault(r => r.EnglishWord.EnWord == modelItem.English)
+              .Id;
+          _repositoryFactory.EnRuWordsRepository.ChangeUpdateStatus(id, true);
         }
       }
 
@@ -159,24 +179,6 @@ namespace TewCloud.Controllers
       {
         DeleteWord(deletedWord, userId);
       }
-
-      //foreach (var word in wordsModel.Words)
-      //{
-      //  if (word.IsDeleted)
-      //  {
-      //    DeleteWord(word.English, userId);
-      //  }
-      //  else
-      //  {
-      //    _repositoryFactory.EnRuWordsRepository
-      //      .AddTranslate(
-      //        word.English,
-      //        word.Russian,
-      //        word.English,
-      //        userId,
-      //        word.Level);
-      //  }
-      //}
     }
 
     private void DeleteWord(string enWord, int userId)
