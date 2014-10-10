@@ -90,7 +90,10 @@ namespace TewCloud.Controllers
 
       var wordsCloudModel = CreateWordsCloudModel(userName, enRuWords);
 
-      enRuWords.ForEach(r => r.IsUpdated = false);
+      foreach (var enRuWord in enRuWords)
+      {
+        _repositoryFactory.EnRuWordsRepository.ChangeUpdateStatus(enRuWord.Id, false);
+      }
 
       return wordsCloudModel;
     }
