@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
 namespace Domain.Entities
 {
@@ -11,6 +12,7 @@ namespace Domain.Entities
     public int WordLevel { get; set; }
     public bool IsDeleted { get; set; }
     public bool IsUpdated { get; set; }
+    public DateTime UpdateDate { get; set; }
 
     [JsonIgnore]
     public virtual User User { get; set; }

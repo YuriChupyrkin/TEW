@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Domain.Entities;
 
 namespace Domain.Repositories
@@ -6,7 +7,7 @@ namespace Domain.Repositories
   public interface IEnRuWordsRepository : IGenericRepository
   {
     IEnumerable<string> GetTranslate(string enWord);
-    void AddTranslate(string engWord, string ruWord, string example, int userId, int level = 0);
+    void AddTranslate(string engWord, string ruWord, string example, int userId, DateTime? updateDate = null, int level = 0);
     IDictionary<string, string> GetWordsForUser(int userId);
     IEnumerable<EnRuWord> AllEnRuWords();
     IEnumerable<RussianWord> AllRussianWords();

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -9,7 +7,6 @@ using Domain.Entities;
 using Domain.RepositoryFactories;
 using Domain.UnitOfWork;
 using EnglishLearnBLL.Models;
-using WebGrease.Css.Extensions;
 
 namespace TewCloud.Controllers
 {
@@ -117,7 +114,8 @@ namespace TewCloud.Controllers
           English = word.EnglishWord.EnWord,
           Russian = word.RussianWord.RuWord,
           Level = word.WordLevel,
-          Example = word.Example
+          Example = word.Example,
+          UpdateDate = word.UpdateDate
         };
 
         words.Add(viewModel);
@@ -146,8 +144,7 @@ namespace TewCloud.Controllers
           var userEnRuWord = userEnRuWords.FirstOrDefault(r => r.EnglishWord.EnWord == wordFromModel);
           var modelItem = wordsModel.Words.FirstOrDefault(r => r.English == wordFromModel);
 
-          if (modelItem.Russian != userEnRuWord.RussianWord.RuWord || modelItem.Level != userEnRuWord.WordLevel
-              || modelItem.Example != userEnRuWord.Example)
+          if (modelItem.UpdateDate > userEnRuWord.UpdateDate)
           {
             _repositoryFactory.EnRuWordsRepository
               .AddTranslate(
@@ -155,6 +152,7 @@ namespace TewCloud.Controllers
                 modelItem.Russian,
                 modelItem.Example,
                 userId,
+                modelItem.UpdateDate,
                 modelItem.Level);
 
             _repositoryFactory.EnRuWordsRepository.ChangeUpdateStatus(userEnRuWord.Id, true);
@@ -170,6 +168,7 @@ namespace TewCloud.Controllers
                 modelItem.Russian,
                 modelItem.Example,
                 userId,
+                modelItem.UpdateDate,
                 modelItem.Level);
 
           var id = _repositoryFactory.EnRuWordsRepository.AllEnRuWords()

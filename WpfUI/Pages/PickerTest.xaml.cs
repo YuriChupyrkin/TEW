@@ -184,15 +184,6 @@ namespace WpfUI.Pages
 
     private void SetLevel(bool isTrueAnswer, int wordId)
     {
-      //var levelShift = 1;
-      //if (_currentTestName.Equals(RuEnTest))
-      //{
-      //  levelShift = 2;
-      //}
-
-      //levelShift = isTrueAnswer ? levelShift : (0 - levelShift);
-      //_repositoryFactory.EnRuWordsRepository
-      //    .ChangeWordLevel(wordId, levelShift);
       var testType = WordLevelManager.TestType.EnRuTest;
       if (_currentTestName.Equals(RuEnTest))
       {

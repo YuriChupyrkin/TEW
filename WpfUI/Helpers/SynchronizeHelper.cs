@@ -20,16 +20,6 @@ namespace WpfUI.Helpers
 
     private readonly IRepositoryFactory _repositoryFactory;
 
-    //public SynchronizeHelper(IRepositoryFactory repositoryFactory, string uri)
-    //{
-    //  if (string.IsNullOrEmpty(uri) == false)
-    //  {
-    //    _uri = uri;
-    //  }
-
-    //  _repositoryFactory = repositoryFactory;
-    //}
-
     public SynchronizeHelper(IRepositoryFactory repositoryFactory)
     {
       _repositoryFactory = repositoryFactory;
@@ -90,7 +80,8 @@ namespace WpfUI.Helpers
           Russian = word.RussianWord.RuWord,
           Level = word.WordLevel,
           Example = word.Example,
-          IsDeleted = word.IsDeleted
+          IsDeleted = word.IsDeleted,
+          UpdateDate = word.UpdateDate
         };
 
         cloudModel.Words.Add(viewModel);
@@ -173,6 +164,7 @@ namespace WpfUI.Helpers
           word.Russian, 
           word.Example, 
           user.Id, 
+          word.UpdateDate,
           word.Level);
       }
     }

@@ -9,8 +9,6 @@ namespace EntityFrameworkDAL.Repositories
 {
   public class EnRuWordsRepository : IEnRuWordsRepository
   {
-    private const int MaxLevel = 20;
-    private const int MinLevel = 0;
     private readonly EnglishLearnContext _context;
 
     public EnRuWordsRepository(EnglishLearnContext context)
@@ -45,7 +43,7 @@ namespace EntityFrameworkDAL.Repositories
       return russianWords;
     }
 
-    public void AddTranslate(string engWord, string ruWord, string example, int userId, int level = 0)
+    public void AddTranslate(string engWord, string ruWord, string example, int userId, DateTime? updateDate = null, int level = 0)
     {
       int engId = AddEngWord(engWord);
       int ruId = AddRusWord(ruWord);
@@ -59,6 +57,7 @@ namespace EntityFrameworkDAL.Repositories
         enRuWordFromDb.WordLevel = level;
         enRuWordFromDb.Example = example ?? string.Empty;
         enRuWordFromDb.IsDeleted = false;
+        enRuWordFromDb.UpdateDate = updateDate ?? new DateTime(1990, 5, 5);
         _context.SaveChanges();
         return;
       }
@@ -70,7 +69,8 @@ namespace EntityFrameworkDAL.Repositories
         Example = example ?? string.Empty,
         UserId = userId,
         WordLevel = level,
-        IsDeleted = false
+        IsDeleted = false,
+        UpdateDate = DateTime.UtcNow
       };
 
       _context.EnRuWords.Add(enRuWord);
@@ -170,6 +170,7 @@ namespace EntityFrameworkDAL.Repositories
       if (word != null)
       {
         word.WordLevel = word.WordLevel + levelShift;
+        word.UpdateDate = DateTime.UtcNow;
         _context.SaveChanges();
       }
     }

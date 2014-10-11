@@ -45,7 +45,7 @@ namespace EnglishLearnBLL.ToXML
             var example = wordElemets.Element(XmlNameHelper.Example).Value;
 
             _repositoryFactory.EnRuWordsRepository
-              .AddTranslate(enWord, ruWord, example, user.Id, level);
+              .AddTranslate(enWord, ruWord, example, user.Id, new DateTime(1990, 5, 5), level);
           }
         }
       }
