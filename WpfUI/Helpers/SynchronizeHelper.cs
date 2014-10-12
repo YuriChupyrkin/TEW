@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 using Domain.Entities;
 using Domain.RepositoryFactories;
 using EnglishLearnBLL.Models;
@@ -155,6 +156,17 @@ namespace WpfUI.Helpers
       {
         throw new Exception("Words for user " + cloudModel.UserName + ", but user not found");
       }
+
+      //Parallel.ForEach(cloudModel.Words, word =>
+      //  _repositoryFactory.EnRuWordsRepository.AddTranslate(
+      //    word.English,
+      //    word.Russian,
+      //    word.Example,
+      //    user.Id,
+      //    word.UpdateDate,
+      //    word.Level
+      //    ));
+
 
       foreach (var word in cloudModel.Words)
       {

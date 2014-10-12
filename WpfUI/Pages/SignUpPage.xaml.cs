@@ -56,10 +56,6 @@ namespace WpfUI.Pages
         }
         MessageBox.Show("Welcome " + user.Email);
 
-        //var thread = new Thread(SendEmailAboutRegistration);
-        //thread.Start(user.Email);
-        System.Diagnostics.Process.Start(SynchronizeHelper.Uri);
-
         Switcher.Switch(new MainPage());
       }
       catch (Exception ex)
@@ -81,7 +77,7 @@ namespace WpfUI.Pages
 
       if (!ApplicationValidator.IsValidatPassword(password))
       {
-        throw new Exception("Incorrect password! (Min len = 4, Max len = 16");
+        throw new Exception("Incorrect password! (Min len = 4, Max len = 16)");
       }
 
       var confirmPassword = TxtConfirmPassword.Password;

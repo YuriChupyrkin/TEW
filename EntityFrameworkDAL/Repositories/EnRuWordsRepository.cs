@@ -106,7 +106,7 @@ namespace EntityFrameworkDAL.Repositories
     }
 
     private int AddEngWord(string enWord)
-    {
+    { 
       var engWordFromDb = _context.EnglishWords
         .FirstOrDefault(r => r.EnWord.Equals(enWord, StringComparison.OrdinalIgnoreCase));
 

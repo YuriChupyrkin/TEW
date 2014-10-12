@@ -31,6 +31,7 @@
                     <MenuItem Name="ResetPassword" Header="_Reset password" Click="ResetPassword_Click"/>
                     <MenuItem Name="ChangePassword" Header="_Change password" Click="ChangePassword_Click"/>
                     <Separator />
+                    <MenuItem Name="TewCloudMenu" Header="_Tew cloud" Click="TewCloudMenu_Click" />
                     <MenuItem Name="HowTo" Header="_How to" Click="HowTo_Click"/>
                     <MenuItem Name="About" Header="_About" Click="About_Click"/>
                 </MenuItem>

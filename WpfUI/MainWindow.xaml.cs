@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net;
 using System.Text;
 using System.Windows;
@@ -18,7 +19,7 @@ namespace WpfUI
   /// </summary>
   public partial class MainWindow : Window
   {
-    private const string Version = "(1.01___10/11/2014)"; 
+    private const string Version = "(1.02___10/12/2014)"; 
 
     public const string AppName = "TEW";
 
@@ -124,7 +125,6 @@ namespace WpfUI
     {
       if (IsOnlineVersion)
       {
-        //SetAdminAuthentication();
       }
       else
       {
@@ -214,6 +214,12 @@ namespace WpfUI
       StartSync();
     }
 
+    private void TewCloudMenu_Click(object sender, RoutedEventArgs e)
+    {
+      var startInfo = new ProcessStartInfo("explorer.exe", SynchronizeHelper.Uri);
+      Process.Start(startInfo);
+    }
+
     #endregion
 
     #region methods
@@ -244,6 +250,8 @@ namespace WpfUI
 
       IsSpeakEng = true;
       SpeakEngMenu.IsChecked = true;
+      ImportMenu.IsEnabled = false;
+      ExportMenu.IsEnabled = false;
 
       Switcher.PageSwitcher = this;
 
