@@ -302,3 +302,11 @@ D:\Study\Programming\Projects\EnglishLearning6\WpfUI\obj\Debug\WpfUI_MarkupCompi
 D:\Study\Programming\Projects\EnglishLearning6\WpfUI\obj\Debug\WpfUI.g.resources
 D:\Study\Programming\Projects\EnglishLearning6\WpfUI\obj\Debug\WpfUI.Properties.Resources.resources
 D:\Study\Programming\Projects\EnglishLearning6\WpfUI\obj\Debug\WpfUI.csproj.GenerateResource.Cache
+D:\Study\Programming\Projects\EnglishLearning2\WpfUI\obj\Debug\Pages\ChangePasswordPage.baml
+D:\Study\Programming\Projects\EnglishLearning2\WpfUI\obj\Debug\Pages\RestorePasswordPage.baml
+D:\Study\Programming\Projects\EnglishLearning2\WpfUI\obj\Debug\Pages\ChangePasswordPage.g.cs
+D:\Study\Programming\Projects\EnglishLearning2\WpfUI\obj\Debug\Pages\RestorePasswordPage.g.cs
+D:\Study\Programming\Projects\EnglishLearning2\WpfUI\bin\Debug\NAudio.dll
+D:\Study\Programming\Projects\EnglishLearning2\WpfUI\bin\Debug\Newtonsoft.Json.dll
+D:\Study\Programming\Projects\EnglishLearning2\WpfUI\bin\Debug\NAudio.xml
+D:\Study\Programming\Projects\EnglishLearning2\WpfUI\bin\Debug\Newtonsoft.Json.xml

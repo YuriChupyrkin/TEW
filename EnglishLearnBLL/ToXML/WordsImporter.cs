@@ -15,9 +15,9 @@ namespace EnglishLearnBLL.ToXML
       _repositoryFactory = repositoryFactory;
     }
 
-    public void Import(string forUserName)
+    public void Import(string forUserName, string fileName)
     {
-      string fileName = XmlNameHelper.XmlFileName;
+      //string fileName = XmlNameHelper.XmlFileName;
       XDocument doc = XDocument.Load(fileName);
 
       XElement userEl = doc.Root.Elements().First();

@@ -2,6 +2,8 @@
     padding-top: 50px;
     padding-bottom: 20px;
 
+    font-family: 'Proxima Nova';
+
     background: url(Images/background1.jpg); 
     background-size: cover;
  	background-attachment: fixed, fixed;
@@ -51,9 +53,13 @@ textarea {
     margin-top: 50px;
 }
 
-.title-text {
+.big-size-text{
     font-size: 48px;
+}
+
+.title-text {
     color: #FFD700;
+    font-family: 'Comic Sans MS';
 }
 
 .main-text {
@@ -63,4 +69,17 @@ textarea {
 .link-text {
     font-style: italic;
     text-decoration: underline;
+}
+
+.header-with-image{
+    background-color: #686868;
+}
+
+.icons{
+    width: 150px;
+    height: 150px;
+}
+
+.download-icon{
+    width: 300px;
 }

@@ -1,5 +1,6 @@
 ﻿$(function () {
-  
+  var serverPath = "";
+
   (function getInfo() {
     $('#loadingContainer').removeClass("display-none");
     $('#statContainer').addClass("display-none");
@@ -7,7 +8,7 @@
     var usersCount = 0;
     var wordsCount = 0;
 
-    $.getJSON("/api/TewInfo", function(result) {
+    $.getJSON(serverPath + "/api/TewInfo", function(result) {
       $('#loadingContainer').addClass("display-none");
       $('#statContainer').removeClass("display-none");
       
@@ -19,5 +20,9 @@
     });
   })();
 
+  $(document).on('click', '#downloadButton', function (event) {
+      console.log("download");
+      window.location = "#download";
+  });
 
 });

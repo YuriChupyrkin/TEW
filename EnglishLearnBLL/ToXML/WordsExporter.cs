@@ -13,7 +13,7 @@ namespace EnglishLearnBLL.ToXML
       _repositoryFactory = repositoryFactory;
     }
 
-    public void Export(int userId)
+    public void Export(int userId, string fileName)
     {
       var doc = new XDocument();
       var userWordsEl = new XElement(XmlNameHelper.UserWords);
@@ -57,7 +57,7 @@ namespace EnglishLearnBLL.ToXML
         wordsEl.Add(wordEl);
       }
 
-      doc.Save(XmlNameHelper.XmlFileName);
+      doc.Save(fileName);
     }
   }
 }

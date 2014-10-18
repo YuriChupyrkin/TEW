@@ -2,7 +2,7 @@
 {
   internal class XmlNameHelper
   {
-    public const string XmlFileName = "words.xml";
+    //public const string XmlFileName = "words.xml";
     public const string EngWord = "engWord";
     public const string RusWord = "rusWord";
     public const string Level = "level";

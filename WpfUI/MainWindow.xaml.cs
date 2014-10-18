@@ -19,7 +19,7 @@ namespace WpfUI
   /// </summary>
   public partial class MainWindow : Window
   {
-    private const string Version = "(1.02___10/12/2014)"; 
+    private const string Version = "(1.03___10/18/2014)"; 
 
     public const string AppName = "TEW";
 
@@ -179,8 +179,21 @@ namespace WpfUI
         return;
       }
 
-      var wordsExporter = new WordsExporter(ApplicationContext.RepositoryFactory);
-      wordsExporter.Export(ApplicationContext.CurrentUser.Id);
+      // Create OpenFileDialog 
+      var saveDialog = new Microsoft.Win32.SaveFileDialog();
+
+      // Set filter for file extension and default file extension 
+      saveDialog.DefaultExt = ".xml";
+      saveDialog.Filter = "XML Files (*.xml)|*.xml";
+
+      bool? result = saveDialog.ShowDialog();
+
+      if(result == true)
+      {
+        var fileName = saveDialog.FileName;
+        var wordsExporter = new WordsExporter(ApplicationContext.RepositoryFactory);
+        wordsExporter.Export(ApplicationContext.CurrentUser.Id, fileName);
+      }
     }
 
     private void ImportMenu_Click(object sender, RoutedEventArgs e)
@@ -191,8 +204,24 @@ namespace WpfUI
         return;
       }
 
-      var wordsImporter = new WordsImporter(ApplicationContext.RepositoryFactory);
-      wordsImporter.Import(ApplicationContext.CurrentUser.Email);
+      // Create OpenFileDialog 
+      var openDialog = new Microsoft.Win32.OpenFileDialog();
+
+      // Set filter for file extension and default file extension 
+      openDialog.DefaultExt = ".xml";
+      openDialog.Filter = "XML Files (*.xml)|*.xml";
+
+      // Display OpenFileDialog by calling ShowDialog method 
+      bool? result = openDialog.ShowDialog();
+
+      // Get the selected file name and display in a TextBox 
+      if (result == true)
+      {
+        // Open document 
+        var filename = openDialog.FileName;
+        var wordsImporter = new WordsImporter(ApplicationContext.RepositoryFactory);
+        wordsImporter.Import(ApplicationContext.CurrentUser.Email, filename);
+      }
     }
 
     private void SyncMenu_Click(object sender, RoutedEventArgs e)
@@ -250,8 +279,8 @@ namespace WpfUI
 
       IsSpeakEng = true;
       SpeakEngMenu.IsChecked = true;
-      ImportMenu.IsEnabled = false;
-      ExportMenu.IsEnabled = false;
+      //ImportMenu.IsEnabled = false;
+      //ExportMenu.IsEnabled = false;
 
       Switcher.PageSwitcher = this;
 
