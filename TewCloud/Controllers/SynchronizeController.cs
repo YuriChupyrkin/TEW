@@ -157,6 +157,10 @@ namespace TewCloud.Controllers
 
             _repositoryFactory.EnRuWordsRepository.ChangeUpdateStatus(userEnRuWord.Id, true);
           }
+          else if (modelItem.UpdateDate == userEnRuWord.UpdateDate)
+          {
+            _repositoryFactory.EnRuWordsRepository.ChangeUpdateStatus(userEnRuWord.Id, true);
+          }
         }
         else
         {

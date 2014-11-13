@@ -104,7 +104,8 @@
         </Style>
     </Page.Resources>
 
-    <Grid>
+
+    <Grid Loaded="Grid_Loaded">
         <Label x:Name="LabelHello" Content="Label" HorizontalAlignment="Center" Margin="10,10,10,0" VerticalAlignment="Top" Width="780" FontSize="36" FontFamily="Cooper Black" Height="91" RenderTransformOrigin="0.65,0.525" Foreground="#FFD1D1D1"/>
         <Button x:Name="BtnAddWord" Content="Add words" HorizontalAlignment="Left" Height="43" Margin="30,193,0,0" Style="{DynamicResource ButtonStyle2}" VerticalAlignment="Top" Width="228" Foreground="Black" FontSize="18.667" FontFamily="Comic Sans MS" Click="BtnAddWord_Click"/>
         <Button x:Name="BtnPikerTest" Content="Word-translation test" HorizontalAlignment="Left" Height="43" Margin="30,325,0,0" Style="{DynamicResource ButtonStyle2}" VerticalAlignment="Top" Width="228" Foreground="Black" FontSize="18.667" FontFamily="Comic Sans MS" Click="BtnPikerTest_Click"/>
@@ -113,5 +114,6 @@
         <Grid.Background>
             <ImageBrush ImageSource ="/Images/menu.jpg"></ImageBrush>
         </Grid.Background>
+        
     </Grid>
 </Page>

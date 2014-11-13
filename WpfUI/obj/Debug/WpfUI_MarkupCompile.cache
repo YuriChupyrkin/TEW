@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Study\Programming\Projects\EnglishLearning2\WpfUI\App.xaml
-11-1566450952
+121205844070
 
-27169396985
+28-4943411
 281315819114
-MainWindow.xaml;Pages\AddWordsPage.xaml;Pages\ChangePasswordPage.xaml;Pages\ErrorPage.xaml;Pages\MainPage.xaml;Pages\MyWordPage.xaml;Pages\PickerTest.xaml;Pages\RestorePasswordPage.xaml;Pages\SignInPage.xaml;Pages\SignUpPage.xaml;Pages\WriteTestPage.xaml;
+MainWindow.xaml;Pages\AddWordsPage.xaml;Pages\ChangePasswordPage.xaml;Pages\ErrorPage.xaml;Pages\MainPage.xaml;Pages\MyWordPage.xaml;Pages\PickerTest.xaml;Pages\RestorePasswordPage.xaml;Pages\SignInPage.xaml;Pages\SignUpPage.xaml;Pages\SyncPage.xaml;Pages\WriteTestPage.xaml;
 
 False
 

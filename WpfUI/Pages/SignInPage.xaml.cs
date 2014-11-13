@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
 using Domain.Entities;
 using WpfUI.Auth;
 using WpfUI.Helpers;
@@ -53,14 +56,15 @@ namespace WpfUI.Pages
           throw new Exception("Sign in failed");
         }
 
-        if (MainWindow.IsOnlineVersion)
-        {
-          var isSync = DialogHelper.YesNoQuestionDialog("Synchronize your data with cloud?", "Synchronize");
-          if (isSync)
-          {
-            MainWindow.StartSync();
-          }
-        }
+        //if (MainWindow.IsOnlineVersion)
+        //{
+        //  var isSync = DialogHelper.YesNoQuestionDialog("Synchronize your data with cloud?", "Synchronize");
+        //  if (isSync)
+        //  {
+        //    MainWindow.StartSync();
+        //  }
+        //}
+        Dispatcher.BeginInvoke(DispatcherPriority.Background, new ThreadStart(IsStartSync));
 
         Switcher.Switch(new MainPage());
       }
@@ -109,6 +113,18 @@ namespace WpfUI.Pages
       return user;
     }
 
+    private void IsStartSync()
+    {
+      Thread.Sleep(1000);
+      if (MainWindow.IsOnlineVersion)
+      {
+        var isSync = DialogHelper.YesNoQuestionDialog("Synchronize your data with cloud?", "Synchronize");
+        if (isSync)
+        {
+          Switcher.Switch(new SyncPage());
+        }
+      }
+    }
     #endregion
   }
 }

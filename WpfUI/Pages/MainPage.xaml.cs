@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Threading;
 using WpfUI.Helpers;
 
 namespace WpfUI.Pages
@@ -40,5 +44,23 @@ namespace WpfUI.Pages
     {
       Switcher.Switch(new MyWordPage());
     }
+
+    private void Grid_Loaded(object sender, System.Windows.RoutedEventArgs e)
+    {
+      //Dispatcher.BeginInvoke(DispatcherPriority.Background, new ThreadStart(IsStartSync));   
+    }
+
+    //private void IsStartSync()
+    //{
+    //  Thread.Sleep(2000);
+    //  if (MainWindow.IsOnlineVersion)
+    //  {
+    //    var isSync = DialogHelper.YesNoQuestionDialog("Synchronize your data with cloud?", "Synchronize");
+    //    if (isSync)
+    //    {
+    //      Switcher.Switch(new SyncPage());
+    //    }
+    //  }
+    //}
   }
 }

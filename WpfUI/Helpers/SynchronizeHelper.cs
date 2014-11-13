@@ -15,8 +15,8 @@ namespace WpfUI.Helpers
     private const string _kickController = "api/Values";
     private const string _synchronizeController = "api/Synchronize";
 
-    //public const string Uri = "http://localhost:8081/";
-    public const string Uri = "http://yu4e4ko.somee.com/TewCloud/";
+    public const string Uri = "http://localhost:8081/";
+    //public const string Uri = "http://yu4e4ko.somee.com/TewCloud/";
 
     private readonly IRepositoryFactory _repositoryFactory;
 
@@ -128,10 +128,10 @@ namespace WpfUI.Helpers
           ErrorMessage = "response is null???" };
       }
 
-      AddWordsFromResponse(result);
-      RemoveIsDeletedWords(user.Id);
+      //AddWordsFromResponse(result);
+      //RemoveIsDeletedWords(user.Id);
 
-      return new ResponseModel { IsError = false, ErrorMessage = string.Empty };
+      return new ResponseModel { IsError = false, ErrorMessage = string.Empty, WordsCloudModel = result };
     }
 
     #region privates
