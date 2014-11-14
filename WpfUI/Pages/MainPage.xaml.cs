@@ -1,10 +1,5 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Linq;
 using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Threading;
 using WpfUI.Helpers;
 
 namespace WpfUI.Pages
@@ -47,20 +42,14 @@ namespace WpfUI.Pages
 
     private void Grid_Loaded(object sender, System.Windows.RoutedEventArgs e)
     {
-      //Dispatcher.BeginInvoke(DispatcherPriority.Background, new ThreadStart(IsStartSync));   
+      var userId = ApplicationContext.CurrentUser.Id;
+      var userWords = ApplicationContext.RepositoryFactory
+        .EnRuWordsRepository.AllEnRuWords().Where(r => r.UserId == userId).ToList();
+
+      var totalPoint = userWords.Sum(r => r.WordLevel);
+
+      LabelPoints.Content = totalPoint;
     }
 
-    //private void IsStartSync()
-    //{
-    //  Thread.Sleep(2000);
-    //  if (MainWindow.IsOnlineVersion)
-    //  {
-    //    var isSync = DialogHelper.YesNoQuestionDialog("Synchronize your data with cloud?", "Synchronize");
-    //    if (isSync)
-    //    {
-    //      Switcher.Switch(new SyncPage());
-    //    }
-    //  }
-    //}
   }
 }

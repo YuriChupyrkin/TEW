@@ -43,7 +43,14 @@ namespace EntityFrameworkDAL.Repositories
       return russianWords;
     }
 
-    public void AddTranslate(string engWord, string ruWord, string example, int userId, DateTime? updateDate = null, int level = 0)
+    public void AddTranslate(
+      string engWord,
+      string ruWord,
+      string example, 
+      int userId, 
+      DateTime? updateDate = null,
+      int level = 0, 
+      bool isUpdated = false)
     {
       int engId = AddEngWord(engWord);
       int ruId = AddRusWord(ruWord);
@@ -58,6 +65,7 @@ namespace EntityFrameworkDAL.Repositories
         enRuWordFromDb.Example = example ?? string.Empty;
         enRuWordFromDb.IsDeleted = false;
         enRuWordFromDb.UpdateDate = updateDate ?? new DateTime(1990, 5, 5);
+        enRuWordFromDb.IsUpdated = isUpdated;
         _context.SaveChanges();
         return;
       }
@@ -70,7 +78,8 @@ namespace EntityFrameworkDAL.Repositories
         UserId = userId,
         WordLevel = level,
         IsDeleted = false,
-        UpdateDate = DateTime.UtcNow
+        UpdateDate = DateTime.UtcNow,
+        IsUpdated = isUpdated
       };
 
       _context.EnRuWords.Add(enRuWord);

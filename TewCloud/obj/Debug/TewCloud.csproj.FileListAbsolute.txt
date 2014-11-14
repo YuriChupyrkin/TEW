@@ -214,3 +214,5 @@ D:\Study\Programming\Projects\EnglishLearning2\TewCloud\bin\Antlr3.Runtime.pdb
 D:\Study\Programming\Projects\EnglishLearning2\TewCloud\obj\Debug\TewCloud.csprojResolveAssemblyReference.cache
 D:\Study\Programming\Projects\EnglishLearning2\TewCloud\obj\Debug\TewCloud.dll
 D:\Study\Programming\Projects\EnglishLearning2\TewCloud\obj\Debug\TewCloud.pdb
+D:\Study\Programming\Projects\EnglishLearning2\TewCloud\bin\NLog.dll
+D:\Study\Programming\Projects\EnglishLearning2\TewCloud\bin\NLog.xml

@@ -8,9 +8,12 @@
 	Title="SyncPage" Background="#FF5F5F5F">
 
     <Grid Loaded="Grid_Loaded">
-        <ProgressBar x:Name="ProgressBarSync" Height="47" Margin="10,240,10,0" VerticalAlignment="Top"/>
-        <Label x:Name="LabelSync" Content=""  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="172,304,0,0" VerticalAlignment="Top" Width="484" FontSize="16" FontFamily="Comic Sans MS" Height="39"/>
-        <Button x:Name="BtnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="377,360,0,0" VerticalAlignment="Top" Width="75" Click="BtnCancel_Click"/>
-
+        <ProgressBar x:Name="ProgressBarSync" Height="47" Margin="9,216,11,0" VerticalAlignment="Top" Foreground="#FF23C300"/>
+        <Label x:Name="LabelSync" Content=""  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="159,280,0,0" VerticalAlignment="Top" Width="484" FontSize="16" FontFamily="Comic Sans MS" Height="39"/>
+        <Button x:Name="BtnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="366,336,0,0" VerticalAlignment="Top" Width="75" Click="BtnCancel_Click"/>
+        <Label Content="Sync" HorizontalAlignment="Left" Margin="337,10,0,0" VerticalAlignment="Top" FontFamily="Cooper Black" FontSize="48"/>
+        <Grid.Background>
+            <ImageBrush ImageSource ="/Images/bg.jpg"></ImageBrush>
+        </Grid.Background>
     </Grid>
 </Page>

@@ -15,6 +15,8 @@ namespace TewCloud.Controllers
     private readonly IRepositoryFactory _repositoryFactory;
     private readonly IUnitOfWork _unitOfWork;
 
+    //private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
     public SynchronizeController(IRepositoryFactory repositoryFactory)
     {
       _repositoryFactory = repositoryFactory;
@@ -153,9 +155,8 @@ namespace TewCloud.Controllers
                 modelItem.Example,
                 userId,
                 modelItem.UpdateDate,
-                modelItem.Level);
-
-            _repositoryFactory.EnRuWordsRepository.ChangeUpdateStatus(userEnRuWord.Id, true);
+                modelItem.Level,
+                true);
           }
           else if (modelItem.UpdateDate == userEnRuWord.UpdateDate)
           {
@@ -173,12 +174,8 @@ namespace TewCloud.Controllers
                 modelItem.Example,
                 userId,
                 modelItem.UpdateDate,
-                modelItem.Level);
-
-          var id = _repositoryFactory.EnRuWordsRepository.AllEnRuWords()
-              .FirstOrDefault(r => r.EnglishWord.EnWord == modelItem.English)
-              .Id;
-          _repositoryFactory.EnRuWordsRepository.ChangeUpdateStatus(id, true);
+                modelItem.Level,
+                true);
         }
       }
 

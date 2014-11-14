@@ -12,11 +12,11 @@ namespace WpfUI.Helpers
 {
   internal sealed class SynchronizeHelper
   {
-    private const string _kickController = "api/Values";
-    private const string _synchronizeController = "api/Synchronize";
+    private const string KickController = "api/Values";
+    private const string SynchronizeController = "api/Synchronize";
 
-    public const string Uri = "http://localhost:8081/";
-    //public const string Uri = "http://yu4e4ko.somee.com/TewCloud/";
+    //public const string Uri = "http://localhost:8081/";
+    public const string Uri = "http://yu4e4ko.somee.com/TewCloud/";
 
     private readonly IRepositoryFactory _repositoryFactory;
 
@@ -28,7 +28,7 @@ namespace WpfUI.Helpers
     public bool IsServerOnline()
     {
       const int checkLength = 7;
-      var uri = Uri + _kickController + "?length=" + checkLength;
+      var uri = Uri + KickController + "?length=" + checkLength;
 
       var httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
 
@@ -55,42 +55,42 @@ namespace WpfUI.Helpers
       return true;
     }
 
-    public ResponseModel SendMyWords(User user)
-    {
-      if (user == null)
-      {
-        throw new Exception("User is null");
-      }
+    //public ResponseModel SendMyWords(User user)
+    //{
+    //  if (user == null)
+    //  {
+    //    throw new Exception("User is null");
+    //  }
 
-      var userWords = _repositoryFactory.EnRuWordsRepository
-        .AllEnRuWords().Where(r => r.UserId == user.Id);
+    //  var userWords = _repositoryFactory.EnRuWordsRepository
+    //    .AllEnRuWords().Where(r => r.UserId == user.Id);
 
-      if (userWords == null)
-      {
-        throw new Exception("User words is null");
-      }
+    //  if (userWords == null)
+    //  {
+    //    throw new Exception("User words is null");
+    //  }
 
-      var cloudModel = new WordsCloudModel { UserName = user.Email };
+    //  var cloudModel = new WordsCloudModel { UserName = user.Email };
 
-      foreach (var word in userWords)
-      {
-        var viewModel = new WordJsonModel
-        {
-          English = word.EnglishWord.EnWord,
-          Russian = word.RussianWord.RuWord,
-          Level = word.WordLevel,
-          Example = word.Example,
-          IsDeleted = word.IsDeleted,
-          UpdateDate = word.UpdateDate
-        };
+    //  foreach (var word in userWords)
+    //  {
+    //    var viewModel = new WordJsonModel
+    //    {
+    //      English = word.EnglishWord.EnWord,
+    //      Russian = word.RussianWord.RuWord,
+    //      Level = word.WordLevel,
+    //      Example = word.Example,
+    //      IsDeleted = word.IsDeleted,
+    //      UpdateDate = word.UpdateDate
+    //    };
 
-        cloudModel.Words.Add(viewModel);
-      }
+    //    cloudModel.Words.Add(viewModel);
+    //  }
 
-      var result = SendRequest(cloudModel);
+    //  var result = SendRequest(cloudModel);
 
-      return result;
-    }
+    //  return result;
+    //}
 
     public ResponseModel GetUserWords(User user)
     {
@@ -99,7 +99,7 @@ namespace WpfUI.Helpers
         throw new Exception("User is null");
       }
 
-      var uri = Uri + _synchronizeController + "?userName=" + user.Email;
+      var uri = Uri + SynchronizeController + "?userName=" + user.Email;
 
       var httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
 
@@ -128,10 +128,47 @@ namespace WpfUI.Helpers
           ErrorMessage = "response is null???" };
       }
 
-      //AddWordsFromResponse(result);
-      //RemoveIsDeletedWords(user.Id);
-
       return new ResponseModel { IsError = false, ErrorMessage = string.Empty, WordsCloudModel = result };
+    }
+
+    public ResponseModel SendRequest(WordsCloudModel cloudModel)
+    {
+      var uri = Uri + SynchronizeController;
+
+      var req = (HttpWebRequest)WebRequest.Create(uri);
+      var enc = new UTF8Encoding();
+
+      var json = JsonConvert.SerializeObject(cloudModel);
+
+      byte[] data = enc.GetBytes(json);
+
+      req.Method = "POST";
+
+      //place MIME type here
+      req.ContentType = "application/json; charset=utf-8";
+      req.ContentLength = data.Length;
+
+      Stream newStream = req.GetRequestStream();
+      newStream.Write(data, 0, data.Length);
+      newStream.Close();
+
+      var response = req.GetResponse();
+
+      Stream receiveStream = response.GetResponseStream();
+      ResponseModel result;
+
+      using (var streamReader = new StreamReader(receiveStream, Encoding.UTF8))
+      {
+        var jsonResult = streamReader.ReadToEnd();
+        result = JsonConvert.DeserializeObject<ResponseModel>(jsonResult);
+      }
+
+      if (receiveStream != null)
+      {
+        receiveStream.Close();
+      }
+
+      return result;
     }
 
     #region privates
@@ -156,17 +193,6 @@ namespace WpfUI.Helpers
         throw new Exception("Words for user " + cloudModel.UserName + ", but user not found");
       }
 
-      //Parallel.ForEach(cloudModel.Words, word =>
-      //  _repositoryFactory.EnRuWordsRepository.AddTranslate(
-      //    word.English,
-      //    word.Russian,
-      //    word.Example,
-      //    user.Id,
-      //    word.UpdateDate,
-      //    word.Level
-      //    ));
-
-
       foreach (var word in cloudModel.Words)
       {
         _repositoryFactory.EnRuWordsRepository
@@ -178,46 +204,6 @@ namespace WpfUI.Helpers
           word.UpdateDate,
           word.Level);
       }
-    }
-
-    private ResponseModel SendRequest(WordsCloudModel cloudModel)
-    {
-      var uri = Uri + _synchronizeController;
-
-      var req = (HttpWebRequest)WebRequest.Create(uri);
-      var enc = new UTF8Encoding();
-
-      var json = JsonConvert.SerializeObject(cloudModel);
-
-      byte[] data = enc.GetBytes(json);
-
-      req.Method = "POST";
-
-      //place MIME type here
-      req.ContentType = "application/json; charset=utf-8"; 
-      req.ContentLength = data.Length;
-
-      Stream newStream = req.GetRequestStream();
-      newStream.Write(data, 0, data.Length);
-      newStream.Close();
-
-      var response = req.GetResponse();
-
-      Stream receiveStream = response.GetResponseStream();
-      ResponseModel result;
-
-      using (var streamReader = new StreamReader(receiveStream, Encoding.UTF8))
-      {
-        var jsonResult = streamReader.ReadToEnd();
-        result = JsonConvert.DeserializeObject<ResponseModel>(jsonResult);
-      }
-
-      if (receiveStream != null)
-      {
-        receiveStream.Close();
-      }
-
-      return result;
     }
 
     #endregion

@@ -12,13 +12,6 @@ D:\Study\Programming\Projects\EnglishLearning\Domain\bin\Debug\Newtonsoft.Json.x
 D:\Study\Programming\Projects\EnglishLearning\Domain\obj\Debug\Domain.dll
 D:\Study\Programming\Projects\EnglishLearning\Domain\obj\Debug\Domain.pdb
 D:\Study\Programming\Projects\EnglishLearning\Domain\obj\Debug\Domain.csprojResolveAssemblyReference.cache
-D:\Study\Programming\Projects\EnglishLearning2\Domain\bin\Debug\Domain.dll
-D:\Study\Programming\Projects\EnglishLearning2\Domain\bin\Debug\Domain.pdb
-D:\Study\Programming\Projects\EnglishLearning2\Domain\bin\Debug\Newtonsoft.Json.dll
-D:\Study\Programming\Projects\EnglishLearning2\Domain\bin\Debug\Newtonsoft.Json.xml
-D:\Study\Programming\Projects\EnglishLearning2\Domain\obj\Debug\Domain.dll
-D:\Study\Programming\Projects\EnglishLearning2\Domain\obj\Debug\Domain.pdb
-D:\Study\Programming\Projects\EnglishLearning2\Domain\obj\Debug\Domain.csprojResolveAssemblyReference.cache
 D:\Study\Programming\Projects\EnglishLearning3\Domain\bin\Debug\Domain.dll
 D:\Study\Programming\Projects\EnglishLearning3\Domain\bin\Debug\Domain.pdb
 D:\Study\Programming\Projects\EnglishLearning3\Domain\bin\Debug\Newtonsoft.Json.dll
@@ -47,3 +40,10 @@ D:\Study\Programming\Projects\EnglishLearning6\Domain\bin\Debug\Newtonsoft.Json.
 D:\Study\Programming\Projects\EnglishLearning6\Domain\obj\Debug\Domain.csprojResolveAssemblyReference.cache
 D:\Study\Programming\Projects\EnglishLearning6\Domain\obj\Debug\Domain.dll
 D:\Study\Programming\Projects\EnglishLearning6\Domain\obj\Debug\Domain.pdb
+D:\Study\Programming\Projects\EnglishLearning2\Domain\bin\Debug\Domain.dll
+D:\Study\Programming\Projects\EnglishLearning2\Domain\bin\Debug\Domain.pdb
+D:\Study\Programming\Projects\EnglishLearning2\Domain\bin\Debug\Newtonsoft.Json.dll
+D:\Study\Programming\Projects\EnglishLearning2\Domain\bin\Debug\Newtonsoft.Json.xml
+D:\Study\Programming\Projects\EnglishLearning2\Domain\obj\Debug\Domain.csprojResolveAssemblyReference.cache
+D:\Study\Programming\Projects\EnglishLearning2\Domain\obj\Debug\Domain.dll
+D:\Study\Programming\Projects\EnglishLearning2\Domain\obj\Debug\Domain.pdb

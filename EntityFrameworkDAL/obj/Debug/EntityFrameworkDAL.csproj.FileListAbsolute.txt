@@ -1,94 +1,14 @@
-D:\Study\epam\step2\PLEX TRANINGS\!Final_Project\TicketShop\EntityFrameworkDAL\bin\Debug\EntityFrameworkDAL.dll.config
-D:\Study\epam\step2\PLEX TRANINGS\!Final_Project\TicketShop\EntityFrameworkDAL\bin\Debug\EntityFrameworkDAL.dll
-D:\Study\epam\step2\PLEX TRANINGS\!Final_Project\TicketShop\EntityFrameworkDAL\bin\Debug\EntityFrameworkDAL.pdb
-D:\Study\epam\step2\PLEX TRANINGS\!Final_Project\TicketShop\EntityFrameworkDAL\bin\Debug\Domain.dll
-D:\Study\epam\step2\PLEX TRANINGS\!Final_Project\TicketShop\EntityFrameworkDAL\bin\Debug\EntityFramework.dll
-D:\Study\epam\step2\PLEX TRANINGS\!Final_Project\TicketShop\EntityFrameworkDAL\bin\Debug\EntityFramework.SqlServer.dll
-D:\Study\epam\step2\PLEX TRANINGS\!Final_Project\TicketShop\EntityFrameworkDAL\bin\Debug\Domain.pdb
-D:\Study\epam\step2\PLEX TRANINGS\!Final_Project\TicketShop\EntityFrameworkDAL\bin\Debug\EntityFramework.xml
-D:\Study\epam\step2\PLEX TRANINGS\!Final_Project\TicketShop\EntityFrameworkDAL\bin\Debug\EntityFramework.SqlServer.xml
-D:\Study\epam\step2\PLEX TRANINGS\!Final_Project\TicketShop\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.csprojResolveAssemblyReference.cache
-D:\Study\epam\step2\PLEX TRANINGS\!Final_Project\TicketShop\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.dll
-D:\Study\epam\step2\PLEX TRANINGS\!Final_Project\TicketShop\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.pdb
-D:\Study\epam\step2\PLEX TRANINGS\!Final_Project\TicketShop\EntityFrameworkDAL\bin\Debug\Newtonsoft.Json.dll
-D:\Study\epam\step2\PLEX TRANINGS\!Final_Project\TicketShop\EntityFrameworkDAL\bin\Debug\Newtonsoft.Json.xml
-D:\Study\Programming\Projects\EnglishLearning\EntityFrameworkDAL\bin\Debug\EntityFrameworkDAL.dll.config
-D:\Study\Programming\Projects\EnglishLearning\EntityFrameworkDAL\bin\Debug\EntityFrameworkDAL.dll
-D:\Study\Programming\Projects\EnglishLearning\EntityFrameworkDAL\bin\Debug\EntityFrameworkDAL.pdb
-D:\Study\Programming\Projects\EnglishLearning\EntityFrameworkDAL\bin\Debug\Domain.dll
-D:\Study\Programming\Projects\EnglishLearning\EntityFrameworkDAL\bin\Debug\EntityFramework.dll
-D:\Study\Programming\Projects\EnglishLearning\EntityFrameworkDAL\bin\Debug\EntityFramework.SqlServer.dll
-D:\Study\Programming\Projects\EnglishLearning\EntityFrameworkDAL\bin\Debug\Domain.pdb
-D:\Study\Programming\Projects\EnglishLearning\EntityFrameworkDAL\bin\Debug\EntityFramework.xml
-D:\Study\Programming\Projects\EnglishLearning\EntityFrameworkDAL\bin\Debug\EntityFramework.SqlServer.xml
-D:\Study\Programming\Projects\EnglishLearning\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.csprojResolveAssemblyReference.cache
-D:\Study\Programming\Projects\EnglishLearning\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.dll
-D:\Study\Programming\Projects\EnglishLearning\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.pdb
 D:\Study\Programming\Projects\EnglishLearning2\EntityFrameworkDAL\bin\Debug\EntityFrameworkDAL.dll.config
 D:\Study\Programming\Projects\EnglishLearning2\EntityFrameworkDAL\bin\Debug\EntityFrameworkDAL.dll
 D:\Study\Programming\Projects\EnglishLearning2\EntityFrameworkDAL\bin\Debug\EntityFrameworkDAL.pdb
 D:\Study\Programming\Projects\EnglishLearning2\EntityFrameworkDAL\bin\Debug\Domain.dll
 D:\Study\Programming\Projects\EnglishLearning2\EntityFrameworkDAL\bin\Debug\EntityFramework.dll
 D:\Study\Programming\Projects\EnglishLearning2\EntityFrameworkDAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Study\Programming\Projects\EnglishLearning2\EntityFrameworkDAL\bin\Debug\Newtonsoft.Json.dll
 D:\Study\Programming\Projects\EnglishLearning2\EntityFrameworkDAL\bin\Debug\Domain.pdb
 D:\Study\Programming\Projects\EnglishLearning2\EntityFrameworkDAL\bin\Debug\EntityFramework.xml
 D:\Study\Programming\Projects\EnglishLearning2\EntityFrameworkDAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Study\Programming\Projects\EnglishLearning2\EntityFrameworkDAL\bin\Debug\Newtonsoft.Json.xml
 D:\Study\Programming\Projects\EnglishLearning2\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.csprojResolveAssemblyReference.cache
 D:\Study\Programming\Projects\EnglishLearning2\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.dll
 D:\Study\Programming\Projects\EnglishLearning2\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.pdb
-D:\Study\Programming\Projects\EnglishLearning3\EntityFrameworkDAL\bin\Debug\EntityFrameworkDAL.dll.config
-D:\Study\Programming\Projects\EnglishLearning3\EntityFrameworkDAL\bin\Debug\EntityFrameworkDAL.dll
-D:\Study\Programming\Projects\EnglishLearning3\EntityFrameworkDAL\bin\Debug\EntityFrameworkDAL.pdb
-D:\Study\Programming\Projects\EnglishLearning3\EntityFrameworkDAL\bin\Debug\Domain.dll
-D:\Study\Programming\Projects\EnglishLearning3\EntityFrameworkDAL\bin\Debug\EntityFramework.dll
-D:\Study\Programming\Projects\EnglishLearning3\EntityFrameworkDAL\bin\Debug\EntityFramework.SqlServer.dll
-D:\Study\Programming\Projects\EnglishLearning3\EntityFrameworkDAL\bin\Debug\Domain.pdb
-D:\Study\Programming\Projects\EnglishLearning3\EntityFrameworkDAL\bin\Debug\EntityFramework.xml
-D:\Study\Programming\Projects\EnglishLearning3\EntityFrameworkDAL\bin\Debug\EntityFramework.SqlServer.xml
-D:\Study\Programming\Projects\EnglishLearning3\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.csprojResolveAssemblyReference.cache
-D:\Study\Programming\Projects\EnglishLearning3\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.dll
-D:\Study\Programming\Projects\EnglishLearning3\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.pdb
-D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\bin\Debug\EntityFrameworkDAL.dll.config
-D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\bin\Debug\EntityFrameworkDAL.dll
-D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\bin\Debug\EntityFrameworkDAL.pdb
-D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\bin\Debug\Domain.dll
-D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\bin\Debug\EntityFramework.dll
-D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\bin\Debug\EntityFramework.SqlServer.dll
-D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\bin\Debug\Domain.pdb
-D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\bin\Debug\EntityFramework.xml
-D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\bin\Debug\EntityFramework.SqlServer.xml
-D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.csprojResolveAssemblyReference.cache
-D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.dll
-D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.pdb
-D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\bin\Debug\Newtonsoft.Json.dll
-D:\Study\Programming\Projects\EnglishLearning4\EntityFrameworkDAL\bin\Debug\Newtonsoft.Json.xml
-D:\Study\Programming\Projects\EnglishLearning5\EntityFrameworkDAL\bin\Debug\EntityFrameworkDAL.dll.config
-D:\Study\Programming\Projects\EnglishLearning5\EntityFrameworkDAL\bin\Debug\EntityFrameworkDAL.dll
-D:\Study\Programming\Projects\EnglishLearning5\EntityFrameworkDAL\bin\Debug\EntityFrameworkDAL.pdb
-D:\Study\Programming\Projects\EnglishLearning5\EntityFrameworkDAL\bin\Debug\Domain.dll
-D:\Study\Programming\Projects\EnglishLearning5\EntityFrameworkDAL\bin\Debug\EntityFramework.dll
-D:\Study\Programming\Projects\EnglishLearning5\EntityFrameworkDAL\bin\Debug\EntityFramework.SqlServer.dll
-D:\Study\Programming\Projects\EnglishLearning5\EntityFrameworkDAL\bin\Debug\Newtonsoft.Json.dll
-D:\Study\Programming\Projects\EnglishLearning5\EntityFrameworkDAL\bin\Debug\Domain.pdb
-D:\Study\Programming\Projects\EnglishLearning5\EntityFrameworkDAL\bin\Debug\EntityFramework.xml
-D:\Study\Programming\Projects\EnglishLearning5\EntityFrameworkDAL\bin\Debug\EntityFramework.SqlServer.xml
-D:\Study\Programming\Projects\EnglishLearning5\EntityFrameworkDAL\bin\Debug\Newtonsoft.Json.xml
-D:\Study\Programming\Projects\EnglishLearning5\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.csprojResolveAssemblyReference.cache
-D:\Study\Programming\Projects\EnglishLearning5\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.dll
-D:\Study\Programming\Projects\EnglishLearning5\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.pdb
-D:\Study\Programming\Projects\EnglishLearning6\EntityFrameworkDAL\bin\Debug\EntityFrameworkDAL.dll.config
-D:\Study\Programming\Projects\EnglishLearning6\EntityFrameworkDAL\bin\Debug\EntityFrameworkDAL.dll
-D:\Study\Programming\Projects\EnglishLearning6\EntityFrameworkDAL\bin\Debug\EntityFrameworkDAL.pdb
-D:\Study\Programming\Projects\EnglishLearning6\EntityFrameworkDAL\bin\Debug\Domain.dll
-D:\Study\Programming\Projects\EnglishLearning6\EntityFrameworkDAL\bin\Debug\EntityFramework.dll
-D:\Study\Programming\Projects\EnglishLearning6\EntityFrameworkDAL\bin\Debug\EntityFramework.SqlServer.dll
-D:\Study\Programming\Projects\EnglishLearning6\EntityFrameworkDAL\bin\Debug\Newtonsoft.Json.dll
-D:\Study\Programming\Projects\EnglishLearning6\EntityFrameworkDAL\bin\Debug\Domain.pdb
-D:\Study\Programming\Projects\EnglishLearning6\EntityFrameworkDAL\bin\Debug\EntityFramework.xml
-D:\Study\Programming\Projects\EnglishLearning6\EntityFrameworkDAL\bin\Debug\EntityFramework.SqlServer.xml
-D:\Study\Programming\Projects\EnglishLearning6\EntityFrameworkDAL\bin\Debug\Newtonsoft.Json.xml
-D:\Study\Programming\Projects\EnglishLearning6\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.csprojResolveAssemblyReference.cache
-D:\Study\Programming\Projects\EnglishLearning6\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.dll
-D:\Study\Programming\Projects\EnglishLearning6\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.pdb
-D:\Study\Programming\Projects\EnglishLearning2\EntityFrameworkDAL\bin\Debug\Newtonsoft.Json.dll
-D:\Study\Programming\Projects\EnglishLearning2\EntityFrameworkDAL\bin\Debug\Newtonsoft.Json.xml
