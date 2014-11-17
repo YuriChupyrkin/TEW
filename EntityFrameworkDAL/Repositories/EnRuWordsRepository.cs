@@ -56,7 +56,7 @@ namespace EntityFrameworkDAL.Repositories
       int ruId = AddRusWord(ruWord);
 
       var enRuWordFromDb = _context.EnRuWords
-        .FirstOrDefault(r => r.EnglishWordId == engId && r.UserId == userId);
+        .FirstOrDefault(r => r.EnglishWord.EnWord == engWord && r.UserId == userId);
 
       if (enRuWordFromDb != null)
       {
@@ -78,7 +78,7 @@ namespace EntityFrameworkDAL.Repositories
         UserId = userId,
         WordLevel = level,
         IsDeleted = false,
-        UpdateDate = DateTime.UtcNow,
+        UpdateDate = updateDate ?? new DateTime(1990, 5, 5),
         IsUpdated = isUpdated
       };
 
