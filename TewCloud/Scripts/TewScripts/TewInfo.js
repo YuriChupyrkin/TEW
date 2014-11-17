@@ -24,5 +24,12 @@
       console.log("download");
       window.location = "#download";
   });
+  
 
+  $(document).on('click', '#indexHeader', function (event) {
+    var currentLocation = window.location.href;
+    var irregularVerbsPath = '/irregular_verbs.html';
+    
+    window.location = currentLocation + irregularVerbsPath;
+  });
 });
