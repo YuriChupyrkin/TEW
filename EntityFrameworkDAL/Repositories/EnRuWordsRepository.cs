@@ -43,7 +43,7 @@ namespace EntityFrameworkDAL.Repositories
       return russianWords;
     }
 
-    public void AddTranslate(
+    public EnRuWord AddTranslate(
       string engWord,
       string ruWord,
       string example, 
@@ -67,7 +67,8 @@ namespace EntityFrameworkDAL.Repositories
         enRuWordFromDb.UpdateDate = updateDate ?? new DateTime(1990, 5, 5);
         enRuWordFromDb.IsUpdated = isUpdated;
         _context.SaveChanges();
-        return;
+
+        return enRuWordFromDb;
       }
 
       var enRuWord = new EnRuWord
@@ -84,6 +85,8 @@ namespace EntityFrameworkDAL.Repositories
 
       _context.EnRuWords.Add(enRuWord);
       _context.SaveChanges();
+
+      return enRuWord;
     }
 
     private int AddRusWord(string ruWord)

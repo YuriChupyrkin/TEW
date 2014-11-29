@@ -20,31 +20,33 @@ namespace ConsoleUI
 
     private static void Main(string[] args)
     {
-      var list = new List<int>();
-      for (var i = 0; i < 100; i++)
-      {
-        list.Add(i);
-      }
+      var число = 5;
+      Console.WriteLine(число);
+      //var list = new List<int>();
+      //for (var i = 0; i < 100; i++)
+      //{
+      //  list.Add(i);
+      //}
 
-      var iterationCount = 0;
-      if (list.Count%10 != 0)
-      {
-        iterationCount = list.Count/10 + 1;
-      }
-      else
-      {
-        iterationCount = list.Count / 10;
-      }
+      //var iterationCount = 0;
+      //if (list.Count%10 != 0)
+      //{
+      //  iterationCount = list.Count/10 + 1;
+      //}
+      //else
+      //{
+      //  iterationCount = list.Count / 10;
+      //}
 
-      var res = list.Take(10);
-      Console.WriteLine("0___");
-      PrintList(res);
-      for (var i = 1; i < iterationCount; i++)
-      {
-        res = list.Skip(10 * i).Take(10);
-        Console.WriteLine(i + "___");
-        PrintList(res);
-      }
+      //var res = list.Take(10);
+      //Console.WriteLine("0___");
+      //PrintList(res);
+      //for (var i = 1; i < iterationCount; i++)
+      //{
+      //  res = list.Skip(10 * i).Take(10);
+      //  Console.WriteLine(i + "___");
+      //  PrintList(res);
+      //}
     }
 
     private static void PrintList(IEnumerable<int> list)

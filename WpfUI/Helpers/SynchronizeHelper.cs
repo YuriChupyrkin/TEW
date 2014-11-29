@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -97,7 +98,6 @@ namespace WpfUI.Helpers
       byte[] data = enc.GetBytes(json);
 
       req.Method = "POST";
-
       //place MIME type here
       req.ContentType = "application/json; charset=utf-8";
       req.ContentLength = data.Length;
@@ -125,5 +125,25 @@ namespace WpfUI.Helpers
       return result;
     }
 
+    public ResponseModel CreatWordJsonModelAndSend(EnRuWord enRuWords, User user)
+    {
+      var cloudModel = new WordsCloudModel { UserName = user.Email };
+
+      var viewModel = new WordJsonModel
+      {
+        English = enRuWords.EnglishWord.EnWord,
+        Russian = enRuWords.RussianWord.RuWord,
+        Level = enRuWords.WordLevel,
+        Example = enRuWords.Example,
+        IsDeleted = enRuWords.IsDeleted,
+        UpdateDate = enRuWords.UpdateDate
+      };
+
+      cloudModel.Words.Add(viewModel);
+
+      var result = SendRequest(cloudModel);
+
+      return result;
+    }
   }
 }
