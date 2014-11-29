@@ -116,8 +116,7 @@ namespace WpfUI.Pages
 
     private void CheckServer()
     {
-      var repositoryFactory = ApplicationContext.RepositoryFactory;
-      _syncHelper = new SynchronizeHelper(repositoryFactory);
+      _syncHelper = new SynchronizeHelper();
 
       var isServerOnline = _syncHelper.IsServerOnline();
 

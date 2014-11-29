@@ -43,7 +43,6 @@ namespace WpfUI.Auth
             _repositoryFactory.UserRepository.Create(user);
             _unitOfWork.Commit();
 
-            user = GetUser(login);
             return user;
           }
           throw new NullReferenceException("Role not found!");

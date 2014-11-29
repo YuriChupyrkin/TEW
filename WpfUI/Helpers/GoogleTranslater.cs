@@ -16,10 +16,6 @@ namespace WpfUI.Helpers
     private const string TranslateUri =
       "https://translate.google.by/translate_a/single?client=t&sl=en&tl=ru&hl=ru&dt=bd&dt=ex&dt=ld&dt=md&dt=qc&dt=rw&dt=rm&dt=ss&dt=t&dt=at&dt=sw&ie=UTF-8&oe=UTF-8&otf=2&ssel=0&tsel=0&q=";
 
-    public GoogleTranslater()
-    {
-    }
-
     public async Task<TranslateWithExamplecs> GetTranslate(string word)
     {
       word = HttpUtility.UrlEncode(word);

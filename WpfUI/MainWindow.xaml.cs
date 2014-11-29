@@ -273,7 +273,7 @@ namespace WpfUI
       var checkConnection = IsOnlineVersion;
       if (checkConnection)
       {
-        var syncHelper = new SynchronizeHelper(ApplicationContext.RepositoryFactory);
+        var syncHelper = new SynchronizeHelper();
         syncHelper.IsServerOnline();
       }
 

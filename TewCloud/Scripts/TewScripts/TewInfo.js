@@ -8,7 +8,8 @@
     var usersCount = 0;
     var wordsCount = 0;
 
-    $.getJSON(serverPath + "/api/TewInfo", function(result) {
+    //$.getJSON(serverPath + "/api/TewInfo", function (result) {
+    $.getJSON(serverPath + "/TewCloud/api/TewInfo", function(result) {  
       $('#loadingContainer').addClass("display-none");
       $('#statContainer').removeClass("display-none");
       

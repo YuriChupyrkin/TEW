@@ -1,10 +1,8 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
 using Domain.Entities;
-using Domain.RepositoryFactories;
 using EnglishLearnBLL.Models;
 using Newtonsoft.Json;
 
@@ -17,13 +15,6 @@ namespace WpfUI.Helpers
 
     //public const string Uri = "http://localhost:8081/";
     public const string Uri = "http://yu4e4ko.somee.com/TewCloud/";
-
-    private readonly IRepositoryFactory _repositoryFactory;
-
-    public SynchronizeHelper(IRepositoryFactory repositoryFactory)
-    {
-      _repositoryFactory = repositoryFactory;
-    }
 
     public bool IsServerOnline()
     {
@@ -54,43 +45,6 @@ namespace WpfUI.Helpers
       }
       return true;
     }
-
-    //public ResponseModel SendMyWords(User user)
-    //{
-    //  if (user == null)
-    //  {
-    //    throw new Exception("User is null");
-    //  }
-
-    //  var userWords = _repositoryFactory.EnRuWordsRepository
-    //    .AllEnRuWords().Where(r => r.UserId == user.Id);
-
-    //  if (userWords == null)
-    //  {
-    //    throw new Exception("User words is null");
-    //  }
-
-    //  var cloudModel = new WordsCloudModel { UserName = user.Email };
-
-    //  foreach (var word in userWords)
-    //  {
-    //    var viewModel = new WordJsonModel
-    //    {
-    //      English = word.EnglishWord.EnWord,
-    //      Russian = word.RussianWord.RuWord,
-    //      Level = word.WordLevel,
-    //      Example = word.Example,
-    //      IsDeleted = word.IsDeleted,
-    //      UpdateDate = word.UpdateDate
-    //    };
-
-    //    cloudModel.Words.Add(viewModel);
-    //  }
-
-    //  var result = SendRequest(cloudModel);
-
-    //  return result;
-    //}
 
     public ResponseModel GetUserWords(User user)
     {
@@ -171,41 +125,5 @@ namespace WpfUI.Helpers
       return result;
     }
 
-    #region privates
-
-    private void RemoveIsDeletedWords(int userId)
-    {
-      var deletedWords = _repositoryFactory.EnRuWordsRepository.AllEnRuWords().Where(r => r.IsDeleted && r.UserId == userId);
-
-      foreach (var word in deletedWords)
-      {
-        _repositoryFactory.EnRuWordsRepository.DeleteEnRuWord(word.EnglishWord.EnWord, userId);
-      }
-    }
-
-    private void AddWordsFromResponse(WordsCloudModel cloudModel)
-    {
-      var user = _repositoryFactory.UserRepository
-        .Find(r => r.Email == cloudModel.UserName);
-
-      if (user == null)
-      {
-        throw new Exception("Words for user " + cloudModel.UserName + ", but user not found");
-      }
-
-      foreach (var word in cloudModel.Words)
-      {
-        _repositoryFactory.EnRuWordsRepository
-          .AddTranslate(
-          word.English, 
-          word.Russian, 
-          word.Example, 
-          user.Id, 
-          word.UpdateDate,
-          word.Level);
-      }
-    }
-
-    #endregion
   }
 }

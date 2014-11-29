@@ -195,21 +195,16 @@ namespace TewCloud.Controllers
     private int GetUserId(string userName)
     {
       var user = GetUser(userName);
+
       if (user == null)
       {
-        CreateNewUser(userName);
+        user = CreateNewUser(userName);
       }
+      return user.Id;
 
-      user = GetUser(userName);
-      if (user != null)
-      {
-        return user.Id;
-      }
-
-      throw new Exception("User creating error");
     }
 
-    private void CreateNewUser(string userName)
+    private User CreateNewUser(string userName)
     {
       var newUser = new User
       {
@@ -220,6 +215,8 @@ namespace TewCloud.Controllers
 
       _repositoryFactory.UserRepository.Create(newUser);
       _unitOfWork.Commit();
+
+      return newUser;
     }
 
     private User GetUser(string userName)

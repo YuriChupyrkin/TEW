@@ -102,13 +102,7 @@ namespace EntityFrameworkDAL.Repositories
         _context.RussianWords.Add(russianWord);
         _context.SaveChanges();
 
-        russianWordFromDb = _context.RussianWords
-          .FirstOrDefault(r => r.RuWord.Equals(ruWord, StringComparison.OrdinalIgnoreCase));
-
-        if (russianWordFromDb == null)
-        {
-          throw new Exception("Didn't added ru word to db");
-        }
+        return russianWord.Id;
       }
 
       return russianWordFromDb.Id;
@@ -130,13 +124,7 @@ namespace EntityFrameworkDAL.Repositories
         _context.EnglishWords.Add(englishWord);
         _context.SaveChanges();
 
-        engWordFromDb = _context.EnglishWords
-          .FirstOrDefault(r => r.EnWord.Equals(enWord, StringComparison.OrdinalIgnoreCase));
-
-        if (engWordFromDb == null)
-        {
-          throw new Exception("Didn't added eng word to db");
-        }
+        return englishWord.Id;
       }
 
       return engWordFromDb.Id;
