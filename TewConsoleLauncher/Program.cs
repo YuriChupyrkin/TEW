@@ -11,8 +11,8 @@ namespace TewConsoleLauncher
 {
   class Program
   {
-    //private const string Uri = "http://localhost:8081/";
-    private const string Uri = "http://yu4e4ko.somee.com/TewCloud/";
+    private const string Uri = "http://localhost:8081/";
+    //private const string Uri = "http://yu4e4ko.somee.com/TewCloud/";
 
     private const string ClientFilesInfoController = "api/ClientFilesInfo";
     private const string ClientFilesUpdateController = "api/ClientFilesUpdate";
@@ -74,7 +74,16 @@ namespace TewConsoleLauncher
 
     private static void StartClientAndCloseLauncher()
     {
-      System.Diagnostics.Process.Start(_clientPath + "/WpfUI.exe");
+      var exePath = _clientPath + "/WpfUI.exe";
+
+      if (new FileInfo(exePath).Exists == false)
+      {
+        Console.WriteLine("'exe' file is not exist");
+        Console.ReadKey();
+        Environment.Exit(1);
+      }
+
+      System.Diagnostics.Process.Start(exePath);
       Thread.Sleep(1000);
       Environment.Exit(1);
     }
