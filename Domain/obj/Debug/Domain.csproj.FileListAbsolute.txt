@@ -46,3 +46,4 @@ D:\Study\Programming\Projects\EnglishLearning2\Domain\bin\Debug\Newtonsoft.Json.
 D:\Study\Programming\Projects\EnglishLearning2\Domain\bin\Debug\Newtonsoft.Json.xml
 D:\Study\Programming\Projects\EnglishLearning2\Domain\obj\Debug\Domain.dll
 D:\Study\Programming\Projects\EnglishLearning2\Domain\obj\Debug\Domain.pdb
+D:\Study\Programming\Projects\EnglishLearning2\Domain\obj\Debug\Domain.csprojResolveAssemblyReference.cache

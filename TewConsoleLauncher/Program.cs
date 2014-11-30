@@ -28,13 +28,24 @@ namespace TewConsoleLauncher
       catch (Exception ex)
       {
         Console.WriteLine(ex.Message);
-        Console.ReadKey();
+
+        if (ShowYesNoDialog("\nSomething wrong! Start old version? (Y/N)"))
+        {
+          StartClientAndCloseLauncher();
+        }
+        else
+        {
+          Environment.Exit(1);
+        }
       }
     }
 
     private static void StartLauncher()
     {
       Console.ForegroundColor = ConsoleColor.Green;
+
+      Console.WriteLine("************   TEW LAUNCHER v0.01   ************\n");
+
       var currentDir = Directory.GetCurrentDirectory();
       _clientPath = currentDir + "/client";
       _updateFiles = new List<FilePathWithUpdateTime>();
@@ -48,7 +59,7 @@ namespace TewConsoleLauncher
         {
           ShowUpdateInfo();
 
-          if (ShowYesNoDialog("\nstart update(Y/N)"))
+          if (ShowYesNoDialog("\nstart update? (Y/N)"))
           {
             StartUpdate();
             Console.WriteLine("Complete");
@@ -66,7 +77,7 @@ namespace TewConsoleLauncher
       }
       else
       {
-        if (ShowYesNoDialog("Connection error! Start old version? (Y/N)")) ;
+        if (ShowYesNoDialog("Connection error! Start old version? (Y/N)"))
         {
           StartClientAndCloseLauncher();
         }
