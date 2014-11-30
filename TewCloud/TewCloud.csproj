@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Client\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AutofacModule.cs" />
@@ -177,6 +178,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\ClientFilesInfoController.cs" />
+    <Compile Include="Controllers\ClientFilesUpdateController.cs" />
     <Compile Include="Controllers\SynchronizeController.cs" />
     <Compile Include="Controllers\TewController.cs" />
     <Compile Include="Controllers\TewInfoController.cs" />
@@ -281,6 +284,10 @@
     <ProjectReference Include="..\EntityFrameworkDAL\EntityFrameworkDAL.csproj">
       <Project>{ff20d3eb-82ca-48b8-a672-d1429763b1c7}</Project>
       <Name>EntityFrameworkDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TewLauncher\TewLauncher.csproj">
+      <Project>{91c839ca-aa0e-4c85-a902-e29097c22dfa}</Project>
+      <Name>TewLauncher</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

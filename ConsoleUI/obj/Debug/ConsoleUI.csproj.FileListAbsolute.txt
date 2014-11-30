@@ -164,3 +164,5 @@ D:\Study\Programming\Projects\EnglishLearning2\ConsoleUI\bin\Debug\EntityFramewo
 D:\Study\Programming\Projects\EnglishLearning2\ConsoleUI\bin\Debug\Newtonsoft.Json.xml
 D:\Study\Programming\Projects\EnglishLearning2\ConsoleUI\obj\Debug\ConsoleUI.exe
 D:\Study\Programming\Projects\EnglishLearning2\ConsoleUI\obj\Debug\ConsoleUI.pdb
+D:\Study\Programming\Projects\EnglishLearning2\ConsoleUI\bin\Debug\TewLauncher.dll
+D:\Study\Programming\Projects\EnglishLearning2\ConsoleUI\bin\Debug\TewLauncher.pdb

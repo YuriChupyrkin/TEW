@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfUI", "WpfUI\WpfUI.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TewCloud", "TewCloud\TewCloud.csproj", "{4AD693EC-347C-48D4-B2E7-52882310A3FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TewLauncher", "TewLauncher\TewLauncher.csproj", "{91C839CA-AA0E-4C85-A902-E29097C22DFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TewConsoleLauncher", "TewConsoleLauncher\TewConsoleLauncher.csproj", "{3CCE7561-C7B5-4712-AC03-51846F1B9CCE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{4AD693EC-347C-48D4-B2E7-52882310A3FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AD693EC-347C-48D4-B2E7-52882310A3FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AD693EC-347C-48D4-B2E7-52882310A3FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91C839CA-AA0E-4C85-A902-E29097C22DFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91C839CA-AA0E-4C85-A902-E29097C22DFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91C839CA-AA0E-4C85-A902-E29097C22DFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91C839CA-AA0E-4C85-A902-E29097C22DFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CCE7561-C7B5-4712-AC03-51846F1B9CCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CCE7561-C7B5-4712-AC03-51846F1B9CCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CCE7561-C7B5-4712-AC03-51846F1B9CCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CCE7561-C7B5-4712-AC03-51846F1B9CCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

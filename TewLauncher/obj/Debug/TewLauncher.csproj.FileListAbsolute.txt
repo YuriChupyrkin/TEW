@@ -1,0 +1,4 @@
+D:\Study\Programming\Projects\EnglishLearning2\TewLauncher\bin\Debug\TewLauncher.dll
+D:\Study\Programming\Projects\EnglishLearning2\TewLauncher\bin\Debug\TewLauncher.pdb
+D:\Study\Programming\Projects\EnglishLearning2\TewLauncher\obj\Debug\TewLauncher.dll
+D:\Study\Programming\Projects\EnglishLearning2\TewLauncher\obj\Debug\TewLauncher.pdb

@@ -105,6 +105,10 @@
       <Project>{ff20d3eb-82ca-48b8-a672-d1429763b1c7}</Project>
       <Name>EntityFrameworkDAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TewLauncher\TewLauncher.csproj">
+      <Project>{91c839ca-aa0e-4c85-a902-e29097c22dfa}</Project>
+      <Name>TewLauncher</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
