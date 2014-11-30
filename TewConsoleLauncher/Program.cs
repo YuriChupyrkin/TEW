@@ -11,8 +11,8 @@ namespace TewConsoleLauncher
 {
   class Program
   {
-    private const string Uri = "http://localhost:8081/";
-    //private const string Uri = "http://yu4e4ko.somee.com/TewCloud/";
+    //private const string Uri = "http://localhost:8081/";
+    private const string Uri = "http://yu4e4ko.somee.com/TewCloud/";
 
     private const string ClientFilesInfoController = "api/ClientFilesInfo";
     private const string ClientFilesUpdateController = "api/ClientFilesUpdate";
@@ -28,6 +28,7 @@ namespace TewConsoleLauncher
       catch (Exception ex)
       {
         Console.WriteLine(ex.Message);
+        Console.ReadKey();
       }
     }
 
