@@ -8,3 +8,13 @@ D:\Study\Programming\Projects\EnglishLearning2\TewConsoleLauncher\bin\Debug\Newt
 D:\Study\Programming\Projects\EnglishLearning2\TewConsoleLauncher\obj\Debug\TewConsoleLauncher.csprojResolveAssemblyReference.cache
 D:\Study\Programming\Projects\EnglishLearning2\TewConsoleLauncher\obj\Debug\TewConsoleLauncher.exe
 D:\Study\Programming\Projects\EnglishLearning2\TewConsoleLauncher\obj\Debug\TewConsoleLauncher.pdb
+D:\Study\Programming\Projects\Tew_Project\TewConsoleLauncher\bin\Debug\TewConsoleLauncher.exe.config
+D:\Study\Programming\Projects\Tew_Project\TewConsoleLauncher\bin\Debug\TewConsoleLauncher.exe
+D:\Study\Programming\Projects\Tew_Project\TewConsoleLauncher\bin\Debug\TewConsoleLauncher.pdb
+D:\Study\Programming\Projects\Tew_Project\TewConsoleLauncher\bin\Debug\Newtonsoft.Json.dll
+D:\Study\Programming\Projects\Tew_Project\TewConsoleLauncher\bin\Debug\TewLauncher.dll
+D:\Study\Programming\Projects\Tew_Project\TewConsoleLauncher\bin\Debug\TewLauncher.pdb
+D:\Study\Programming\Projects\Tew_Project\TewConsoleLauncher\bin\Debug\Newtonsoft.Json.xml
+D:\Study\Programming\Projects\Tew_Project\TewConsoleLauncher\obj\Debug\TewConsoleLauncher.csprojResolveAssemblyReference.cache
+D:\Study\Programming\Projects\Tew_Project\TewConsoleLauncher\obj\Debug\TewConsoleLauncher.exe
+D:\Study\Programming\Projects\Tew_Project\TewConsoleLauncher\obj\Debug\TewConsoleLauncher.pdb

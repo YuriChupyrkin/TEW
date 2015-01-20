@@ -1,0 +1,16 @@
+﻿<Page
+    x:Class="TewWinPhone.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TewWinPhone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="#FFB9B107">
+        <Button x:ConnectionId='1' x:Name="BtnAddWord" Content="Add words" HorizontalAlignment="Left" Height="51" Margin="83,72,0,0" VerticalAlignment="Top" Width="223"                         />
+        <Button x:ConnectionId='2' x:Name="myWords" Content="Button" HorizontalAlignment="Left" Margin="83,177,0,0" VerticalAlignment="Top"                      />
+    </Grid>
+</Page>
+

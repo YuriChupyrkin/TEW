@@ -52,9 +52,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TewLauncher\TewLauncher.csproj">
+    <ProjectReference Include="..\TewLauncher\TewLauncherEntites.csproj">
       <Project>{91c839ca-aa0e-4c85-a902-e29097c22dfa}</Project>
-      <Name>TewLauncher</Name>
+      <Name>TewLauncherEntites</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
