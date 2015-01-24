@@ -1,7 +1,8 @@
 <XamlCompilerSaveState>
   <ReferenceAssemblyList>
-    <LocalAssembly PathName="d:\study\programming\projects\tew_project\tewwinphone\obj\x86\debug\intermediatexaml\tewwinphone.exe" HashGuid="2fd29da2-6ab5-06e3-d91f-16f8f61b82ec" />
+    <LocalAssembly PathName="d:\study\programming\projects\tew_project\tewwinphone\obj\x86\debug\intermediatexaml\tewwinphone.exe" HashGuid="15513a0c-6ae4-24f2-1eac-40dc3413e7ab" />
     <ReferenceAssembly PathName="c:\program files (x86)\microsoft sdks\windowsphoneapp\v8.1\extensionsdks\microsoft.vclibs\12.0\references\commonconfiguration\neutral\platform.winmd" HashGuid="58b6b6d1-928e-9908-9804-eb460e5e101b" />
+    <ReferenceAssembly PathName="d:\study\programming\projects\tew_project\packages\newtonsoft.json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\newtonsoft.json.dll" HashGuid="225745d8-3693-ad6f-ebd5-8845d81f8e0f" />
     <ReferenceAssembly PathName="d:\study\programming\projects\tew_project\packages\sqlitepcl.raw_basic.0.3.0-alpha\build\wpa81\cppinterop_sqlite3_dynamic\x86\sqlitepcl.raw.dll" HashGuid="1ac9979f-6a65-51fe-9f69-bab1b4f7d949" />
   </ReferenceAssemblyList>
 </XamlCompilerSaveState>

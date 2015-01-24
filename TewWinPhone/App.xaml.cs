@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TewWinPhone.Models;
 using TewWinPhone.Services;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -39,9 +40,9 @@ namespace TewWinPhone
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
 
-            ApplicationContext.ConnectionString = Path.Combine(Path.Combine(ApplicationData.Current.LocalFolder.Path, "tew.sqlite"));
-            ApplicationContext.DbConnection = new SQLiteConnection(ApplicationContext.ConnectionString);
+            ApplicationContext.DbRepository = new DbRepository("tew.sqlite");
             ApplicationContext.NavigationService = new NavigationService();
+            ApplicationContext.CurrentPickerTest = PickerTest.EnRu;
         }
 
         /// <summary>

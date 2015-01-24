@@ -1,0 +1,16 @@
+﻿<Page
+    x:Class="TewWinPhone.Pages.ChooseTestPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TewWinPhone.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="#FF78854C">
+        <Button x:Name="EnRuTestBtn" Content="English &#xD;&#xA;- &#xD;&#xA;Russian &#xD;&#xA;Test" HorizontalAlignment="Left" Margin="122,21,0,0" VerticalAlignment="Top" Height="150" Width="147" Click="EnRuBtn_Click"/>
+        <Button x:Name="RuEnTestBtn" Content="Russian&#xA;- &#xD;&#xA;English &#xA;Test" HorizontalAlignment="Left" Margin="122,192,0,0" VerticalAlignment="Top" Height="150" Width="147" Click="RuEnTestBtn_Click"/>
+
+    </Grid>
+</Page>

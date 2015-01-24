@@ -13,7 +13,10 @@
         <TextBox x:ConnectionId='2' x:Name="txtBoxEnglish" HorizontalAlignment="Left" Margin="97,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="282"                                     FontSize="21.333"/>
         <TextBox x:Name="txtBoxRussian" HorizontalAlignment="Left" Margin="97,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="282" FontSize="21.333"/>
         <TextBox x:Name="txtBoxExample" AcceptsReturn="True"  HorizontalAlignment="Left" Margin="97,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="282" Height="130"/>
-        <ListBox x:Name="listBoxTranslate" HorizontalAlignment="Left" Height="277" Margin="19,288,0,0" VerticalAlignment="Top" Width="360" FontSize="18.667"/>
+        <ListBox x:ConnectionId='3' x:Name="listBoxTranslate" HorizontalAlignment="Left" Height="277" Margin="19,288,0,0" VerticalAlignment="Top" Width="360" FontSize="18.667"                                                      />
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="15,41,0,0" TextWrapping="Wrap" Text="English" VerticalAlignment="Top" Height="31" Width="77" FontSize="18.667"/>
+        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="15,96,0,0" TextWrapping="Wrap" Text="Russian" VerticalAlignment="Top" Height="31" Width="77" FontSize="18.667"/>
+        <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="15,142,0,0" TextWrapping="Wrap" Text="Example" VerticalAlignment="Top" Height="31" Width="77" FontSize="18.667"/>
 
     </Grid>
 

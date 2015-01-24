@@ -41,7 +41,7 @@ namespace TewWinPhone.Pages
         {
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
 
-            var words = ApplicationContext.DbConnection.Table<EnglishRussianWordEntity>().ToList<EnglishRussianWordEntity>();
+            var words = ApplicationContext.DbRepository.GetEnRuWords();
 
             myWordsListView.Items.Clear();
 
@@ -52,7 +52,7 @@ namespace TewWinPhone.Pages
 
         }
 
-        protected void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
+        private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
             e.Handled = true;
             _navigationService.GoBack();

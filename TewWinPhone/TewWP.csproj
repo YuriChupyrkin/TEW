@@ -86,18 +86,40 @@
     <Compile Include="ApplicationContext.cs" />
     <Compile Include="Entities\EnglishRussianWordEntity.cs" />
     <Compile Include="Entities\TranslateWithExamples.cs" />
+    <Compile Include="Entities\UserEntity.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\PickerTest.cs" />
+    <Compile Include="Models\PickerTestModel.cs" />
+    <Compile Include="Models\ResponseModel.cs" />
+    <Compile Include="Models\SyncWordsModel.cs" />
+    <Compile Include="Models\WordModel.cs" />
     <Compile Include="Pages\AddWordPage.xaml.cs">
       <DependentUpon>AddWordPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ChangeEmailPage.xaml.cs">
+      <DependentUpon>ChangeEmailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ChooseTestPage.xaml.cs">
+      <DependentUpon>ChooseTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PickerTestPage.xaml.cs">
+      <DependentUpon>PickerTestPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MyWords.xaml.cs">
       <DependentUpon>MyWords.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\SyncPage.xaml.cs">
+      <DependentUpon>SyncPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ApplicationValidator.cs" />
+    <Compile Include="Services\DbRepository.cs" />
     <Compile Include="Services\GoogleTranslater.cs.cs" />
     <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="Services\SynchronizeHelper.cs" />
+    <Compile Include="Services\TestCreater.cs" />
     <Compile Include="SQLite.cs" />
     <Compile Include="SQLiteAsync.cs" />
   </ItemGroup>
@@ -127,7 +149,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\ChangeEmailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ChooseTestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PickerTestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\MyWords.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SyncPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -139,6 +177,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>

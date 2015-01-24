@@ -9,7 +9,10 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Background="#FFB9B107">
-        <Button x:Name="BtnAddWord" Content="Add words" HorizontalAlignment="Left" Height="51" Margin="83,72,0,0" VerticalAlignment="Top" Width="223" Click="BtnAddWord_Click"/>
-        <Button x:Name="myWords" Content="Button" HorizontalAlignment="Left" Margin="83,177,0,0" VerticalAlignment="Top" Click="myWords_Click"/>
+        <Button x:Name="BtnAddWord" Content="Add words" HorizontalAlignment="Left" Height="60" Margin="83,72,0,0" VerticalAlignment="Top" Width="223" Click="BtnAddWord_Click"/>
+        <Button x:Name="myWords" Content="My words" HorizontalAlignment="Left" Margin="83,177,0,0" VerticalAlignment="Top" Click="myWords_Click" Width="223" Height="60"/>
+        <Button x:Name="btnTests" Content="Tests" HorizontalAlignment="Left" Margin="79,279,0,0" VerticalAlignment="Top" Height="60" Width="227" Click="btnTests_Click"/>
+        <Button x:Name="btnEmail" Content="Email" HorizontalAlignment="Left" Margin="79,372,0,0" VerticalAlignment="Top" Height="60" Width="227" Click="btnEmail_Click"/>
+        <Button x:Name="btnSync" Content="Sync" HorizontalAlignment="Left" Margin="79,462,0,0" VerticalAlignment="Top" Height="60" Width="227" Click="btnSync_Click"/>
     </Grid>
 </Page>

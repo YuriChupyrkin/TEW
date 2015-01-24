@@ -12,6 +12,7 @@ namespace TewWinPhone.Services
         {
             return Frame.Navigate(sourcePageType);
         }
+
         public void Navigate(Type sourcePageType, object parameter)
         {
             Frame.Navigate(sourcePageType, parameter);

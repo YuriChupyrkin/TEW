@@ -30,6 +30,7 @@
       <RootProperty Name="FontSize" />
       <RootProperty Name="AcceptsReturn" />
       <RootProperty Name="Height" />
+      <RootProperty Name="Text" />
       <RootEvent Name="LostFocus" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ListBox">
@@ -39,8 +40,25 @@
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Width" />
       <RootProperty Name="FontSize" />
+      <RootEvent Name="SelectionChanged" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="TextWrapping" />
+      <RootProperty Name="Text" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="TextAlignment" />
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="RenderTransformOrigin" />
     </RootType>
     <RootType FullName="TewWinPhone.Pages.AddWordPage" />
+    <RootType FullName="TewWinPhone.Pages.ChangeEmailPage" />
+    <RootType FullName="TewWinPhone.Pages.ChooseTestPage" />
+    <RootType FullName="TewWinPhone.Pages.PickerTestPage" />
     <RootType FullName="Windows.UI.Xaml.Controls.ListView">
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Height" />
@@ -50,18 +68,7 @@
       <RootProperty Name="FontSize" />
       <RootProperty Name="Foreground" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
-      <RootProperty Name="HorizontalAlignment" />
-      <RootProperty Name="Margin" />
-      <RootProperty Name="TextWrapping" />
-      <RootProperty Name="Text" />
-      <RootProperty Name="TextAlignment" />
-      <RootProperty Name="VerticalAlignment" />
-      <RootProperty Name="Height" />
-      <RootProperty Name="Width" />
-      <RootProperty Name="Foreground" />
-      <RootProperty Name="FontSize" />
-    </RootType>
     <RootType FullName="TewWinPhone.Pages.MyWords" />
+    <RootType FullName="TewWinPhone.Pages.SyncPage" />
   </Roots.RootTypes>
 </Roots>

@@ -14,6 +14,7 @@ namespace TewWinPhone
     public sealed partial class MainPage : Page
     {
         private readonly NavigationService _navigationService = ApplicationContext.NavigationService;
+        private readonly DbRepository _dbRepository = ApplicationContext.DbRepository;
 
         public MainPage()
         {
@@ -29,24 +30,64 @@ namespace TewWinPhone
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            // TODO: Prepare page for display here.
 
-            // TODO: If your application contains multiple pages, ensure that you are
-            // handling the hardware Back button by registering for the
-            // Windows.Phone.UI.Input.HardwareButtons.BackPressed event.
-            // If you are using the NavigationHelper provided by some templates,
-            // this event is handled for you.
-
+            //todo if not email
+            _navigationService.Navigate(typeof(ChangeEmailPage));
         }
 
         private void BtnAddWord_Click(object sender, RoutedEventArgs e)
         {
-            _navigationService.Navigate(typeof(AddWordPage));
+            if (_dbRepository.IsUserHaveEmail() == false)
+            {
+                _navigationService.Navigate(typeof(ChangeEmailPage));
+            }
+            else
+            {
+                _navigationService.Navigate(typeof(AddWordPage));
+            }
         }
 
         private void myWords_Click(object sender, RoutedEventArgs e)
         {
-            _navigationService.Navigate(typeof(MyWords));
+            if (_dbRepository.IsUserHaveEmail() == false)
+            {
+                _navigationService.Navigate(typeof(ChangeEmailPage));
+            }
+            else
+            {
+                _navigationService.Navigate(typeof(MyWords));
+            }
         }
+
+        private void btnTests_Click(object sender, RoutedEventArgs e)
+        {
+            if (_dbRepository.IsUserHaveEmail() == false)
+            {
+                _navigationService.Navigate(typeof(ChangeEmailPage));
+            }
+            else
+            {
+                _navigationService.Navigate(typeof(ChooseTestPage));
+            }
+        }
+
+        private void btnSync_Click(object sender, RoutedEventArgs e)
+        {
+            if (_dbRepository.IsUserHaveEmail() == false)
+            {
+                _navigationService.Navigate(typeof(ChangeEmailPage));
+            }
+            else
+            {
+                _navigationService.Navigate(typeof(SyncPage));
+            }
+        }
+
+        private void btnEmail_Click(object sender, RoutedEventArgs e)
+        {
+            _navigationService.Navigate(typeof(ChangeEmailPage));
+        }
+
+      
     }
 }

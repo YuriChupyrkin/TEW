@@ -124,19 +124,27 @@ namespace TewWinPhone.TewWP_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[5];
+            _typeNameTable = new string[9];
             _typeNameTable[0] = "TewWinPhone.MainPage";
             _typeNameTable[1] = "Windows.UI.Xaml.Controls.Page";
             _typeNameTable[2] = "Windows.UI.Xaml.Controls.UserControl";
             _typeNameTable[3] = "TewWinPhone.Pages.AddWordPage";
-            _typeNameTable[4] = "TewWinPhone.Pages.MyWords";
+            _typeNameTable[4] = "TewWinPhone.Pages.ChangeEmailPage";
+            _typeNameTable[5] = "TewWinPhone.Pages.ChooseTestPage";
+            _typeNameTable[6] = "TewWinPhone.Pages.PickerTestPage";
+            _typeNameTable[7] = "TewWinPhone.Pages.MyWords";
+            _typeNameTable[8] = "TewWinPhone.Pages.SyncPage";
 
-            _typeTable = new global::System.Type[5];
+            _typeTable = new global::System.Type[9];
             _typeTable[0] = typeof(global::TewWinPhone.MainPage);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Page);
             _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
             _typeTable[3] = typeof(global::TewWinPhone.Pages.AddWordPage);
-            _typeTable[4] = typeof(global::TewWinPhone.Pages.MyWords);
+            _typeTable[4] = typeof(global::TewWinPhone.Pages.ChangeEmailPage);
+            _typeTable[5] = typeof(global::TewWinPhone.Pages.ChooseTestPage);
+            _typeTable[6] = typeof(global::TewWinPhone.Pages.PickerTestPage);
+            _typeTable[7] = typeof(global::TewWinPhone.Pages.MyWords);
+            _typeTable[8] = typeof(global::TewWinPhone.Pages.SyncPage);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -173,7 +181,11 @@ namespace TewWinPhone.TewWP_XamlTypeInfo
 
         private object Activate_0_MainPage() { return new global::TewWinPhone.MainPage(); }
         private object Activate_3_AddWordPage() { return new global::TewWinPhone.Pages.AddWordPage(); }
-        private object Activate_4_MyWords() { return new global::TewWinPhone.Pages.MyWords(); }
+        private object Activate_4_ChangeEmailPage() { return new global::TewWinPhone.Pages.ChangeEmailPage(); }
+        private object Activate_5_ChooseTestPage() { return new global::TewWinPhone.Pages.ChooseTestPage(); }
+        private object Activate_6_PickerTestPage() { return new global::TewWinPhone.Pages.PickerTestPage(); }
+        private object Activate_7_MyWords() { return new global::TewWinPhone.Pages.MyWords(); }
+        private object Activate_8_SyncPage() { return new global::TewWinPhone.Pages.SyncPage(); }
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
@@ -207,9 +219,37 @@ namespace TewWinPhone.TewWP_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 4:   //  TewWinPhone.Pages.MyWords
+            case 4:   //  TewWinPhone.Pages.ChangeEmailPage
                 userType = new global::TewWinPhone.TewWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_4_MyWords;
+                userType.Activator = Activate_4_ChangeEmailPage;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 5:   //  TewWinPhone.Pages.ChooseTestPage
+                userType = new global::TewWinPhone.TewWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_5_ChooseTestPage;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 6:   //  TewWinPhone.Pages.PickerTestPage
+                userType = new global::TewWinPhone.TewWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_6_PickerTestPage;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 7:   //  TewWinPhone.Pages.MyWords
+                userType = new global::TewWinPhone.TewWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_7_MyWords;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 8:   //  TewWinPhone.Pages.SyncPage
+                userType = new global::TewWinPhone.TewWP_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_8_SyncPage;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
