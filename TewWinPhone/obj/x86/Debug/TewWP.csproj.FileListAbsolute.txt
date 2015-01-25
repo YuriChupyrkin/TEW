@@ -49,7 +49,6 @@ D:\Study\Programming\Projects\Tew_Project\TewWinPhone\obj\x86\Debug\MultipleQual
 D:\Study\Programming\Projects\Tew_Project\TewWinPhone\obj\x86\Debug\SQLitePCL.raw.pri.xml
 D:\Study\Programming\Projects\Tew_Project\TewWinPhone\obj\x86\Debug\SQLitePCL.cppinterop.pri.xml
 D:\Study\Programming\Projects\Tew_Project\TewWinPhone\obj\x86\Debug\ProjectArchitectures.txt
-D:\Study\Programming\Projects\Tew_Project\TewWinPhone\obj\x86\Debug\TewWP.csprojResolveAssemblyReference.cache
 D:\Study\Programming\Projects\Tew_Project\TewWinPhone\bin\x86\Debug\Pages\ChooseTestPage.xbf
 D:\Study\Programming\Projects\Tew_Project\TewWinPhone\obj\x86\Debug\Pages\ChooseTestPage.g.i.cs
 D:\Study\Programming\Projects\Tew_Project\TewWinPhone\obj\x86\Debug\Pages\ChooseTestPage.g.cs

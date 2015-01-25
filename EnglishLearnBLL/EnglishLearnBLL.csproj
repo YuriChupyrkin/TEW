@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Mapping\ModelMapper.cs" />
+    <Compile Include="Models\CheckUpdateModel.cs" />
+    <Compile Include="Models\UserUpdateDateModel.cs" />
     <Compile Include="Models\WordJsonModel.cs" />
     <Compile Include="Models\PickerTestModel.cs" />
     <Compile Include="Models\ResponseModel.cs" />

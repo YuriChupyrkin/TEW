@@ -7,7 +7,7 @@ namespace Domain.Repositories
   public interface IEnRuWordsRepository : IGenericRepository
   {
     IEnumerable<string> GetTranslate(string enWord);
-    EnRuWord AddTranslate(string engWord, string ruWord, string example, int userId, DateTime? updateDate = null, int level = 0, bool isUpdated = false);
+    EnRuWord AddTranslate(string engWord, string ruWord, string example, int userId, DateTime? updateDate = null, int level = 0, bool isDeleted = false);
     IDictionary<string, string> GetWordsForUser(int userId);
     IEnumerable<EnRuWord> AllEnRuWords();
     IEnumerable<RussianWord> AllRussianWords();
@@ -19,7 +19,7 @@ namespace Domain.Repositories
     void ResetWordLevel(int userId);
     string GetRussianWordById(int id);
     string GetEnglishWordById(int id);
-    void MakeDeleted(string enWord, int userId);
+    EnRuWord MakeDeleted(string enWord, int userId);
     void ChangeUpdateStatus(int enRuWordId, bool isUpdate);
   }
 }

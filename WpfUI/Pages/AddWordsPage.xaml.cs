@@ -187,12 +187,12 @@ namespace WpfUI.Pages
           example += "...";
         }
 
-        var word = _repositoryFactory.EnRuWordsRepository.AddTranslate(enWord, rusWord, example, userId);
+        var word = _repositoryFactory.EnRuWordsRepository.AddTranslate(enWord, rusWord, example, userId, DateTime.UtcNow);
 
         if (MainWindow.IsOnlineVersion)
         {
           var syncHelper = new SynchronizeHelper();
-          Task.Run(() => syncHelper.CreatWordJsonModelAndSend(word, ApplicationContext.CurrentUser));
+          syncHelper.SendWordInBackGround(word, ApplicationContext.CurrentUser);
         }
       }
       catch (Exception ex)

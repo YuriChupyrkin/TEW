@@ -144,6 +144,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Client\" />
+    <Folder Include="Views\SynchroniceV2\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AutofacModule.cs" />
@@ -178,15 +179,18 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\CheckUpdateController.cs" />
     <Compile Include="Controllers\ClientFilesInfoController.cs" />
     <Compile Include="Controllers\ClientFilesUpdateController.cs" />
     <Compile Include="Controllers\SynchronizeController.cs" />
+    <Compile Include="Controllers\SynchronizeV2Controller.cs" />
     <Compile Include="Controllers\TewController.cs" />
     <Compile Include="Controllers\TewInfoController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\SyncHelper.cs" />
     <Compile Include="Models\TewInfoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
