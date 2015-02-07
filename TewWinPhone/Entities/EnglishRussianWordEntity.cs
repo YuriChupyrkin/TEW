@@ -1,4 +1,5 @@
 ﻿using SQLite;
+using System;
 
 namespace TewWinPhone.Entities
 {
@@ -16,6 +17,8 @@ namespace TewWinPhone.Entities
         public int WordLevel { get; set; }
 
         public bool IsDeleted { get; set; }
+
+        public DateTime UpdateDate { get; set; }
 
         public string GetViewString()
         {

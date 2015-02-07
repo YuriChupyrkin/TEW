@@ -90,10 +90,12 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\CheckUpdateModel.cs" />
     <Compile Include="Models\PickerTest.cs" />
     <Compile Include="Models\PickerTestModel.cs" />
     <Compile Include="Models\ResponseModel.cs" />
     <Compile Include="Models\SyncWordsModel.cs" />
+    <Compile Include="Models\UserUpdateDateModel.cs" />
     <Compile Include="Models\WordModel.cs" />
     <Compile Include="Pages\AddWordPage.xaml.cs">
       <DependentUpon>AddWordPage.xaml</DependentUpon>

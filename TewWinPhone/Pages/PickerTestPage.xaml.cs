@@ -32,7 +32,7 @@ namespace TewWinPhone.Pages
         private Color _defaultButtonColor = Colors.Gold;
 
         private readonly NavigationService _navigationService = ApplicationContext.NavigationService;
-        private readonly List<PickerTestModel> _testModels;
+        private List<PickerTestModel> _testModels;
         private int _currentTestIndex;
         private bool _isPicked;
         private int _errorCount;
@@ -40,17 +40,6 @@ namespace TewWinPhone.Pages
         public PickerTestPage()
         {
             this.InitializeComponent();
-
-            var userWords = ApplicationContext.DbRepository.GetEnRuWords() as List<EnglishRussianWordEntity>;
-
-            if (ApplicationContext.CurrentPickerTest == PickerTest.EnRu)
-            {
-                _testModels = new TestCreater().CreateEnglishRussianTest(userWords).ToList();
-            }
-            else
-            {
-                _testModels = new TestCreater().CreateRussianEnglishTest(userWords).ToList();
-            }
         }
 
         /// <summary>
@@ -61,6 +50,24 @@ namespace TewWinPhone.Pages
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+
+            var userWords = ApplicationContext.DbRepository.GetEnRuWords() as List<EnglishRussianWordEntity>;
+
+            if (userWords.Count < 5)
+            {
+                await ShowDialog("Need more words");
+                _navigationService.GoBack();
+                return;
+            }
+
+            if (ApplicationContext.CurrentPickerTest == PickerTest.EnRu)
+            {
+                _testModels = new TestCreater().CreateEnglishRussianTest(userWords).ToList();
+            }
+            else
+            {
+                _testModels = new TestCreater().CreateRussianEnglishTest(userWords).ToList();
+            }
 
             _errorCount = 0;
             await ViewNextTest(_currentTestIndex);
@@ -152,12 +159,14 @@ namespace TewWinPhone.Pages
             if (isTrueAnswer)
             {
                 button.Background = new SolidColorBrush(Colors.Green);
+                UpdateLevel(_testModels[_currentTestIndex].WordId, true);
             }
             else
             {
                 _errorCount++;
                 button.Background = new SolidColorBrush(Colors.Red);
                 ShowTrueAnswer();
+                UpdateLevel(_testModels[_currentTestIndex].WordId, false);
             }
 
             _currentTestIndex++;
@@ -200,6 +209,12 @@ namespace TewWinPhone.Pages
         {
             MessageDialog msgbox = new MessageDialog(message);
             await msgbox.ShowAsync();
+        }
+
+        private void UpdateLevel(int wordId, bool isLevelUp)
+        {
+            var result = ApplicationContext.DbRepository.UpdateLevel(wordId, isLevelUp, ApplicationContext.CurrentPickerTest);
+            new SynchronizeHelper().SendWordInBackGround(result, ApplicationContext.UserEmail);
         }
 
         #endregion

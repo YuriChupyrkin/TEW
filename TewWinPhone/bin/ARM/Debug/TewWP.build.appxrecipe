@@ -19,6 +19,9 @@
     <AppxPackagedFile Include="D:\Study\Programming\Projects\Tew_Project\TewWinPhone\bin\ARM\Debug\TewWinPhone.exe">
       <PackagePath>TewWinPhone.exe</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Study\Programming\Projects\Tew_Project\packages\Newtonsoft.Json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll">
+      <PackagePath>Newtonsoft.Json.dll</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Study\Programming\Projects\Tew_Project\packages\SQLitePCL.raw_basic.0.3.0-alpha\build\wpa81\cppinterop_sqlite3_dynamic\arm\SQLitePCL.raw.dll">
       <PackagePath>SQLitePCL.raw.dll</PackagePath>
     </AppxPackagedFile>
@@ -64,8 +67,20 @@
     <AppxPackagedFile Include="D:\Study\Programming\Projects\Tew_Project\TewWinPhone\bin\ARM\Debug\Pages\AddWordPage.xbf">
       <PackagePath>Pages\AddWordPage.xbf</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Study\Programming\Projects\Tew_Project\TewWinPhone\bin\ARM\Debug\Pages\ChangeEmailPage.xbf">
+      <PackagePath>Pages\ChangeEmailPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Study\Programming\Projects\Tew_Project\TewWinPhone\bin\ARM\Debug\Pages\ChooseTestPage.xbf">
+      <PackagePath>Pages\ChooseTestPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Study\Programming\Projects\Tew_Project\TewWinPhone\bin\ARM\Debug\Pages\PickerTestPage.xbf">
+      <PackagePath>Pages\PickerTestPage.xbf</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Study\Programming\Projects\Tew_Project\TewWinPhone\bin\ARM\Debug\Pages\MyWords.xbf">
       <PackagePath>Pages\MyWords.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Study\Programming\Projects\Tew_Project\TewWinPhone\bin\ARM\Debug\Pages\SyncPage.xbf">
+      <PackagePath>Pages\SyncPage.xbf</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Study\Programming\Projects\Tew_Project\TewWinPhone\bin\ARM\Debug\TewWinPhone.xr.xml">
       <PackagePath>TewWinPhone.xr.xml</PackagePath>

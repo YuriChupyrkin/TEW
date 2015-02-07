@@ -8,8 +8,9 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <ListView x:Name="myWordsListView" HorizontalAlignment="Left" Height="506" Margin="58,55,0,0" VerticalAlignment="Top" Width="281"/>
+    <Grid Background="#FFCFBF1F">
+        <ListView x:Name="myWordsListView" HorizontalAlignment="Left" Height="553" Margin="23,64,0,0" VerticalAlignment="Top" Width="348" FontSize="46.667" Foreground="#FF0C0101"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="103,22,0,0" TextWrapping="Wrap" Text="My words" TextAlignment="Center" VerticalAlignment="Top" Height="38" Width="167" Foreground="Black" FontSize="24"/>
 
     </Grid>
 </Page>

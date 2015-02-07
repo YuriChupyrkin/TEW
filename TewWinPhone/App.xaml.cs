@@ -43,6 +43,7 @@ namespace TewWinPhone
             ApplicationContext.DbRepository = new DbRepository("tew.sqlite");
             ApplicationContext.NavigationService = new NavigationService();
             ApplicationContext.CurrentPickerTest = PickerTest.EnRu;
+            ApplicationContext.UserEmail = ApplicationContext.DbRepository.GetUserEmail();
         }
 
         /// <summary>

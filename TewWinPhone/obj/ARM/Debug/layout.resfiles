@@ -8,5 +8,9 @@ Assets\WideLogo.scale-240.png
 App.xbf
 MainPage.xbf
 Pages\AddWordPage.xbf
+Pages\ChangeEmailPage.xbf
+Pages\ChooseTestPage.xbf
 Pages\MyWords.xbf
+Pages\PickerTestPage.xbf
+Pages\SyncPage.xbf
 TewWinPhone.xr.xml

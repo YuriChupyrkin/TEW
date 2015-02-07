@@ -9,8 +9,11 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Background="#FFB9B107">
-        <Button x:ConnectionId='1' x:Name="BtnAddWord" Content="Add words" HorizontalAlignment="Left" Height="51" Margin="83,72,0,0" VerticalAlignment="Top" Width="223"                         />
-        <Button x:ConnectionId='2' x:Name="myWords" Content="Button" HorizontalAlignment="Left" Margin="83,177,0,0" VerticalAlignment="Top"                      />
+        <Button x:ConnectionId='1' x:Name="BtnAddWord" Content="Add words" HorizontalAlignment="Left" Height="60" Margin="83,72,0,0" VerticalAlignment="Top" Width="223"                         />
+        <Button x:ConnectionId='2' x:Name="myWords" Content="My words" HorizontalAlignment="Left" Margin="83,177,0,0" VerticalAlignment="Top"                       Width="223" Height="60"/>
+        <Button x:ConnectionId='3' x:Name="btnTests" Content="Tests" HorizontalAlignment="Left" Margin="79,279,0,0" VerticalAlignment="Top" Height="60" Width="227"                       />
+        <Button x:ConnectionId='4' x:Name="btnEmail" Content="Email" HorizontalAlignment="Left" Margin="79,372,0,0" VerticalAlignment="Top" Height="60" Width="227"                       />
+        <Button x:ConnectionId='5' x:Name="btnSync" Content="Sync" HorizontalAlignment="Left" Margin="79,462,0,0" VerticalAlignment="Top" Height="60" Width="227"                      />
     </Grid>
 </Page>
 

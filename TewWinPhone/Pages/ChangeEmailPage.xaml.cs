@@ -71,6 +71,7 @@ namespace TewWinPhone.Pages
             else
             {
                 ApplicationContext.DbRepository.SetUserEmail(email);
+                ApplicationContext.UserEmail = email;
                 _navigationService.GoBack();
             }
         }

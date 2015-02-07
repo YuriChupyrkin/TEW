@@ -15,5 +15,7 @@ namespace TewWinPhone
         public static NavigationService NavigationService { get; set; }
 
         public static PickerTest CurrentPickerTest { get; set; }
+
+        public static string UserEmail { get; set; }
     }
 }

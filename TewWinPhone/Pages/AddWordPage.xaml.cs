@@ -85,10 +85,12 @@ namespace TewWinPhone.Pages
             {
                 English = txtBoxEnglish.Text,
                 Russian = txtBoxRussian.Text,
-                ExampleOfUse = txtBoxExample.Text
+                ExampleOfUse = txtBoxExample.Text,
+                UpdateDate = DateTime.UtcNow
             };
 
             ApplicationContext.DbRepository.AddWord(word);
+            new SynchronizeHelper().SendWordInBackGround(word, ApplicationContext.UserEmail);
             ClearAllInputs();
         }
       
