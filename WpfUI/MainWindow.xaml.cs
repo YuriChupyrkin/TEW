@@ -19,7 +19,7 @@ namespace WpfUI
   /// </summary>
   public partial class MainWindow : Window
   {
-    private const string Version = "(1.05   11/30/2014)"; 
+    private const string Version = "(1.06   2/7/2015)"; 
 
     public const string AppName = "TEW";
 
@@ -90,7 +90,7 @@ namespace WpfUI
       const string message = "TEW (Trainer of English Words)\n" +
                              "author: Yuri Chupyrkin\n" +
                              "email: yuri.chupyrkin@gmail.com\n" +
-                             "year: 2014\n";
+                             "year: 2014 - 2015\n";
       MessageBox.Show(message, "About");
     }
 
@@ -279,8 +279,6 @@ namespace WpfUI
 
       IsSpeakEng = true;
       SpeakEngMenu.IsChecked = true;
-      //ImportMenu.IsEnabled = false;
-      //ExportMenu.IsEnabled = false;
 
       Switcher.PageSwitcher = this;
 

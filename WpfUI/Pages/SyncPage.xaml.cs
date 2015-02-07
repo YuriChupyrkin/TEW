@@ -22,13 +22,13 @@ namespace WpfUI.Pages
         private CancellationTokenSource _cancellationToken;
         private SynchronizeHelper _syncHelper;
         private User _user;
-        private ResponseModel _responseModel;
-
+        private readonly SynchronizeHelper _synchronizeHelper;
 
         public SyncPage()
         {
             InitializeComponent();
             _repositoryFactory = ApplicationContext.RepositoryFactory;
+            _synchronizeHelper = new SynchronizeHelper();
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
@@ -73,91 +73,76 @@ namespace WpfUI.Pages
                 CloseSync("Sign in please");
             }
 
-            //CheckServer
             ChangeLabelContent("Step 1. User Ok...");
             CheckServer();
             CheckCancel(cancellationTokenSource);
 
-            ////Send words
-            //ChangeLabelContent("Step 2. Server is online. Sync...");
-            //SendMyWords(cancellationTokenSource, _user);
-            //CheckCancel(cancellationTokenSource);
-
-            ////wait response
-            //ChangeLabelContent("Step 3. Waiting for response...");
-            //GetUserWords();
-            //ChangeProgressBarValue(55);
-            //CheckCancel(cancellationTokenSource);
-
-            ////waiting...
-            //ChangeLabelContent("Step 4. Wait please...");
-            //var responseModel = _responseModel.WordsCloudModel;
-
-            //if (responseModel == null)
-            //{
-            //    CloseSync("response model is null");
-            //}
-
-            //ChangeProgressBarValue(60);
-            //CheckCancel(cancellationTokenSource);
-
-            ////Adding of words
-            //ChangeLabelContent("Step 5. Adding of words...");
-            //AddWordsFromResponse(responseModel, cancellationTokenSource);
-            //CheckCancel(cancellationTokenSource);
-
-            ////Removing of words
-            //ChangeLabelContent("Step 6. Removing of words...");
-            //RemoveIsDeletedWords(_user.Id, cancellationTokenSource);
-            //CheckCancel(cancellationTokenSource);
-
-            ////Complete
-            //ChangeLabelContent("Complete");
-            //ChangeProgressBarValue(100);
-
-            CheckUpdates();
+            CheckUpdates(cancellationTokenSource);
             CloseSync("Success");
         }
 
-        private void CheckUpdates()
+        private void CheckUpdates(CancellationTokenSource cancellationTokenSource)
         {
             ChangeLabelContent("Step 2. Get update information ...");
             var user = ApplicationContext.CurrentUser;
 
-            var words = _repositoryFactory.EnRuWordsRepository.AllEnRuWords().Where(r => r.Id == user.Id).ToList();
+            var words = _repositoryFactory.EnRuWordsRepository.AllEnRuWords().Where(r => r.UserId == user.Id).ToList();
 
-            if(words == null || words.Any() == false)
+            var updateModel = new UserUpdateDateModel
             {
-                MessageBox.Show("need update CLIENT");
+                UserName = user.Email,
+                UpdateDate = DateTime.MinValue.Ticks
+            };
+
+            if (words == null || words.Any() == false)
+            {
+                ChangeLabelContent("Step 3. Updating of client ...");
+                GetWordsFromServer(updateModel, cancellationTokenSource);
                 return;
             }
 
             var lastUpdate = words.Max(r => r.UpdateDate);
-            MessageBox.Show(lastUpdate.ToShortTimeString(), "LOCAL DATE");
 
-            var result = new SynchronizeHelper().GetUpdates(user.Email);
+            var result = _synchronizeHelper.GetUpdates(user.Email);
 
             if (result.IsError.GetValueOrDefault())
             {
                 MessageBox.Show(result.ErrorMessage, "sync error");
+                return;
             }
 
-            MessageBox.Show(result.LastUpdate.ToShortTimeString());
-
-            if (result.LastUpdate == lastUpdate)
+            if (result.LastUpdate < lastUpdate)
             {
-                MessageBox.Show("ok");
+                ChangeLabelContent("Step 3. Updating of cloud ...");
+                UpdateCloud(result.LastUpdate, words);
             }
-            else if(result.LastUpdate < lastUpdate)
+            else if (result.LastUpdate > lastUpdate)
             {
-                MessageBox.Show("need update CLOUD");
-            }
-            else
-            {
-                MessageBox.Show("need update CLIENT 2");
+                ChangeLabelContent("Step 3. Updating of client ...");
+                updateModel.UpdateDate = lastUpdate.Ticks;
+                GetWordsFromServer(updateModel, cancellationTokenSource);
+                return;
             }
         }
 
+        private void UpdateCloud(DateTime serverLastUpdate, List<EnRuWord> myWords)
+        {
+            var updateWords = myWords.Where(r => r.UpdateDate > serverLastUpdate).ToList();
+            CreatWordJsonModelAndSend(updateWords, ApplicationContext.CurrentUser);
+        }
+
+        private void GetWordsFromServer(UserUpdateDateModel updateModel, CancellationTokenSource cancellationTokenSource)
+        {
+            var userWords = _synchronizeHelper.GetUserWords(updateModel);
+
+            if (userWords.IsError)
+            {
+                MessageBox.Show(userWords.ErrorMessage);
+                return;
+            }
+
+            AddWordsFromResponse(userWords.WordsCloudModel, cancellationTokenSource);
+        }
 
         private void CheckServer()
         {
@@ -168,15 +153,6 @@ namespace WpfUI.Pages
             if (isServerOnline == false)
             {
                 CloseSync("Server is offline");
-            }
-        }
-
-        private void GetUserWords()
-        {
-            _responseModel = _syncHelper.GetUserWords(_user);
-            if (_responseModel.IsError)
-            {
-                CloseSync(_responseModel.ErrorMessage);
             }
         }
 
@@ -218,10 +194,10 @@ namespace WpfUI.Pages
 
                     count++;
 
-                    var message = string.Format("Step 5. Adding of words... {0}/{1}", count, wordCount);
+                    var message = string.Format("Step 4. Adding of words... {0}/{1}", count, wordCount);
                     ChangeLabelContent(message);
 
-                    var progress = GetProgress(wordCount, count, 35, 60);
+                    var progress = GetProgress(wordCount, count, 40, 60);
                     ChangeProgressBarValue(progress);
 
                     CheckCancel(cancellationTokenSource);
@@ -229,39 +205,7 @@ namespace WpfUI.Pages
             }
             else
             {
-                ChangeProgressBarValue(95);
-            }
-        }
-
-        private void RemoveIsDeletedWords(int userId, CancellationTokenSource cancellationTokenSource)
-        {
-            var repositoryFactory = ApplicationContext.RepositoryFactory;
-            var deletedWords = repositoryFactory.EnRuWordsRepository.AllEnRuWords().Where(r => r.IsDeleted && r.UserId == userId);
-
-            var count = 0;
-
-            var wordCount = deletedWords.Count();
-
-            if (wordCount != 0)
-            {
-                foreach (var word in deletedWords)
-                {
-                    repositoryFactory.EnRuWordsRepository.DeleteEnRuWord(word.EnglishWord.EnWord, userId);
-
-                    count++;
-                    var message = string.Format("Step 6. Removing of words... {0}/{1}", count, wordCount);
-                    ChangeLabelContent(message);
-
-
-                    var progress = GetProgress(wordCount, count, 5, 95);
-                    ChangeProgressBarValue(progress);
-
-                    CheckCancel(cancellationTokenSource);
-                }
-            }
-            else
-            {
-                ChangeProgressBarValue(99);
+                ChangeProgressBarValue(100);
             }
         }
 
@@ -289,57 +233,6 @@ namespace WpfUI.Pages
                 MessageBox.Show(message, "Synchronize");
             }
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new ThreadStart(() => Switcher.Switch(new MainPage())));
-        }
-
-        private void SendMyWords(CancellationTokenSource cancellationTokenSource, User user)
-        {
-            var repositoryFactory = ApplicationContext.RepositoryFactory;
-
-            var userWords = repositoryFactory.EnRuWordsRepository
-              .AllEnRuWords().Where(r => r.UserId == user.Id);
-
-            if (userWords == null)
-            {
-                CloseSync("User words is null");
-            }
-
-            const int wordsInRequest = 100;
-
-            var iterationCount = 0;
-            if (userWords.Count() % wordsInRequest != 0)
-            {
-                iterationCount = userWords.Count() / wordsInRequest + 1;
-            }
-            else
-            {
-                iterationCount = userWords.Count() / wordsInRequest;
-            }
-
-            var sendList = userWords.Take(wordsInRequest);
-            var result = CreatWordJsonModelAndSend(sendList, user);
-            if (result.IsError)
-            {
-                CloseSync(result.ErrorMessage);
-            }
-
-            var progress = GetProgress(iterationCount, 1, 50, 0);
-            ChangeProgressBarValue(progress);
-            CheckCancel(cancellationTokenSource);
-
-            for (var i = 1; i < iterationCount; i++)
-            {
-                sendList = userWords.Skip(wordsInRequest * i).Take(wordsInRequest);
-
-                result = CreatWordJsonModelAndSend(sendList, user);
-                if (result.IsError)
-                {
-                    CloseSync(result.ErrorMessage);
-                }
-
-                progress = GetProgress(iterationCount, i + 1, 50, 0);
-                ChangeProgressBarValue(progress);
-                CheckCancel(cancellationTokenSource);
-            }
         }
 
         private ResponseModel CreatWordJsonModelAndSend(IEnumerable<EnRuWord> enRuWords, User user)

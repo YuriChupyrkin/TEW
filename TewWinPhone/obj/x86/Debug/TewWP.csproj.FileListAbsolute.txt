@@ -71,3 +71,4 @@ D:\Study\Programming\Projects\Tew_Project\TewWinPhone\bin\x86\Debug\Newtonsoft.J
 D:\Study\Programming\Projects\Tew_Project\TewWinPhone\bin\x86\Debug\Newtonsoft.Json.xml
 D:\Study\Programming\Projects\Tew_Project\TewWinPhone\obj\x86\Debug\Pages\SyncPage.xaml
 D:\Study\Programming\Projects\Tew_Project\TewWinPhone\obj\x86\Debug\Pages\SyncPage.xbf
+D:\Study\Programming\Projects\Tew_Project\TewWinPhone\obj\x86\Debug\TewWP.csprojResolveAssemblyReference.cache

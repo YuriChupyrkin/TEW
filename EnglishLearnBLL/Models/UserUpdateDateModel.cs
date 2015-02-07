@@ -6,6 +6,6 @@ namespace EnglishLearnBLL.Models
     {
         public string UserName { get; set; }
 
-        public DateTime? UpdateDate { get; set; }
+        public long UpdateDate { get; set; }
     }
 }

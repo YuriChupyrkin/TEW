@@ -183,7 +183,6 @@
     <Compile Include="Controllers\ClientFilesInfoController.cs" />
     <Compile Include="Controllers\ClientFilesUpdateController.cs" />
     <Compile Include="Controllers\SynchronizeController.cs" />
-    <Compile Include="Controllers\SynchronizeV2Controller.cs" />
     <Compile Include="Controllers\TewController.cs" />
     <Compile Include="Controllers\TewInfoController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />

@@ -5,8 +5,6 @@ using EnglishLearnBLL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TewCloud.Helpers
 {
@@ -20,7 +18,6 @@ namespace TewCloud.Helpers
             _repositoryFactory = repositoryFactory;
             _unitOfWork = (IUnitOfWork)repositoryFactory;
         }
-
 
         public WordsCloudModel GetUserWords(UserUpdateDateModel updateModel)
         {
@@ -41,7 +38,7 @@ namespace TewCloud.Helpers
             else
             {
                 enRuWords = _repositoryFactory.EnRuWordsRepository.AllEnRuWords()
-                  .Where(r => r.UserId == user.Id && r.UpdateDate >= updateModel.UpdateDate && r.IsDeleted == false);
+                  .Where(r => r.UserId == user.Id && r.UpdateDate >= new DateTime(updateModel.UpdateDate) && r.IsDeleted == false);
 
             }
 

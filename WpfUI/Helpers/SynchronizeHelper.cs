@@ -7,13 +7,14 @@ using Domain.Entities;
 using EnglishLearnBLL.Models;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace WpfUI.Helpers
 {
     internal sealed class SynchronizeHelper
     {
         private const string KickController = "api/Values";
-        private const string SynchronizeController = "api/SynchronizeV2";
+        private const string SynchronizeController = "api/Synchronize";
         private const string CheckUpdateController = "api/CheckUpdate";
 
         public const string Uri = "http://localhost:8081/";
@@ -76,14 +77,9 @@ namespace WpfUI.Helpers
             return result;
         }
 
-        public ResponseModel GetUserWords(User user)
+        public ResponseModel GetUserWords(UserUpdateDateModel updateModel)
         {
-            if (user == null)
-            {
-                throw new Exception("User is null");
-            }
-
-            var uri = Uri + SynchronizeController + "?userName=" + user.Email;
+            var uri = Uri + SynchronizeController + "?UserName=" + updateModel.UserName + "&UpdateDate=" + updateModel.UpdateDate;
 
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
 
@@ -156,18 +152,18 @@ namespace WpfUI.Helpers
             return result;
         }
 
-        public ResponseModel CreatWordJsonModelAndSend(EnRuWord enRuWords, User user)
+        public ResponseModel CreatWordJsonModelAndSend(EnRuWord enRuWord, User user)
         {
             var cloudModel = new WordsCloudModel { UserName = user.Email };
 
             var viewModel = new WordJsonModel
             {
-                English = enRuWords.EnglishWord.EnWord,
-                Russian = enRuWords.RussianWord.RuWord,
-                Level = enRuWords.WordLevel,
-                Example = enRuWords.Example,
-                IsDeleted = enRuWords.IsDeleted,
-                UpdateDate = enRuWords.UpdateDate
+                English = enRuWord.EnglishWord.EnWord,
+                Russian = enRuWord.RussianWord.RuWord,
+                Level = enRuWord.WordLevel,
+                Example = enRuWord.Example,
+                IsDeleted = enRuWord.IsDeleted,
+                UpdateDate = enRuWord.UpdateDate
             };
 
             cloudModel.Words.Add(viewModel);
