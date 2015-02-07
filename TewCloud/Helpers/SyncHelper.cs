@@ -120,12 +120,12 @@ namespace TewCloud.Helpers
 
             var words = _repositoryFactory.EnRuWordsRepository.AllEnRuWords().Where(r => r.UserId == user.Id).ToList();
 
-            if(words == null || words.Any() == false)
-            {
-                return new CheckUpdateModel { IsError = true, ErrorMessage = "Words not found" }; 
-            }
+            var maxDate = DateTime.MinValue;
 
-            var maxDate = words.Max(r => r.UpdateDate);
+            if(words != null && words.Any())
+            { 
+                maxDate = words.Max(r => r.UpdateDate);
+            }
 
             var checkUpdateModel = new CheckUpdateModel
             {

@@ -11,7 +11,6 @@ namespace Domain.Entities
     public int UserId { get; set; }
     public int WordLevel { get; set; }
     public bool IsDeleted { get; set; }
-    public bool IsUpdated { get; set; }
     public DateTime UpdateDate { get; set; }
 
     [JsonIgnore]

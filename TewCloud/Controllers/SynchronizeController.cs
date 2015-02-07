@@ -92,6 +92,5 @@ namespace TewCloud.Controllers
 
             return Json(cloudModel);
         }
-
     }
 }

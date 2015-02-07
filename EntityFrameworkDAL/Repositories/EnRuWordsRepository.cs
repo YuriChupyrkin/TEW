@@ -253,11 +253,5 @@ namespace EntityFrameworkDAL.Repositories
             return enRuWord;
         }
 
-        public void ChangeUpdateStatus(int enRuWordId, bool isUpdate)
-        {
-            var enRuWord = _context.EnRuWords.Find(enRuWordId);
-            enRuWord.IsUpdated = isUpdate;
-            _context.SaveChanges();
-        }
     }
 }

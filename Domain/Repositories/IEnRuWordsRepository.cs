@@ -20,6 +20,5 @@ namespace Domain.Repositories
     string GetRussianWordById(int id);
     string GetEnglishWordById(int id);
     EnRuWord MakeDeleted(string enWord, int userId);
-    void ChangeUpdateStatus(int enRuWordId, bool isUpdate);
   }
 }

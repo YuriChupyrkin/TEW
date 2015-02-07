@@ -114,7 +114,7 @@ namespace WpfUI.Pages
             if (result.LastUpdate < lastUpdate)
             {
                 ChangeLabelContent("Step 3. Updating of cloud ...");
-                UpdateCloud(result.LastUpdate, words);
+                UpdateCloud(result.LastUpdate, words, cancellationTokenSource);
             }
             else if (result.LastUpdate > lastUpdate)
             {
@@ -125,10 +125,36 @@ namespace WpfUI.Pages
             }
         }
 
-        private void UpdateCloud(DateTime serverLastUpdate, List<EnRuWord> myWords)
+        private void UpdateCloud(DateTime serverLastUpdate, List<EnRuWord> myWords, CancellationTokenSource cancellationTokenSource)
         {
             var updateWords = myWords.Where(r => r.UpdateDate > serverLastUpdate).ToList();
-            CreatWordJsonModelAndSend(updateWords, ApplicationContext.CurrentUser);
+
+            var packSize = 50;
+
+            var wordCount = updateWords.Count;
+            var iterationCount = (wordCount / packSize) + 1;
+
+            if (iterationCount <= 1)
+            {
+                CreatWordJsonModelAndSend(updateWords, ApplicationContext.CurrentUser);
+            }
+            else
+            {
+                var skipCount = 0;
+                for(var i = 1; i <= iterationCount + 1; i++)
+                {
+                    var takeCount = wordCount - (skipCount * packSize) > packSize ? packSize : wordCount;
+
+                    var pack = updateWords.Skip(skipCount * packSize).Take(takeCount);
+
+                    CreatWordJsonModelAndSend(pack, ApplicationContext.CurrentUser);
+                    var progress = GetProgress(iterationCount, i, 100, 0);
+                    ChangeProgressBarValue(progress);
+                    skipCount++;
+
+                    CheckCancel(cancellationTokenSource);
+                }
+            }
         }
 
         private void GetWordsFromServer(UserUpdateDateModel updateModel, CancellationTokenSource cancellationTokenSource)
@@ -197,7 +223,7 @@ namespace WpfUI.Pages
                     var message = string.Format("Step 4. Adding of words... {0}/{1}", count, wordCount);
                     ChangeLabelContent(message);
 
-                    var progress = GetProgress(wordCount, count, 40, 60);
+                    var progress = GetProgress(wordCount, count, 100, 0);
                     ChangeProgressBarValue(progress);
 
                     CheckCancel(cancellationTokenSource);
