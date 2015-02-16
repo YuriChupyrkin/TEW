@@ -6,7 +6,7 @@ namespace EntityFrameworkDAL.Context
   public class EnglishLearnContext : DbContext
   {
     internal EnglishLearnContext()
-      : base("name=EnglishLearnContext")
+      : base("EnglishLearnContext")
     {
       Database.SetInitializer(new EnglishLearnContextInitializer());
     }

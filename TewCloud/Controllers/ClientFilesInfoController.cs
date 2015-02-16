@@ -16,7 +16,7 @@ namespace TewCloud.Controllers
 
       try
       {
-        var clientDir = HttpContext.Current.Server.MapPath("/TewCloud/client");
+        var clientDir = HttpContext.Current.Server.MapPath("/client");
         var filesInfo = new FileInfoChecker(clientDir).GetFilesInfo();
         return Json(filesInfo);
       }

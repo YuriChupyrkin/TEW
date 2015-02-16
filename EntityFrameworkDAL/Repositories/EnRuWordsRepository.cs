@@ -248,6 +248,7 @@ namespace EntityFrameworkDAL.Repositories
             }
 
             enRuWord.IsDeleted = true;
+            enRuWord.UpdateDate = DateTime.UtcNow;
             _context.SaveChanges();
 
             return enRuWord;

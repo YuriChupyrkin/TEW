@@ -254,7 +254,6 @@ D:\Study\Programming\Projects\Tew_Project\TewCloud\bin\Microsoft.Web.Infrastruct
 D:\Study\Programming\Projects\Tew_Project\TewCloud\bin\Newtonsoft.Json.dll
 D:\Study\Programming\Projects\Tew_Project\TewCloud\bin\NLog.dll
 D:\Study\Programming\Projects\Tew_Project\TewCloud\bin\System.Data.SqlServerCe.dll
-D:\Study\Programming\Projects\Tew_Project\TewCloud\bin\System.Data.SqlServerCe.Entity.dll
 D:\Study\Programming\Projects\Tew_Project\TewCloud\bin\System.Net.Http.Formatting.dll
 D:\Study\Programming\Projects\Tew_Project\TewCloud\bin\System.Web.Helpers.dll
 D:\Study\Programming\Projects\Tew_Project\TewCloud\bin\System.Web.Http.dll

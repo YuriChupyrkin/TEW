@@ -10,6 +10,7 @@
 
     <Grid>
         <Button x:Name="buttonStart" Content="Start" HorizontalAlignment="Left" Margin="147,76,0,0" VerticalAlignment="Top" Click="buttonStart_Click"/>
+        <TextBlock x:Name="txtBlockProgress" HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Margin="133,299,0,0" Width="193"/>
 
     </Grid>
 </Page>

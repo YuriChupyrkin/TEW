@@ -72,3 +72,5 @@ D:\Study\Programming\Projects\Tew_Project\TewWinPhone\obj\ARM\Debug\Pages\Change
 D:\Study\Programming\Projects\Tew_Project\TewWinPhone\obj\ARM\Debug\Pages\ChooseTestPage.xbf
 D:\Study\Programming\Projects\Tew_Project\TewWinPhone\obj\ARM\Debug\Pages\PickerTestPage.xbf
 D:\Study\Programming\Projects\Tew_Project\TewWinPhone\obj\ARM\Debug\Pages\SyncPage.xbf
+D:\Study\Programming\Projects\Tew_Project\TewWinPhone\bin\ARM\Debug\Microsoft.Xaml.Interactions.dll
+D:\Study\Programming\Projects\Tew_Project\TewWinPhone\bin\ARM\Debug\Microsoft.Xaml.Interactivity.dll

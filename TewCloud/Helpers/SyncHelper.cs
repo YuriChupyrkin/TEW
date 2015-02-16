@@ -30,15 +30,15 @@ namespace TewCloud.Helpers
 
             IEnumerable<EnRuWord> enRuWords = new List<EnRuWord>();
 
-            if (updateModel.UpdateDate == null)
+            if (updateModel.UpdateDate == 0)
             {
                 enRuWords = _repositoryFactory.EnRuWordsRepository.AllEnRuWords()
-                 .Where(r => r.UserId == user.Id && r.IsDeleted == false);
+                 .Where(r => r.UserId == user.Id);
             }
             else
             {
                 enRuWords = _repositoryFactory.EnRuWordsRepository.AllEnRuWords()
-                  .Where(r => r.UserId == user.Id && r.UpdateDate >= new DateTime(updateModel.UpdateDate) && r.IsDeleted == false);
+                  .Where(r => r.UserId == user.Id && r.UpdateDate >= new DateTime(updateModel.UpdateDate));
 
             }
 

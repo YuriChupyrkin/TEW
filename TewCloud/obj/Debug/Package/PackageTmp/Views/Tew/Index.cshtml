@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "TEW";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row center-block main-text">
+    <div class="jumbotron header-with-image" id="indexHeader">
+        <div class="title-text big-size-text">Trainer of english words</div>
+        <h2 class="title-text">Improve your english now!</h2>
+    </div>
+
+    <div id="statContainer">
+        
+        <div class="stat-block">
+            <div id="userBlock">
+                <img src="~/Content/Images/multy-user.png" class="icons"/>
+                <span id="userCount"></span>
+            </div>
+            <div id="wordsBlock">
+                <img src="~/Content/Images/words.png" class="icons" />
+                <span id="wordsCount"></span>
+            </div>
+        </div>
+
+        <div id="downdLoadBlock">
+            <img src="~/Content/Images/downloadButton.jpg" class="download-icon" id="downloadButton"/>
+        </div>
+
+    </div>
+
+    <div id="loadingContainer" style="text-align: center" class="display-none">
+        <img src="~/Content/Images/ajax-loader.gif" />
+    </div>
+</div>
+
+
+<div class="row">
+    <img src="~/Content/Images/london.jpg" class="image-resize" />
+
+</div>
+
+<div id="download" class="row center-block main-text">
+    @Html.Partial("DownloadView")
+</div>
+
+@Scripts.Render("~/bundles/tewScripts")

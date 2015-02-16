@@ -26,6 +26,8 @@ namespace TewWinPhone.Pages
     public sealed partial class MyWords : Page
     {
         private readonly NavigationService _navigationService = ApplicationContext.NavigationService;
+        public bool IsShuffleEnabled;
+        public bool IsRepeatEnabled;
 
         public MyWords()
         {
@@ -41,15 +43,7 @@ namespace TewWinPhone.Pages
         {
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
 
-            var words = ApplicationContext.DbRepository.GetEnRuWords();
-
-            myWordsListView.Items.Clear();
-
-            foreach (var t in words)
-            {
-                myWordsListView.Items.Add(t.GetViewString());
-            }
-
+            RefreshListView();
         }
 
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
@@ -63,5 +57,36 @@ namespace TewWinPhone.Pages
             //remove the handler before you leave!
             HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
         }
+
+        private void Reset_Click(object sender, RoutedEventArgs e)
+        {
+            IsShuffleEnabled = false;
+            IsRepeatEnabled = false;
+        }
+
+        private void DeleteWord(object sender, RoutedEventArgs e)
+        {
+            var word = GetWordFromRoutedEventArgs(e);
+            word = ApplicationContext.DbRepository.DeleteWord(word);
+
+            if (word != null)
+            {
+                new SynchronizeHelper().SendWordInBackGround(word, ApplicationContext.UserEmail);
+                RefreshListView();
+            }
+        }
+
+        private EnglishRussianWordEntity GetWordFromRoutedEventArgs(RoutedEventArgs e)
+        {
+            var word = (EnglishRussianWordEntity)(((MenuFlyoutItem)e.OriginalSource).DataContext);
+            return word;
+        }
+
+        private void RefreshListView()
+        {
+            var words = ApplicationContext.DbRepository.GetEnRuWords(r => r.IsDeleted == false).ToList();
+            myWordsListView.ItemsSource = words;
+        }
+
     }
 }

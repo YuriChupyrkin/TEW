@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using TewWinPhone.Entities;
 using TewWinPhone.Models;
 using Windows.Storage;
@@ -24,7 +25,12 @@ namespace TewWinPhone.Services
 
         public IEnumerable<EnglishRussianWordEntity> GetEnRuWords()
         {
-            return _dbConnection.Table<EnglishRussianWordEntity>().ToList<EnglishRussianWordEntity>();
+            return _dbConnection.Table<EnglishRussianWordEntity>();
+        }
+
+        public IEnumerable<EnglishRussianWordEntity> GetEnRuWords(Expression<Func<EnglishRussianWordEntity, bool>> expression)
+        {
+            return _dbConnection.Table<EnglishRussianWordEntity>().Where(expression);
         }
 
         public void AddWord(EnglishRussianWordEntity word)
@@ -42,6 +48,20 @@ namespace TewWinPhone.Services
                 englishWord.WordLevel = 0;
                 _dbConnection.Update(englishWord);
             }
+        }
+
+        public EnglishRussianWordEntity DeleteWord(EnglishRussianWordEntity word)
+        {
+            var wordFromDb = _dbConnection.Table<EnglishRussianWordEntity>().FirstOrDefault(r => r.Id == word.Id);
+
+            if(wordFromDb != null)
+            {
+                wordFromDb.IsDeleted = true;
+                _dbConnection.Update(wordFromDb);
+                return wordFromDb;
+            }
+
+            return null;
         }
 
         [Obsolete]

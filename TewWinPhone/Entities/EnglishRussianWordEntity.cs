@@ -20,9 +20,17 @@ namespace TewWinPhone.Entities
 
         public DateTime UpdateDate { get; set; }
 
-        public string GetViewString()
+        public override string ToString()
         {
             return string.Format("{0} - {1} - {2}", this.English, this.Russian, this.WordLevel);
+        }
+
+        public string ShortString
+        {
+            get
+            {
+                return string.Format("{0} - {1} - {2}", this.English, this.Russian, this.WordLevel);
+            }
         }
     }
 }

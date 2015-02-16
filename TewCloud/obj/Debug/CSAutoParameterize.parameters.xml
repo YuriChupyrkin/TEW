@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="EnglishLearnContext-Web.config Connection String" description="EnglishLearnContext Connection String used in web.config by the application to access the database." defaultValue="Data Source=|DataDirectory|\EnglishLearnDataBase.sdf" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Study\\Programming\\Projects\\Tew_Project\\TewCloud\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='EnglishLearnContext']/@connectionString" />
+  </parameter>
+</parameters>
