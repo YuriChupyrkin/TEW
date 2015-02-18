@@ -60,7 +60,10 @@ namespace TewCloud.Controllers
             var okResponse = new ResponseModel
             {
                 IsError = false,
-                ErrorMessage = string.Empty
+                ErrorMessage = string.Empty,
+                WordsCloudModel = new WordsCloudModel {
+                    TotalWords = _syncHelper.GetWordCount(wordsModel.UserName)
+                }
             };
             return Json(okResponse);
         }

@@ -23,7 +23,7 @@
                             <MenuFlyout>
                                 <MenuFlyoutItem Text="Delete" Click="DeleteWord"/>
                                 <MenuFlyoutSeparator/>
-                                <MenuFlyoutItem Text="Feature is coming soon" />
+                                <MenuFlyoutItem Text="Clean DB" Click="CleanDb"/>
                             </MenuFlyout>
                         </Button.Flyout>
                     </Button>

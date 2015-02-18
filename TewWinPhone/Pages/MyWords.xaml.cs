@@ -76,6 +76,17 @@ namespace TewWinPhone.Pages
             }
         }
 
+        private void CleanDb(object sender, RoutedEventArgs e)
+        {
+            var words = ApplicationContext.DbRepository.GetEnRuWords();
+            foreach(var word in words)
+            {
+                ApplicationContext.DbRepository.DeleteWordFromDb(word);
+            }
+
+            RefreshListView();
+        }
+
         private EnglishRussianWordEntity GetWordFromRoutedEventArgs(RoutedEventArgs e)
         {
             var word = (EnglishRussianWordEntity)(((MenuFlyoutItem)e.OriginalSource).DataContext);
@@ -84,8 +95,9 @@ namespace TewWinPhone.Pages
 
         private void RefreshListView()
         {
-            var words = ApplicationContext.DbRepository.GetEnRuWords(r => r.IsDeleted == false).ToList();
+            var words = ApplicationContext.DbRepository.GetEnRuWords(r => r.IsDeleted == false).OrderByDescending(r => r.WordLevel).ToList();
             myWordsListView.ItemsSource = words;
+            textBlock.Text = string.Format("My words: {0}", words.Count);
         }
 
     }

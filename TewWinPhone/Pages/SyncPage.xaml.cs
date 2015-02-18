@@ -59,13 +59,22 @@ namespace TewWinPhone.Pages
 
         private async void buttonStart_Click(object sender, RoutedEventArgs e)
         {
-            //Task.Run(() => StartSync(_cancellationToken), _cancellationToken.Token);
-            await StartSync(_cancellationToken);
+            try {
+                //Task.Run(() => StartSync(_cancellationToken), _cancellationToken.Token);
+                await StartSync(_cancellationToken);
+                txtBlockProgress.Text = "Complete";
+            }
+            catch(Exception ex)
+            {
+                await ShowDialog(ex.Message);
+            }
         }
 
         private async Task StartSync(CancellationTokenSource cancellationTokenSource)
         {
             var words = ApplicationContext.DbRepository.GetEnRuWords().ToList();
+
+            ResponseModel responseModel = null;
 
             var updateModel = new UserUpdateDateModel
             {
@@ -77,7 +86,7 @@ namespace TewWinPhone.Pages
             {
                 //ChangeLabelContent("Step 3. Updating of client ...");
                 //updateModel.UpdateDate = lastUpdateDate.Ticks;
-                await GetWordsFromServer(updateModel, cancellationTokenSource);
+                responseModel = await GetWordsFromServer(updateModel, cancellationTokenSource);
             }
 
             var lastUpdateDate = words.Max(r => r.UpdateDate);
@@ -93,18 +102,37 @@ namespace TewWinPhone.Pages
             if (result.LastUpdate < lastUpdateDate)
             {
                 //ChangeLabelContent("Step 3. Updating of cloud ...");
-                await UpdateCloud(result.LastUpdate, words, cancellationTokenSource);
+                responseModel = await UpdateCloud(result.LastUpdate, words, cancellationTokenSource);
             }
             else if (result.LastUpdate > lastUpdateDate)
             {
                 //ChangeLabelContent("Step 3. Updating of client ...");
                 updateModel.UpdateDate = lastUpdateDate.Ticks;
-                await GetWordsFromServer(updateModel, cancellationTokenSource);
-                return;
+                responseModel = await GetWordsFromServer(updateModel, cancellationTokenSource);
+            }
+
+            var localTotalWords = GetLocalWordCount();
+            if (responseModel != null && responseModel.WordsCloudModel.TotalWords != localTotalWords)
+            {
+                if (localTotalWords > responseModel.WordsCloudModel.TotalWords)
+                {
+                    words = ApplicationContext.DbRepository.GetEnRuWords().ToList();
+                    await UpdateCloud(DateTime.MinValue, words, cancellationTokenSource);
+                }
+                else
+                {
+                    updateModel.UpdateDate = 0;
+                    await GetWordsFromServer(updateModel, cancellationTokenSource);
+                }
             }
         }
 
-        private async Task GetWordsFromServer(UserUpdateDateModel updateModel, CancellationTokenSource cancellationTokenSource)
+        private int GetLocalWordCount()
+        {
+            return ApplicationContext.DbRepository.GetEnRuWords().Count();
+        }
+
+        private async Task<ResponseModel> GetWordsFromServer(UserUpdateDateModel updateModel, CancellationTokenSource cancellationTokenSource)
         {
             try {
                 var userWords = await _syncHelper.GetUserWords(updateModel);
@@ -112,14 +140,18 @@ namespace TewWinPhone.Pages
                 if (userWords.IsError)
                 {
                     await ShowDialog(userWords.ErrorMessage);
-                    return;
+                    return null;
                 }
 
                 AddWordsFromResponse(userWords.WordsCloudModel, cancellationTokenSource);
-            }catch(Exception ex)
+                return userWords; 
+            }
+            catch (Exception ex)
             {
                 await ShowDialog(ex.Message);
             }
+
+            return null;
         }
 
         private void AddWordsFromResponse(SyncWordsModel cloudModel, CancellationTokenSource cancellationTokenSource)
@@ -153,7 +185,7 @@ namespace TewWinPhone.Pages
 
                     count++;
 
-                    var message = string.Format("Step 4. Adding of words... {0}/{1}", count, wordCount);
+                    var message = string.Format("Adding of words... {0}/{1}", count, wordCount);
                     txtBlockProgress.Text = message;
                     //ChangeLabelContent(message);
 
@@ -170,7 +202,7 @@ namespace TewWinPhone.Pages
             }
         }
 
-        private async Task UpdateCloud(DateTime serverLastUpdate, List<EnglishRussianWordEntity> myWords, CancellationTokenSource cancellationTokenSource)
+        private async Task<ResponseModel> UpdateCloud(DateTime serverLastUpdate, List<EnglishRussianWordEntity> myWords, CancellationTokenSource cancellationTokenSource)
         {
             var updateWords = myWords.Where(r => r.UpdateDate > serverLastUpdate).ToList();
 
@@ -179,9 +211,11 @@ namespace TewWinPhone.Pages
             var wordCount = updateWords.Count;
             var iterationCount = (wordCount / packSize) + 1;
 
+            ResponseModel responseModel = null;
+
             if (iterationCount <= 1)
             {
-                await CreatWordJsonModelAndSend(updateWords, ApplicationContext.UserEmail);
+                responseModel = await CreatWordJsonModelAndSend(updateWords, ApplicationContext.UserEmail);
             }
             else
             {
@@ -192,7 +226,7 @@ namespace TewWinPhone.Pages
 
                     var pack = updateWords.Skip(skipCount * packSize).Take(takeCount);
 
-                    await CreatWordJsonModelAndSend(pack, ApplicationContext.UserEmail);
+                    responseModel = await CreatWordJsonModelAndSend(pack, ApplicationContext.UserEmail);
                     //var progress = GetProgress(iterationCount, i, 100, 0);
                     //ChangeProgressBarValue(progress);
                     skipCount++;
@@ -200,6 +234,8 @@ namespace TewWinPhone.Pages
                     CheckCancel(cancellationTokenSource);
                 }
             }
+
+            return responseModel;
         }
 
         private async Task<ResponseModel> CreatWordJsonModelAndSend(IEnumerable<EnglishRussianWordEntity> enRuWords, string userName)

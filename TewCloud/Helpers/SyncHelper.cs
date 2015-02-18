@@ -103,13 +103,15 @@ namespace TewCloud.Helpers
                     Russian = word.RussianWord.RuWord,
                     Level = word.WordLevel,
                     Example = word.Example,
-                    UpdateDate = word.UpdateDate
+                    UpdateDate = word.UpdateDate,
+                    IsDeleted = word.IsDeleted
                 };
 
                 words.Add(viewModel);
             }
 
             wordsCloudModel.Words = words;
+            wordsCloudModel.TotalWords = GetWordCount(userName);
 
             return wordsCloudModel;
         }
@@ -134,6 +136,11 @@ namespace TewCloud.Helpers
             };
 
             return checkUpdateModel;
+        }
+
+        public int GetWordCount(string userName)
+        {
+            return _repositoryFactory.EnRuWordsRepository.AllEnRuWords().Count(r => r.User.Email == userName);
         }
 
     }

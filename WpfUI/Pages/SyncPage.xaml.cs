@@ -88,6 +88,8 @@ namespace WpfUI.Pages
 
             var words = _repositoryFactory.EnRuWordsRepository.AllEnRuWords().Where(r => r.UserId == user.Id).ToList();
 
+            WordsCloudModel cloudModel = null;
+
             var updateModel = new UserUpdateDateModel
             {
                 UserName = user.Email,
@@ -97,35 +99,59 @@ namespace WpfUI.Pages
             if (words == null || words.Any() == false)
             {
                 ChangeLabelContent("Step 3. Updating of client ...");
-                GetWordsFromServer(updateModel, cancellationTokenSource);
-                return;
+                cloudModel = GetWordsFromServer(updateModel, cancellationTokenSource);
+            }
+            else
+            {
+                var lastUpdate = words.Max(r => r.UpdateDate);
+
+                var result = _synchronizeHelper.GetUpdates(user.Email);
+
+                if (result.IsError.GetValueOrDefault())
+                {
+                    MessageBox.Show(result.ErrorMessage, "sync error");
+                    return;
+                }
+
+                if (result.LastUpdate < lastUpdate)
+                {
+                    ChangeLabelContent("Step 3. Updating of cloud ...");
+                    cloudModel = UpdateCloud(result.LastUpdate, words, cancellationTokenSource);
+                }
+                else if (result.LastUpdate > lastUpdate)
+                {
+                    ChangeLabelContent("Step 3. Updating of client ...");
+                    updateModel.UpdateDate = lastUpdate.Ticks;
+                    cloudModel = GetWordsFromServer(updateModel, cancellationTokenSource);
+                }
             }
 
-            var lastUpdate = words.Max(r => r.UpdateDate);
-
-            var result = _synchronizeHelper.GetUpdates(user.Email);
-
-            if (result.IsError.GetValueOrDefault())
+            var localTotalWords = GetWordCount(user.Email);
+            if (cloudModel != null && cloudModel.TotalWords != localTotalWords)
             {
-                MessageBox.Show(result.ErrorMessage, "sync error");
-                return;
-            }
-
-            if (result.LastUpdate < lastUpdate)
-            {
-                ChangeLabelContent("Step 3. Updating of cloud ...");
-                UpdateCloud(result.LastUpdate, words, cancellationTokenSource);
-            }
-            else if (result.LastUpdate > lastUpdate)
-            {
-                ChangeLabelContent("Step 3. Updating of client ...");
-                updateModel.UpdateDate = lastUpdate.Ticks;
-                GetWordsFromServer(updateModel, cancellationTokenSource);
-                return;
+                if(localTotalWords > cloudModel.TotalWords)
+                {
+                    //todo updateCloud
+                    ChangeLabelContent("Force updating of client ...");
+                    words = _repositoryFactory.EnRuWordsRepository.AllEnRuWords().Where(r => r.UserId == user.Id).ToList();
+                    UpdateCloud(DateTime.MinValue, words, cancellationTokenSource);
+                }
+                else
+                {
+                    //todo updateClient
+                    ChangeLabelContent("Force updating of cloud ...");
+                    updateModel.UpdateDate = 0;
+                    GetWordsFromServer(updateModel, cancellationTokenSource);
+                }
             }
         }
 
-        private void UpdateCloud(DateTime serverLastUpdate, List<EnRuWord> myWords, CancellationTokenSource cancellationTokenSource)
+        private int GetWordCount(string userName)
+        {
+            return _repositoryFactory.EnRuWordsRepository.AllEnRuWords().Count(r => r.User.Email == userName);
+        }
+
+        private WordsCloudModel UpdateCloud(DateTime serverLastUpdate, List<EnRuWord> myWords, CancellationTokenSource cancellationTokenSource)
         {
             var updateWords = myWords.Where(r => r.UpdateDate > serverLastUpdate).ToList();
 
@@ -134,9 +160,11 @@ namespace WpfUI.Pages
             var wordCount = updateWords.Count;
             var iterationCount = (wordCount / packSize) + 1;
 
+            ResponseModel responseModel = null;
+
             if (iterationCount <= 1)
             {
-                CreatWordJsonModelAndSend(updateWords, ApplicationContext.CurrentUser);
+                responseModel = CreatWordJsonModelAndSend(updateWords, ApplicationContext.CurrentUser);
             }
             else
             {
@@ -147,7 +175,7 @@ namespace WpfUI.Pages
 
                     var pack = updateWords.Skip(skipCount * packSize).Take(takeCount);
 
-                    CreatWordJsonModelAndSend(pack, ApplicationContext.CurrentUser);
+                    responseModel = CreatWordJsonModelAndSend(pack, ApplicationContext.CurrentUser);
                     var progress = GetProgress(iterationCount, i, 100, 0);
                     ChangeProgressBarValue(progress);
                     skipCount++;
@@ -155,19 +183,23 @@ namespace WpfUI.Pages
                     CheckCancel(cancellationTokenSource);
                 }
             }
+
+            return responseModel.WordsCloudModel;
         }
 
-        private void GetWordsFromServer(UserUpdateDateModel updateModel, CancellationTokenSource cancellationTokenSource)
+        private WordsCloudModel GetWordsFromServer(UserUpdateDateModel updateModel, CancellationTokenSource cancellationTokenSource)
         {
             var userWords = _synchronizeHelper.GetUserWords(updateModel);
 
             if (userWords.IsError)
             {
                 MessageBox.Show(userWords.ErrorMessage);
-                return;
+                return null;
             }
 
             AddWordsFromResponse(userWords.WordsCloudModel, cancellationTokenSource);
+
+            return userWords.WordsCloudModel;
         }
 
         private void CheckServer()
@@ -216,7 +248,8 @@ namespace WpfUI.Pages
                         word.Example,
                         user.Id,
                         word.UpdateDate,
-                        word.Level);
+                        word.Level,
+                        word.IsDeleted);
 
                     count++;
 

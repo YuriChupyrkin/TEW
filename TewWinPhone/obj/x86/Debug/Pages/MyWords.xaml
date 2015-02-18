@@ -23,7 +23,7 @@
                             <MenuFlyout>
                                 <MenuFlyoutItem x:ConnectionId='1' Text="Delete"                   />
                                 <MenuFlyoutSeparator/>
-                                <MenuFlyoutItem Text="Feature is coming soon" />
+                                <MenuFlyoutItem x:ConnectionId='2' Text="Clean DB"                />
                             </MenuFlyout>
                         </Button.Flyout>
                     </Button>

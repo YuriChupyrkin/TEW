@@ -2,14 +2,17 @@
 
 namespace EnglishLearnBLL.Models
 {
-  public sealed class WordsCloudModel
-  {
-    public WordsCloudModel()
+    public sealed class WordsCloudModel
     {
-      Words = new List<WordJsonModel>();
-    }
+        public WordsCloudModel()
+        {
+            Words = new List<WordJsonModel>();
+        }
 
-    public string UserName { get; set; }
-    public IList<WordJsonModel> Words { get; set; } 
-  }
+        public string UserName { get; set; }
+
+        public int TotalWords { get; set; }
+        
+        public IList<WordJsonModel> Words { get; set; }
+    }
 }

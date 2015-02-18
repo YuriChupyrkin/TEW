@@ -10,6 +10,9 @@ namespace TewWinPhone.Models
         }
 
         public string UserName { get; set; }
+
+        public int TotalWords { get; set; }
+
         public IList<WordModel> Words { get; set; }
     }
 }

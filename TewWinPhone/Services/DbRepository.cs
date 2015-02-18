@@ -25,18 +25,18 @@ namespace TewWinPhone.Services
 
         public IEnumerable<EnglishRussianWordEntity> GetEnRuWords()
         {
-            return _dbConnection.Table<EnglishRussianWordEntity>();
+            return _dbConnection.Table<EnglishRussianWordEntity>().ToList();
         }
 
         public IEnumerable<EnglishRussianWordEntity> GetEnRuWords(Expression<Func<EnglishRussianWordEntity, bool>> expression)
         {
-            return _dbConnection.Table<EnglishRussianWordEntity>().Where(expression);
+            return _dbConnection.Table<EnglishRussianWordEntity>().Where(expression).ToList();
         }
 
         public void AddWord(EnglishRussianWordEntity word)
         {
             var englishWord = GetEnRuWords()
-                .FirstOrDefault(r => r.English.Equals(word.English, StringComparison.OrdinalIgnoreCase) && r.IsDeleted == false);
+                .FirstOrDefault(r => r.English.Equals(word.English, StringComparison.OrdinalIgnoreCase));
 
             if (englishWord == null)
             {
@@ -46,6 +46,8 @@ namespace TewWinPhone.Services
             {
                 englishWord.Russian = word.Russian;
                 englishWord.WordLevel = 0;
+                englishWord.IsDeleted = word.IsDeleted;
+                englishWord.UpdateDate = word.UpdateDate;
                 _dbConnection.Update(englishWord);
             }
         }
@@ -57,11 +59,18 @@ namespace TewWinPhone.Services
             if(wordFromDb != null)
             {
                 wordFromDb.IsDeleted = true;
+                wordFromDb.UpdateDate = DateTime.UtcNow;
                 _dbConnection.Update(wordFromDb);
                 return wordFromDb;
             }
 
             return null;
+        }
+
+        public void DeleteWordFromDb(EnglishRussianWordEntity word)
+        {
+            var wordFromDb = _dbConnection.Table<EnglishRussianWordEntity>().FirstOrDefault(r => r.Id == word.Id);
+            _dbConnection.Delete(wordFromDb);
         }
 
         [Obsolete]
