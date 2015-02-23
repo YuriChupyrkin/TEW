@@ -60,7 +60,8 @@ namespace TewWinPhone.Pages
         private async void buttonStart_Click(object sender, RoutedEventArgs e)
         {
             try {
-                //Task.Run(() => StartSync(_cancellationToken), _cancellationToken.Token);
+                txtBlockProgress.Text = "Wait please";
+                buttonStart.IsEnabled = false;
                 await StartSync(_cancellationToken);
                 txtBlockProgress.Text = "Complete";
             }
@@ -84,8 +85,6 @@ namespace TewWinPhone.Pages
 
             if (words == null || words.Count() == 0)
             {
-                //ChangeLabelContent("Step 3. Updating of client ...");
-                //updateModel.UpdateDate = lastUpdateDate.Ticks;
                 responseModel = await GetWordsFromServer(updateModel, cancellationTokenSource);
             }
 
@@ -187,18 +186,9 @@ namespace TewWinPhone.Pages
 
                     var message = string.Format("Adding of words... {0}/{1}", count, wordCount);
                     txtBlockProgress.Text = message;
-                    //ChangeLabelContent(message);
-
-                    //var progress = GetProgress(wordCount, count, 100, 0);
-                    //ChangeProgressBarValue(progress);
-
 
                     CheckCancel(cancellationTokenSource);
                 }
-            }
-            else
-            {
-                //ChangeProgressBarValue(100);
             }
         }
 
@@ -227,8 +217,6 @@ namespace TewWinPhone.Pages
                     var pack = updateWords.Skip(skipCount * packSize).Take(takeCount);
 
                     responseModel = await CreatWordJsonModelAndSend(pack, ApplicationContext.UserEmail);
-                    //var progress = GetProgress(iterationCount, i, 100, 0);
-                    //ChangeProgressBarValue(progress);
                     skipCount++;
 
                     CheckCancel(cancellationTokenSource);

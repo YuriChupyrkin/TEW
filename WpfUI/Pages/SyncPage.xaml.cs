@@ -132,14 +132,14 @@ namespace WpfUI.Pages
                 if(localTotalWords > cloudModel.TotalWords)
                 {
                     //todo updateCloud
-                    ChangeLabelContent("Force updating of client ...");
+                    ChangeLabelContent("Force updating of cloud ...");
                     words = _repositoryFactory.EnRuWordsRepository.AllEnRuWords().Where(r => r.UserId == user.Id).ToList();
                     UpdateCloud(DateTime.MinValue, words, cancellationTokenSource);
                 }
                 else
                 {
                     //todo updateClient
-                    ChangeLabelContent("Force updating of cloud ...");
+                    ChangeLabelContent("Force updating of client ...");
                     updateModel.UpdateDate = 0;
                     GetWordsFromServer(updateModel, cancellationTokenSource);
                 }

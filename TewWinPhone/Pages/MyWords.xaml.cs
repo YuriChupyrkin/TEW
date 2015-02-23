@@ -95,7 +95,7 @@ namespace TewWinPhone.Pages
 
         private void RefreshListView()
         {
-            var words = ApplicationContext.DbRepository.GetEnRuWords(r => r.IsDeleted == false).OrderByDescending(r => r.WordLevel).ToList();
+            var words = ApplicationContext.DbRepository.GetEnRuWords(r => r.IsDeleted == false).OrderBy(r => r.WordLevel).ToList();
             myWordsListView.ItemsSource = words;
             textBlock.Text = string.Format("My words: {0}", words.Count);
         }

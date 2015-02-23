@@ -8,17 +8,13 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Background="#FFCFBF1F">
+    <Grid Background="Black">
         <ListView x:Name="myWordsListView" IsItemClickEnabled="True" SelectionMode="Single" HorizontalAlignment="Left" Height="566" Margin="23,64,0,0" VerticalAlignment="Top" Width="348" FontSize="46.667" Foreground="#FF0C0101">
             <ListView.ItemTemplate>
                 
                 <DataTemplate>
-                    <Button>
-                        <Button.Content>
-                            <Grid>
-                                 <TextBlock Text="{Binding ShortString}" Width="500" Height="18" FontSize="12"/>
-                            </Grid>
-                        </Button.Content>
+                    <Button BorderBrush="Black" Foreground="#FF00FFAE" FontSize="16">
+                        <TextBlock Text="{Binding ShortString}" TextWrapping="Wrap" Width="500" Height="18" FontSize="12"/>
                         <Button.Flyout>
                             <MenuFlyout>
                                 <MenuFlyoutItem x:ConnectionId='1' Text="Delete"                   />
@@ -32,10 +28,8 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="103,22,0,0" TextWrapping="Wrap" Text="My words" TextAlignment="Center" VerticalAlignment="Top" Height="38" Width="167" Foreground="Black" FontSize="24"/>
-            
-
-        
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="103,22,0,0" TextWrapping="Wrap" Text="My words" TextAlignment="Center" VerticalAlignment="Top" Height="38" Width="167" Foreground="White" FontSize="24"/>
+                
     </Grid>
 </Page>
 

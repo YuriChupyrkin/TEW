@@ -44,6 +44,7 @@ namespace TewWinPhone.Pages
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
 
             var currentEmail = ApplicationContext.DbRepository.GetUserEmail();
+            txtBoxEmail.Text = currentEmail;
             textBlockCurrentEmail.Text = currentEmail;
         }
 

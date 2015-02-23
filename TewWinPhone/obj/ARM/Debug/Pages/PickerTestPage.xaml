@@ -8,13 +8,13 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Background="#FF19B4BB">
-        <TextBlock x:Name="txtBlockEnglisWord" TextAlignment="Center" HorizontalAlignment="Left" Margin="114,32,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="45" Width="157" Foreground="Black" FontSize="21.333" RenderTransformOrigin="0.525,1.037"/>
-        <TextBlock x:Name="txtBlockExample" HorizontalAlignment="Left" Margin="24,82,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="130" Width="340"/>
-        <Button x:ConnectionId='1' x:Name="btnAnswer1" Content="Button" HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top" Height="80" Width="380"                         />
-        <Button x:ConnectionId='2' x:Name="btnAnswer2" Content="Button" HorizontalAlignment="Left" Margin="10,315,0,0" VerticalAlignment="Top" Height="80" Width="380"                         />
-        <Button x:ConnectionId='3' x:Name="btnAnswer3" Content="Button" HorizontalAlignment="Left" Margin="10,400,0,0" VerticalAlignment="Top" Height="80" Width="380"                         />
-        <Button x:ConnectionId='4' x:Name="btnAnswer4" Content="Button" HorizontalAlignment="Left" Margin="10,483,0,0" VerticalAlignment="Top" Height="80" Width="380"                         />
+    <Grid Background="Black">
+        <TextBlock x:Name="txtBlockEnglisWord" TextAlignment="Center" HorizontalAlignment="Left" Margin="46,10,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="51" Width="318" Foreground="#FF00FFAE" FontSize="21.333" RenderTransformOrigin="0.525,1.037"/>
+        <TextBlock x:Name="txtBlockExample" HorizontalAlignment="Left" Margin="24,82,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="130" Width="340" Foreground="#FF00FFAE"/>
+        <Button x:ConnectionId='1' x:Name="btnAnswer1" Content="Button" HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top" Height="80" Width="380"                          Foreground="#FF00FFAE"/>
+        <Button x:ConnectionId='2' x:Name="btnAnswer2" Content="Button" HorizontalAlignment="Left" Margin="10,315,0,0" VerticalAlignment="Top" Height="80" Width="380"                          Foreground="#FF00FFAE"/>
+        <Button x:ConnectionId='3' x:Name="btnAnswer3" Content="Button" HorizontalAlignment="Left" Margin="10,400,0,0" VerticalAlignment="Top" Height="80" Width="380"                          Foreground="#FF00FFAE"/>
+        <Button x:ConnectionId='4' x:Name="btnAnswer4" Content="Button" HorizontalAlignment="Left" Margin="10,483,0,0" VerticalAlignment="Top" Height="80" Width="380"                          Foreground="#FF00FFAE"/>
         <Button x:ConnectionId='5' x:Name="btnNext" Content="Next" HorizontalAlignment="Left" Margin="148,570,0,0" VerticalAlignment="Top"                      />
 
     </Grid>

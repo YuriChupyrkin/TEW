@@ -45,7 +45,7 @@ namespace TewWinPhone.Services
             else
             {
                 englishWord.Russian = word.Russian;
-                englishWord.WordLevel = 0;
+                englishWord.WordLevel = word.WordLevel;
                 englishWord.IsDeleted = word.IsDeleted;
                 englishWord.UpdateDate = word.UpdateDate;
                 _dbConnection.Update(englishWord);

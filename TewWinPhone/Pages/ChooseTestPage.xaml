@@ -8,9 +8,13 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Background="#FF78854C">
-        <Button x:Name="EnRuTestBtn" Content="English &#xD;&#xA;- &#xD;&#xA;Russian &#xD;&#xA;Test" HorizontalAlignment="Left" Margin="122,21,0,0" VerticalAlignment="Top" Height="150" Width="147" Click="EnRuBtn_Click"/>
-        <Button x:Name="RuEnTestBtn" Content="Russian&#xA;- &#xD;&#xA;English &#xA;Test" HorizontalAlignment="Left" Margin="122,192,0,0" VerticalAlignment="Top" Height="150" Width="147" Click="RuEnTestBtn_Click"/>
+    <Grid Background="Black">
+        <Button x:Name="EnRuTestBtn" HorizontalAlignment="Left" Margin="54,21,0,0" VerticalAlignment="Top" Height="114" Width="311" Click="EnRuBtn_Click">
+            <TextBlock Text="English - Russian test" Foreground="#FF00FFAE" TextWrapping="Wrap"/>
+        </Button>
+        <Button x:Name="RuEnTestBtn" HorizontalAlignment="Left" Margin="54,157,0,0" VerticalAlignment="Top" Height="114" Width="311" Click="RuEnTestBtn_Click">
+            <TextBlock Text="Russian - English test" Foreground="#FF00FFAE" TextWrapping="Wrap"/>
+        </Button>
 
     </Grid>
 </Page>

@@ -19,7 +19,7 @@ namespace WpfUI
   /// </summary>
   public partial class MainWindow : Window
   {
-    private const string Version = "(1.07   2/16/2015)"; 
+    private const string Version = "(1.07   2/23/2015)"; 
 
     public const string AppName = "TEW";
 

@@ -116,6 +116,7 @@
         <Label Content="Your translate" HorizontalAlignment="Left" Margin="427,182,0,0" VerticalAlignment="Top" Width="189" FontSize="16" FontFamily="Lucida Calligraphy"/>
         <Label Content="Example of use" HorizontalAlignment="Left" Margin="427,270,0,0" VerticalAlignment="Top" Width="189" FontSize="16" FontFamily="Lucida Calligraphy"/>
         <TextBox x:Name="TxtExample" HorizontalAlignment="Left" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Height="122" Margin="426,313,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="319" FontSize="14" FontFamily="Comic Sans MS"/>
+        <Label x:Name="labelExist" Content="Label" HorizontalAlignment="Left" Margin="502,120,0,0" VerticalAlignment="Top" Width="288" Height="33" Foreground="Red" FontSize="18.667" FontFamily="Comic Sans MS"/>
         <Grid.Background>
             <ImageBrush ImageSource ="/Images/bg.jpg"></ImageBrush>
         </Grid.Background>

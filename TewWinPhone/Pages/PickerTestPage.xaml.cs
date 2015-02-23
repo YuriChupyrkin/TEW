@@ -29,7 +29,7 @@ namespace TewWinPhone.Pages
     /// </summary>
     public sealed partial class PickerTestPage : Page
     {
-        private Color _defaultButtonColor = Colors.Gold;
+        private Color _defaultButtonColor = Colors.Gray;
 
         private readonly NavigationService _navigationService = ApplicationContext.NavigationService;
         private List<PickerTestModel> _testModels;

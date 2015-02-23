@@ -21,6 +21,9 @@
       <RootProperty Name="Margin" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Width" />
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="BorderBrush" />
+      <RootProperty Name="FontSize" />
       <RootProperty Name="Flyout" />
       <RootEvent Name="Click" />
     </RootType>
