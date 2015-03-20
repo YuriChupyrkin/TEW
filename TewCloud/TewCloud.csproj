@@ -138,6 +138,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Views\SynchroniceV2\" />
   </ItemGroup>
   <ItemGroup>
@@ -188,7 +189,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\EnglishLearnDataBase.sdf" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Client\Autofac.dll" />
     <Content Include="Client\Autofac.xml" />

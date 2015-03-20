@@ -51,6 +51,7 @@ namespace TewWinPhone.Pages
         {
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
 
+	        btnNext.IsEnabled = false;
             var userWords = ApplicationContext.DbRepository.GetEnRuWords() as List<EnglishRussianWordEntity>;
 
             if (userWords.Count < 5)
@@ -119,11 +120,27 @@ namespace TewWinPhone.Pages
             await ViewNextTest(_currentTestIndex);
         }
 
-        #endregion
+		private async void AppBarButton_Click(object sender, RoutedEventArgs e)
+		{
+			var id = _testModels[_currentTestIndex].WordId;
 
-        #region methods
+			var word = ApplicationContext.DbRepository.GetEnRuWords().FirstOrDefault(r => r.Id == id);
+			word = ApplicationContext.DbRepository.DeleteWord(word);
 
-        private async Task ViewNextTest(int index)
+			if (word != null)
+			{
+				new SynchronizeHelper().SendWordInBackGround(word, ApplicationContext.UserEmail);
+			}
+
+			_currentTestIndex++;
+			await ViewNextTest(_currentTestIndex);
+		}
+
+		#endregion
+
+		#region methods
+
+		private async Task ViewNextTest(int index)
         {
             SetDefaultButtonColor();
             if (index > _testModels.Count - 1)
@@ -136,9 +153,24 @@ namespace TewWinPhone.Pages
 
             var testModel = _testModels[index];
             txtBlockEnglisWord.Text = testModel.Word;
-            txtBlockExample.Text = testModel.Example;
+            			
+	        if (ApplicationContext.CurrentPickerTest == PickerTest.RuEn)
+	        {
+				var example = testModel.Example;
+				var replacingValue = string.Format("[{0}]", testModel.Word);
+		        var replacedValue = testModel.Answers[testModel.AnswerId];
+		        if (example.Contains(replacedValue))
+		        {
+			        example = example.Replace(replacedValue, replacingValue);
+		        }
+		        txtBlockExample.Text = example;
+	        }
+	        else
+	        {
+				txtBlockExample.Text = testModel.Example;
+			}
 
-            btnAnswer1.Content = testModel.Answers[0];
+			btnAnswer1.Content = testModel.Answers[0];
             btnAnswer2.Content = testModel.Answers[1];
             btnAnswer3.Content = testModel.Answers[2];
             btnAnswer4.Content = testModel.Answers[3];
@@ -217,6 +249,7 @@ namespace TewWinPhone.Pages
             new SynchronizeHelper().SendWordInBackGround(result, ApplicationContext.UserEmail);
         }
 
-        #endregion
-    }
+		#endregion
+
+	}
 }

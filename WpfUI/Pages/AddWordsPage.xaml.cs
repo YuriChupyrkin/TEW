@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -9,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+using Domain.Entities;
 using Domain.RepositoryFactories;
 using WpfUI.Helpers;
 
@@ -22,6 +24,7 @@ namespace WpfUI.Pages
         private readonly IRepositoryFactory _repositoryFactory;
         private readonly GoogleTranslater _googleTranslator;
         private const string MyTranslate = "My translate";
+	    private List<EnglishWord> _myEnglishWords;
 
         private string _selectedTranslate;
 
@@ -40,6 +43,7 @@ namespace WpfUI.Pages
             TxtEnglishWord.Focus();
             BtnSearch.IsEnabled = false;
             labelExist.Content = string.Empty;
+	        _myEnglishWords = _repositoryFactory.EnRuWordsRepository.AllEnglishWords().ToList();
         }
 
         #region events
@@ -225,7 +229,7 @@ namespace WpfUI.Pages
 
             ListTranslate.Items.Add(MyTranslate);
 
-            if (translates.Any())
+            if (_myEnglishWords.FirstOrDefault(r => r.EnWord.Equals(TxtEnglishWord.Text, StringComparison.OrdinalIgnoreCase)) != null)
             {
                 labelExist.Content = "this word exists in dictionary";
             }

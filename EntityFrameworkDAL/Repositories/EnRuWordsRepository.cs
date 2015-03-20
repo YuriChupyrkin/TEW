@@ -32,7 +32,18 @@ namespace EntityFrameworkDAL.Repositories
             }
         }
 
-        public IEnumerable<string> GetTranslate(string enWord)
+	    public void DeleteEnRuWord(int id)
+	    {
+		    var enRuWord = _context.EnRuWords.FirstOrDefault(r => r.Id == id);
+
+		    if (enRuWord != null)
+		    {
+				_context.EnRuWords.Remove(enRuWord);
+				_context.SaveChanges();
+			}
+	    }
+
+		public IEnumerable<string> GetTranslate(string enWord)
         {
             var russianWords = _context.EnRuWords
               .Where(r => r.EnglishWord.EnWord
@@ -221,6 +232,7 @@ namespace EntityFrameworkDAL.Repositories
             foreach (var userWord in userWords)
             {
                 userWord.WordLevel = 0;
+	            userWord.UpdateDate = DateTime.UtcNow;
             }
             _context.SaveChanges();
         }

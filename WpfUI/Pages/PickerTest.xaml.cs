@@ -41,9 +41,23 @@ namespace WpfUI.Pages
             LabelExampleOfUseLabel.Visibility = Visibility.Hidden;
         }
 
-        #region events
+		#region events
+		private void BtnDelete_Click(object sender, RoutedEventArgs e)
+		{
+			var enWord = _testSet[_testIndex].Word;
 
-        private void BtnEnRuTest_Click(object sender, RoutedEventArgs e)
+			if (_currentTestName == RuEnTest)
+			{
+				enWord = _testSet[_testCount].Answers[_testSet[_testCount].AnswerId];
+			}
+
+			var word = _repositoryFactory.EnRuWordsRepository.MakeDeleted(enWord, ApplicationContext.CurrentUser.Id);
+			var syncHelper = new SynchronizeHelper();
+			syncHelper.SendWordInBackGround(word, ApplicationContext.CurrentUser);
+			TestIndexIncrement();
+		}
+
+		private void BtnEnRuTest_Click(object sender, RoutedEventArgs e)
         {
             _currentTestName = EnRuTest;
             if (_testIndex == 0)
@@ -237,6 +251,6 @@ namespace WpfUI.Pages
             }
         }
 
-        #endregion
-    }
+		#endregion
+	}
 }

@@ -28,7 +28,7 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="103,22,0,0" TextWrapping="Wrap" Text="My words" TextAlignment="Center" VerticalAlignment="Top" Height="38" Width="167" Foreground="White" FontSize="24"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="0,26,0,0" TextWrapping="Wrap" Text="My words" TextAlignment="Center" VerticalAlignment="Top" Height="38" Width="390" Foreground="White" FontSize="24"/>
                 
     </Grid>
 </Page>

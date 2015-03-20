@@ -38,20 +38,42 @@
   <Extensions>
     <Extension Category="windows.activatableClass.inProcessServer">
       <InProcessServer>
+        <Path>CLRHost.dll</Path>
+        <ActivatableClass ActivatableClassId="Microsoft.Advertising.Mobile.Common.PublisherMessageEventArgs" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="Microsoft.Advertising.Mobile.Common.PublisherErrorEventArgs" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="Microsoft.Advertising.Mobile.Common.SdkInfoProvider" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="Microsoft.Advertising.Mobile.Display.Key35MSSharedLib1024" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="Microsoft.Advertising.Mobile.UI.UI_XamlTypeInfo.XamlMetaDataProvider" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="Microsoft.Advertising.Mobile.UI.AdControl" ThreadingModel="both" />
+      </InProcessServer>
+    </Extension>
+    <Extension Category="windows.activatableClass.inProcessServer">
+      <InProcessServer>
         <Path>SQLitePCL.cppinterop.dll</Path>
         <ActivatableClass ActivatableClassId="SQLitePCL.cppinterop.SQLite3RuntimeProvider" ThreadingModel="both" />
+      </InProcessServer>
+    </Extension>
+    <Extension Category="windows.activatableClass.inProcessServer">
+      <InProcessServer>
+        <Path>vstest_executionengine_platformbridge.dll</Path>
+        <ActivatableClass ActivatableClassId="vstest_executionengine_platformbridge.ServiceMain" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="vstest_executionengine_platformbridge.MessageTransmitter" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="vstest_executionengine_platformbridge.NativeMethods" ThreadingModel="both" />
       </InProcessServer>
     </Extension>
   </Extensions>
   <build:Metadata>
     <build:Item Name="TargetFrameworkMoniker" Value="WindowsPhoneApp,Version=v8.1" />
     <build:Item Name="VisualStudio" Version="14.0" />
-    <build:Item Name="VisualStudioEdition" Value="Microsoft Visual Studio Ultimate 2015 Preview" />
+    <build:Item Name="VisualStudioEdition" Value="Microsoft Visual Studio Ultimate 2015 CTP" />
     <build:Item Name="OperatingSystem" Version="6.3.9600.16384 (winblue_rtm.130821-1623)" />
-    <build:Item Name="Microsoft.Build.AppxPackage.dll" Version="14.0.22310.1" />
+    <build:Item Name="Microsoft.Build.AppxPackage.dll" Version="14.0.22609.0" />
     <build:Item Name="ProjectGUID" Value="{080762B2-2D76-44B6-A4BF-8BCF5F369B0C}" />
-    <build:Item Name="Microsoft.Windows.UI.Xaml.81.Build.Tasks.dll" Version="14.0.22310.1" />
+    <build:Item Name="ilc.exe" Version="1.0.22514.06 built by: PROJECTNREL" />
+    <build:Item Name="Microsoft.Windows.UI.Xaml.81.Build.Tasks.dll" Version="14.0.22609.0" />
     <build:Item Name="BehaviorsXamlSDKManaged" Version="12.0" />
+    <build:Item Name="Microsoft.Advertising.Mobile.Display" Version="8.1" />
+    <build:Item Name="TestPlatform" Version="14.0" />
     <build:Item Name="MakePri.exe" Version="6.3.9600.17298 (winblue.141024-1500)" />
   </build:Metadata>
 </Package>

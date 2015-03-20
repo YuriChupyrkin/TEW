@@ -19,6 +19,30 @@
     <AppxPackagedFile Include="D:\Study\Programming\Projects\Tew_Project\TewWinPhone\bin\x86\Debug\TewWinPhone.exe">
       <PackagePath>TewWinPhone.exe</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\WindowsPhoneApp\v8.1\ExtensionSDKs\Microsoft.Advertising.Mobile.Display\8.1\References\CommonConfiguration\neutral\Microsoft.Advertising.Mobile.Common.winmd">
+      <PackagePath>Microsoft.Advertising.Mobile.Common.winmd</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\WindowsPhoneApp\v8.1\ExtensionSDKs\Microsoft.Advertising.Mobile.Display\8.1\References\CommonConfiguration\neutral\Microsoft.Advertising.Mobile.Display.winmd">
+      <PackagePath>Microsoft.Advertising.Mobile.Display.winmd</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\WindowsPhoneApp\v8.1\ExtensionSDKs\Microsoft.Advertising.Mobile.Display\8.1\References\CommonConfiguration\neutral\Microsoft.Advertising.Mobile.UI.winmd">
+      <PackagePath>Microsoft.Advertising.Mobile.UI.winmd</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Study\Programming\Projects\Tew_Project\packages\SQLitePCL.raw_basic.0.3.0-alpha\build\wpa81\cppinterop_sqlite3_dynamic\x86\SQLitePCL.cppinterop.winmd">
+      <PackagePath>SQLitePCL.cppinterop.winmd</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\WindowsPhoneApp\v8.1\ExtensionSDKs\TestPlatform\14.0\References\CommonConfiguration\neutral\Microsoft.VisualStudio.TestPlatform.Common.dll">
+      <PackagePath>Microsoft.VisualStudio.TestPlatform.Common.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\WindowsPhoneApp\v8.1\ExtensionSDKs\TestPlatform\14.0\References\CommonConfiguration\neutral\Microsoft.VisualStudio.TestPlatform.Core.dll">
+      <PackagePath>Microsoft.VisualStudio.TestPlatform.Core.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\WindowsPhoneApp\v8.1\ExtensionSDKs\TestPlatform\14.0\References\CommonConfiguration\neutral\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll">
+      <PackagePath>Microsoft.VisualStudio.TestPlatform.ObjectModel.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\WindowsPhoneApp\v8.1\ExtensionSDKs\TestPlatform\14.0\References\CommonConfiguration\neutral\Microsoft.VisualStudio.TestPlatform.TestExecutor.Core.dll">
+      <PackagePath>Microsoft.VisualStudio.TestPlatform.TestExecutor.Core.dll</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\WindowsPhoneApp\v8.1\ExtensionSDKs\BehaviorsXamlSDKManaged\12.0\References\CommonConfiguration\Neutral\Microsoft.Xaml.Interactions.dll">
       <PackagePath>Microsoft.Xaml.Interactions.dll</PackagePath>
     </AppxPackagedFile>
@@ -34,8 +58,29 @@
     <AppxPackagedFile Include="D:\Study\Programming\Projects\Tew_Project\packages\SQLitePCL.raw_basic.0.3.0-alpha\build\wpa81\cppinterop_sqlite3_dynamic\x86\SQLitePCL.cppinterop.dll">
       <PackagePath>SQLitePCL.cppinterop.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Study\Programming\Projects\Tew_Project\packages\SQLitePCL.raw_basic.0.3.0-alpha\build\wpa81\cppinterop_sqlite3_dynamic\x86\SQLitePCL.cppinterop.winmd">
-      <PackagePath>SQLitePCL.cppinterop.winmd</PackagePath>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\WindowsPhoneApp\v8.1\ExtensionSDKs\Microsoft.Advertising.Mobile.Display\8.1\Redist\CommonConfiguration\neutral\Microsoft.Advertising.Mobile.UI\Web\bootstrap.html">
+      <PackagePath>Microsoft.Advertising.Mobile.UI\Web\bootstrap.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\WindowsPhoneApp\v8.1\ExtensionSDKs\Microsoft.Advertising.Mobile.Display\8.1\Redist\CommonConfiguration\neutral\Microsoft.Advertising.Mobile.UI\Themes\Generic.xbf">
+      <PackagePath>Microsoft.Advertising.Mobile.UI\Themes\Generic.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\WindowsPhoneApp\v8.1\ExtensionSDKs\TestPlatform\14.0\Redist\CommonConfiguration\neutral\Microsoft.VisualStudio.TestPlatform.Extensions.MSPhoneAdapter.Target.dll">
+      <PackagePath>Microsoft.VisualStudio.TestPlatform.Extensions.MSPhoneAdapter.Target.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\WindowsPhoneApp\v8.1\ExtensionSDKs\TestPlatform\14.0\Redist\CommonConfiguration\x86\vstest.executionengine.WindowsPhone.dll">
+      <PackagePath>vstest.executionengine.WindowsPhone.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\WindowsPhoneApp\v8.1\ExtensionSDKs\TestPlatform\14.0\Redist\CommonConfiguration\x86\vstest_executionengine_platformbridge.dll">
+      <PackagePath>vstest_executionengine_platformbridge.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\WindowsPhoneApp\v8.1\ExtensionSDKs\Microsoft.Advertising.Mobile.Display\8.1\Redist\CommonConfiguration\neutral\Microsoft.Advertising.Mobile.UI\Web\Ormma.js">
+      <PackagePath>Microsoft.Advertising.Mobile.UI\Web\Ormma.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\WindowsPhoneApp\v8.1\ExtensionSDKs\TestPlatform\14.0\Redist\CommonConfiguration\neutral\vstest.executionengine.appcontainer.exe">
+      <PackagePath>vstest.executionengine.appcontainer.exe</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\WindowsPhoneApp\v8.1\ExtensionSDKs\TestPlatform\14.0\Redist\CommonConfiguration\neutral\vstest_executionengine_platformbridge.winmd">
+      <PackagePath>vstest_executionengine_platformbridge.winmd</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Study\Programming\Projects\Tew_Project\TewWinPhone\Assets\Logo.scale-240.png">
       <PackagePath>Assets\Logo.scale-240.png</PackagePath>

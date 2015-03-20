@@ -97,7 +97,9 @@ namespace TewWinPhone.Pages
         {
             var words = ApplicationContext.DbRepository.GetEnRuWords(r => r.IsDeleted == false).OrderBy(r => r.WordLevel).ToList();
             myWordsListView.ItemsSource = words;
-            textBlock.Text = string.Format("My words: {0}", words.Count);
+
+	        var labelMessage = string.Format("My words: {0}; Score: {1}", words.Count, words.Sum(r => r.WordLevel));
+	        textBlock.Text = labelMessage;
         }
 
     }
