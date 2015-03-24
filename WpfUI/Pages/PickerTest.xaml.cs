@@ -39,6 +39,7 @@ namespace WpfUI.Pages
             _googleTranslater = new GoogleTranslater();
 
             LabelExampleOfUseLabel.Visibility = Visibility.Hidden;
+	        BtnDelete.IsEnabled = false;
         }
 
 		#region events
@@ -106,13 +107,15 @@ namespace WpfUI.Pages
             _testCreator = new TestCreator(ApplicationContext.RepositoryFactory);
             _testSet = _testCreator.EnglishRussianTest(ApplicationContext.CurrentUser.Id).ToList();
             StartTest();
-        }
+			BtnDelete.IsEnabled = true;
+		}
 
         private void StartRuEnTest()
         {
             _testCreator = new TestCreator(ApplicationContext.RepositoryFactory);
             _testSet = _testCreator.RussianEnglishTest(ApplicationContext.CurrentUser.Id).ToList();
             StartTest();
+	        BtnDelete.IsEnabled = true;
         }
 
         private void StartTest()

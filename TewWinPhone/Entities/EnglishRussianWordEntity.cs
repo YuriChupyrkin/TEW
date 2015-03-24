@@ -29,7 +29,7 @@ namespace TewWinPhone.Entities
         {
             get
             {
-                return string.Format("{0} <=> {1} <=> ({2})", this.English, this.Russian, this.WordLevel);
+                return string.Format("<{0}> = <{1}> ({2})", this.English, this.Russian, this.WordLevel);
             }
         }
     }

@@ -9,7 +9,7 @@
 
     <Grid Background="Black">
         <TextBlock x:Name="txtBlockEnglisWord" TextAlignment="Center" HorizontalAlignment="Left" Margin="46,10,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="38" Width="318" Foreground="#FF00FFAE" FontSize="21.333" RenderTransformOrigin="0.525,1.037"/>
-        <TextBlock x:Name="txtBlockExample" HorizontalAlignment="Left" Margin="24,53,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="113" Width="354" Foreground="#FF00FFAE"/>
+        <TextBlock x:Name="txtBlockExample" HorizontalAlignment="Left" Margin="24,53,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="113" Width="354" Foreground="#FF00FFAE" FontSize="18.667"/>
         <Button x:Name="btnAnswer1" Content="Button" HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top" Height="80" Width="380" Click="btnAnswer1_Click" Foreground="#FF00FFAE"/>
         <Button x:Name="btnAnswer2" Content="Button" HorizontalAlignment="Left" Margin="10,315,0,0" VerticalAlignment="Top" Height="80" Width="380" Click="btnAnswer2_Click" Foreground="#FF00FFAE"/>
         <Button x:Name="btnAnswer3" Content="Button" HorizontalAlignment="Left" Margin="10,400,0,0" VerticalAlignment="Top" Height="80" Width="380" Click="btnAnswer3_Click" Foreground="#FF00FFAE"/>

@@ -127,7 +127,7 @@ namespace WpfUI.Pages
             }
 
             var localTotalWords = GetWordCount(user.Email);
-            if (cloudModel != null && Math.Abs(cloudModel.TotalWords - localTotalWords) > 10)
+            if (cloudModel != null && localTotalWords != cloudModel.TotalWords)
             {
                 if(localTotalWords > cloudModel.TotalWords)
                 {

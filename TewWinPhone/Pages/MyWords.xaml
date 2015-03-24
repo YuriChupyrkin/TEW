@@ -13,8 +13,8 @@
             <ListView.ItemTemplate>
                 
                 <DataTemplate>
-                    <Button BorderBrush="Black" Foreground="#FF00FFAE" FontSize="16">
-                        <TextBlock Text="{Binding ShortString}" TextWrapping="Wrap" Width="500" Height="18" FontSize="12"/>
+                    <Button BorderBrush="Black" Foreground="#FF00FFAE">
+                        <TextBlock Text="{Binding ShortString}" TextWrapping="Wrap" Width="500" Height="50" FontSize="16"/>
                         <Button.Flyout>
                             <MenuFlyout>
                                 <MenuFlyoutItem Text="Delete" Click="DeleteWord"/>
