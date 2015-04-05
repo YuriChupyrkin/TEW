@@ -6,53 +6,44 @@ using Domain.RepositoryFactories;
 
 namespace EnglishLearnBLL.ToXML
 {
-  public class WordsImporter
-  {
-    private readonly IRepositoryFactory _repositoryFactory;
+	public class WordsImporter
+	{
+		private readonly IRepositoryFactory _repositoryFactory;
 
-    public WordsImporter(IRepositoryFactory repositoryFactory)
-    {
-      _repositoryFactory = repositoryFactory;
-    }
+		public WordsImporter(IRepositoryFactory repositoryFactory)
+		{
+			_repositoryFactory = repositoryFactory;
+		}
 
-    public void Import(string forUserName, string fileName)
-    {
-      //string fileName = XmlNameHelper.XmlFileName;
-      XDocument doc = XDocument.Load(fileName);
+		public void Import(string forUserName, string fileName)
+		{
+			XDocument doc = XDocument.Load(fileName);
 
-      XElement userEl = doc.Root.Elements().First();
-      var userName = userEl.Value;
+			var user = _repositoryFactory.UserRepository.Find(r => r.Email == forUserName);
 
-      var user = _repositoryFactory.UserRepository.Find(r => r.Email == userName);
+			try
+			{
 
-      if (user == null || user.Email != forUserName)
-      {
-        throw new Exception("Words import error! Incorrect user info");
-      }
+				IEnumerable<XElement> words = doc.Root.Elements().Take(1);
 
-      try
-      {
+				foreach (XElement word in words)
+				{
+					foreach (XElement wordElemets in word.Elements())
+					{
+						var enWord = wordElemets.Element(XmlNameHelper.EngWord).Value;
+						var ruWord = wordElemets.Element(XmlNameHelper.RusWord).Value;
+						var level = int.Parse(wordElemets.Element(XmlNameHelper.Level).Value);
+						var example = wordElemets.Element(XmlNameHelper.Example).Value;
 
-        IEnumerable<XElement> words = doc.Root.Elements().Skip(1).Take(1);
-
-        foreach (XElement word in words)
-        {
-          foreach (XElement wordElemets in word.Elements())
-          {
-            var enWord = wordElemets.Element(XmlNameHelper.EngWord).Value;
-            var ruWord = wordElemets.Element(XmlNameHelper.RusWord).Value;
-            var level = int.Parse(wordElemets.Element(XmlNameHelper.Level).Value);
-            var example = wordElemets.Element(XmlNameHelper.Example).Value;
-
-            _repositoryFactory.EnRuWordsRepository
-              .AddTranslate(enWord, ruWord, example, user.Id, new DateTime(1990, 5, 5), level);
-          }
-        }
-      }
-      catch
-      {
-        throw new Exception("Words import error! file error");
-      }
-    }
-  }
+						_repositoryFactory.EnRuWordsRepository
+						  .AddTranslate(enWord, ruWord, example, user.Id, new DateTime(1990, 5, 5), level);
+					}
+				}
+			}
+			catch
+			{
+				throw new Exception("Words import error! file error");
+			}
+		}
+	}
 }

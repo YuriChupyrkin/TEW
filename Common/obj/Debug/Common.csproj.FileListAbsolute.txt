@@ -29,3 +29,4 @@ D:\Study\Programming\Projects\Tew_Project\Common\bin\Debug\Common.dll
 D:\Study\Programming\Projects\Tew_Project\Common\bin\Debug\Common.pdb
 D:\Study\Programming\Projects\Tew_Project\Common\obj\Debug\Common.dll
 D:\Study\Programming\Projects\Tew_Project\Common\obj\Debug\Common.pdb
+D:\Study\Programming\Projects\Tew_Project\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache

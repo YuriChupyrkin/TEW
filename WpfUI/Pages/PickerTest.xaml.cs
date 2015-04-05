@@ -91,7 +91,7 @@ namespace WpfUI.Pages
 
             if (item == null)
             {
-                throw new Exception("Answer item is null...");
+				return;
             }
 
             CheckAnswer(item.Content.ToString());
