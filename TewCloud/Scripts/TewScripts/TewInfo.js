@@ -1,36 +1,37 @@
 ﻿$(function () {
-  var serverPath = "";
+	var serverPath = "";
 
-  (function getInfo() {
-    $('#loadingContainer').removeClass("display-none");
-    $('#statContainer').addClass("display-none");
+	(function getInfo() {
+		$('#loadingContainer').removeClass("display-none");
+		$('#statContainer').addClass("display-none");
 
-    var usersCount = 0;
-    var wordsCount = 0;
+		var usersCount = 0;
+		var wordsCount = 0;
 
-    $.getJSON(serverPath + "/api/TewInfo", function (result) {
-    //$.getJSON(serverPath + "/TewCloud/api/TewInfo", function(result) {  
-      $('#loadingContainer').addClass("display-none");
-      $('#statContainer').removeClass("display-none");
-      
-      usersCount = result.Users;
-      wordsCount = result.Words;
+		$.getJSON(serverPath + "/api/TewInfo", function (result) {
+			$('#loadingContainer').addClass("display-none");
+			$('#statContainer').removeClass("display-none");
 
-      $('#userCount').text("users: " + usersCount);
-      $('#wordsCount').text("words: " + wordsCount);
-    });
-  })();
+			usersCount = result.Users;
+			wordsCount = result.Words;
 
-  $(document).on('click', '#downloadButton', function (event) {
-      console.log("download");
-      window.location = "#download";
-  });
-  
+			$('#userCount').text("users: " + usersCount);
+			$('#wordsCount').text("words: " + wordsCount);
+		});
+	})();
 
-  $(document).on('click', '#indexHeader', function (event) {
-    var currentLocation = window.location.href;
-    var irregularVerbsPath = '/irregular_verbs.html';
-    
-    window.location = currentLocation + irregularVerbsPath;
-  });
+	$(document).on('click', '#downloadButton', function (event) {
+		var win = window.open("https://www.dropbox.com/s/2yyci32ldmys3vf/TewLauncherAzure.rar", '_blank');
+		win.focus();
+	});
+
+	$(document).on('click', '#irregularVerbsButton', function (event) {
+		var currentLocation = window.location.href;
+		var irregularVerbsPath = '/irregular_verbs.html';
+
+		var ulr = currentLocation + irregularVerbsPath;
+
+		var win = window.open(ulr, '_blank');
+		win.focus();
+	});
 });

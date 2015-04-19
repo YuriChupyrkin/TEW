@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -7,7 +6,6 @@ using Domain.Entities;
 using EnglishLearnBLL.Models;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace WpfUI.Helpers
 {

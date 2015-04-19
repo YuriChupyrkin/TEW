@@ -53,7 +53,7 @@ namespace TewWinPhone.Pages
         private async void txtBoxEnglish_LostFocus(object sender, RoutedEventArgs e)
         {
             var googleTranslater = new GoogleTranslater();
-            var translate = await googleTranslater.GetTranslate(txtBoxEnglish.Text);
+            var translate = await googleTranslater.GetTranslate(txtBoxEnglish.Text.ToLower());
 
             ClearTranslatesAndExamples();
             foreach (var t in translate.Translates)
@@ -107,6 +107,5 @@ namespace TewWinPhone.Pages
             txtBoxExample.Text = string.Empty;
             ClearTranslatesAndExamples();
         }
-
     }
 }

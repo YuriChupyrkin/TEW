@@ -4,7 +4,7 @@
 
     font-family: 'Proxima Nova';
 
-    background: url(Images/background1.jpg); 
+    background: url(Images/ballBackground.jpg); 
     background-size: cover;
  	background-attachment: fixed, fixed;
 
@@ -58,7 +58,7 @@ textarea {
 }
 
 .title-text {
-    color: #FFD700;
+    color: white;
     font-family: 'Comic Sans MS';
 }
 
@@ -78,8 +78,10 @@ textarea {
 .icons{
     width: 150px;
     height: 150px;
+	margin-top: 50px;
 }
 
 .download-icon{
     width: 300px;
+	margin-top: 50px;
 }

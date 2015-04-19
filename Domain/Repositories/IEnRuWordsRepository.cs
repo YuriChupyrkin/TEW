@@ -24,5 +24,6 @@ namespace Domain.Repositories
 		string GetRussianWordById(int id);
 		string GetEnglishWordById(int id);
 		EnRuWord MakeDeleted(string enWord, int userId);
+	  void RemoveAllDeletedWords(int userId);
 	}
 }

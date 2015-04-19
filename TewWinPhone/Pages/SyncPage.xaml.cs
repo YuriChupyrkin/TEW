@@ -124,7 +124,20 @@ namespace TewWinPhone.Pages
                     await GetWordsFromServer(updateModel, cancellationTokenSource);
                 }
             }
+
+			RemoveDeletedWords();
         }
+
+		private void RemoveDeletedWords()
+		{
+			var dbRepository = ApplicationContext.DbRepository;
+			var words = dbRepository.GetEnRuWords().Where(r => r.IsDeleted);
+
+			foreach (var word in words)
+			{
+				dbRepository.DeleteWordFromDb(word);
+			}
+		}
 
         private int GetLocalWordCount()
         {
