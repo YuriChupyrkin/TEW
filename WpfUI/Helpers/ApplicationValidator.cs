@@ -19,7 +19,7 @@ namespace WpfUI.Helpers
     {
       const int minLength = 4;
       const int maxLength = 16;
-      return password.Length > minLength && password.Length < maxLength;
+      return password.Length >= minLength && password.Length <= maxLength;
     }
 
     public static bool IsPasswordEquals(string password, string confirmPassword)

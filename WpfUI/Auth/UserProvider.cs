@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-using System.Web.Helpers;
 using Domain.Entities;
 using Domain.RepositoryFactories;
 using Domain.UnitOfWork;
@@ -9,6 +8,8 @@ namespace WpfUI.Auth
 {
   internal class UserProvider
   {
+    private const string SaltWord = "SaltWord";
+
     private readonly IUnitOfWork _unitOfWork;
     private readonly IRepositoryFactory _repositoryFactory;
 
@@ -32,7 +33,7 @@ namespace WpfUI.Auth
         {
           user = new User();
           user.Email = login;
-          user.Password = Crypto.HashPassword(password);
+          user.Password = HashPassword(password);
 
           var role = _repositoryFactory
             .RoleRepository.Find(x => x.RoleName == "user");
@@ -62,14 +63,16 @@ namespace WpfUI.Auth
         User user = _repositoryFactory.UserRepository
           .Find(x => x.Email.Equals(username, StringComparison.OrdinalIgnoreCase));
 
-        if (user != null && Crypto.VerifyHashedPassword(user.Password, password))
+        ChangePasswordIfItHttpCrypto(user);
+
+        if (user != null && VerifyHashedPassword(user.Password, password))
         {
           return user;
         }
       }
-      catch
+      catch (Exception ex)
       {
-        return null;
+        throw ex;
       }
       return null;
     }
@@ -84,7 +87,7 @@ namespace WpfUI.Auth
         if (user != null)
         {
           var newPassword = RandomString(6);
-          user.Password = Crypto.HashPassword(newPassword);
+          user.Password = HashPassword(newPassword);
           _unitOfWork.Commit();
           return newPassword;
         }
@@ -106,9 +109,9 @@ namespace WpfUI.Auth
       {
         var user = _repositoryFactory.UserRepository.
             Find(x => x.Email.ToLower() == username.ToLower());
-        if (user != null && Crypto.VerifyHashedPassword(user.Password, oldPassword))
+        if (user != null && VerifyHashedPassword(user.Password, oldPassword))
         {
-          user.Password = Crypto.HashPassword(newPassword);
+          user.Password = HashPassword(newPassword);
           _unitOfWork.Commit();
           isChanged = true;
         }
@@ -129,6 +132,52 @@ namespace WpfUI.Auth
       for (int i = 0; i < length; ++i)
         builder.Append(chars[random.Next(chars.Length)]);
       return builder.ToString();
+    }
+
+    private string HashPassword(string password)
+    {
+      var passHash = password.GetHashCode();
+      var saltHash = SaltWord.GetHashCode();
+
+      var result = passHash + saltHash;
+      return result.ToString();
+    }
+
+    private bool VerifyHashedPassword(string originalPassword, string password)
+    {
+      var passHash = password.GetHashCode();
+      var saltHash = SaltWord.GetHashCode();
+
+      var resultPass = (passHash + saltHash).ToString();
+      return originalPassword == resultPass;
+    }
+
+    // Note: we used System.Web.Http for crypto. It obsoleted. 
+    private void ChangePasswordIfItHttpCrypto(User user)
+    {
+      var userPassword = user.Password;
+
+      int passwordInt;
+
+      var tryParseResult = int.TryParse(userPassword, out passwordInt);
+
+      if (tryParseResult)
+      {
+        return;
+      }
+
+      var newPassword = user.Email.Substring(0, 4);
+      var newPasswordHash = HashPassword(newPassword);
+
+      var userFromDb = _repositoryFactory.UserRepository.Find(x => x.Email.ToLower() == user.Email.ToLower());
+      
+      if (userFromDb != null)
+      {
+        userFromDb.Password = newPasswordHash;
+        _unitOfWork.Commit();
+
+        throw new Exception(string.Format("Warning! We have some updates. You have got a new password: {0}. Please change it", newPassword));
+      }
     }
   }
 }

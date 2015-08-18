@@ -56,14 +56,6 @@ namespace WpfUI.Pages
           throw new Exception("Sign in failed");
         }
 
-        //if (MainWindow.IsOnlineVersion)
-        //{
-        //  var isSync = DialogHelper.YesNoQuestionDialog("Synchronize your data with cloud?", "Synchronize");
-        //  if (isSync)
-        //  {
-        //    MainWindow.StartSync();
-        //  }
-        //}
         Dispatcher.BeginInvoke(DispatcherPriority.Background, new ThreadStart(IsStartSync));
 
         Switcher.Switch(new MainPage());
