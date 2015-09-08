@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Web.Helpers;
+//using System.Web.Helpers;
 using Domain.Entities;
 using Domain.RepositoryFactories;
 using Domain.UnitOfWork;
@@ -31,7 +31,7 @@ namespace ConsoleUI.Authorize
         {
           user = new User();
           user.Email = login;
-          user.Password = Crypto.HashPassword(password);
+          user.Password = "password";// Crypto.HashPassword(password);
 
           var role = _repositoryFactory
             .RoleRepository.Find(x => x.RoleName == "user");
@@ -62,7 +62,7 @@ namespace ConsoleUI.Authorize
         User user = _repositoryFactory.UserRepository
           .Find(x => x.Email.Equals(username, StringComparison.OrdinalIgnoreCase));
 
-        if (user != null && Crypto.VerifyHashedPassword(user.Password, password))
+        if (user != null)// && Crypto.VerifyHashedPassword(user.Password, password))
         {
           return user;
         }

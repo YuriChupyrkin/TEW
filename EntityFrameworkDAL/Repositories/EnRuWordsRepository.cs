@@ -61,6 +61,8 @@ namespace EntityFrameworkDAL.Repositories
       int userId,
       DateTime? updateDate = null,
       int level = 0,
+      int answerCount = 0,
+      int failAnswerCount = 1,
       bool isDeleted = false)
     {
       int engId = AddEngWord(engWord);
@@ -76,6 +78,8 @@ namespace EntityFrameworkDAL.Repositories
         enRuWordFromDb.Example = example ?? string.Empty;
         enRuWordFromDb.IsDeleted = isDeleted;
         enRuWordFromDb.UpdateDate = updateDate ?? new DateTime(1990, 5, 5);
+        enRuWordFromDb.AnswerCount = answerCount;
+        enRuWordFromDb.FailAnswerCount = failAnswerCount;
         _context.SaveChanges();
 
         return enRuWordFromDb;
@@ -90,6 +94,8 @@ namespace EntityFrameworkDAL.Repositories
         WordLevel = level,
         IsDeleted = isDeleted,
         UpdateDate = updateDate ?? new DateTime(1990, 5, 5),
+        AnswerCount = answerCount,
+        FailAnswerCount = failAnswerCount
       };
 
       _context.EnRuWords.Add(enRuWord);
@@ -180,6 +186,13 @@ namespace EntityFrameworkDAL.Repositories
       {
         word.WordLevel = word.WordLevel + levelShift;
         word.UpdateDate = DateTime.UtcNow;
+        word.AnswerCount++;
+
+        if(levelShift < 0)
+        {
+          word.FailAnswerCount++;
+        }
+
         _context.SaveChanges();
       }
     }
@@ -233,6 +246,8 @@ namespace EntityFrameworkDAL.Repositories
       {
         userWord.WordLevel = 0;
         userWord.UpdateDate = DateTime.UtcNow;
+        userWord.AnswerCount = 0;
+        userWord.FailAnswerCount = 1;
       }
       _context.SaveChanges();
     }

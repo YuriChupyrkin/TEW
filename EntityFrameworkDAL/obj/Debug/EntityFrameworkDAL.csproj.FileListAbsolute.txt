@@ -26,3 +26,17 @@ D:\Study\Programming\Projects\Tew_Project\EntityFrameworkDAL\bin\Debug\Newtonsof
 D:\Study\Programming\Projects\Tew_Project\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.csprojResolveAssemblyReference.cache
 D:\Study\Programming\Projects\Tew_Project\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.dll
 D:\Study\Programming\Projects\Tew_Project\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.pdb
+D:\Study\Projects\Tew_Project\EntityFrameworkDAL\bin\Debug\EntityFrameworkDAL.dll.config
+D:\Study\Projects\Tew_Project\EntityFrameworkDAL\bin\Debug\EntityFrameworkDAL.dll
+D:\Study\Projects\Tew_Project\EntityFrameworkDAL\bin\Debug\EntityFrameworkDAL.pdb
+D:\Study\Projects\Tew_Project\EntityFrameworkDAL\bin\Debug\Domain.dll
+D:\Study\Projects\Tew_Project\EntityFrameworkDAL\bin\Debug\EntityFramework.dll
+D:\Study\Projects\Tew_Project\EntityFrameworkDAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Study\Projects\Tew_Project\EntityFrameworkDAL\bin\Debug\Newtonsoft.Json.dll
+D:\Study\Projects\Tew_Project\EntityFrameworkDAL\bin\Debug\Domain.pdb
+D:\Study\Projects\Tew_Project\EntityFrameworkDAL\bin\Debug\EntityFramework.xml
+D:\Study\Projects\Tew_Project\EntityFrameworkDAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Study\Projects\Tew_Project\EntityFrameworkDAL\bin\Debug\Newtonsoft.Json.xml
+D:\Study\Projects\Tew_Project\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.csprojResolveAssemblyReference.cache
+D:\Study\Projects\Tew_Project\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.dll
+D:\Study\Projects\Tew_Project\EntityFrameworkDAL\obj\Debug\EntityFrameworkDAL.pdb

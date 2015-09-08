@@ -259,6 +259,8 @@ namespace WpfUI.Pages
               user.Id,
               word.UpdateDate,
               word.Level,
+              word.AnswerCount,
+              word.FailAnswerCount,
               word.IsDeleted);
 
           count++;

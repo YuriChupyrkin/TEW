@@ -3,3 +3,7 @@ D:\Study\Programming\Projects\Tew_Project\TewLauncher\bin\Debug\TewLauncher.pdb
 D:\Study\Programming\Projects\Tew_Project\TewLauncher\obj\Debug\TewLauncher.dll
 D:\Study\Programming\Projects\Tew_Project\TewLauncher\obj\Debug\TewLauncher.pdb
 D:\Study\Programming\Projects\Tew_Project\TewLauncher\obj\Debug\TewLauncherEntites.csprojResolveAssemblyReference.cache
+D:\Study\Projects\Tew_Project\TewLauncher\bin\Debug\TewLauncher.dll
+D:\Study\Projects\Tew_Project\TewLauncher\bin\Debug\TewLauncher.pdb
+D:\Study\Projects\Tew_Project\TewLauncher\obj\Debug\TewLauncher.dll
+D:\Study\Projects\Tew_Project\TewLauncher\obj\Debug\TewLauncher.pdb

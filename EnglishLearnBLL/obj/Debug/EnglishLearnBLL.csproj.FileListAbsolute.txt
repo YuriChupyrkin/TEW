@@ -57,3 +57,12 @@ D:\Study\Programming\Projects\Tew_Project\EnglishLearnBLL\bin\Debug\Newtonsoft.J
 D:\Study\Programming\Projects\Tew_Project\EnglishLearnBLL\obj\Debug\EnglishLearnBLL.csprojResolveAssemblyReference.cache
 D:\Study\Programming\Projects\Tew_Project\EnglishLearnBLL\obj\Debug\EnglishLearnBLL.dll
 D:\Study\Programming\Projects\Tew_Project\EnglishLearnBLL\obj\Debug\EnglishLearnBLL.pdb
+D:\Study\Projects\Tew_Project\EnglishLearnBLL\bin\Debug\EnglishLearnBLL.dll
+D:\Study\Projects\Tew_Project\EnglishLearnBLL\bin\Debug\EnglishLearnBLL.pdb
+D:\Study\Projects\Tew_Project\EnglishLearnBLL\bin\Debug\Domain.dll
+D:\Study\Projects\Tew_Project\EnglishLearnBLL\bin\Debug\Newtonsoft.Json.dll
+D:\Study\Projects\Tew_Project\EnglishLearnBLL\bin\Debug\Domain.pdb
+D:\Study\Projects\Tew_Project\EnglishLearnBLL\bin\Debug\Newtonsoft.Json.xml
+D:\Study\Projects\Tew_Project\EnglishLearnBLL\obj\Debug\EnglishLearnBLL.csprojResolveAssemblyReference.cache
+D:\Study\Projects\Tew_Project\EnglishLearnBLL\obj\Debug\EnglishLearnBLL.dll
+D:\Study\Projects\Tew_Project\EnglishLearnBLL\obj\Debug\EnglishLearnBLL.pdb

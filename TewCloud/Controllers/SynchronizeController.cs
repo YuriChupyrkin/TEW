@@ -43,6 +43,8 @@ namespace TewCloud.Controllers
               userId,
               modelItem.UpdateDate,
               modelItem.Level,
+              modelItem.AnswerCount,
+              modelItem.FailAnswerCount,
               modelItem.IsDeleted);
         }
       }

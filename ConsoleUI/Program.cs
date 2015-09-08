@@ -16,6 +16,13 @@ namespace ConsoleUI
 
     private static void Main(string[] args)
     {
+      var a = 3;
+      var b = 5;
+      var c = (double)b / a;
+
+      Console.WriteLine(c);
+
+      /*
       var dir = Directory.GetCurrentDirectory();
 
       var result = new FileInfoChecker(@"D://DCDownloads/Debug").GetFilesInfo();
@@ -26,6 +33,7 @@ namespace ConsoleUI
       //  Console.WriteLine("---------------------------------------------------------");
       //}
       CompareFiles(result);
+      */
     }
 
     private static void PrintList<T>(IEnumerable<T> list)
