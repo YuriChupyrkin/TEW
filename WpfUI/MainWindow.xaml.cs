@@ -19,7 +19,7 @@ namespace WpfUI
   /// </summary>
   public partial class MainWindow : Window
   {
-    private const string Version = "(1.14   8/18/2015)"; 
+    private const string Version = "(1.15   9/28/2015)"; 
 
     public const string AppName = "TEW";
 
@@ -317,42 +317,6 @@ namespace WpfUI
     internal static void StartSync()
     {
       Switcher.Switch(new SyncPage());
-      //MessageBox.Show("please wait some time", "Synchronize");
-
-      //var user = ApplicationContext.CurrentUser;
-
-      //if (user == null)
-      //{
-      //  MessageBox.Show("Sign in please");
-      //  return;
-      //}
-
-      //var repositoryFactory = ApplicationContext.RepositoryFactory;
-      //var syncHelper = new SynchronizeHelper(repositoryFactory);
-
-      //var isServerOnline = syncHelper.IsServerOnline();
-
-      //if (isServerOnline == false)
-      //{
-      //  MessageBox.Show("Server is offline", "Synchronize");
-      //  return;
-      //}
-
-      //var responseResult = syncHelper.SendMyWords(user);
-      //if (responseResult.IsError)
-      //{
-      //  MessageBox.Show(responseResult.ErrorMessage, "Synchronize error");
-      //  return;
-      //}
-
-      //responseResult = syncHelper.GetUserWords(user);
-      //if (responseResult.IsError)
-      //{
-      //  MessageBox.Show(responseResult.ErrorMessage, "Synchronize error");
-      //  return;
-      //}
-
-      //MessageBox.Show("Success", "Synchronize");
     }
 
     #endregion

@@ -158,7 +158,6 @@ namespace EnglishLearnBLL.Tests
       return pickerModels;
     }
 
-
     public IEnumerable<PickerTestModel> RussianEnglishTest(int userId)
     {
       var enRuWordsForTest = Get10EnRuWords(userId, WordCount);
@@ -238,9 +237,6 @@ namespace EnglishLearnBLL.Tests
 
     private IEnumerable<string> Get4RandomRusWords(string trueAnswer, int iteration)
     {
-      //var russianWords = _repositoryFactory.EnRuWordsRepository.AllRussianWords()
-      //  .Where(r => !r.RuWord.Equals(trueAnswer));
-
       var russianWords = _repositoryFactory.EnRuWordsRepository
         .AllEnRuWords()
         .Where(r => r.RussianWord.RuWord != trueAnswer)
@@ -265,8 +261,6 @@ namespace EnglishLearnBLL.Tests
       }
 
       var rnd = new Random();
-      //var result = russianWords.OrderBy(r => rnd.Next()).Take(4).Select(r => r.RuWord);
-
       var result = russianWords.Skip(skip).Take(4).Select(r => r.RuWord);
 
       return result;
@@ -274,9 +268,6 @@ namespace EnglishLearnBLL.Tests
 
     private IEnumerable<string> Get4RandomEngWords(string trueAnswer, int iteration)
     {
-      //var engWords = _repositoryFactory.EnRuWordsRepository.AllEnglishWords()
-      //  .Where(r => !r.EnWord.Equals(trueAnswer));
-
       var engWords = _repositoryFactory.EnRuWordsRepository
         .AllEnRuWords()
         .Where(r => r.EnglishWord.EnWord != trueAnswer)
@@ -301,7 +292,6 @@ namespace EnglishLearnBLL.Tests
       }
 
       var rnd = new Random();
-      //var result = engWords.OrderBy(r => rnd.Next()).Take(4).Select(r => r.EnWord);
 
       var result = engWords.Skip(skip).Take(4).Select(r => r.EnWord);
 
