@@ -60,3 +60,9 @@ D:\Study\Projects\Tew_Project\Domain\bin\Debug\Newtonsoft.Json.dll
 D:\Study\Projects\Tew_Project\Domain\bin\Debug\Newtonsoft.Json.xml
 D:\Study\Projects\Tew_Project\Domain\obj\Debug\Domain.dll
 D:\Study\Projects\Tew_Project\Domain\obj\Debug\Domain.pdb
+d:\Projects\Tew_Project\Domain\bin\Debug\Domain.dll
+d:\Projects\Tew_Project\Domain\bin\Debug\Domain.pdb
+d:\Projects\Tew_Project\Domain\bin\Debug\Newtonsoft.Json.dll
+d:\Projects\Tew_Project\Domain\bin\Debug\Newtonsoft.Json.xml
+d:\Projects\Tew_Project\Domain\obj\Debug\Domain.dll
+d:\Projects\Tew_Project\Domain\obj\Debug\Domain.pdb

@@ -33,3 +33,7 @@ D:\Study\Projects\Tew_Project\Common\bin\Debug\Common.dll
 D:\Study\Projects\Tew_Project\Common\bin\Debug\Common.pdb
 D:\Study\Projects\Tew_Project\Common\obj\Debug\Common.dll
 D:\Study\Projects\Tew_Project\Common\obj\Debug\Common.pdb
+d:\Projects\Tew_Project\Common\bin\Debug\Common.dll
+d:\Projects\Tew_Project\Common\bin\Debug\Common.pdb
+d:\Projects\Tew_Project\Common\obj\Debug\Common.dll
+d:\Projects\Tew_Project\Common\obj\Debug\Common.pdb

@@ -15,7 +15,7 @@ namespace WpfUI.Helpers
         private const string SynchronizeController = "api/Synchronize";
         private const string CheckUpdateController = "api/CheckUpdate";
 
-        //public const string Uri = "http://localhost:8081/";
+        //public const string Uri = "http://localhost/";
         //public const string Uri = "http://yu4e4ko.somee.com/TewCloud/";
         public const string Uri = "http://tew.azurewebsites.net/";
 

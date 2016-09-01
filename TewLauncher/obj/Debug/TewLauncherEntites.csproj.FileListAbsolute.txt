@@ -7,3 +7,7 @@ D:\Study\Projects\Tew_Project\TewLauncher\bin\Debug\TewLauncher.dll
 D:\Study\Projects\Tew_Project\TewLauncher\bin\Debug\TewLauncher.pdb
 D:\Study\Projects\Tew_Project\TewLauncher\obj\Debug\TewLauncher.dll
 D:\Study\Projects\Tew_Project\TewLauncher\obj\Debug\TewLauncher.pdb
+d:\Projects\Tew_Project\TewLauncher\bin\Debug\TewLauncher.dll
+d:\Projects\Tew_Project\TewLauncher\bin\Debug\TewLauncher.pdb
+d:\Projects\Tew_Project\TewLauncher\obj\Debug\TewLauncher.dll
+d:\Projects\Tew_Project\TewLauncher\obj\Debug\TewLauncher.pdb

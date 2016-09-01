@@ -131,6 +131,8 @@
     <Compile Include="Pages\WriteTestPage.xaml.cs">
       <DependentUpon>WriteTestPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\DataProvider.cs" />
+    <Compile Include="Services\UserDataProvider.cs" />
     <Compile Include="Switcher.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
