@@ -1,7 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using EnglishLearnBLL.Models;
 using Newtonsoft.Json;
 
 namespace WpfUI.Services
@@ -11,9 +13,10 @@ namespace WpfUI.Services
 		protected const string Uri = "http://tew.azurewebsites.net/";
 		//protected const string Uri = "http://localhost/";
 
-		protected const string SignUpWebController = "api/SignUpWeb";
+		protected const string SignUpController = "api/SignUp";
+		protected const string SignInController = "api/SignIn";
 
-		protected static async Task<TOutput> SendRequestAsync<TInput, TOutput>(TInput tInput, string controllerName)
+		protected static async Task<TOutput> SendPostRequestAsync<TInput, TOutput>(TInput tInput, string controllerName)
 		{
 			var uri = Uri + controllerName;
 
@@ -46,6 +49,43 @@ namespace WpfUI.Services
 			}
 
 			return result;
+		}
+
+		// TODO CREATE GET REQUEST
+		public ResponseModel GetUserWords(UserUpdateDateModel updateModel)
+		{
+			var uri = Uri + "SynchronizeController" + "?UserName=" + updateModel.UserName + "&UpdateDate=" + updateModel.UpdateDate;
+
+			var httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
+
+			WordsCloudModel result;
+
+			try
+			{
+				WebResponse response = httpWebRequest.GetResponse();
+				var responseStream = response.GetResponseStream();
+
+				using (var stream = new StreamReader(responseStream))
+				{
+					var responseString = stream.ReadToEnd();
+					result = JsonConvert.DeserializeObject<WordsCloudModel>(responseString);
+				}
+			}
+			catch (Exception ex)
+			{
+				return new ResponseModel { IsError = true, ErrorMessage = ex.Message };
+			}
+
+			if (result == null)
+			{
+				return new ResponseModel
+				{
+					IsError = true,
+					ErrorMessage = "response is null???"
+				};
+			}
+
+			return new ResponseModel { IsError = false, ErrorMessage = string.Empty, WordsCloudModel = result };
 		}
 	}
 }

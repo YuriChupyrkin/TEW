@@ -32,24 +32,24 @@ namespace WpfUI.Pages
 		{
 			if (e.Key == Key.Enter)
 			{
-				await StartSignUp();
+				await StartSignUpAsync();
 			}
 		}
 
 		private async void BtnSignUp_Click(object sender, RoutedEventArgs e)
 		{
-			await StartSignUp();
+			await StartSignUpAsync();
 		}
 
 		#endregion
 
 		#region methods
 
-		private async Task StartSignUp()
+		private async Task StartSignUpAsync()
 		{
 			try
 			{
-				var user = await SignUpUser();
+				var user = await SignUpUserAsync();
 				if (user == null)
 				{
 					throw new Exception("sign up failed");
@@ -64,7 +64,7 @@ namespace WpfUI.Pages
 			}
 		}
 
-		private async Task<User> SignUpUser()
+		private async Task<User> SignUpUserAsync()
 		{
 			var login = TxtLogin.Text;
 
@@ -87,7 +87,7 @@ namespace WpfUI.Pages
 				throw new Exception("Password and confirm password must be equal");
 			}
 
-			var user = await UserDataProvider.SignUp(login, password);
+			var user = await UserDataProvider.SignUpAsync(login, password);
 
 			if (user == null)
 			{

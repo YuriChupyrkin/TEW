@@ -179,7 +179,9 @@
     <Compile Include="Controllers\CheckUpdateController.cs" />
     <Compile Include="Controllers\ClientFilesInfoController.cs" />
     <Compile Include="Controllers\ClientFilesUpdateController.cs" />
-    <Compile Include="Controllers\SignUpWebController.cs" />
+    <Compile Include="Controllers\WebAppVersion\AddDeleteWordsController.cs" />
+    <Compile Include="Controllers\WebAppVersion\SignInController.cs" />
+    <Compile Include="Controllers\WebAppVersion\SignUpController.cs" />
     <Compile Include="Controllers\SynchronizeController.cs" />
     <Compile Include="Controllers\TewController.cs" />
     <Compile Include="Controllers\TewInfoController.cs" />

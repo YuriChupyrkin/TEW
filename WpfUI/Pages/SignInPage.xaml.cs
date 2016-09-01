@@ -8,6 +8,7 @@ using System.Windows.Threading;
 using Domain.Entities;
 using WpfUI.Auth;
 using WpfUI.Helpers;
+using WpfUI.Services;
 
 namespace WpfUI.Pages
 {
@@ -29,28 +30,28 @@ namespace WpfUI.Pages
       Switcher.Switch(new SignUpPage());
     }
 
-    private void TxtPassword_KeyDown(object sender, KeyEventArgs e)
+    private async void TxtPassword_KeyDown(object sender, KeyEventArgs e)
     {
       if (e.Key == Key.Enter)
       {
-        StartSignIn();
+				await StartSignInAsync();
       }
     }
 
-    private void Button_Click(object sender, RoutedEventArgs e)
+    private async void Button_Click(object sender, RoutedEventArgs e)
     {
-      StartSignIn();
+			await StartSignInAsync();
     }
 
     #endregion
 
     #region methods
 
-    private void StartSignIn()
+    private async Task StartSignInAsync()
     {
       try
       {
-        var user = SignInUser();
+        var user = await SignInUserAsync();
         if (user == null)
         {
           throw new Exception("Sign in failed");
@@ -66,7 +67,7 @@ namespace WpfUI.Pages
       } 
     }
 
-    public User SignInUser()
+    public async Task<User> SignInUserAsync()
     {
       var login = TxtLogin.Text;
 
@@ -82,12 +83,12 @@ namespace WpfUI.Pages
         throw new Exception("Incorrect password! (Min len = 4, Max len = 16)");
       }
 
-      var userProvider = new UserProvider(ApplicationContext.RepositoryFactory);
+      //var userProvider = new UserProvider(ApplicationContext.RepositoryFactory);
 
       User user = null;
       try
       {
-        user = userProvider.ValidateUser(login, password);
+	      user = await UserDataProvider.SignInAsync(login, password); // userProvider.ValidateUser(login, password);
       }
       catch (Exception ex)
       {
