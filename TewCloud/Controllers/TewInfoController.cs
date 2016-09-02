@@ -18,7 +18,7 @@ namespace TewCloud.Controllers
     public IHttpActionResult GetTewInfo()
     {
       var usersCount = _repositoryFactory.UserRepository.All().Count();
-      var wordsCount = _repositoryFactory.EnRuWordsRepository.AllEnRuWords().Count(r => r.IsDeleted == false);
+      var wordsCount = _repositoryFactory.EnRuWordsRepository.AllEnRuWords().Count();
 
       var infoModel = new TewInfoModel
       {

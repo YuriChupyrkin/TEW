@@ -19,7 +19,7 @@ namespace EnglishLearnBLL.View
       var viewList = new List<WordViewModel>();
 
       var enRuWords = _repositoryFactory.EnRuWordsRepository
-        .AllEnRuWords().Where(r => r.UserId == userId && r.IsDeleted == false).ToList();
+        .AllEnRuWords().Where(r => r.UserId == userId).ToList();
 
       enRuWords.ForEach(r => viewList.Add(new WordViewModel
       {

@@ -26,23 +26,6 @@ namespace WpfUI
     public static MainWindow ThisWindow { get; set; }
     public static EventHandler<EventArgs> ChangeTitleEvent { get; set; }
 
-    public static bool IsSpeakEng { get; set; }
-    public static bool IsSpeakRus { get; set; }
-
-    public static bool IsOnlineVersion
-    {
-      get
-      {
-        var isConnected = CheckConnection();
-        var title = string.Format("{0} offline version {1}", AppName, Version);
-        if (isConnected)
-        {
-          title = string.Format("{0} online version {1}", AppName, Version);
-        }
-        ChangeTitleEvent(title, null);
-        return isConnected;
-      }
-    }
 
     public MainWindow()
     {
@@ -121,17 +104,6 @@ namespace WpfUI
       Switcher.Switch(new ChangePasswordPage());
     }
 
-    private void MenuConnect_Click(object sender, RoutedEventArgs e)
-    {
-      if (IsOnlineVersion)
-      {
-      }
-      else
-      {
-        MessageBox.Show("Failure to Internet connect", "Connection");
-      }
-    }
-
     private void RemoveExcessWordsMenu_Click(object sender, RoutedEventArgs e)
     {
       try
@@ -156,19 +128,6 @@ namespace WpfUI
         ApplicationContext.RepositoryFactory.EnRuWordsRepository
           .ResetWordLevel(ApplicationContext.CurrentUser.Id);
       }
-    }
-
-
-    private void SpeakEngMenu_Click(object sender, RoutedEventArgs e)
-    {
-      IsSpeakEng = !IsSpeakEng;
-      SpeakEngMenu.IsChecked = IsSpeakEng;
-    }
-
-    private void SpeakRusMenu_Click(object sender, RoutedEventArgs e)
-    {
-      IsSpeakRus = !IsSpeakRus;
-      SpeakRusMenu.IsChecked = IsSpeakRus;
     }
 
     private void ExportMenu_Click(object sender, RoutedEventArgs e)
@@ -224,25 +183,6 @@ namespace WpfUI
       }
     }
 
-    private void SyncMenu_Click(object sender, RoutedEventArgs e)
-    {
-      if (IsOnlineVersion == false)
-      {
-        MessageBox.Show("It's offline mode...");
-        return;
-      }
-
-      var user = ApplicationContext.CurrentUser;
-
-      if (user == null)
-      {
-        MessageBox.Show("Sign in please");
-        return;
-      }
-
-      StartSync();
-    }
-
     private void TewCloudMenu_Click(object sender, RoutedEventArgs e)
     {
       var startInfo = new ProcessStartInfo("explorer.exe", SynchronizeHelper.Uri);
@@ -270,16 +210,6 @@ namespace WpfUI
       ApplicationContext.RepositoryFactory = repositoryFactory;
       ApplicationContext.EmailSender = container.BeginLifetimeScope().Resolve<IEmailSender>();
 
-      var checkConnection = IsOnlineVersion;
-      if (checkConnection)
-      {
-        var syncHelper = new SynchronizeHelper();
-        syncHelper.IsServerOnline();
-      }
-
-      IsSpeakEng = true;
-      SpeakEngMenu.IsChecked = true;
-
       Switcher.PageSwitcher = this;
 
       try
@@ -296,27 +226,6 @@ namespace WpfUI
     public void Navigate(Page nextPage)
     {
       MainFrame.Navigate(nextPage);
-    }
-
-    private static bool CheckConnection()
-    {
-      var client = new WebClient();
-      try
-      {
-        using (client.OpenRead("http://www.google.com"))
-        {
-        }
-        return true;
-      }
-      catch (WebException)
-      {
-        return false;
-      }
-    }
-
-    internal static void StartSync()
-    {
-      Switcher.Switch(new SyncPage());
     }
 
     #endregion

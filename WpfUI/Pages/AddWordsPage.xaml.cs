@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Media;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
-using Domain.Entities;
-using Domain.RepositoryFactories;
 using WpfUI.Helpers;
 using WpfUI.Services;
 
@@ -22,10 +14,8 @@ namespace WpfUI.Pages
   /// </summary>
   public partial class AddWordsPage : Page
   {
-    private readonly IRepositoryFactory _repositoryFactory;
     private readonly GoogleTranslater _googleTranslator;
     private const string MyTranslate = "My translate";
-    private List<EnglishWord> _myEnglishWords;
 
     private string _selectedTranslate;
 
@@ -38,20 +28,18 @@ namespace WpfUI.Pages
       TxtRusTranslate.IsEnabled = false;
       BtnAdd.IsEnabled = false;
 
-      _repositoryFactory = ApplicationContext.RepositoryFactory;
       _googleTranslator = new GoogleTranslater();
 
       TxtEnglishWord.Focus();
       BtnSearch.IsEnabled = false;
       labelExist.Content = string.Empty;
-      _myEnglishWords = _repositoryFactory.EnRuWordsRepository.AllEnglishWords().ToList();
     }
 
     #region events
 
     private async void BtnSearch_Click(object sender, RoutedEventArgs e)
     {
-      await Search();
+      await SearchAsync();
     }
 
     private async void ListTranslate_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -115,7 +103,7 @@ namespace WpfUI.Pages
     {
       if (e.Key == Key.Enter)
       {
-        await Search();
+        await SearchAsync();
       }
     }
 
@@ -183,7 +171,6 @@ namespace WpfUI.Pages
 
       try
       {
-        var userId = ApplicationContext.CurrentUser.Id;
         string example = TxtExample.Text;
 
         const int maxLen = 500;
@@ -194,7 +181,6 @@ namespace WpfUI.Pages
           example += "...";
         }
 				
-				// NEW IMP
 				var responseModel = 
 					await WordsDataProvider.AddTranslateAsync(ApplicationContext.CurrentUser, enWord, rusWord, example, DateTime.UtcNow);
 
@@ -202,18 +188,6 @@ namespace WpfUI.Pages
 				{
 					throw new Exception("Word was not added! " + responseModel.ErrorMessage);
 				}
-
-				/*
-				// ToDo replace
-        var word = _repositoryFactory.EnRuWordsRepository.AddTranslate(enWord, rusWord, example, userId, DateTime.UtcNow);
-
-				// TODO remove
-        if (MainWindow.IsOnlineVersion)
-        {
-          var syncHelper = new SynchronizeHelper();
-          syncHelper.SendWordInBackGround(word, ApplicationContext.CurrentUser);
-        }
-				 * */
       }
       catch (Exception ex)
       {
@@ -234,57 +208,36 @@ namespace WpfUI.Pages
       TxtExample.Clear();
     }
 
-    private async Task Search()
+    private async Task SearchAsync()
     {
       TxtExample.Clear();
       ListTranslate.Items.Clear();
       labelExist.Content = string.Empty;
 
       var word = TxtEnglishWord.Text;
-      var translates = _repositoryFactory.EnRuWordsRepository.GetTranslate(word);
+	    var translates = await WordsDataProvider.GetTranslates(word);
 
-      ListTranslate.Items.Add(MyTranslate);
-
-      // todo incorrect work (show result for all users)
-      //if (_myEnglishWords.FirstOrDefault(
-      //  r => r.EnWord.Equals(TxtEnglishWord.Text, StringComparison.OrdinalIgnoreCase)) != null)
-      //{
-      //  labelExist.Content = "this word exists in dictionary";
-      //}
+			ListTranslate.Items.Add(MyTranslate);
 
       foreach (var translate in translates)
       {
         ListTranslate.Items.Add(translate);
       }
 
-      var googleTranslate = await AddTranslateFromGoogle();
+      //var googleTranslate = await AddTranslateFromGoogle();
 
-      foreach (var translate in googleTranslate)
-      {
-        if (translates.Contains(translate) == false && translate.Length > 0)
-        {
-          ListTranslate.Items.Add(translate);
-        }
-      }
-
-      await Speak(word, "en");
+      //foreach (var translate in googleTranslate)
+      //{
+      //  if (translates.Contains(translate) == false && translate.Length > 0)
+      //  {
+      //    ListTranslate.Items.Add(translate);
+      //  }
+      //}
     }
 
-    private async Task Speak(string word, string lang)
-    {
-      if (MainWindow.IsOnlineVersion && MainWindow.IsSpeakEng)
-      {
-        await _googleTranslator.Speak(word, lang);
-      }
-    }
-
+		// TODO! USE IT
     private async Task<string[]> AddTranslateFromGoogle()
     {
-      if (MainWindow.IsOnlineVersion == false)
-      {
-        return new string[0];
-      }
-
       var result = await _googleTranslator.GetTranslate(TxtEnglishWord.Text);
 
       TxtExample.AppendText(result.Example);

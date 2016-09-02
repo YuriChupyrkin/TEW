@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using EnglishLearnBLL.Models;
 using Newtonsoft.Json;
 
 namespace WpfUI.Services
@@ -17,8 +15,33 @@ namespace WpfUI.Services
 		protected const string SignUpController = "api/SignUp";
 		protected const string SignInController = "api/SignIn";
 		protected const string WordsManagerController = "api/WordsManager";
+		protected const string PickerTestsController = "api/PickerTests";
+		protected const string WordsLevelUpdaterController = "api/WordsLevelUpdater";
+		protected const string WordTranslaterController = "api/WordTranslater";
+		protected const string WriteTestsController = "api/WriteTests";
 
 		protected static async Task<TOutput> SendPostRequestAsync<TInput, TOutput>(
+			TInput tInput,
+			string controllerName,
+			string httpMethod = null)
+		{
+			// TODO: LOADING...
+			var result = await Task.Run(() => PostRequestAsync<TInput, TOutput>(tInput, controllerName, httpMethod));
+
+			return result;
+		}
+
+		protected static async Task<TOutput> SendGetRequestAsync<TOutput>(
+			Dictionary<string, string> queryStringParams,
+			string controllerName)
+		{
+			// TODO: LOADING...
+			var result = await Task.Run(() => GetRequestAsync<TOutput>(queryStringParams, controllerName));
+
+			return result;
+		}
+
+		private static async Task<TOutput> PostRequestAsync<TInput, TOutput>(
 			TInput tInput,
 			string controllerName,
 			string httpMethod = null)
@@ -64,7 +87,7 @@ namespace WpfUI.Services
 			return result;
 		}
 
-		protected static async Task<TOutput> SendGetRequestAsync<TOutput>(
+		private static async Task<TOutput> GetRequestAsync<TOutput>(
 			Dictionary<string, string> queryStringParams, 
 			string controllerName)
 		{
@@ -103,7 +126,7 @@ namespace WpfUI.Services
 					stringBuilder.Append("&");
 				}
 
-				stringBuilder.Append(pair.Key).Append("=").Append(pair.Key);
+				stringBuilder.Append(pair.Key).Append("=").Append(pair.Value);
 			}
 
 			return stringBuilder.ToString();

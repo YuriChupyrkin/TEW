@@ -28,11 +28,11 @@ namespace WpfUI.Pages
       Switcher.Switch(new PickerTest());
     }
 
-    private void BtnWriteTest_Click(object sender, System.Windows.RoutedEventArgs e)
+    private async void BtnWriteTest_Click(object sender, System.Windows.RoutedEventArgs e)
     {
       var writeTestPage = new WriteTestPage();
       Switcher.Switch(writeTestPage);
-      writeTestPage.StartTest();
+      await writeTestPage.StartTestAsync();
     }
 
     private void BtnMyWords_Click(object sender, System.Windows.RoutedEventArgs e)

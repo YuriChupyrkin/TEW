@@ -1,217 +1,205 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Domain.RepositoryFactories;
 using EnglishLearnBLL.Models;
-using EnglishLearnBLL.Tests;
 using EnglishLearnBLL.WordLevelManager;
 using WpfUI.Helpers;
+using WpfUI.Services;
 
 namespace WpfUI.Pages
 {
-  /// <summary>
-  /// Interaction logic for WriteTestPage.xaml
-  /// </summary>
-  public partial class WriteTestPage : Page
-  {
-    private readonly IRepositoryFactory _repositoryFactory;
-    private readonly WordLevelManager _wordLevelManager;
-    private TestCreator _testCreator;
-    private List<WriteTestModel> _testSet;
-    private int _testIndex;
-    private int _testCount;
-    private int _failedCount;
-    private bool _isHelpOn ;
+	/// <summary>
+	/// Interaction logic for WriteTestPage.xaml
+	/// </summary>
+	public partial class WriteTestPage : Page
+	{
+		private List<WriteTestModel> _testSet;
+		private int _testIndex;
+		private int _testCount;
+		private int _failedCount;
+		private bool _isHelpOn;
 
-    public WriteTestPage()
-    {
-      InitializeComponent();
+		public WriteTestPage()
+		{
+			InitializeComponent();
 
-      ApplicationValidator.ExpectAuthorized();
-      _repositoryFactory = ApplicationContext.RepositoryFactory;
-      _wordLevelManager = new WordLevelManager(_repositoryFactory);
-    }
+			ApplicationValidator.ExpectAuthorized();
+		}
 
-    public void StartTest()
-    {
-      _testCreator = new TestCreator(_repositoryFactory);
-      _testSet = _testCreator.WriteTest(ApplicationContext.CurrentUser.Id).ToList();
-      _testCount = _testSet.Count;
-      _testIndex = 0;
-      _failedCount = 0;
-      PrintCurrentTest();
-    }
+		public async Task StartTestAsync()
+		{
+			_testSet = await TestsDataProvider.GetWriteTestModel(ApplicationContext.CurrentUser.Id);
+			_testCount = _testSet.Count;
+			_testIndex = 0;
+			_failedCount = 0;
+			PrintCurrentTest();
+		}
 
-    #region events
+		#region events
 
-    private void BtnAnswer_Click(object sender, RoutedEventArgs e)
-    {
-      if (TxtAnwer.Text.Length < 1)
-      {
-        return;
-      }
+		private async void BtnAnswer_Click(object sender, RoutedEventArgs e)
+		{
+			if (TxtAnwer.Text.Length < 1)
+			{
+				return;
+			}
 
-      CheckAnswer();      
-      TestIndexIncrement();
-    }
+			await CheckAnswerAsync();
+			await TestIndexIncrementAsync();
+		}
 
-    private void TxtAnwer_PreviewKeyDown(object sender, KeyEventArgs e)
-    {
-      if (e.Key != Key.Enter)
-      {
-        return;
-      }
-      if (TxtAnwer.Text.Length < 1)
-      {
-        return;
-      }
+		private async void TxtAnwer_PreviewKeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key != Key.Enter)
+			{
+				return;
+			}
+			if (TxtAnwer.Text.Length < 1)
+			{
+				return;
+			}
 
-      CheckAnswer();
-      TestIndexIncrement();
-    }
+			await CheckAnswerAsync();
+			await TestIndexIncrementAsync();
+		}
 
-    private void BtnHelpMe_Click(object sender, RoutedEventArgs e)
-    {
-      HelperStart();
-      TxtAnwer.Focus();
-    }
+		private void BtnHelpMe_Click(object sender, RoutedEventArgs e)
+		{
+			HelperStart();
+			TxtAnwer.Focus();
+		}
 
-    #endregion
+		#endregion
 
-    #region methods
+		#region methods
 
-    private void PrintCurrentTest()
-    {
-      if (_testSet.Count < 4)
-      {
-        throw new Exception("you must add words for test");
-      }
+		private void PrintCurrentTest()
+		{
+			if (_testSet.Count < 4)
+			{
+				throw new Exception("you must add words for test");
+			}
 
-      HelperOff();
-      TxtAnwer.Clear();
-      TxtAnwer.Focus();
-      var currentTest = _testSet[_testIndex];
-      LabelTestWord.Content = " " + currentTest.Word;
+			HelperOff();
+			TxtAnwer.Clear();
+			TxtAnwer.Focus();
+			var currentTest = _testSet[_testIndex];
+			LabelTestWord.Content = " " + currentTest.Word;
 
-      var example = currentTest.Example;
+			var example = currentTest.Example;
 
-      example = example.AsteriskReplace(currentTest.TrueAnswer);
+			example = example.AsteriskReplace(currentTest.TrueAnswer);
 
-      var textBlock = new TextBlock
-      {
-        Text = example, 
-        TextWrapping = TextWrapping.Wrap
-      };
+			var textBlock = new TextBlock
+			{
+				Text = example,
+				TextWrapping = TextWrapping.Wrap
+			};
 
-      LabelExample.Content = textBlock;
-      Speak(currentTest.Word);
-    }
+			LabelExample.Content = textBlock;
+		}
 
-    private void Speak(string word)
-    {
-      if (MainWindow.IsOnlineVersion == false || MainWindow.IsSpeakRus == false)
-      {
-        return;
-      }
+		private async Task TestIndexIncrementAsync()
+		{
+			if (_testIndex < (_testCount - 1))
+			{
+				_testIndex++;
+				PrintCurrentTest();
+			}
+			else
+			{
+				await TestResultAsync();
+			}
+		}
 
-      var translator = new GoogleTranslater();
-      translator.Speak(word, "ru");
-    }
+		private async Task CheckAnswerAsync()
+		{
+			var answer = TxtAnwer.Text;
+			var currentTest = _testSet[_testIndex];
 
-    private void TestIndexIncrement()
-    {
-      if (_testIndex < (_testCount - 1))
-      {
-        _testIndex++;
-        PrintCurrentTest();
-      }
-      else
-      {
-        TestResult();
-      }
-    }
+			if (answer.Equals(_testSet[_testIndex].TrueAnswer, StringComparison.OrdinalIgnoreCase))
+			{
+				await SetLevelAsync(true, currentTest.EnRuWordId);
+			}
+			else
+			{
+				await SetLevelAsync(false, currentTest.EnRuWordId);
+				MessageBox.Show("Fail! answer = " + currentTest.TrueAnswer);
+				_failedCount++;
+			}
+		}
 
-    private void CheckAnswer()
-    {
-      var answer = TxtAnwer.Text;
-      var currentTest = _testSet[_testIndex];
+		private async Task SetLevelAsync(bool isTrueAnswer, int wordId)
+		{
+			var testType = WordLevelManager.TestType.SpellingTest;
+			if (_isHelpOn)
+			{
+				testType = WordLevelManager.TestType.SpellingWithHelpTest;
+			}
 
-      if (answer.Equals(_testSet[_testIndex].TrueAnswer, StringComparison.OrdinalIgnoreCase))
-      {
-        SetLevel(true, currentTest.EnRuWordId);
-      }
-      else
-      {
-        SetLevel(false, currentTest.EnRuWordId);
-        MessageBox.Show("Fail! answer = " + currentTest.TrueAnswer);
-        _failedCount++;
-      }
-    }
+			var response = await TestsDataProvider.UpdateWordLevel(isTrueAnswer, wordId, testType);
 
-    private void SetLevel(bool isTrueAnswer, int wordId)
-    {
-      var testType = WordLevelManager.TestType.SpellingTest;
-      if (_isHelpOn)
-      {
-        testType = WordLevelManager.TestType.SpellingWithHelpTest;
-      }
-      _wordLevelManager.SetWordLevel(wordId, isTrueAnswer, testType);
-    }
+			if (response.IsError)
+			{
+				throw new Exception(response.ErrorMessage);
+			}
+		}
 
-    private void TestResult()
-    {
-      var result = string.Format("End of test!\n{0} error from {1} tests",
-        _failedCount, _testCount);
-      MessageBox.Show(result);
-      RestartTest();
-    }
+		private async Task TestResultAsync()
+		{
+			var result = string.Format("End of test!\n{0} error from {1} tests",
+				_failedCount, _testCount);
+			MessageBox.Show(result);
+			await RestartTestAsync();
+		}
 
-    private void RestartTest()
-    {
-      var startNewTest = DialogHelper.YesNoQuestionDialog(
-        "Start new test", "Restart");
-      if (startNewTest)
-      {
-        StartTest();
-      }
-      else
-      {
-        Switcher.Switch(new MainPage());
-      }
-    }
+		private async Task RestartTestAsync()
+		{
+			var startNewTest = DialogHelper.YesNoQuestionDialog(
+				"Start new test", "Restart");
+			if (startNewTest)
+			{
+				await StartTestAsync();
+			}
+			else
+			{
+				Switcher.Switch(new MainPage());
+			}
+		}
 
-    private void HelperStart()
-    {
-      _isHelpOn = true; 
-      BtnHelpMe.Visibility = Visibility.Hidden;
-      LabelHelp.Visibility = Visibility.Visible;
-      LabelLetters.Visibility = Visibility.Visible;
-      LabelLetters.Content = GetLetters();
-    }
+		private void HelperStart()
+		{
+			_isHelpOn = true;
+			BtnHelpMe.Visibility = Visibility.Hidden;
+			LabelHelp.Visibility = Visibility.Visible;
+			LabelLetters.Visibility = Visibility.Visible;
+			LabelLetters.Content = GetLetters();
+		}
 
-    private void HelperOff()
-    {
-      _isHelpOn = false;
-      BtnHelpMe.Visibility = Visibility.Visible;
-      LabelHelp.Visibility = Visibility.Hidden;
-      LabelLetters.Visibility = Visibility.Hidden;
-      LabelLetters.Content = string.Empty;
-    }
+		private void HelperOff()
+		{
+			_isHelpOn = false;
+			BtnHelpMe.Visibility = Visibility.Visible;
+			LabelHelp.Visibility = Visibility.Hidden;
+			LabelLetters.Visibility = Visibility.Hidden;
+			LabelLetters.Content = string.Empty;
+		}
 
-    private string GetLetters()
-    {
-      var enWord = _testSet[_testIndex].TrueAnswer;
-      var random = new Random();
+		private string GetLetters()
+		{
+			var enWord = _testSet[_testIndex].TrueAnswer;
+			var random = new Random();
 
-      var letters = new string(enWord.ToCharArray().
-          OrderBy(r => (random.Next(2) % 2) == 0).ToArray());
-      return letters;
-    }
+			var letters = new string(enWord.ToCharArray().
+				OrderBy(r => (random.Next(2)%2) == 0).ToArray());
+			return letters;
+		}
 
-    #endregion
+		#endregion
 
-  }
+	}
 }

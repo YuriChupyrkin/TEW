@@ -15,8 +15,6 @@ namespace Domain.Entities
 
     public int WordLevel { get; set; }
 
-    public bool IsDeleted { get; set; }
-
     public DateTime UpdateDate { get; set; }
 
     public int AnswerCount { get; set; }

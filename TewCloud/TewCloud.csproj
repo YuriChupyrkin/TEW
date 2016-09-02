@@ -179,6 +179,7 @@
     <Compile Include="Controllers\CheckUpdateController.cs" />
     <Compile Include="Controllers\ClientFilesInfoController.cs" />
     <Compile Include="Controllers\ClientFilesUpdateController.cs" />
+    <Compile Include="Controllers\WebAppVersion\PickerTestsController.cs" />
     <Compile Include="Controllers\WebAppVersion\WordsManagerController.cs" />
     <Compile Include="Controllers\WebAppVersion\SignInController.cs" />
     <Compile Include="Controllers\WebAppVersion\SignUpController.cs" />
@@ -186,6 +187,9 @@
     <Compile Include="Controllers\TewController.cs" />
     <Compile Include="Controllers\TewInfoController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\WebAppVersion\WordsLevelUpdaterController.cs" />
+    <Compile Include="Controllers\WebAppVersion\WordTranslaterController.cs" />
+    <Compile Include="Controllers\WebAppVersion\WriteTestsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

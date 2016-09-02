@@ -47,6 +47,7 @@
     <Compile Include="Models\PickerTestModel.cs" />
     <Compile Include="Models\ResponseModel.cs" />
     <Compile Include="Models\WordsCloudModel.cs" />
+    <Compile Include="Models\WordUpdateModel.cs" />
     <Compile Include="Models\WordViewModel.cs" />
     <Compile Include="Models\WriteTestModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -20,7 +20,7 @@ namespace EnglishLearnBLL.Tests
     private IList<EnRuWord> Get10EnRuWords(int userId, int wordCount)
     {
       var enRuWords = _repositoryFactory.EnRuWordsRepository.AllEnRuWords()
-        .Where(r => r.UserId == userId && r.IsDeleted == false).ToList();
+        .Where(r => r.UserId == userId).ToList();
 
       if (enRuWords.Count() < wordCount)
       {

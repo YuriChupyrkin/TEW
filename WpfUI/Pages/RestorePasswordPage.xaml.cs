@@ -35,12 +35,6 @@ namespace WpfUI.Pages
 
     private void Restore()
     {
-      if (MainWindow.IsOnlineVersion == false)
-      {
-        MessageBox.Show("You must have Internet connect");
-        return;
-      }
-
       string email = TxtEmail.Text;
       var userProvider = new UserProvider(ApplicationContext.RepositoryFactory);
 

@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Domain.RepositoryFactories;
 using EnglishLearnBLL.Models;
 using EnglishLearnBLL.Tests;
 using EnglishLearnBLL.WordLevelManager;
 using WpfUI.Helpers;
 using WpfUI.Services;
+using static EnglishLearnBLL.WordLevelManager.WordLevelManager;
 
 namespace WpfUI.Pages
 {
@@ -18,8 +18,6 @@ namespace WpfUI.Pages
   /// </summary>
   public partial class PickerTest : Page
   {
-    private readonly IRepositoryFactory _repositoryFactory;
-    private readonly WordLevelManager _wordLevelManager;
     private readonly GoogleTranslater _googleTranslater;
     private TestCreator _testCreator;
     private List<PickerTestModel> _testSet;
@@ -36,8 +34,6 @@ namespace WpfUI.Pages
       InitializeComponent();
 
       ApplicationValidator.ExpectAuthorized();
-      _repositoryFactory = ApplicationContext.RepositoryFactory;
-      _wordLevelManager = new WordLevelManager(_repositoryFactory);
       _googleTranslater = new GoogleTranslater();
 
       LabelExampleOfUseLabel.Visibility = Visibility.Hidden;
@@ -68,46 +64,37 @@ namespace WpfUI.Pages
         enWord = _testSet[_testCount].Answers[_testSet[_testCount].AnswerId];
       }
 
-			// New web database logic
 			await WordsDataProvider.DeleteWordAsync(ApplicationContext.CurrentUser, enWord);
-
-			// TODO: REPLACE IT
-			/*
-      var word = _repositoryFactory.EnRuWordsRepository.MakeDeleted(enWord, ApplicationContext.CurrentUser.Id);
-      var syncHelper = new SynchronizeHelper();
-      syncHelper.SendWordInBackGround(word, ApplicationContext.CurrentUser);
-			*/
-
-      TestIndexIncrement();
+      await TestIndexIncrement();
     }
 
-    private void BtnEnRuTest_Click(object sender, RoutedEventArgs e)
+    private async void BtnEnRuTest_Click(object sender, RoutedEventArgs e)
     {
       _currentTestName = EnRuTest;
       if (_testIndex == 0)
       {
-        StartEnRuTest();
+        await StartEnRuTestAsync();
       }
       else
       {
-        RestartTest();
+        await RestartTest();
       }
     }
 
-    private void BtnRuEnTest_Click(object sender, RoutedEventArgs e)
+    private async void BtnRuEnTest_Click(object sender, RoutedEventArgs e)
     {
       _currentTestName = RuEnTest;
       if (_testIndex == 0)
       {
-        StartRuEnTest();
+        await StartRuEnTestAsync();
       }
       else
       {
-        RestartTest();
+        await RestartTest();
       }
     }
 
-    private void ListTestAnswers_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+    private async void ListTestAnswers_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
     {
       var item = ItemsControl
         .ContainerFromElement(sender as ListBox, e.OriginalSource as DependencyObject) as ListBoxItem;
@@ -117,30 +104,27 @@ namespace WpfUI.Pages
         return;
       }
 
-      CheckAnswer(item.Content.ToString());
-      TestIndexIncrement();
+			await CheckAnswerAsync(item.Content.ToString());
+      await TestIndexIncrement();
     }
 
     #endregion
 
     #region methods
 
-		// ToDo: Update logic
-    private void StartEnRuTest()
+    private async Task StartEnRuTestAsync()
     {
-      _testCreator = new TestCreator(ApplicationContext.RepositoryFactory);
-      _testSet = _testCreator.EnglishRussianTest(ApplicationContext.CurrentUser.Id).ToList();
+			_testSet = await TestsDataProvider.GetPickerTestModel(ApplicationContext.CurrentUser.Id, TestType.EnRuTest.ToString());
+
       StartTest();
       BtnDelete.IsEnabled = true;
       BtnHelp.IsEnabled = true;
     }
 
-		// ToDo: Update logic
-    private void StartRuEnTest()
+    private async Task StartRuEnTestAsync()
     {
-      _testCreator = new TestCreator(ApplicationContext.RepositoryFactory);
-      _testSet = _testCreator.RussianEnglishTest(ApplicationContext.CurrentUser.Id).ToList();
-      StartTest();
+			_testSet = await TestsDataProvider.GetPickerTestModel(ApplicationContext.CurrentUser.Id, TestType.RuEnTest.ToString());
+			StartTest();
       BtnDelete.IsEnabled = true;
       BtnHelp.IsEnabled = true;
     }
@@ -190,59 +174,43 @@ namespace WpfUI.Pages
       };
 
       LabelExample.Content = textBlock;
-      Speak(test.Word);
     }
 
-    private void Speak(string word)
-    {
-      if (MainWindow.IsOnlineVersion == false)
-      {
-        return;
-      }
-
-      if (_currentTestName == EnRuTest && MainWindow.IsSpeakEng)
-      {
-        _googleTranslater.Speak(word, "en");
-      }
-      if (_currentTestName == RuEnTest && MainWindow.IsSpeakRus)
-      {
-        _googleTranslater.Speak(word, "ru");
-      }
-    }
-
-    private void CheckAnswer(string answer)
+    private async Task CheckAnswerAsync(string answer)
     {
       var currentTest = _testSet[_testIndex];
       var trueAnswer = currentTest.Answers[currentTest.AnswerId];
 
       if (answer.Equals(trueAnswer))
       {
-        SetLevel(true, currentTest.WordId);
+				await SetLevelAsync(true, currentTest.WordId);
       }
       else
       {
-        SetLevel(false, currentTest.WordId);
+				await SetLevelAsync(false, currentTest.WordId);
         MessageBox.Show("Fail! answer = " + trueAnswer);
         _failedCount++;
       }
     }
 
-    private void SetLevel(bool isTrueAnswer, int wordId)
+    private async Task SetLevelAsync(bool isTrueAnswer, int wordId)
     {
       var testType = WordLevelManager.TestType.EnRuTest;
+
       if (_currentTestName.Equals(RuEnTest))
       {
         testType = WordLevelManager.TestType.RuEnTest;
       }
 
-			// ToDo: Update logic
-      var resultWord = _wordLevelManager.SetWordLevel(wordId, isTrueAnswer, testType);
+	    var response = await TestsDataProvider.UpdateWordLevel(isTrueAnswer, wordId, testType);
 
-      var syncHelper = new SynchronizeHelper();
-      syncHelper.SendWordInBackGround(resultWord, ApplicationContext.CurrentUser);
+	    if (response.IsError)
+	    {
+		    throw new Exception(response.ErrorMessage);
+	    }
     }
 
-    private void TestIndexIncrement()
+    private async Task TestIndexIncrement()
     {
       if (_testIndex < (_testCount - 1))
       {
@@ -251,20 +219,20 @@ namespace WpfUI.Pages
       }
       else
       {
-        TestResult();
+        await TestResult();
       }
     }
 
-    private void TestResult()
+    private async Task TestResult()
     {
       ListTestAnswers.IsEnabled = false;
       var result = string.Format("End of test!\n{0} error from {1} tests",
         _failedCount, _testCount);
       MessageBox.Show(result);
-      RestartTest();
+      await RestartTest();
     }
 
-    private void RestartTest()
+    private async Task RestartTest()
     {
       var startNewTest = DialogHelper.YesNoQuestionDialog(
         "Start new test", "Restart");
@@ -272,11 +240,11 @@ namespace WpfUI.Pages
       {
         if (_currentTestName.Equals(RuEnTest))
         {
-          StartRuEnTest();
+          await StartRuEnTestAsync();
         }
         else
         {
-          StartEnRuTest();
+					await StartEnRuTestAsync();
         }
       }
       else

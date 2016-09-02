@@ -49,6 +49,7 @@ namespace WpfUI.Helpers
       return translateContext;
     }
 
+		// NOTE: NOT WORKS!
     public async Task Speak(string word, string lang)
     {
       word = HttpUtility.UrlEncode(word);

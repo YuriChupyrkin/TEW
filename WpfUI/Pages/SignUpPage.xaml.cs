@@ -98,21 +98,8 @@ namespace WpfUI.Pages
 			return user;
 		}
 
-		/// Obsolete
-		/*
-		private User CreateUser(string login, string password)
-		{
-			var userProvider = new UserProvider(ApplicationContext.RepositoryFactory);
-			return userProvider.CreateUser(login, password);
-		} */
-
 		private void SendEmailAboutRegistration(object newUser)
 		{
-			if (MainWindow.IsOnlineVersion == false)
-			{
-				return;
-			}
-
 			var userName = newUser as string;
 			try
 			{

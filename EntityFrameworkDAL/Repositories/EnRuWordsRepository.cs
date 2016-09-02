@@ -62,8 +62,7 @@ namespace EntityFrameworkDAL.Repositories
       DateTime? updateDate = null,
       int level = 0,
       int answerCount = 0,
-      int failAnswerCount = 1,
-      bool isDeleted = false)
+      int failAnswerCount = 1)
     {
       int engId = AddEngWord(engWord);
       int ruId = AddRusWord(ruWord);
@@ -76,7 +75,6 @@ namespace EntityFrameworkDAL.Repositories
         enRuWordFromDb.RussianWordId = ruId;
         enRuWordFromDb.WordLevel = level;
         enRuWordFromDb.Example = example ?? string.Empty;
-        enRuWordFromDb.IsDeleted = isDeleted;
         enRuWordFromDb.UpdateDate = updateDate ?? new DateTime(1990, 5, 5);
         enRuWordFromDb.AnswerCount = answerCount;
         enRuWordFromDb.FailAnswerCount = failAnswerCount;
@@ -92,7 +90,6 @@ namespace EntityFrameworkDAL.Repositories
         Example = example ?? string.Empty,
         UserId = userId,
         WordLevel = level,
-        IsDeleted = isDeleted,
         UpdateDate = updateDate ?? new DateTime(1990, 5, 5),
         AnswerCount = answerCount,
         FailAnswerCount = failAnswerCount
@@ -264,32 +261,14 @@ namespace EntityFrameworkDAL.Repositories
       return engWordObj == null ? "null" : engWordObj.EnWord;
     }
 
-
-    public EnRuWord MakeDeleted(string enWord, int userId)
-    {
-      var enRuWord = AllEnRuWords().FirstOrDefault(r => r.EnglishWord.EnWord == enWord && r.UserId == userId);
-
-      if (enRuWord == null)
-      {
-        return null;
-      }
-
-      enRuWord.IsDeleted = true;
-      enRuWord.UpdateDate = DateTime.UtcNow;
-      _context.SaveChanges();
-
-      return enRuWord;
-    }
-
     public void RemoveAllDeletedWords(int userId)
     {
-      var enRuWords = AllEnRuWords().Where(r => r.UserId == userId && r.IsDeleted);
+      var enRuWords = AllEnRuWords().Where(r => r.UserId == userId);
 
       foreach (var word in enRuWords)
       {
         DeleteEnRuWord(word.Id);
       }
     }
-
   }
 }

@@ -9,7 +9,7 @@ namespace Domain.Repositories
 		IEnumerable<string> GetTranslate(string enWord);
 
 		EnRuWord AddTranslate(string engWord, string ruWord, string example, int userId, DateTime? updateDate = null,
-			int level = 0, int answerCount = 0, int failAnswerCount = 1, bool isDeleted = false);
+			int level = 0, int answerCount = 0, int failAnswerCount = 1);
 
 		IDictionary<string, string> GetWordsForUser(int userId);
 		IEnumerable<EnRuWord> AllEnRuWords();
@@ -23,7 +23,6 @@ namespace Domain.Repositories
 		void ResetWordLevel(int userId);
 		string GetRussianWordById(int id);
 		string GetEnglishWordById(int id);
-		EnRuWord MakeDeleted(string enWord, int userId);
 	  void RemoveAllDeletedWords(int userId);
 	}
 }

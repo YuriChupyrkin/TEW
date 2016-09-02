@@ -63,9 +63,14 @@ namespace TewCloud.Auth
 				User user = _repositoryFactory.UserRepository
 					.Find(x => x.Email.Equals(username, StringComparison.OrdinalIgnoreCase));
 
+				if (user == null)
+				{
+					return null;
+				}
+
 				ChangePasswordIfItHttpCrypto(user);
 
-				if (user != null && VerifyHashedPassword(user.Password, password))
+				if (VerifyHashedPassword(user.Password, password))
 				{
 					return user;
 				}
@@ -74,6 +79,7 @@ namespace TewCloud.Auth
 			{
 				throw ex;
 			}
+
 			return null;
 		}
 

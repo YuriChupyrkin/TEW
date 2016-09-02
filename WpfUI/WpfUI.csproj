@@ -126,13 +126,11 @@
     <Compile Include="Pages\SignUpPage.xaml.cs">
       <DependentUpon>SignUpPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\SyncPage.xaml.cs">
-      <DependentUpon>SyncPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\WriteTestPage.xaml.cs">
       <DependentUpon>WriteTestPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\DataProvider.cs" />
+    <Compile Include="Services\TestsDataProvider.cs" />
     <Compile Include="Services\UserDataProvider.cs" />
     <Compile Include="Services\WordsDataProvider.cs" />
     <Compile Include="Switcher.cs" />
@@ -181,10 +179,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\SignUpPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\SyncPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

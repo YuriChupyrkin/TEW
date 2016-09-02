@@ -38,5 +38,15 @@ namespace WpfUI.Services
 			var wordsCloudModel = MapperHelper.CreatWordJsonModel(user, engWord, null, null, DateTime.Now);
 			await SendPostRequestAsync<WordsCloudModel, string>(wordsCloudModel, WordsManagerController, "DELETE");
 		}
+
+		public static async Task<IEnumerable<string>> GetTranslates(string word)
+		{
+			var queryStringParameter = new Dictionary<string, string>
+			{
+				{ "word", word }
+			};
+
+			return await SendGetRequestAsync<IEnumerable<string>>(queryStringParameter, WordTranslaterController);
+		}
 	}
 }

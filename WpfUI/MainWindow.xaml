@@ -12,15 +12,9 @@
                     <MenuItem Header="_Menu" Click="MenuItem_Click"/>
                     <MenuItem Name="SignOut" Header="_Sign out" Click="SignOut_Click"/>
                     <Separator />
-                    <MenuItem Name="MenuConnect" Header="_Connect" Click="MenuConnect_Click"/>
-                    <MenuItem Header="_Synchronize" Name="SyncMenu" Click="SyncMenu_Click"/>
-                    <Separator />
                     <MenuItem Header="_Export" Name="ExportMenu" Click="ExportMenu_Click"/>
                     <MenuItem Header="_Import" Name="ImportMenu" Click="ImportMenu_Click"/>
                     <Separator />
-                    <MenuItem Name="SpeakEngMenu" IsCheckable="True" Header="_Is speak english" Click="SpeakEngMenu_Click" />
-                    <MenuItem Name="SpeakRusMenu" IsCheckable="True" Header="_Is speak russian" Click="SpeakRusMenu_Click" />
-                    <Separator/>
                     <MenuItem Header="_Exit" Click="MenuItem_Click_1" />
                 </MenuItem>
                 <MenuItem Header="_Tools">

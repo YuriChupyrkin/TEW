@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Web.Http;
 using Domain.RepositoryFactories;
 using EnglishLearnBLL.Models;
@@ -16,10 +15,11 @@ namespace TewCloud.Controllers.WebAppVersion
 		public WordsManagerController(IRepositoryFactory repositoryFactory)
 		{
 			_repositoryFactory = repositoryFactory;
+			_syncHelper = new SyncHelper(repositoryFactory);
 		}
 
 		[HttpPost]
-		public async Task<IHttpActionResult> AddWords([FromBody] WordsCloudModel wordsModel)
+		public IHttpActionResult AddWords([FromBody] WordsCloudModel wordsModel)
 		{
 			try
 			{
@@ -41,8 +41,7 @@ namespace TewCloud.Controllers.WebAppVersion
 							modelItem.UpdateDate,
 							modelItem.Level,
 							modelItem.AnswerCount,
-							modelItem.FailAnswerCount,
-							modelItem.IsDeleted);
+							modelItem.FailAnswerCount);
 				}
 			}
 			catch (Exception ex)

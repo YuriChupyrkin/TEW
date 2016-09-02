@@ -41,8 +41,7 @@ namespace TewCloud.Controllers
               modelItem.UpdateDate,
               modelItem.Level,
               modelItem.AnswerCount,
-              modelItem.FailAnswerCount,
-              modelItem.IsDeleted);
+              modelItem.FailAnswerCount);
         }
       }
       catch (Exception ex)

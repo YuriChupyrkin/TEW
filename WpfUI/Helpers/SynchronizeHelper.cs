@@ -161,7 +161,6 @@ namespace WpfUI.Helpers
                 Russian = enRuWord.RussianWord.RuWord,
                 Level = enRuWord.WordLevel,
                 Example = enRuWord.Example,
-                IsDeleted = enRuWord.IsDeleted,
                 UpdateDate = enRuWord.UpdateDate
             };
 
