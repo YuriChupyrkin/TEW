@@ -40,6 +40,7 @@ namespace WpfUI.Pages
 
 				if (isDelete)
 				{
+					// New web database logic
 					await WordsDataProvider.DeleteWordAsync(ApplicationContext.CurrentUser, selectedWord.English);
 
 					// Todo: remove and add new implementation

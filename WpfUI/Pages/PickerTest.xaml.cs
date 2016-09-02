@@ -9,6 +9,7 @@ using EnglishLearnBLL.Models;
 using EnglishLearnBLL.Tests;
 using EnglishLearnBLL.WordLevelManager;
 using WpfUI.Helpers;
+using WpfUI.Services;
 
 namespace WpfUI.Pages
 {
@@ -58,7 +59,7 @@ namespace WpfUI.Pages
       ListTestAnswers.Items.Remove(ListTestAnswers.Items[id]);
     }
 
-    private void BtnDelete_Click(object sender, RoutedEventArgs e)
+    private async void BtnDelete_Click(object sender, RoutedEventArgs e)
     {
       var enWord = _testSet[_testIndex].Word;
 
@@ -67,9 +68,16 @@ namespace WpfUI.Pages
         enWord = _testSet[_testCount].Answers[_testSet[_testCount].AnswerId];
       }
 
+			// New web database logic
+			await WordsDataProvider.DeleteWordAsync(ApplicationContext.CurrentUser, enWord);
+
+			// TODO: REPLACE IT
+			/*
       var word = _repositoryFactory.EnRuWordsRepository.MakeDeleted(enWord, ApplicationContext.CurrentUser.Id);
       var syncHelper = new SynchronizeHelper();
       syncHelper.SendWordInBackGround(word, ApplicationContext.CurrentUser);
+			*/
+
       TestIndexIncrement();
     }
 
@@ -117,6 +125,7 @@ namespace WpfUI.Pages
 
     #region methods
 
+		// ToDo: Update logic
     private void StartEnRuTest()
     {
       _testCreator = new TestCreator(ApplicationContext.RepositoryFactory);
@@ -126,6 +135,7 @@ namespace WpfUI.Pages
       BtnHelp.IsEnabled = true;
     }
 
+		// ToDo: Update logic
     private void StartRuEnTest()
     {
       _testCreator = new TestCreator(ApplicationContext.RepositoryFactory);
@@ -224,7 +234,10 @@ namespace WpfUI.Pages
       {
         testType = WordLevelManager.TestType.RuEnTest;
       }
+
+			// ToDo: Update logic
       var resultWord = _wordLevelManager.SetWordLevel(wordId, isTrueAnswer, testType);
+
       var syncHelper = new SynchronizeHelper();
       syncHelper.SendWordInBackGround(resultWord, ApplicationContext.CurrentUser);
     }
