@@ -13,6 +13,7 @@ using System.Windows.Input;
 using Domain.Entities;
 using Domain.RepositoryFactories;
 using WpfUI.Helpers;
+using WpfUI.Services;
 
 namespace WpfUI.Pages
 {
@@ -53,7 +54,7 @@ namespace WpfUI.Pages
       await Search();
     }
 
-    private void ListTranslate_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+    private async void ListTranslate_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
     {
       var item = ItemsControl
         .ContainerFromElement(sender as ListBox, e.OriginalSource as DependencyObject) as ListBoxItem;
@@ -62,7 +63,7 @@ namespace WpfUI.Pages
       {
         if (item.Content.ToString().Equals(MyTranslate) == false)
         {
-          AddWord(item.Content.ToString());
+          await AddWordAsync(item.Content.ToString());
         }
       }
     }
@@ -84,15 +85,15 @@ namespace WpfUI.Pages
       }
     }
 
-    private void BtnAdd_Click(object sender, RoutedEventArgs e)
+    private async void BtnAdd_Click(object sender, RoutedEventArgs e)
     {
       if (string.IsNullOrEmpty(_selectedTranslate))
       {
-        AddWord(TxtRusTranslate.Text);
+        await AddWordAsync(TxtRusTranslate.Text);
       }
       else
       {
-        AddWord(_selectedTranslate);
+				await AddWordAsync(_selectedTranslate);
       }
     }
 
@@ -118,11 +119,11 @@ namespace WpfUI.Pages
       }
     }
 
-    private void TxtRusTranslate_KeyUp(object sender, KeyEventArgs e)
+    private async void TxtRusTranslate_KeyUp(object sender, KeyEventArgs e)
     {
       if (e.Key == Key.Enter)
       {
-        AddWord(TxtRusTranslate.Text);
+				await AddWordAsync(TxtRusTranslate.Text);
       }
     }
 
@@ -169,7 +170,7 @@ namespace WpfUI.Pages
 
     #region methods
 
-    private void AddWord(string rusWord)
+    private async Task AddWordAsync(string rusWord)
     {
       var enWord = TxtEnglishWord.Text;
       var addMessage = string.Format("Add translate: [{0}] <=> [{1}]?", enWord, rusWord);
@@ -192,19 +193,33 @@ namespace WpfUI.Pages
           example = example.Substring(0, maxLen);
           example += "...";
         }
+				
+				// NEW IMP
+				var responseModel = 
+					await WordsDataProvider.AddTranslateAsync(ApplicationContext.CurrentUser, enWord, rusWord, example, DateTime.UtcNow);
 
+				if (responseModel.IsError)
+				{
+					throw new Exception("Word was not added! " + responseModel.ErrorMessage);
+				}
+
+				/*
+				// ToDo replace
         var word = _repositoryFactory.EnRuWordsRepository.AddTranslate(enWord, rusWord, example, userId, DateTime.UtcNow);
 
+				// TODO remove
         if (MainWindow.IsOnlineVersion)
         {
           var syncHelper = new SynchronizeHelper();
           syncHelper.SendWordInBackGround(word, ApplicationContext.CurrentUser);
         }
+				 * */
       }
       catch (Exception ex)
       {
         throw new Exception(ex.Message);
       }
+
       ClearInputs();
       TxtEnglishWord.Focus();
     }

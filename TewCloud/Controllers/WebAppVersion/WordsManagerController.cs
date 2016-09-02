@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Domain.RepositoryFactories;
@@ -7,12 +8,12 @@ using TewCloud.Helpers;
 
 namespace TewCloud.Controllers.WebAppVersion
 {
-	public class AddDeleteWordsController : ApiController
+	public class WordsManagerController : ApiController
 	{
 		private readonly IRepositoryFactory _repositoryFactory;
 		private readonly SyncHelper _syncHelper;
 
-		public AddDeleteWordsController(IRepositoryFactory repositoryFactory)
+		public WordsManagerController(IRepositoryFactory repositoryFactory)
 		{
 			_repositoryFactory = repositoryFactory;
 		}
@@ -64,6 +65,7 @@ namespace TewCloud.Controllers.WebAppVersion
 					TotalWords = _syncHelper.GetWordCount(wordsModel.UserName)
 				}
 			};
+
 			return Json(okResponse);
 		}
 
@@ -92,6 +94,16 @@ namespace TewCloud.Controllers.WebAppVersion
 			}
 
 			return Json(cloudModel);
+		}
+
+		[HttpDelete]
+		public void DeleteWord([FromBody] WordsCloudModel wordsModel)
+		{
+			if (wordsModel != null && wordsModel.Words.Any())
+			{
+				var userId = _syncHelper.GetUserId(wordsModel.UserName);
+				_repositoryFactory.EnRuWordsRepository.DeleteEnRuWord(wordsModel.Words.First().English, userId);
+			}
 		}
 	}
 }

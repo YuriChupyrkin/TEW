@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -15,8 +16,12 @@ namespace WpfUI.Services
 
 		protected const string SignUpController = "api/SignUp";
 		protected const string SignInController = "api/SignIn";
+		protected const string WordsManagerController = "api/WordsManager";
 
-		protected static async Task<TOutput> SendPostRequestAsync<TInput, TOutput>(TInput tInput, string controllerName)
+		protected static async Task<TOutput> SendPostRequestAsync<TInput, TOutput>(
+			TInput tInput,
+			string controllerName,
+			string httpMethod = null)
 		{
 			var uri = Uri + controllerName;
 
@@ -26,7 +31,7 @@ namespace WpfUI.Services
 			var json = JsonConvert.SerializeObject(tInput);
 			byte[] data = enc.GetBytes(json);
 
-			request.Method = "POST";
+			request.Method = httpMethod ?? "POST";
 			//place MIME type here
 			request.ContentType = "application/json; charset=utf-8";
 			request.ContentLength = data.Length;
@@ -44,48 +49,64 @@ namespace WpfUI.Services
 				using (var streamReader = new StreamReader(responseStream, Encoding.UTF8))
 				{
 					var jsonResult = streamReader.ReadToEnd();
-					result = JsonConvert.DeserializeObject<TOutput>(jsonResult);
+
+					if (string.IsNullOrEmpty(jsonResult) == false)
+					{
+						result = JsonConvert.DeserializeObject<TOutput>(jsonResult);
+					}
+					else
+					{
+						result = JsonConvert.DeserializeObject<TOutput>(string.Empty);
+					}
 				}
 			}
 
 			return result;
 		}
 
-		// TODO CREATE GET REQUEST
-		public ResponseModel GetUserWords(UserUpdateDateModel updateModel)
+		protected static async Task<TOutput> SendGetRequestAsync<TOutput>(
+			Dictionary<string, string> queryStringParams, 
+			string controllerName)
 		{
-			var uri = Uri + "SynchronizeController" + "?UserName=" + updateModel.UserName + "&UpdateDate=" + updateModel.UpdateDate;
+			var uri = Uri + controllerName + BuildQueryString(queryStringParams);
 
 			var httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
+			TOutput result;
 
-			WordsCloudModel result;
-
-			try
+			var response = httpWebRequest.GetResponse();
+			using(var responseStream = response.GetResponseStream())
 			{
-				WebResponse response = httpWebRequest.GetResponse();
-				var responseStream = response.GetResponseStream();
-
 				using (var stream = new StreamReader(responseStream))
 				{
 					var responseString = stream.ReadToEnd();
-					result = JsonConvert.DeserializeObject<WordsCloudModel>(responseString);
+					result = JsonConvert.DeserializeObject<TOutput>(responseString);
 				}
 			}
-			catch (Exception ex)
-			{
-				return new ResponseModel { IsError = true, ErrorMessage = ex.Message };
-			}
+			
+			return result;
+		}
 
-			if (result == null)
+		private static string BuildQueryString(Dictionary<string, string> queryStringParams)
+		{
+			var stringBuilder = new StringBuilder();
+			stringBuilder.Append("?");
+
+			foreach (var pair in queryStringParams)
 			{
-				return new ResponseModel
+				if (string.IsNullOrEmpty(pair.Value))
 				{
-					IsError = true,
-					ErrorMessage = "response is null???"
-				};
+					continue;
+				}
+
+				if (stringBuilder.Length > 1)
+				{
+					stringBuilder.Append("&");
+				}
+
+				stringBuilder.Append(pair.Key).Append("=").Append(pair.Key);
 			}
 
-			return new ResponseModel { IsError = false, ErrorMessage = string.Empty, WordsCloudModel = result };
+			return stringBuilder.ToString();
 		}
 	}
 }

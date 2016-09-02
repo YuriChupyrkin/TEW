@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
-	Title="MyWordPage">
+	Title="MyWordPage" Loaded="Page_Loaded">
 
     <Grid>
         <DataGrid x:Name="DataGridWords" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top" Height="393" Width="763"  Background="#FF514949" FontSize="14" FontFamily="Comic Sans MS" MouseDoubleClick="DataGridWords_MouseDoubleClick"/>
