@@ -1,11 +1,10 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Common.Mail;
-using Domain.Entities;
-using WpfUI.Auth;
-using WpfUI.Helpers;
+using WpfUI.Services;
 
 namespace WpfUI.Pages
 {
@@ -20,32 +19,32 @@ namespace WpfUI.Pages
       TxtEmail.Focus();
     }
 
-    private void BtnRestorePsw_Click(object sender, RoutedEventArgs e)
+    private async void BtnRestorePsw_Click(object sender, RoutedEventArgs e)
     {
-      Restore();
+			await RestoreAsync();
     }
 
-    private void TxtEmail_KeyDown(object sender, KeyEventArgs e)
+    private async void TxtEmail_KeyDown(object sender, KeyEventArgs e)
     {
       if (e.Key == Key.Enter)
       {
-        Restore();
+				await RestoreAsync();
       }
     }
 
-    private void Restore()
+    private async Task RestoreAsync()
     {
       string email = TxtEmail.Text;
-      var userProvider = new UserProvider(ApplicationContext.RepositoryFactory);
 
-      if (ValidateEmail(email, userProvider) == false)
-      {
-        return;
-      }
+	    string newPassword = await UserDataProvider.ResetPassword(email);
 
-      string newPassword = userProvider.ResetPassword(email);
+	    if (string.IsNullOrEmpty(newPassword))
+	    {
+		    MessageBox.Show("User does not exist");
+		    return;
+	    }
 
-      try
+			try
       {
         string emailMessage = string.Format("Hi!\nYour new password: {0}", newPassword);
         IEmailSender emailSender = ApplicationContext.EmailSender;
@@ -62,26 +61,9 @@ namespace WpfUI.Pages
         MessageBox.Show("New password: " + newPassword);
         return;
       }
+
       MessageBox.Show("Your new password sent on email");
       Switcher.Switch(new SignIn());
-    }
-
-    private bool ValidateEmail(string email, UserProvider userProvider)
-    {
-      bool isValidEmail = ApplicationValidator.IsValidatEmail(email);
-      if (!isValidEmail)
-      {
-        MessageBox.Show("Invalid email");
-        return false;
-      }
-
-      User user = userProvider.GetUser(email);
-      if (user == null)
-      {
-        MessageBox.Show("User not exist");
-        return false;
-      }
-      return true;
     }
   }
 }

@@ -19,6 +19,8 @@ namespace WpfUI.Services
 		protected const string WordsLevelUpdaterController = "api/WordsLevelUpdater";
 		protected const string WordTranslaterController = "api/WordTranslater";
 		protected const string WriteTestsController = "api/WriteTests";
+		protected const string ChangePasswordController = "api/ChangePassword";
+		protected const string ResetPasswordController = "api/ResetPassword";
 
 		protected static async Task<TOutput> SendPostRequestAsync<TInput, TOutput>(
 			TInput tInput,

@@ -1,8 +1,9 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using WpfUI.Auth;
 using WpfUI.Helpers;
+using WpfUI.Services;
 
 namespace WpfUI.Pages
 {
@@ -18,36 +19,37 @@ namespace WpfUI.Pages
       TxtOldPassword.Focus();
     }
 
-    private void BtnSignUp_Click(object sender, RoutedEventArgs e)
+    private async void BtnSignUp_Click(object sender, RoutedEventArgs e)
     {
-      ChangePassword();
+      await ChangePasswordAsync();
     }
 
-    private void TxtConfirmPassword_KeyDown(object sender, KeyEventArgs e)
+    private async void TxtConfirmPassword_KeyDown(object sender, KeyEventArgs e)
     {
       if (e.Key == Key.Enter)
       {
-        ChangePassword();
+				await ChangePasswordAsync();
       }
     }
 
-    private void ChangePassword()
+    private async Task ChangePasswordAsync()
     {
       if (ValidatePasswords() == false)
       {
         return;
       }
-      var userProvider = new UserProvider(ApplicationContext.RepositoryFactory);
+
       var currentUser = ApplicationContext.CurrentUser;
 
-      var isChanged = userProvider.ChangePassword(currentUser.Email, 
-        TxtOldPassword.Password, TxtPassword.Password);
+	    var isChanged = await UserDataProvider.ChangePassword(currentUser.Email,
+		    TxtOldPassword.Password, TxtPassword.Password);
 
-      if (isChanged == false)
+			if (isChanged == false)
       {
         MessageBox.Show("Password change error", "Error");
         return;
       }
+
       MessageBox.Show("Password was changed successfully");
       Switcher.Switch(new MainPage());
     }

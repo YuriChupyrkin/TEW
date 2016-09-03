@@ -85,6 +85,11 @@ namespace TewCloud.Auth
 
 		public string ResetPassword(string username)
 		{
+			if (ValidateEmail(username) == false)
+			{
+				return string.Empty;
+			}
+
 			try
 			{
 				var user = _repositoryFactory.UserRepository
@@ -184,6 +189,18 @@ namespace TewCloud.Auth
 
 				throw new Exception(string.Format("Warning! We have some updates. You have got a new password: {0}. Please change it", newPassword));
 			}
+		}
+
+		private bool ValidateEmail(string email)
+		{
+			User user = GetUser(email);
+
+			if (user == null)
+			{
+				return false;
+			}
+
+			return true;
 		}
 	}
 }
