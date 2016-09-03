@@ -111,9 +111,11 @@
         <Button x:Name="BtnPikerTest" Content="Word-translation test" HorizontalAlignment="Left" Height="43" Margin="30,325,0,0" Style="{DynamicResource ButtonStyle2}" VerticalAlignment="Top" Width="228" Foreground="Black" FontSize="18.667" FontFamily="Comic Sans MS" Click="BtnPikerTest_Click"/>
         <Button x:Name="BtnWriteTest" Content="Spelling test" HorizontalAlignment="Left" Height="43" Margin="30,391,0,0" Style="{DynamicResource ButtonStyle2}" VerticalAlignment="Top" Width="228" Foreground="Black" FontSize="18.667" FontFamily="Comic Sans MS" Click="BtnWriteTest_Click"/>
         <Button x:Name="BtnMyWords" Content="My words" HorizontalAlignment="Left" Height="43" Margin="30,259,0,0" Style="{DynamicResource ButtonStyle2}" VerticalAlignment="Top" Width="228" Foreground="Black" FontSize="18.667" FontFamily="Comic Sans MS" Click="BtnMyWords_Click"/>
-        <Label x:Name="LabelPoints" Content="" HorizontalAlignment="Left" Margin="104,106,0,0" VerticalAlignment="Top" Width="137" FontFamily="Comic Sans MS" FontSize="20" Foreground="#FFF0ECEC"/>
+        <!--
+				<Label x:Name="LabelPoints" Content="" HorizontalAlignment="Left" Margin="104,106,0,0" VerticalAlignment="Top" Width="137" FontFamily="Comic Sans MS" FontSize="20" Foreground="#FFF0ECEC"/>
         <Label Content="Score:" HorizontalAlignment="Left" Margin="30,106,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="20" Width="74" Foreground="#FFF0ECEC"/>
-        <Grid.Background>
+        -->
+				<Grid.Background>
             <ImageBrush ImageSource ="/Images/menu.jpg"></ImageBrush>
         </Grid.Background>
 
