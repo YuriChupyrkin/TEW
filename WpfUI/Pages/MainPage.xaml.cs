@@ -42,6 +42,8 @@ namespace WpfUI.Pages
 
     private void Grid_Loaded(object sender, System.Windows.RoutedEventArgs e)
     {
+			// TODO! WHAT IS IT?!
+			/*
       var userId = ApplicationContext.CurrentUser.Id;
       var userWords = ApplicationContext.RepositoryFactory
         .EnRuWordsRepository.AllEnRuWords().Where(r => r.UserId == userId).ToList();
@@ -49,7 +51,7 @@ namespace WpfUI.Pages
       var totalPoint = userWords.Sum(r => r.WordLevel);
 
       LabelPoints.Content = totalPoint;
+			*/
     }
-
   }
 }

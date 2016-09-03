@@ -56,11 +56,7 @@ namespace EnglishLearnBLL.WordLevelManager
             }
             else
             {
-                if (word.WordLevel > 0)
-                {
-                    _repositoryFactory.EnRuWordsRepository.ChangeWordLevel(word.Id, -1);
-                    //word.WordLevel--;
-                }
+                _repositoryFactory.EnRuWordsRepository.ChangeWordLevel(word.Id, -1);
             }
             return word;
         }

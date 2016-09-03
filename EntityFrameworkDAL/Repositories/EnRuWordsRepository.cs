@@ -190,6 +190,11 @@ namespace EntityFrameworkDAL.Repositories
           word.FailAnswerCount++;
         }
 
+	      if (word.WordLevel < 0)
+	      {
+		      word.WordLevel = 0;
+	      }
+
         _context.SaveChanges();
       }
     }
@@ -244,7 +249,7 @@ namespace EntityFrameworkDAL.Repositories
         userWord.WordLevel = 0;
         userWord.UpdateDate = DateTime.UtcNow;
         userWord.AnswerCount = 0;
-        userWord.FailAnswerCount = 1;
+        userWord.FailAnswerCount = 0;
       }
       _context.SaveChanges();
     }

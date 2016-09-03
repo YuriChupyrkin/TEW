@@ -11,6 +11,7 @@ using EnglishLearnBLL.ToXML;
 using WpfUI.Autofac;
 using WpfUI.Helpers;
 using WpfUI.Pages;
+using WpfUI.Services;
 
 namespace WpfUI
 {
@@ -104,34 +105,19 @@ namespace WpfUI
       Switcher.Switch(new ChangePasswordPage());
     }
 
-    private void RemoveExcessWordsMenu_Click(object sender, RoutedEventArgs e)
-    {
-      try
-      {
-        var repositoryFactory = ApplicationContext.RepositoryFactory;
-        var removedCount = repositoryFactory.EnRuWordsRepository.ClearEnWords();
-        removedCount += repositoryFactory.EnRuWordsRepository.ClearRuWords();
-
-        MessageBox.Show(string.Format("{0} word(s) was removed", removedCount));
-      }
-      catch (Exception ex)
-      {
-        MessageBox.Show(ex.Message, "Words removing error");
-      }
-    }
-
-    private void ResetWordsLevelMenu_Click(object sender, RoutedEventArgs e)
+    private async void ResetWordsLevelMenu_Click(object sender, RoutedEventArgs e)
     {
       if (DialogHelper.YesNoQuestionDialog("Reset word level?", "Reset"))
       {
         ApplicationValidator.ExpectAuthorized();
-        ApplicationContext.RepositoryFactory.EnRuWordsRepository
-          .ResetWordLevel(ApplicationContext.CurrentUser.Id);
+	      await TestsDataProvider.ResetWordsLevel(ApplicationContext.CurrentUser);
       }
     }
 
     private void ExportMenu_Click(object sender, RoutedEventArgs e)
     {
+			throw new Exception("NOT MIGRATED!");
+
       if (ApplicationContext.CurrentUser == null)
       {
         MessageBox.Show("Sign in please");
@@ -150,13 +136,15 @@ namespace WpfUI
       if(result == true)
       {
         var fileName = saveDialog.FileName;
-        var wordsExporter = new WordsExporter(ApplicationContext.RepositoryFactory);
-        wordsExporter.Export(ApplicationContext.CurrentUser.Id, fileName);
+        //var wordsExporter = new WordsExporter(ApplicationContext.RepositoryFactory);
+				// wordsExporter.Export(ApplicationContext.CurrentUser.Id, fileName);
       }
     }
 
     private void ImportMenu_Click(object sender, RoutedEventArgs e)
     {
+	    throw new Exception("NOT MIGRATED!");
+
       if (ApplicationContext.CurrentUser == null)
       {
         MessageBox.Show("Sign in please");
@@ -178,8 +166,8 @@ namespace WpfUI
       {
         // Open document 
         var filename = openDialog.FileName;
-        var wordsImporter = new WordsImporter(ApplicationContext.RepositoryFactory);
-        wordsImporter.Import(ApplicationContext.CurrentUser.Email, filename);
+        //var wordsImporter = new WordsImporter(ApplicationContext.RepositoryFactory);
+        //wordsImporter.Import(ApplicationContext.CurrentUser.Email, filename);
       }
     }
 
@@ -205,9 +193,7 @@ namespace WpfUI
 
       ThisWindow = this;
       var container = AutofacModule.RegisterAutoFac();
-      var repositoryFactory = container.BeginLifetimeScope().Resolve<IRepositoryFactory>();
       ApplicationContext.AutoFacContainer = container;
-      ApplicationContext.RepositoryFactory = repositoryFactory;
       ApplicationContext.EmailSender = container.BeginLifetimeScope().Resolve<IEmailSender>();
 
       Switcher.PageSwitcher = this;

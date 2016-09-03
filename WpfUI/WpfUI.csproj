@@ -88,8 +88,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ApplicationContext.cs" />
-    <Compile Include="Auth\AdminAuthentication.cs" />
-    <Compile Include="Auth\UserProvider.cs" />
     <Compile Include="Autofac\AutofacModule.cs" />
     <Compile Include="Entities\TranslateWithExamplecs.cs" />
     <Compile Include="Helpers\ApplicationValidator.cs" />

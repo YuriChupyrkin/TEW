@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using EnglishLearnBLL.Models;
 using EnglishLearnBLL.WordLevelManager;
+using Domain.Entities;
 
 namespace WpfUI.Services
 {
@@ -41,6 +42,11 @@ namespace WpfUI.Services
 			};
 
 			return await SendPostRequestAsync<WordUpdateModel, ResponseModel>(wordUpdateModel, WordsLevelUpdaterController);
+		}
+
+		public static async Task<bool> ResetWordsLevel(User user)
+		{
+			return await SendPostRequestAsync<User, bool>(user, WordsLevelUpdaterController, "DELETE");
 		}
 	}
 }

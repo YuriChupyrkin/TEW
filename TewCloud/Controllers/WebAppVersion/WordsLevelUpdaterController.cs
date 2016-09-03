@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using Domain.Entities;
 using Domain.RepositoryFactories;
 using EnglishLearnBLL.Models;
 using EnglishLearnBLL.WordLevelManager;
@@ -32,6 +33,13 @@ namespace TewCloud.Controllers.WebAppVersion
 			}
 
 			return Json(responseModel);
+		}
+
+		[HttpDelete]
+		public IHttpActionResult ResetWordsLevel([FromBody] User user)
+		{
+			_repositoryFactory.EnRuWordsRepository.ResetWordLevel(user.Id);
+			return Json(true);
 		}
 	}
 }

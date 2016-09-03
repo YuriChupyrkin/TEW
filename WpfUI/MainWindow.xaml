@@ -18,7 +18,6 @@
                     <MenuItem Header="_Exit" Click="MenuItem_Click_1" />
                 </MenuItem>
                 <MenuItem Header="_Tools">
-                    <MenuItem Name="RemoveExcessWordsMenu" Header="_Remove excess words" Click="RemoveExcessWordsMenu_Click" />
                     <MenuItem Name="ResetWordsLevelMenu" Header="_Reset words level" Click="ResetWordsLevelMenu_Click"/>
                 </MenuItem>
                 <MenuItem Header="_Help">
