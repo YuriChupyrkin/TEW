@@ -140,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Client\" />
     <Folder Include="Views\SynchroniceV2\" />
   </ItemGroup>
   <ItemGroup>
@@ -201,30 +202,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
-    <Content Include="Client\Autofac.dll" />
-    <Content Include="Client\Autofac.xml" />
-    <Content Include="Client\Common.dll" />
-    <Content Include="Client\Common.pdb" />
-    <Content Include="Client\Domain.dll" />
-    <Content Include="Client\Domain.pdb" />
-    <Content Include="Client\EnglishLearnBLL.dll" />
-    <Content Include="Client\EnglishLearnBLL.pdb" />
-    <Content Include="Client\EntityFramework.dll" />
-    <Content Include="Client\EntityFramework.SqlServer.dll" />
-    <Content Include="Client\EntityFramework.SqlServer.xml" />
-    <Content Include="Client\EntityFramework.SqlServerCompact.dll" />
-    <Content Include="Client\EntityFramework.SqlServerCompact.xml" />
-    <Content Include="Client\EntityFramework.xml" />
-    <Content Include="Client\EntityFrameworkDAL.dll" />
-    <Content Include="Client\EntityFrameworkDAL.pdb" />
-    <Content Include="Client\NAudio.dll" />
-    <Content Include="Client\NAudio.xml" />
-    <Content Include="Client\Newtonsoft.Json.dll" />
-    <Content Include="Client\Newtonsoft.Json.xml" />
-    <Content Include="Client\System.Data.SqlServerCe.dll" />
-    <Content Include="Client\WpfUI.exe" />
-    <Content Include="Client\WpfUI.pdb" />
-    <Content Include="Client\WpfUI.vshost.exe" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\ajax-loader.gif" />
@@ -262,9 +239,6 @@
     <Content Include="Scripts\TewScripts\TewInfo.js" />
     <Content Include="Views\Tew\Index.cshtml" />
     <Content Include="Views\Shared\DownloadView.cshtml" />
-    <Content Include="Client\WpfUI.exe.config" />
-    <Content Include="Client\WpfUI.vshost.exe.config" />
-    <Content Include="Client\WpfUI.vshost.exe.manifest" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

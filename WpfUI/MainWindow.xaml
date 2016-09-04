@@ -6,8 +6,8 @@
     
     
     <Grid>
-        <DockPanel>
-            <Menu DockPanel.Dock="Top">
+		<DockPanel Background="#FF3CA496">
+			<Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
                     <MenuItem Header="_Menu" Click="MenuItem_Click"/>
 									  <!--
@@ -31,7 +31,8 @@
                     <MenuItem Name="About" Header="_About" Click="About_Click"/>
                 </MenuItem>
             </Menu>
-            <Frame x:Name="MainFrame" />
+						<!--<TextBlock Text="LOADING" TextAlignment="Center" Width="787" Margin="0,212,0,0" FontSize="48" Foreground="White" FontFamily="Lucida Calligraphy"/>-->
+						<Frame x:Name="MainFrame" />
         </DockPanel>
     </Grid>
 </Window>

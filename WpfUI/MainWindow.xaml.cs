@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Net;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using Autofac;
 using Common.Mail;
-using Domain.RepositoryFactories;
-using EnglishLearnBLL.ToXML;
 using WpfUI.Autofac;
 using WpfUI.Helpers;
 using WpfUI.Pages;
@@ -20,13 +17,11 @@ namespace WpfUI
   /// </summary>
   public partial class MainWindow : Window
   {
-    private const string Version = "(1.15   9/28/2015)"; 
-
+    private const string Version = "(2.00   9/4/2016)"; 
     public const string AppName = "TEW";
-
     public static MainWindow ThisWindow { get; set; }
     public static EventHandler<EventArgs> ChangeTitleEvent { get; set; }
-
+	  public static Frame WindowMainFrame { get; private set; }
 
     public MainWindow()
     {
@@ -42,6 +37,8 @@ namespace WpfUI
         args.Handled = true;
         Switcher.Switch(new ErrorPage(args.Exception.Message));
       };
+
+	    WindowMainFrame = MainFrame;
     }
 
     #region events
@@ -173,8 +170,8 @@ namespace WpfUI
 
     private void TewCloudMenu_Click(object sender, RoutedEventArgs e)
     {
-      //var startInfo = new ProcessStartInfo("explorer.exe", SynchronizeHelper.Uri);
-      //Process.Start(startInfo);
+      var startInfo = new ProcessStartInfo("explorer.exe", "http://tew.azurewebsites.net/");
+      Process.Start(startInfo);
     }
 
     #endregion
@@ -206,7 +203,8 @@ namespace WpfUI
       {
         MessageBox.Show("Global error! " + ex.Message);
         Switcher.Switch(new ErrorPage(ex.Message));
-      }
+				MainWindow.WindowMainFrame.IsEnabled = true;
+			}
     }
 
     public void Navigate(Page nextPage)

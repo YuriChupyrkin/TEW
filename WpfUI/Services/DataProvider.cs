@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Newtonsoft.Json;
 
 namespace WpfUI.Services
@@ -27,8 +28,9 @@ namespace WpfUI.Services
 			string controllerName,
 			string httpMethod = null)
 		{
-			// TODO: LOADING...
+			MainWindow.WindowMainFrame.IsEnabled = false;
 			var result = await Task.Run(() => PostRequestAsync<TInput, TOutput>(tInput, controllerName, httpMethod));
+			MainWindow.WindowMainFrame.IsEnabled = true;
 
 			return result;
 		}
@@ -37,8 +39,9 @@ namespace WpfUI.Services
 			Dictionary<string, string> queryStringParams,
 			string controllerName)
 		{
-			// TODO: LOADING...
+			MainWindow.WindowMainFrame.IsEnabled = false;
 			var result = await Task.Run(() => GetRequestAsync<TOutput>(queryStringParams, controllerName));
+			MainWindow.WindowMainFrame.IsEnabled = true;
 
 			return result;
 		}
