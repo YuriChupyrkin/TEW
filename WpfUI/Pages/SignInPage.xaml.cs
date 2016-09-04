@@ -37,8 +37,8 @@ namespace WpfUI.Pages
 
 		private async void Button_Click(object sender, RoutedEventArgs e)
 		{
-			//TxtPassword.Password = "cstrike";
-			//TxtLogin.Text = "uuu@uuu.uuu";
+			//TxtPassword.Password = "1111";
+			//TxtLogin.Text = "uu@uu.uu";
 
 			await StartSignInAsync();
 		}

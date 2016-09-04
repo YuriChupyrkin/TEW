@@ -18,7 +18,7 @@ namespace WpfUI.Pages
   /// </summary>
   public partial class PickerTest : Page
   {
-    private readonly GoogleTranslater _googleTranslater;
+    //private readonly GoogleTranslater _googleTranslater;
     private TestCreator _testCreator;
     private List<PickerTestModel> _testSet;
     private int _testIndex;
@@ -34,7 +34,7 @@ namespace WpfUI.Pages
       InitializeComponent();
 
       ApplicationValidator.ExpectAuthorized();
-      _googleTranslater = new GoogleTranslater();
+     // _googleTranslater = new GoogleTranslater();
 
       LabelExampleOfUseLabel.Visibility = Visibility.Hidden;
       BtnDelete.IsEnabled = false;
@@ -61,8 +61,8 @@ namespace WpfUI.Pages
 
       if (_currentTestName == RuEnTest)
       {
-        enWord = _testSet[_testCount].Answers[_testSet[_testCount].AnswerId];
-      }
+				enWord = _testSet[_testIndex].Answers[_testSet[_testIndex].AnswerId];
+			}
 
 			await WordsDataProvider.DeleteWordAsync(ApplicationContext.CurrentUser, enWord);
       await TestIndexIncrement();

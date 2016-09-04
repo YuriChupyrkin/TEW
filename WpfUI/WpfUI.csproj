@@ -90,13 +90,12 @@
     <Compile Include="ApplicationContext.cs" />
     <Compile Include="Autofac\AutofacModule.cs" />
     <Compile Include="Entities\TranslateWithExamplecs.cs" />
+    <Compile Include="Entities\YandexTranslateModel.cs" />
     <Compile Include="Helpers\ApplicationValidator.cs" />
-    <Compile Include="Helpers\BingTranslater.cs" />
     <Compile Include="Helpers\DialogHelper.cs" />
-    <Compile Include="Helpers\GoogleTranslater.cs" />
     <Compile Include="Helpers\MapperHelper.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
-    <Compile Include="Helpers\SynchronizeHelper.cs" />
+    <Compile Include="Helpers\YandexTranslater.cs" />
     <Compile Include="Pages\AddWordsPage.xaml.cs">
       <DependentUpon>AddWordsPage.xaml</DependentUpon>
     </Compile>

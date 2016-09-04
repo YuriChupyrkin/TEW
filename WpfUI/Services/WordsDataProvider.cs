@@ -39,14 +39,14 @@ namespace WpfUI.Services
 			await SendPostRequestAsync<WordsCloudModel, string>(wordsCloudModel, WordsManagerController, "DELETE");
 		}
 
-		public static async Task<IEnumerable<string>> GetTranslates(string word)
+		public static async Task<List<string>> GetTranslates(string word)
 		{
 			var queryStringParameter = new Dictionary<string, string>
 			{
 				{ "word", word }
 			};
 
-			return await SendGetRequestAsync<IEnumerable<string>>(queryStringParameter, WordTranslaterController);
+			return await SendGetRequestAsync<List<string>>(queryStringParameter, WordTranslaterController);
 		}
 	}
 }

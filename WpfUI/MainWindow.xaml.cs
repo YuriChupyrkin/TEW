@@ -173,8 +173,8 @@ namespace WpfUI
 
     private void TewCloudMenu_Click(object sender, RoutedEventArgs e)
     {
-      var startInfo = new ProcessStartInfo("explorer.exe", SynchronizeHelper.Uri);
-      Process.Start(startInfo);
+      //var startInfo = new ProcessStartInfo("explorer.exe", SynchronizeHelper.Uri);
+      //Process.Start(startInfo);
     }
 
     #endregion

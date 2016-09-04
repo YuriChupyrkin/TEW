@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,7 +15,7 @@ namespace WpfUI.Pages
   /// </summary>
   public partial class AddWordsPage : Page
   {
-    private readonly GoogleTranslater _googleTranslator;
+    //private readonly GoogleTranslater _googleTranslator;
     private const string MyTranslate = "My translate";
 
     private string _selectedTranslate;
@@ -28,7 +29,7 @@ namespace WpfUI.Pages
       TxtRusTranslate.IsEnabled = false;
       BtnAdd.IsEnabled = false;
 
-      _googleTranslator = new GoogleTranslater();
+      //_googleTranslator = new GoogleTranslater();
 
       TxtEnglishWord.Focus();
       BtnSearch.IsEnabled = false;
@@ -224,25 +225,22 @@ namespace WpfUI.Pages
         ListTranslate.Items.Add(translate);
       }
 
-      //var googleTranslate = await AddTranslateFromGoogle();
+	    var yandexTranslateList =  new List<string>();
 
-      //foreach (var translate in googleTranslate)
-      //{
-      //  if (translates.Contains(translate) == false && translate.Length > 0)
-      //  {
-      //    ListTranslate.Items.Add(translate);
-      //  }
-      //}
-    }
+	    try
+	    {
+				yandexTranslateList = await YandexTranslater.Translate(TxtEnglishWord.Text.Trim());
+	    }
+			catch { }
 
-		// TODO! USE IT
-    private async Task<string[]> AddTranslateFromGoogle()
-    {
-      var result = await _googleTranslator.GetTranslate(TxtEnglishWord.Text);
-
-      TxtExample.AppendText(result.Example);
-      return result.Translates;
-    }
+			foreach (var translate in yandexTranslateList)
+			{
+				if (translates.Contains(translate) == false && translate.Length > 0)
+				{
+					ListTranslate.Items.Add(translate);
+				}
+			}
+		}
 
     #endregion
   }
