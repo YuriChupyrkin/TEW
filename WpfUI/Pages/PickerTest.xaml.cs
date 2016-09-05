@@ -9,7 +9,6 @@ using EnglishLearnBLL.Tests;
 using EnglishLearnBLL.WordLevelManager;
 using WpfUI.Helpers;
 using WpfUI.Services;
-using static EnglishLearnBLL.WordLevelManager.WordLevelManager;
 
 namespace WpfUI.Pages
 {
@@ -114,7 +113,9 @@ namespace WpfUI.Pages
 
     private async Task StartEnRuTestAsync()
     {
-			_testSet = await TestsDataProvider.GetPickerTestModel(ApplicationContext.CurrentUser.Id, TestType.EnRuTest.ToString());
+			_testSet = await TestsDataProvider.GetPickerTestModel(
+				ApplicationContext.CurrentUser.Id,
+				EnglishLearnBLL.WordLevelManager.WordLevelManager.TestType.EnRuTest.ToString());
 
       StartTest();
       BtnDelete.IsEnabled = true;
@@ -123,7 +124,10 @@ namespace WpfUI.Pages
 
     private async Task StartRuEnTestAsync()
     {
-			_testSet = await TestsDataProvider.GetPickerTestModel(ApplicationContext.CurrentUser.Id, TestType.RuEnTest.ToString());
+			_testSet = await TestsDataProvider.GetPickerTestModel(
+				ApplicationContext.CurrentUser.Id,
+				EnglishLearnBLL.WordLevelManager.WordLevelManager.TestType.RuEnTest.ToString());
+
 			StartTest();
       BtnDelete.IsEnabled = true;
       BtnHelp.IsEnabled = true;

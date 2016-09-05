@@ -50,6 +50,7 @@ namespace WpfUI
 
     private void MenuItem_Click(object sender, RoutedEventArgs e)
     {
+			MainFrame.IsEnabled = true;
       if (ApplicationContext.CurrentUser == null)
       {
         Switcher.Switch(new SignIn());
