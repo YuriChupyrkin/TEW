@@ -20,7 +20,6 @@ namespace WpfUI
     private const string Version = "(2.00   9/4/2016)"; 
     public const string AppName = "TEW";
     public static MainWindow ThisWindow { get; set; }
-    public static EventHandler<EventArgs> ChangeTitleEvent { get; set; }
 	  public static Frame WindowMainFrame { get; private set; }
 
     public MainWindow()
@@ -28,7 +27,7 @@ namespace WpfUI
       InitializeComponent();
       ResizeMode = ResizeMode.CanMinimize;
 
-      Title = "TEW" + Version;
+			Title = string.Format("{0} {1}", AppName, Version);
 
       StartApp();
       
@@ -72,7 +71,7 @@ namespace WpfUI
       const string message = "TEW (Trainer of English Words)\n" +
                              "author: Yuri Chupyrkin\n" +
                              "email: yuri.chupyrkin@gmail.com\n" +
-                             "year: 2014 - 2015\n";
+                             "year: 2014 - 2016\n";
       MessageBox.Show(message, "About");
     }
 
@@ -114,7 +113,8 @@ namespace WpfUI
 
     private void ExportMenu_Click(object sender, RoutedEventArgs e)
     {
-			throw new Exception("NOT MIGRATED!");
+			MessageBox.Show("This function is not available");
+			return;
 
       if (ApplicationContext.CurrentUser == null)
       {
@@ -141,7 +141,8 @@ namespace WpfUI
 
     private void ImportMenu_Click(object sender, RoutedEventArgs e)
     {
-	    throw new Exception("NOT MIGRATED!");
+			MessageBox.Show("This function is not available");
+			return;
 
       if (ApplicationContext.CurrentUser == null)
       {
@@ -179,16 +180,8 @@ namespace WpfUI
 
     #region methods
 
-    private void ChangeTitleForApp(object sender, EventArgs args)
-    {
-      var title = (string) sender;
-      Dispatcher.Invoke(new Action(() => { Title = title; })); 
-    }
-
     private void StartApp()
     {
-      ChangeTitleEvent += ChangeTitleForApp;
-
       ThisWindow = this;
       var container = AutofacModule.RegisterAutoFac();
       ApplicationContext.AutoFacContainer = container;

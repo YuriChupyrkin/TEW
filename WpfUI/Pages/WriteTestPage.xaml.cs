@@ -94,13 +94,24 @@ namespace WpfUI.Pages
 
 			example = example.AsteriskReplace(currentTest.TrueAnswer);
 
-			var textBlock = new TextBlock
+			if (string.IsNullOrEmpty(example))
 			{
-				Text = example,
-				TextWrapping = TextWrapping.Wrap
-			};
+				LabelExample.Visibility = Visibility.Hidden;
+				LabelExampleHeader.Visibility = Visibility.Hidden;
+			}
+			else
+			{
+				LabelExample.Visibility = Visibility.Visible;
+				LabelExampleHeader.Visibility = Visibility.Visible;
 
-			LabelExample.Content = textBlock;
+				var textBlock = new TextBlock
+				{
+					Text = example,
+					TextWrapping = TextWrapping.Wrap
+				};
+
+				LabelExample.Content = textBlock;
+			}
 		}
 
 		private async Task TestIndexIncrementAsync()
