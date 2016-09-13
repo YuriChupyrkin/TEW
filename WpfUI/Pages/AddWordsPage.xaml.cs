@@ -41,6 +41,7 @@ namespace WpfUI.Pages
     private async void BtnSearch_Click(object sender, RoutedEventArgs e)
     {
       await SearchAsync();
+	    TxtEnglishWord.Focus();
     }
 
     private async void ListTranslate_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -105,7 +106,8 @@ namespace WpfUI.Pages
       if (e.Key == Key.Enter)
       {
         await SearchAsync();
-      }
+				TxtEnglishWord.Focus();
+			}
     }
 
     private async void TxtRusTranslate_KeyUp(object sender, KeyEventArgs e)
