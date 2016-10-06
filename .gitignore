@@ -165,3 +165,6 @@ $RECYCLE.BIN/
 .DS_Store
 /packages
 /.vs/config
+
+#npm
+node_modules/
