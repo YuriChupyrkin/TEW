@@ -9,5 +9,9 @@ namespace TewCloud.Controllers
             return View();
         }
 
+        public ActionResult Learning()
+        {
+            return View();
+        }
     }
 }

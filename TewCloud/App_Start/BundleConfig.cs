@@ -23,8 +23,15 @@ namespace TewCloud
                 "~/Scripts/bootstrap.js",
                 "~/Scripts/respond.js"));
 
+      bundles.Add(new ScriptBundle("~/bundles/angular2").Include(
+                 "~/Scripts/AngularJS/node_modules/core-js/client/shim.min.js",
+                 "~/Scripts/AngularJS/node_modules/zone.js/dist/zone.js",
+                 "~/Scripts/AngularJS/node_modules/reflect-metadata/temp/Reflect.js",
+                 "~/Scripts/AngularJS/node_modules/systemjs/dist/system.src.js"));
+
       bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",
+                "~/Content/bootstrap-responsive.css",
                 "~/Content/site.css"));
 
       // Set EnableOptimizations to false for debugging. For more information,

@@ -236,6 +236,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\ajax-loader.gif" />
@@ -252,6 +253,7 @@
     <Content Include="Scripts\AngularJS\app\js\app.js" />
     <Content Include="Scripts\AngularJS\app\js\boot.js" />
     <Content Include="Scripts\AngularJS\app\js\main.js" />
+    <Content Include="Scripts\AngularJS\app\js\pickerTests.js" />
     <Content Include="Scripts\AngularJS\app\templates\app.html" />
     <Content Include="Scripts\AngularJS\gulpfile.js" />
     <Content Include="Scripts\AngularJS\node_modules\%40angular\common\bundles\common-testing.umd.js" />
@@ -5655,6 +5657,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Scripts\TewScripts\TewInfo.js" />
+    <None Include="Views\Shared\LearningPhone\_MainPhonePage.cshtml" />
     <Content Include="Views\Tew\Index.cshtml" />
     <Content Include="Views\Shared\DownloadView.cshtml" />
     <Content Include="Views\Angularjs\Index.cshtml" />
@@ -10722,6 +10725,9 @@
     <Content Include="Scripts\AngularJS\package.json" />
     <Content Include="Scripts\AngularJS\tsconfig.json" />
     <Content Include="Scripts\AngularJS\typings.json" />
+    <Content Include="Views\Tew\Learning.cshtml" />
+    <Content Include="Views\Shared\_LearningLayout.cshtml" />
+    <Content Include="Views\Shared\LearningDesktop\_MainDesktopPage.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -10799,6 +10805,7 @@
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\app.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\boot.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\main.ts" />
+    <TypeScriptCompile Include="Scripts\AngularJS\app\ts\pickerTests.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\node_modules\%40angular\common\index.d.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\node_modules\%40angular\common\src\common_module.d.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\node_modules\%40angular\common\src\directives\index.d.ts" />

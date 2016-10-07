@@ -85,3 +85,7 @@ textarea {
     width: 300px;
 	margin-top: 50px;
 }
+
+.body-margin-left {
+    margin-left: 50px;
+}

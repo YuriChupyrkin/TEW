@@ -9,19 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
-        this.title = 'ASP.NET MVC 5 with Angular 2';
-        this.skills = ['MVC 5', 'Angular 2', 'TypeScript', 'Visual Studio 2015'];
-        this.myskills = this.skills[1];
+var PickerTests = (function () {
+    function PickerTests() {
+        this.description = "picker tests";
     }
-    AppComponent = __decorate([
+    PickerTests = __decorate([
         core_1.Component({
-            selector: 'my-app',
+            selector: 'picker-tests',
             templateUrl: '../scripts/angularjs/app/templates/app.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], PickerTests);
+    return PickerTests;
 }());
-exports.AppComponent = AppComponent;
+exports.PickerTests = PickerTests;
