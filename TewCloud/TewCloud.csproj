@@ -253,8 +253,9 @@
     <Content Include="Scripts\AngularJS\app\js\app.js" />
     <Content Include="Scripts\AngularJS\app\js\boot.js" />
     <Content Include="Scripts\AngularJS\app\js\main.js" />
-    <Content Include="Scripts\AngularJS\app\js\pickerTests.js" />
+    <Content Include="Scripts\AngularJS\app\js\mainMenu.js" />
     <Content Include="Scripts\AngularJS\app\templates\app.html" />
+    <Content Include="Scripts\AngularJS\app\templates\mainMenu.html" />
     <Content Include="Scripts\AngularJS\gulpfile.js" />
     <Content Include="Scripts\AngularJS\node_modules\%40angular\common\bundles\common-testing.umd.js" />
     <Content Include="Scripts\AngularJS\node_modules\%40angular\common\bundles\common.umd.js" />
@@ -10802,10 +10803,11 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Scripts\AngularJS\app\ts\app.routes.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\app.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\boot.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\main.ts" />
-    <TypeScriptCompile Include="Scripts\AngularJS\app\ts\pickerTests.ts" />
+    <TypeScriptCompile Include="Scripts\AngularJS\app\ts\mainMenu.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\node_modules\%40angular\common\index.d.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\node_modules\%40angular\common\src\common_module.d.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\node_modules\%40angular\common\src\directives\index.d.ts" />

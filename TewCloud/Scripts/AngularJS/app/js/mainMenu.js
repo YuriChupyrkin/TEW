@@ -9,17 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var PickerTests = (function () {
-    function PickerTests() {
-        this.description = "picker tests";
+var MainMenu = (function () {
+    function MainMenu() {
+        this.description = "main menu";
     }
-    PickerTests = __decorate([
+    MainMenu = __decorate([
         core_1.Component({
-            selector: 'picker-tests',
-            templateUrl: '../scripts/angularjs/app/templates/app.html'
+            selector: 'main-menu',
+            templateUrl: '../../scripts/angularjs/app/templates/mainMenu.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], PickerTests);
-    return PickerTests;
+    ], MainMenu);
+    return MainMenu;
 }());
-exports.PickerTests = PickerTests;
+exports.MainMenu = MainMenu;
