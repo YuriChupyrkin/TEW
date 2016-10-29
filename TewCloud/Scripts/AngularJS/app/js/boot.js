@@ -10,10 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 ///<reference path="./../../typings/main.d.ts"/>
 var core_1 = require('@angular/core');
-//import { RouterModule }   from '@angular/router';
 var platform_browser_1 = require('@angular/platform-browser');
 var app_1 = require('./app');
-var mainMenu_1 = require('./mainMenu');
+var home_1 = require('./home');
+var myWords_1 = require('./myWords');
 var app_routes_1 = require('./app.routes');
 var common_1 = require('@angular/common');
 var AppModule = (function () {
@@ -22,9 +22,12 @@ var AppModule = (function () {
     AppModule = __decorate([
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule, app_routes_1.routing],
-            declarations: [app_1.AppComponent, mainMenu_1.MainMenu],
-            bootstrap: [app_1.AppComponent, mainMenu_1.MainMenu],
-            providers: [{ provide: common_1.APP_BASE_HREF, useValue: '/' }, app_routes_1.appRoutingProviders]
+            declarations: [app_1.AppComponent, home_1.Home, myWords_1.MyWords],
+            bootstrap: [app_1.AppComponent],
+            providers: [
+                { provide: common_1.APP_BASE_HREF, useValue: '/' },
+                app_routes_1.appRoutingProviders
+            ]
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);

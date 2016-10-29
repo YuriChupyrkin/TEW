@@ -1,10 +1,12 @@
 ﻿import { Routes, RouterModule }   from '@angular/router';
-import { MainMenu } from './mainMenu';
+import { Home } from './home';
+import { MyWords } from './myWords';
+import { AppComponent } from './app';
 import { ModuleWithProviders }  from '@angular/core';
 
 const appRoutes: Routes = [
-    { path: 'main-menu', component: MainMenu },
-    { path: '', redirectTo: '/main-menu', pathMatch: 'full' }
+    { path: '', component: Home },
+    { path: 'my-words', component: MyWords }
 ];
 
 export const appRoutingProviders: any[] = [];
