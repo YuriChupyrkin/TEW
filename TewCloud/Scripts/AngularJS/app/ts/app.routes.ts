@@ -1,12 +1,12 @@
 ﻿import { Routes, RouterModule }   from '@angular/router';
 import { Home } from './home';
-import { MyWords } from './myWords';
+import { AddWord } from './addWord';
 import { AppComponent } from './app';
 import { ModuleWithProviders }  from '@angular/core';
 
 const appRoutes: Routes = [
     { path: '', component: Home },
-    { path: 'my-words', component: MyWords }
+    { path: 'add-word', component: AddWord }
 ];
 
 export const appRoutingProviders: any[] = [];

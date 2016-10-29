@@ -1,5 +1,10 @@
 ﻿<h1>Tew main page</h1>
 
+<div id="tabs">
+    <a [routerLink]="['']">My words</a>
+    <a [routerLink]="['add-word']">Add word</a>
+</div>
+
 <div id="container">
     <router-outlet></router-outlet>
 </div>

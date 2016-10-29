@@ -3,14 +3,14 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app';
 import { Home } from './home';
-import { MyWords } from './myWords';
+import { AddWord } from './addWord';
 import { appRoutingProviders, routing } from './app.routes';
 import { APP_BASE_HREF } from '@angular/common';
 
 @NgModule({
     imports: [BrowserModule, routing ],
 
-    declarations: [AppComponent, Home, MyWords],
+    declarations: [AppComponent, Home, AddWord],
     bootstrap: [AppComponent],
     providers: [
         { provide: APP_BASE_HREF, useValue: '/' },

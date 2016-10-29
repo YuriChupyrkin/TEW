@@ -8,29 +8,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-///<reference path="./../../typings/main.d.ts"/>
 var core_1 = require('@angular/core');
-var platform_browser_1 = require('@angular/platform-browser');
-var app_1 = require('./app');
-var home_1 = require('./home');
-var addWord_1 = require('./addWord');
-var app_routes_1 = require('./app.routes');
-var common_1 = require('@angular/common');
-var AppModule = (function () {
-    function AppModule() {
+var AddWord = (function () {
+    function AddWord() {
+        this.description = "main menu";
     }
-    AppModule = __decorate([
-        core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, app_routes_1.routing],
-            declarations: [app_1.AppComponent, home_1.Home, addWord_1.AddWord],
-            bootstrap: [app_1.AppComponent],
-            providers: [
-                { provide: common_1.APP_BASE_HREF, useValue: '/' },
-                app_routes_1.appRoutingProviders
-            ]
+    AddWord = __decorate([
+        core_1.Component({
+            selector: 'add-word',
+            templateUrl: '../../scripts/angularjs/app/templates/addWord.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], AppModule);
-    return AppModule;
+    ], AddWord);
+    return AddWord;
 }());
-exports.AppModule = AppModule;
+exports.AddWord = AddWord;

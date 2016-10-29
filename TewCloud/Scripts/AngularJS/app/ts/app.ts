@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { MyWords } from './myWords';
 
 @Component({
     selector: 'my-app',
@@ -7,5 +6,4 @@ import { MyWords } from './myWords';
 })
 
 export class AppComponent {
-
 }
