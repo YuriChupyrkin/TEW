@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+declare var $: any;
 
 @Component({
     selector: 'my-app',
@@ -6,4 +7,10 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
+
+    //public navigateTo(url: string, btnId: string) {
+    //    //routerLink = [url];
+    //    console.log(url);
+    //    $('#' + btnId).addClass('btn-success');
+    //}
 }

@@ -32,7 +32,9 @@ var tsProject = ts.createProject('tsconfig.json', {
 gulp.task('ts', function (done) {
     //var tsResult = tsProject.src()
     var tsResult = gulp.src([
-            "app/ts/*.ts"
+            "app/ts/*.ts",
+            "app/ts/services/*.ts",
+            "app/ts/models/*.ts"
     ])
         .pipe(ts(tsProject), undefined, ts.reporter.fullReporter());
     return tsResult.js.pipe(gulp.dest('./app/js'));

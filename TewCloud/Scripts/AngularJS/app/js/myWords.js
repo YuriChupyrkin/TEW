@@ -9,16 +9,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var getPostService_1 = require('./services/getPostService');
+var userWords_1 = require('./models/userWords');
 var MyWords = (function () {
-    function MyWords() {
-        this.description = "main menu";
+    function MyWords(getPostService) {
+        this.getPostService = getPostService;
+        this.description = "myWords";
+        this.userWords = new userWords_1.UserWords();
+        this.userWords.UserName = 'hello';
     }
+    MyWords.prototype.getWords = function () {
+        var _this = this;
+        var url = '/api/WordsManager?userName=yurec37@yandex.ru';
+        var result = this.getPostService.getRequest(url);
+        var js = 'json';
+        result.subscribe(function (json) { return _this.userWords = json; });
+    };
+    MyWords.prototype.showWords = function () {
+        console.dir(this.userWords);
+    };
     MyWords = __decorate([
         core_1.Component({
             selector: 'my-words',
             templateUrl: '../../scripts/angularjs/app/templates/myWords.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [getPostService_1.GetPostService])
     ], MyWords);
     return MyWords;
 }());

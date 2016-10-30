@@ -9,17 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AddWord = (function () {
-    function AddWord() {
-        this.description = "add word";
+var http_1 = require('@angular/http');
+require('rxjs/add/operator/map');
+var GetPostService = (function () {
+    function GetPostService(http) {
+        this.http = http;
     }
-    AddWord = __decorate([
-        core_1.Component({
-            selector: 'add-word',
-            templateUrl: '../../scripts/angularjs/app/templates/addWord.html'
-        }), 
-        __metadata('design:paramtypes', [])
-    ], AddWord);
-    return AddWord;
+    GetPostService.prototype.getRequest = function (url) {
+        console.log("GET REQUEST: " + url);
+        return this.http.get(url)
+            .map(function (response) { return response.json(); });
+    };
+    GetPostService.prototype.extractData = function (res) {
+        var body = res.json();
+        return body.data || {};
+    };
+    GetPostService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [http_1.Http])
+    ], GetPostService);
+    return GetPostService;
 }());
-exports.AddWord = AddWord;
+exports.GetPostService = GetPostService;

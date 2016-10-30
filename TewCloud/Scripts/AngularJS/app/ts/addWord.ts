@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
 })
 
 export class AddWord {
-    description:string = "main menu";
+    description:string = "add word";
 }
