@@ -9,31 +9,59 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var getPostService_1 = require('./services/getPostService');
+var httpService_1 = require('./services/httpService');
 var userWords_1 = require('./models/userWords');
+var wordsCloudModel_1 = require('./models/wordsCloudModel');
 var MyWords = (function () {
-    function MyWords(getPostService) {
-        this.getPostService = getPostService;
-        this.description = "myWords";
+    //testInput: string;
+    function MyWords(httpService) {
+        this.httpService = httpService;
         this.userWords = new userWords_1.UserWords();
-        this.userWords.UserName = 'hello';
+        //this.testInput = 'test string';
+        this.loaded = false;
+        this.getWords();
     }
     MyWords.prototype.getWords = function () {
         var _this = this;
+        // todo: set user name
         var url = '/api/WordsManager?userName=yurec37@yandex.ru';
-        var result = this.getPostService.getRequest(url);
-        var js = 'json';
-        result.subscribe(function (json) { return _this.userWords = json; });
+        var result = this.httpService.processGet(url);
+        result.subscribe(function (json) { return _this.setUserWords(json); });
     };
-    MyWords.prototype.showWords = function () {
-        console.dir(this.userWords);
+    MyWords.prototype.removeWord = function (word) {
+        var _this = this;
+        console.dir(word);
+        // hidden
+        word.Hidden = true;
+        var wordsCloudModel = new wordsCloudModel_1.WordsCloudModel();
+        // todo name
+        wordsCloudModel.UserName = 'yurec37@yandex.ru';
+        wordsCloudModel.Words = [word];
+        var url = 'api/DeleteWord';
+        var result = this.httpService.processPost(wordsCloudModel, url);
+        result.subscribe(function (response) { return _this.removedWord(word); }, function (error) { return word.Hidden = false; });
+    };
+    MyWords.prototype.setUserWords = function (userWords) {
+        this.loaded = true;
+        this.userWords = userWords;
+        for (var i = 0; i < this.userWords.Words.length; i++) {
+            //this.userWords.Words[i].UpdateDateString = this.userWords.Words[i].UpdateDate.toISOString();
+            this.userWords.Words[i].UpdateDateString = this.userWords.Words[i].UpdateDate.toString();
+        }
+    };
+    MyWords.prototype.removedWord = function (word) {
+        var wordIndex = this.userWords.Words.indexOf(word);
+        if (wordIndex == -1) {
+            return;
+        }
+        this.userWords.Words.splice(wordIndex, 1);
     };
     MyWords = __decorate([
         core_1.Component({
             selector: 'my-words',
             templateUrl: '../../scripts/angularjs/app/templates/myWords.html'
         }), 
-        __metadata('design:paramtypes', [getPostService_1.GetPostService])
+        __metadata('design:paramtypes', [httpService_1.HttpService])
     ], MyWords);
     return MyWords;
 }());

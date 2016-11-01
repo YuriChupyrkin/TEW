@@ -214,6 +214,7 @@
     <Compile Include="Controllers\ClientFilesInfoController.cs" />
     <Compile Include="Controllers\ClientFilesUpdateController.cs" />
     <Compile Include="Controllers\WebAppVersion\ChangePasswordController.cs" />
+    <Compile Include="Controllers\WebAppVersion\DeleteWordController.cs" />
     <Compile Include="Controllers\WebAppVersion\PickerTestsController.cs" />
     <Compile Include="Controllers\WebAppVersion\ResetPasswordController.cs" />
     <Compile Include="Controllers\WebAppVersion\WordsManagerController.cs" />
@@ -10813,8 +10814,9 @@
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\addWord.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\models\userWords.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\models\word.ts" />
+    <TypeScriptCompile Include="Scripts\AngularJS\app\ts\models\wordsCloudModel.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\myWords.ts" />
-    <TypeScriptCompile Include="Scripts\AngularJS\app\ts\services\getPostService.ts" />
+    <TypeScriptCompile Include="Scripts\AngularJS\app\ts\services\httpService.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\node_modules\%40angular\common\index.d.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\node_modules\%40angular\common\src\common_module.d.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\node_modules\%40angular\common\src\directives\index.d.ts" />

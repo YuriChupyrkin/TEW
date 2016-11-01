@@ -1,3 +1,39 @@
-﻿<h1>My words</h1>
-<button (click)="getWords()">Load</button>
-<button (click)="showWords()">Show</button>
+﻿<h1 class="center-block">My words</h1>
+
+<div id="words">
+
+    <div id="testDiv" class="hidden">
+        <button (click)="showWords()">Show</button>
+        <h1>{{testInput}}</h1>
+        <input #textbox type="text" [(ngModel)]="testInput" required />
+    </div>
+    
+    <div [hidden]="loaded">LOADING...</div>
+
+    <table class="table table-hover" [hidden]="!loaded">
+        <thead>
+            <tr>
+                <th></th>
+                <th>English</th>
+                <th>Russian</th>
+                <th>Level</th>
+                <th>Answer count</th>
+                <th>Fail count</th>
+                <th>Update Date</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let word of userWords.Words;">
+            <tr [hidden]="word.Hidden">
+                <td><a (click)="removeWord(word)">Remove</a></td>
+                <td>{{word.English}}</td>
+                <td>{{word.Russian}}</td>
+                <td>{{word.Level}}</td>
+                <td>{{word.AnswerCount}}</td>
+                <td>{{word.FailAnswerCount}}</td>
+                <td>{{word.UpdateDateString}}</td>
+                <td>{{word.Example}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

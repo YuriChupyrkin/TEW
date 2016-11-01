@@ -7,11 +7,14 @@ import { AddWord } from './addWord';
 import { MyWords } from './myWords';
 import { appRoutingProviders, routing } from './app.routes';
 import { APP_BASE_HREF } from '@angular/common';
-import { GetPostService } from './services/getPostService';
+import { HttpService } from './services/httpService';
 import { HttpModule } from '@angular/http';
 
+// For textbox binding
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
-    imports: [BrowserModule, routing, HttpModule ],
+    imports: [BrowserModule, routing, HttpModule, FormsModule ],
 
     declarations: [AppComponent, Home, AddWord, MyWords],
 
@@ -20,7 +23,7 @@ import { HttpModule } from '@angular/http';
     providers: [
         { provide: APP_BASE_HREF, useValue: '/' },
         appRoutingProviders,
-        GetPostService
+        HttpService
     ]
 })
 export class AppModule { }

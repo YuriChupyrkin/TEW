@@ -17,20 +17,22 @@ var addWord_1 = require('./addWord');
 var myWords_1 = require('./myWords');
 var app_routes_1 = require('./app.routes');
 var common_1 = require('@angular/common');
-var getPostService_1 = require('./services/getPostService');
+var httpService_1 = require('./services/httpService');
 var http_1 = require('@angular/http');
+// For textbox binding
+var forms_1 = require('@angular/forms');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, app_routes_1.routing, http_1.HttpModule],
+            imports: [platform_browser_1.BrowserModule, app_routes_1.routing, http_1.HttpModule, forms_1.FormsModule],
             declarations: [app_1.AppComponent, home_1.Home, addWord_1.AddWord, myWords_1.MyWords],
             bootstrap: [app_1.AppComponent],
             providers: [
                 { provide: common_1.APP_BASE_HREF, useValue: '/' },
                 app_routes_1.appRoutingProviders,
-                getPostService_1.GetPostService
+                httpService_1.HttpService
             ]
         }), 
         __metadata('design:paramtypes', [])
