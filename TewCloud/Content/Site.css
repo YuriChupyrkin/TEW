@@ -93,3 +93,38 @@ textarea {
 .body-margin-left {
     margin-left: 50px;
 }
+
+.center-form{
+    text-align: center;
+    display:inline-block;
+}
+
+.inline-block{
+    display:inline-block;
+}
+
+.choosen-translate{
+    background-color: red;
+}
+
+.add-word-area {
+    margin: 50px;
+}
+
+.translate-items{
+    margin: 50px;
+    background-color: aqua;
+    border-radius: 10px;
+}
+
+.translate-item{
+    width: 100%;
+    border-radius: 10px;
+}
+
+.label{
+    font-size: 16px;
+    /*font-weight: bold;*/
+    font-style: italic;
+    color: black;
+}

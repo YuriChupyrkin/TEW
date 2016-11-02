@@ -1,1 +1,30 @@
-<h1> Add word</h1>
+<div class="center-block">
+    <h1 style="margin-bottom:100px"> Add word</h1>
+
+    <span class="label">English word:</span>
+    <br />
+    <input class="form-control inline-block" type="text" (keyup.enter)="translate()" [(ngModel)]="englishWord" />
+    <button (click)="translate()">Translate</button>
+
+    <div class="row add-word-area">
+        <div class="col-md-6">
+            <span class="label">Your translate:</span>
+            <br />
+            <input class="form-control inline-block" type="text" [(ngModel)]="chosenTranslate" (keyup.enter)="save()" />
+
+            <br />
+            <div class="translate-items">
+                <span class="label">Translates:</span>
+
+                <div *ngFor="let translate of translates;">
+                    <div class="translate-item" [class.choosen-translate]="translate == chosenTranslate" (click)="chooseTranslate(translate)">{{translate}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <span class="label">Example of use:</span>
+            <br/>
+            <textarea class="form-control inline-block" [(ngModel)]="exampleOfUser"></textarea>
+        </div>
+    </div>
+</div>

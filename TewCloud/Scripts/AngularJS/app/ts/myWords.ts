@@ -3,6 +3,7 @@ import { HttpService } from './services/httpService';
 import { UserWords } from './models/userWords';
 import { Word } from './models/word';
 import { WordsCloudModel } from './models/wordsCloudModel';
+import { ConstantStorage } from './services/constantStorage';
 
 @Component({
     selector: 'my-words',
@@ -10,8 +11,8 @@ import { WordsCloudModel } from './models/wordsCloudModel';
 })
 
 export class MyWords {
-    loaded: boolean;
-    userWords: UserWords;
+    private loaded: boolean;
+    private userWords: UserWords;
     //testInput: string;
 
     constructor(private httpService: HttpService) {
@@ -22,24 +23,21 @@ export class MyWords {
         this.getWords();
     }
 
-    public getWords() {
-        // todo: set user name
-        var url = '/api/WordsManager?userName=yurec37@yandex.ru';
+    private getWords() {
+        var url = '/api/WordsManager?userName=' + ConstantStorage.getUserName();
 
         var result = this.httpService.processGet<UserWords>(url);
         result.subscribe(json => this.setUserWords(json));
     }
 
-    public removeWord(word: Word) {
+    private removeWord(word: Word) {
         console.dir(word);
 
         // hidden
         word.Hidden = true;
 
         var wordsCloudModel = new WordsCloudModel();
-
-        // todo name
-        wordsCloudModel.UserName = 'yurec37@yandex.ru';
+        wordsCloudModel.UserName = ConstantStorage.getUserName();
         wordsCloudModel.Words = [word];
 
         var url = 'api/DeleteWord';

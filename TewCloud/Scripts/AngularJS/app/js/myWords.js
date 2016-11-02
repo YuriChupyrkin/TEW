@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var httpService_1 = require('./services/httpService');
 var userWords_1 = require('./models/userWords');
 var wordsCloudModel_1 = require('./models/wordsCloudModel');
+var constantStorage_1 = require('./services/constantStorage');
 var MyWords = (function () {
     //testInput: string;
     function MyWords(httpService) {
@@ -23,8 +24,7 @@ var MyWords = (function () {
     }
     MyWords.prototype.getWords = function () {
         var _this = this;
-        // todo: set user name
-        var url = '/api/WordsManager?userName=yurec37@yandex.ru';
+        var url = '/api/WordsManager?userName=' + constantStorage_1.ConstantStorage.getUserName();
         var result = this.httpService.processGet(url);
         result.subscribe(function (json) { return _this.setUserWords(json); });
     };
@@ -34,8 +34,7 @@ var MyWords = (function () {
         // hidden
         word.Hidden = true;
         var wordsCloudModel = new wordsCloudModel_1.WordsCloudModel();
-        // todo name
-        wordsCloudModel.UserName = 'yurec37@yandex.ru';
+        wordsCloudModel.UserName = constantStorage_1.ConstantStorage.getUserName();
         wordsCloudModel.Words = [word];
         var url = 'api/DeleteWord';
         var result = this.httpService.processPost(wordsCloudModel, url);

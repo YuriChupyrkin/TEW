@@ -10816,6 +10816,7 @@
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\models\word.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\models\wordsCloudModel.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\myWords.ts" />
+    <TypeScriptCompile Include="Scripts\AngularJS\app\ts\services\constantStorage.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\services\httpService.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\node_modules\%40angular\common\index.d.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\node_modules\%40angular\common\src\common_module.d.ts" />

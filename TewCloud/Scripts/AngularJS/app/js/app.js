@@ -9,8 +9,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var constantStorage_1 = require('./services/constantStorage');
 var AppComponent = (function () {
     function AppComponent() {
+        // TODO: fix it
+        constantStorage_1.ConstantStorage.setUserName('yurec37@yandex.ru');
+        constantStorage_1.ConstantStorage.setYandexTranslaterApiKey('dict.1.1.20160904T125311Z.5e2c6c9dfb5cd3c3.71b0d5220878e340d60dcfa0faf7f649af59c65f');
     }
     AppComponent = __decorate([
         core_1.Component({
