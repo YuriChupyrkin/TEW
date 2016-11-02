@@ -104,27 +104,38 @@ textarea {
 }
 
 .choosen-translate{
-    background-color: red;
+    background-color: #38c5d4;
 }
 
 .add-word-area {
     margin: 50px;
 }
 
-.translate-items{
+.translate-items {
     margin: 50px;
-    background-color: aqua;
-    border-radius: 10px;
 }
 
-.translate-item{
+.margin-30 {
+     margin: 30px;
+}
+
+.translate-result {
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.translate-item {
     width: 100%;
     border-radius: 10px;
 }
 
-.label{
+.label {
     font-size: 16px;
-    /*font-weight: bold;*/
     font-style: italic;
     color: black;
+}
+
+.cursor-pointer{
+    cursor: pointer;
 }

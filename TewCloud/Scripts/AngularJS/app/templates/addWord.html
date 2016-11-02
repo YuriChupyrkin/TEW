@@ -4,7 +4,7 @@
     <span class="label">English word:</span>
     <br />
     <input class="form-control inline-block" type="text" (keyup.enter)="translate()" [(ngModel)]="englishWord" />
-    <button (click)="translate()">Translate</button>
+    <button class="btn btn-info" (click)="translate()">Translate</button>
 
     <div class="row add-word-area">
         <div class="col-md-6">
@@ -13,11 +13,17 @@
             <input class="form-control inline-block" type="text" [(ngModel)]="chosenTranslate" (keyup.enter)="save()" />
 
             <br />
-            <div class="translate-items">
+            <div class="translate-items" [hidden]="translates.length < 1">
                 <span class="label">Translates:</span>
 
-                <div *ngFor="let translate of translates;">
-                    <div class="translate-item" [class.choosen-translate]="translate == chosenTranslate" (click)="chooseTranslate(translate)">{{translate}}</div>
+                <div class="translate-result" >
+                    <div *ngFor="let translate of translates;">
+                        <div class="translate-item cursor-pointer" 
+                                [class.choosen-translate]="translate == chosenTranslate" 
+                                (click)="chooseTranslate(translate)">
+                            {{translate}}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -25,6 +31,8 @@
             <span class="label">Example of use:</span>
             <br/>
             <textarea class="form-control inline-block" [(ngModel)]="exampleOfUser"></textarea>
+            <br/>
+            <button class="btn btn-success margin-30" (click)="save()">Add word</button>
         </div>
     </div>
 </div>

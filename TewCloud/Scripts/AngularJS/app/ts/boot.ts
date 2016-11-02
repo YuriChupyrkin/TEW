@@ -5,6 +5,7 @@ import { AppComponent } from './app';
 import { Home } from './home';
 import { AddWord } from './addWord';
 import { MyWords } from './myWords';
+import { PickerTest } from './pickerTest';
 import { appRoutingProviders, routing } from './app.routes';
 import { APP_BASE_HREF } from '@angular/common';
 import { HttpService } from './services/httpService';
@@ -16,7 +17,7 @@ import { FormsModule } from '@angular/forms';
 @NgModule({
     imports: [BrowserModule, routing, HttpModule, FormsModule ],
 
-    declarations: [AppComponent, Home, AddWord, MyWords],
+    declarations: [AppComponent, Home, AddWord, MyWords, PickerTest],
 
     bootstrap: [AppComponent],
 

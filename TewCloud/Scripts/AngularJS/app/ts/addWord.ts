@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ConstantStorage } from './services/constantStorage';
 import { HttpService } from './services/httpService';
+import { WordsCloudModel } from './models/wordsCloudModel';
+import { Word } from './models/word';
 
 @Component({
     selector: 'add-word',
@@ -8,6 +10,9 @@ import { HttpService } from './services/httpService';
 })
 
 export class AddWord {
+    private wordTranslaterController: string = '/api/WordTranslater';
+    private wordsManagerController = '/api/WordsManager';
+
     private englishWord: string;
     private translates: Array<string>;
     private exampleOfUser: string;
@@ -15,7 +20,6 @@ export class AddWord {
 
     constructor(private httpService: HttpService) {
         this.translates = new Array<string>();
-        this.englishWord = 'cat';
     }
 
     private translate() {
@@ -23,22 +27,23 @@ export class AddWord {
             return;
         }
 
-        console.log('translate....');
-        this.clearTranslateResults();
+        this.clearTranslateResults(false);
         this.translateByYandex();
         this.translateByExistsWords();
     }
 
     private translateByExistsWords() {
-        console.log("translateByExistsWords");
+        var url = `${this.wordTranslaterController}?word=${this.englishWord}`;
+        this.httpService.processGet<Array<string>>(url).subscribe(response => this.addTranslate(response));
     }
 
     private translateByYandex() {
         let url = "https://dictionary.yandex.net/api/v1/dicservice.json/lookup";
         let translateLang = "en-ru";
         let apiKey = ConstantStorage.getYandexTranslaterApiKey();
+        let text = this.englishWord.replace(' ', '%20');
 
-        var resultUri = `${url}?key=${apiKey}&lang=${translateLang}&text=${this.englishWord}`;
+        var resultUri = `${url}?key=${apiKey}&lang=${translateLang}&text=${text}`;
         this.httpService.processGet<JSON>(resultUri)
             .subscribe(response => this.parseTranslate(response));
     }
@@ -53,13 +58,13 @@ export class AddWord {
                 console.log(translate);
 
                 if (translate['text']) {
-                    this.translates.push(translate['text'].toString());
+                    this.addTranslate([translate['text']]);
                 }
 
                 if (translate['syn'] && translate['syn']['length']) {
                     for (var i = 0; i < translate['syn']['length']; i++) {
                         var syn = translate['syn'][i];
-                        this.translates.push(syn['text']);
+                        this.addTranslate([syn['text']]);
                     }
                 }
 
@@ -71,25 +76,46 @@ export class AddWord {
     }
 
     private chooseTranslate(translate: string) {
-        console.log("choose: " + translate);
         this.chosenTranslate = translate;
     }
 
-    private clearTranslateResults() {
+    private clearTranslateResults(isClearEnglishWord: boolean) {
+        if (isClearEnglishWord) {
+            this.englishWord = '';
+        }
+
         this.chosenTranslate = '';
         this.exampleOfUser = '';
         this.translates = new Array<string>();
     }
 
-    private save() {
-        console.log("SAVE");
+    private addTranslate(translates: Array<string>) {
+        var self = this;
+        translates.forEach(function (translate: string) {
+            if (self.translates.indexOf(translate) == -1) {
+                self.translates.push(translate);
+            }
+        });
     }
 
+    private save() {
+        if (!this.englishWord || !this.chosenTranslate) {
+            console.log("English and Translate are required!");
+            return;
+        }
 
+        var wordCloudModel = new WordsCloudModel();
+        wordCloudModel.UserName = ConstantStorage.getUserName();
 
-        //if (data && data.def) {
-        //    for (var i = 0; i < data.def.length; i++) {
-        //        console.log("DEF");
-        //    }
-        //}
+        var word = new Word();
+        word.English = this.englishWord;
+        word.Russian = this.chosenTranslate;
+        word.UpdateDate = new Date();
+        word.Example = this.exampleOfUser;
+
+        wordCloudModel.Words = [word];
+
+        this.httpService.processPost(wordCloudModel, this.wordsManagerController)
+            .subscribe(response => this.clearTranslateResults(true), error => alert("error"));
+    }
 }

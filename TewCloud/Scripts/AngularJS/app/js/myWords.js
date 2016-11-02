@@ -14,17 +14,17 @@ var userWords_1 = require('./models/userWords');
 var wordsCloudModel_1 = require('./models/wordsCloudModel');
 var constantStorage_1 = require('./services/constantStorage');
 var MyWords = (function () {
-    //testInput: string;
     function MyWords(httpService) {
         this.httpService = httpService;
+        this.wordsManagerController = '/api/WordsManager';
+        this.deleteWordController = '/api/DeleteWord';
         this.userWords = new userWords_1.UserWords();
-        //this.testInput = 'test string';
         this.loaded = false;
         this.getWords();
     }
     MyWords.prototype.getWords = function () {
         var _this = this;
-        var url = '/api/WordsManager?userName=' + constantStorage_1.ConstantStorage.getUserName();
+        var url = this.wordsManagerController + '?userName=' + constantStorage_1.ConstantStorage.getUserName();
         var result = this.httpService.processGet(url);
         result.subscribe(function (json) { return _this.setUserWords(json); });
     };
@@ -36,8 +36,7 @@ var MyWords = (function () {
         var wordsCloudModel = new wordsCloudModel_1.WordsCloudModel();
         wordsCloudModel.UserName = constantStorage_1.ConstantStorage.getUserName();
         wordsCloudModel.Words = [word];
-        var url = 'api/DeleteWord';
-        var result = this.httpService.processPost(wordsCloudModel, url);
+        var result = this.httpService.processPost(wordsCloudModel, this.deleteWordController);
         result.subscribe(function (response) { return _this.removedWord(word); }, function (error) { return word.Hidden = false; });
     };
     MyWords.prototype.setUserWords = function (userWords) {

@@ -25,7 +25,9 @@
         </thead>
         <tbody *ngFor="let word of userWords.Words;">
             <tr [hidden]="word.Hidden">
-                <td><a (click)="removeWord(word)">Remove</a></td>
+                <td>
+                    <img class="cursor-pointer" (click)="removeWord(word)" src="/Scripts/AngularJS/app/images/delete.png" style="height: 30px" />
+                </td>
                 <td>{{word.English}}</td>
                 <td>{{word.Russian}}</td>
                 <td>{{word.Level}}</td>

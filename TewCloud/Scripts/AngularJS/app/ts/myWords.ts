@@ -11,20 +11,21 @@ import { ConstantStorage } from './services/constantStorage';
 })
 
 export class MyWords {
+    private wordsManagerController: string = '/api/WordsManager';
+    private deleteWordController: string = '/api/DeleteWord';
+
     private loaded: boolean;
     private userWords: UserWords;
-    //testInput: string;
 
     constructor(private httpService: HttpService) {
         this.userWords = new UserWords();
-        //this.testInput = 'test string';
         this.loaded = false;
 
         this.getWords();
     }
 
     private getWords() {
-        var url = '/api/WordsManager?userName=' + ConstantStorage.getUserName();
+        var url = this.wordsManagerController + '?userName=' + ConstantStorage.getUserName();
 
         var result = this.httpService.processGet<UserWords>(url);
         result.subscribe(json => this.setUserWords(json));
@@ -40,8 +41,7 @@ export class MyWords {
         wordsCloudModel.UserName = ConstantStorage.getUserName();
         wordsCloudModel.Words = [word];
 
-        var url = 'api/DeleteWord';
-        var result = this.httpService.processPost<WordsCloudModel>(wordsCloudModel, url);
+        var result = this.httpService.processPost<WordsCloudModel>(wordsCloudModel, this.deleteWordController);
 
         result.subscribe(
             response => this.removedWord(word),
@@ -67,10 +67,4 @@ export class MyWords {
 
         this.userWords.Words.splice(wordIndex, 1);
     }
-
-
-    //public showWords() {
-    //    console.dir(this.userWords);
-    //    console.log('testinput: ' + this.testInput);
-    //}
 }

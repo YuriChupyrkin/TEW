@@ -250,6 +250,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="irregular_verbs.html" />
+    <Content Include="Scripts\AngularJS\app\images\delete.png" />
     <Content Include="Scripts\AngularJS\app\js\app.js" />
     <Content Include="Scripts\AngularJS\app\js\app.routes.js" />
     <Content Include="Scripts\AngularJS\app\js\boot.js" />
@@ -260,6 +261,7 @@
     <Content Include="Scripts\AngularJS\app\templates\home.html" />
     <Content Include="Scripts\AngularJS\app\templates\addWord.html" />
     <Content Include="Scripts\AngularJS\app\templates\myWords.html" />
+    <Content Include="Scripts\AngularJS\app\templates\pickerTest.html" />
     <Content Include="Scripts\AngularJS\gulpfile.js" />
     <Content Include="Scripts\AngularJS\node_modules\%40angular\common\bundles\common-testing.umd.js" />
     <Content Include="Scripts\AngularJS\node_modules\%40angular\common\bundles\common.umd.js" />
@@ -10816,6 +10818,7 @@
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\models\word.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\models\wordsCloudModel.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\myWords.ts" />
+    <TypeScriptCompile Include="Scripts\AngularJS\app\ts\pickerTest.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\services\constantStorage.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\services\httpService.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\node_modules\%40angular\common\index.d.ts" />
