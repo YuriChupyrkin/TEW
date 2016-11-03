@@ -1,3 +1,44 @@
-﻿<div>
+﻿<div class="center-block">
     <h1>Picker test</h1>
+
+    <!-- buttons -->
+    <div>
+        <button (click)="prepareTest('EnRuTest')" class="btn">English-Russian</button>
+        <button (click)="prepareTest('RuEnTest')" class="btn">Russian-English</button>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-7">
+            <!-- test area -->
+            <div [hidden]="!currentTest.Word">
+                <h1>Test</h1>
+                <h2>{{currentTest.Word}}</h2>
+                <br />
+
+                <div class="list-items" *ngFor="let answer of currentTest.Answers;">
+                    <div (click)="setAnswer(answer)"
+                         (dblclick)="pickAnswer(answer)"
+                         [class.choosen-list-item]="answer == choosenAnswer"
+                         [class.background-color-green]="trueAnswer == answer"
+                         class="list-item cursor-pointer">
+                        {{answer}}
+                    </div>
+                </div>
+
+                <br />
+
+                <!-- disabled when set true answer (picked)-->
+                <button [disabled]="trueAnswer" (click)="pickAnswer(choosenAnswer)" class="btn">Pick answer</button>
+            </div>
+        </div>
+
+        <!-- result -->
+        <div class="col-md-5">
+            <div [hidden]="!resultMessage">
+                <h1>{{resultMessage}}</h1>
+                <button (click)="setNextTest()">Next</button>
+            </div>
+        </div>
+    </div>
+
 </div>

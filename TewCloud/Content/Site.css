@@ -103,7 +103,7 @@ textarea {
     display:inline-block;
 }
 
-.choosen-translate{
+.choosen-list-item {
     background-color: #38c5d4;
 }
 
@@ -111,7 +111,7 @@ textarea {
     margin: 50px;
 }
 
-.translate-items {
+.margin-60 {
     margin: 50px;
 }
 
@@ -119,13 +119,13 @@ textarea {
      margin: 30px;
 }
 
-.translate-result {
+.list-items {
     background-color: #e0e0e0;
     border-radius: 10px;
     font-size: 16px;
 }
 
-.translate-item {
+.list-item {
     width: 100%;
     border-radius: 10px;
 }
@@ -136,6 +136,10 @@ textarea {
     color: black;
 }
 
-.cursor-pointer{
+.cursor-pointer {
     cursor: pointer;
+}
+
+.background-color-green {
+    background-color: green;
 }

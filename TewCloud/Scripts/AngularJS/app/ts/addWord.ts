@@ -91,7 +91,13 @@ export class AddWord {
 
     private addTranslate(translates: Array<string>) {
         var self = this;
-        translates.forEach(function (translate: string) {
+        //translates.forEach(function (translate: string) {
+        //    if (self.translates.indexOf(translate) == -1) {
+        //        self.translates.push(translate);
+        //    }
+        //});
+
+        translates.forEach(translate => {
             if (self.translates.indexOf(translate) == -1) {
                 self.translates.push(translate);
             }

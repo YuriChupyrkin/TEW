@@ -78,6 +78,11 @@ var AddWord = (function () {
     };
     AddWord.prototype.addTranslate = function (translates) {
         var self = this;
+        //translates.forEach(function (translate: string) {
+        //    if (self.translates.indexOf(translate) == -1) {
+        //        self.translates.push(translate);
+        //    }
+        //});
         translates.forEach(function (translate) {
             if (self.translates.indexOf(translate) == -1) {
                 self.translates.push(translate);

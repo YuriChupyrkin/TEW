@@ -31,7 +31,7 @@ var AppModule = (function () {
             declarations: [app_1.AppComponent, home_1.Home, addWord_1.AddWord, myWords_1.MyWords, pickerTest_1.PickerTest],
             bootstrap: [app_1.AppComponent],
             providers: [
-                { provide: common_1.APP_BASE_HREF, useValue: '/' },
+                { provide: common_1.APP_BASE_HREF, useValue: '/#' },
                 app_routes_1.appRoutingProviders,
                 httpService_1.HttpService
             ]

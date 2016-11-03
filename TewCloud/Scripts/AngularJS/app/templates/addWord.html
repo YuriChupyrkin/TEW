@@ -13,13 +13,13 @@
             <input class="form-control inline-block" type="text" [(ngModel)]="chosenTranslate" (keyup.enter)="save()" />
 
             <br />
-            <div class="translate-items" [hidden]="translates.length < 1">
+            <div class="margin-50" [hidden]="translates.length < 1">
                 <span class="label">Translates:</span>
 
-                <div class="translate-result" >
+                <div class="list-items" >
                     <div *ngFor="let translate of translates;">
-                        <div class="translate-item cursor-pointer" 
-                                [class.choosen-translate]="translate == chosenTranslate" 
+                        <div class="list-item cursor-pointer" 
+                                [class.choosen-list-item]="translate == chosenTranslate" 
                                 (click)="chooseTranslate(translate)">
                             {{translate}}
                         </div>

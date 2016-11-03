@@ -14,6 +14,12 @@ var ConstantStorage = (function () {
     ConstantStorage.getYandexTranslaterApiKey = function () {
         return this.yandexTranslaterApiKey;
     };
+    ConstantStorage.setUserId = function (id) {
+        this.userId = id;
+    };
+    ConstantStorage.getUserId = function () {
+        return this.userId;
+    };
     return ConstantStorage;
 }());
 exports.ConstantStorage = ConstantStorage;
