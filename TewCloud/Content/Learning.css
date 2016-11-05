@@ -1,0 +1,79 @@
+﻿.body-margin-30 {
+    margin: 30px;
+}
+
+.center-form{
+    text-align: center;
+    display:inline-block;
+}
+
+.inline-block{
+    display:inline-block;
+}
+
+.choosen-list-item {
+    background-color: #38c5d4;
+}
+
+.add-word-area {
+    margin: 50px;
+}
+
+.margin-60 {
+    margin: 50px;
+}
+
+.margin-30 {
+     margin: 30px;
+}
+
+.list-items {
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    font-size: 16px;
+
+    /* No selection after double click */
+    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -ms-user-select: none; /* IE10+ */
+}
+
+.list-item {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.label {
+    font-size: 16px;
+    font-style: italic;
+    color: black;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.background-color-green {
+    background-color: green;
+}
+
+.menu-header {
+    background-color: wheat;
+    padding: 17px;
+}
+
+.menu-tab {
+    padding: 20px;
+    color: gray;
+    font-size: 16px;
+}
+
+.menu-tab-active {
+    background-color: gray;
+    color: white !important;
+}
+
+.menu-header-links {
+    padding-left: 30px;
+    padding-bottom: 40px;
+}

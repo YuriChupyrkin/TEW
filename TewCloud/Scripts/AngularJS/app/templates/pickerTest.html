@@ -1,5 +1,5 @@
 ﻿<div class="center-block">
-    <h1>Picker test</h1>
+    <h3>Picker test</h3>
 
     <!-- buttons -->
     <div>
@@ -11,17 +11,18 @@
         <div class="col-md-7">
             <!-- test area -->
             <div [hidden]="!currentTest.Word">
-                <h1>Test</h1>
                 <h2>{{currentTest.Word}}</h2>
                 <br />
 
-                <div class="list-items" *ngFor="let answer of currentTest.Answers;">
-                    <div (click)="setAnswer(answer)"
-                         (dblclick)="pickAnswer(answer)"
-                         [class.choosen-list-item]="answer == choosenAnswer"
-                         [class.background-color-green]="trueAnswer == answer"
-                         class="list-item cursor-pointer">
-                        {{answer}}
+                <div class="list-items">
+                    <div *ngFor="let answer of currentTest.Answers;">
+                        <div (click)="setAnswer(answer)"
+                             (dblclick)="pickAnswer(answer)"
+                             [class.choosen-list-item]="answer == choosenAnswer"
+                             [class.background-color-green]="trueAnswer == answer"
+                             class="list-item cursor-pointer">
+                            {{answer}}
+                        </div>
                     </div>
                 </div>
 

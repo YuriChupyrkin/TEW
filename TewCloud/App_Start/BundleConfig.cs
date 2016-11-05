@@ -32,6 +32,7 @@ namespace TewCloud
       bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",
                 "~/Content/bootstrap-responsive.css",
+                "~/Content/Learning.css",
                 "~/Content/site.css"));
 
       // Set EnableOptimizations to false for debugging. For more information,

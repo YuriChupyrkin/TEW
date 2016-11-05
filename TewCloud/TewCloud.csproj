@@ -144,7 +144,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Client\" />
-    <Folder Include="Views\SynchroniceV2\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AutofacModule.cs" />
@@ -216,6 +215,7 @@
     <Content Include="Content\Images\multy-user.png" />
     <Content Include="Content\Images\users.png" />
     <Content Include="Content\Images\words.png" />
+    <Content Include="Content\Learning.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -256,8 +256,6 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Scripts\TewScripts\TewInfo.js" />
-    <Content Include="Views\Shared\LearningDesktop\_MainDesktopPage.cshtml" />
-    <None Include="Views\Shared\LearningPhone\_MainPhonePage.cshtml" />
     <Content Include="Views\Tew\Index.cshtml" />
     <Content Include="Views\Shared\DownloadView.cshtml" />
     <Content Include="Scripts\AngularJS\package.json" />

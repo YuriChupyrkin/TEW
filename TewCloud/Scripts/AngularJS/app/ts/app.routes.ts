@@ -7,7 +7,8 @@ import { AppComponent } from './app';
 import { ModuleWithProviders }  from '@angular/core';
 
 const appRoutes: Routes = [
-    { path: '', component: Home },
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: 'home', component: Home },
     { path: 'add-word', component: AddWord },
     { path: 'my-words', component: MyWords },
     { path: 'picker-test', component: PickerTest }

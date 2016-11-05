@@ -6,6 +6,5 @@
     Russian: string;
     Level: number;
     Example: string;
-    UpdateDateString: string;
     Hidden: boolean;
 }

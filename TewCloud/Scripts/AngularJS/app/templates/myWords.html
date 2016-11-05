@@ -1,13 +1,6 @@
-﻿<h1 class="center-block">My words</h1>
+﻿<h3 class="center-block">My words</h3>
 
-<div id="words">
-
-    <div id="testDiv" class="hidden">
-        <button (click)="showWords()">Show</button>
-        <h1>{{testInput}}</h1>
-        <input #textbox type="text" [(ngModel)]="testInput" required />
-    </div>
-    
+<div>    
     <div [hidden]="loaded">LOADING...</div>
 
     <table class="table table-hover" [hidden]="!loaded">
@@ -19,7 +12,6 @@
                 <th>Level</th>
                 <th>Answer count</th>
                 <th>Fail count</th>
-                <th>Update Date</th>
                 <th>Example</th>
             </tr>
         </thead>
@@ -33,7 +25,6 @@
                 <td>{{word.Level}}</td>
                 <td>{{word.AnswerCount}}</td>
                 <td>{{word.FailAnswerCount}}</td>
-                <td>{{word.UpdateDateString}}</td>
                 <td>{{word.Example}}</td>
             </tr>
         </tbody>

@@ -42,10 +42,6 @@ var MyWords = (function () {
     MyWords.prototype.setUserWords = function (userWords) {
         this.loaded = true;
         this.userWords = userWords;
-        for (var i = 0; i < this.userWords.Words.length; i++) {
-            //this.userWords.Words[i].UpdateDateString = this.userWords.Words[i].UpdateDate.toISOString();
-            this.userWords.Words[i].UpdateDateString = this.userWords.Words[i].UpdateDate.toString();
-        }
     };
     MyWords.prototype.removedWord = function (word) {
         var wordIndex = this.userWords.Words.indexOf(word);

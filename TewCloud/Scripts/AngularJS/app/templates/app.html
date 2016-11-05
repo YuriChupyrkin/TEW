@@ -1,16 +1,18 @@
 ﻿<div>
-    <div class="center-block" style="background-color: wheat; padding: 20px;">
-        <h1>Tew main page</h1>
+    <div class="menu-header">
+        <div class="row menu-header-links">
+            <a href="void:alert('feature is cooming soon')">New feature</a>
+        </div>
 
-        <div id="tabs">
-            <a class="btn btn-info" routerLink="/">Home</a>
-            <a class="btn btn-default" routerLink="/add-word" routerLinkActive="btn-success">Add word</a>
-            <a class="btn btn-default" routerLink="/my-words" routerLinkActive="btn-success">My words</a>
-            <a class="btn btn-default" routerLink="/picker-test" routerLinkActive="btn-success">Picker test</a>
+        <div class="center-block row">
+            <a class="menu-tab" routerLink="/home" routerLinkActive="menu-tab-active">Home</a>
+            <a class="menu-tab" routerLink="/add-word" routerLinkActive="menu-tab-active">Add word</a>
+            <a class="menu-tab" routerLink="/my-words" routerLinkActive="menu-tab-active">My words</a>
+            <a class="menu-tab" routerLink="/picker-test" routerLinkActive="menu-tab-active">Picker test</a>
         </div>
     </div>
 
-    <div id="route-container">
+    <div id="route-container" class="body-margin-30">
         <router-outlet></router-outlet>
     </div>
 </div>

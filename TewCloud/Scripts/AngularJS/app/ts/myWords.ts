@@ -51,11 +51,6 @@ export class MyWords {
     private setUserWords(userWords: UserWords) {
         this.loaded = true;
         this.userWords = userWords;
-
-        for (let i = 0; i < this.userWords.Words.length; i++) {
-            //this.userWords.Words[i].UpdateDateString = this.userWords.Words[i].UpdateDate.toISOString();
-            this.userWords.Words[i].UpdateDateString = this.userWords.Words[i].UpdateDate.toString();
-        }
     }
 
     private removedWord(word: Word) {
