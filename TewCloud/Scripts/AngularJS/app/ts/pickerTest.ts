@@ -12,6 +12,7 @@ export class PickerTest {
     private EnRuTest: string = "EnRuTest";
     private RuEnTest: string = "RuEnTest";
     private PickerTestsController: string = '/api/PickerTests';
+    private WordsLevelUpdaterController = 'api/WordsLevelUpdater';
 
     private testSet: Array<PickerTestModel>;
     private testName: string;
@@ -22,6 +23,7 @@ export class PickerTest {
     private choosenAnswer: string;
     private trueAnswer: string;
     private resultMessage: string;
+    private testIsFinished: boolean;
 
     constructor(private httpService: HttpService) {
         this.testSet = new Array<PickerTestModel>();
@@ -74,19 +76,29 @@ export class PickerTest {
         }
 
         this.trueAnswer = this.currentTest.Answers[this.currentTest.AnswerId];
+        var isTrueAnswer = false;
 
         if (this.trueAnswer != answer) {
-            this.resultMessage = `Error! "${this.currentTest.Word}" = "${this.trueAnswer}"`;
+            this.resultMessage = `Error!<br/>"${this.currentTest.Word}" = "${this.trueAnswer}"`;
             this.failedCount++;
         } else {
+            isTrueAnswer = true;
             this.setNextTest();
         }
 
-        this.sendTestResult();
+        this.sendTestResult(this.currentTest.WordId, isTrueAnswer);
     }
 
-    private sendTestResult() {
-        console.log("sendind test result...");
+    private sendTestResult(wordId: number, isTrueAnswer: boolean) {
+        var postObject = {
+            WordId: wordId,
+            IsTrueAnswer: isTrueAnswer,
+            TestType: this.testName
+        };
+
+        this.httpService
+            .processPost(postObject, this.WordsLevelUpdaterController)
+            .subscribe();
     }
 
     private setNextTest() {
@@ -96,9 +108,17 @@ export class PickerTest {
 
         this.testIndex++;
 
-        if (this.testIndex >= this.testCount) {
-            alert("RESULTS....");
+        if (this.testIsFinished) {
+            this.testIsFinished = false;
+            this.initEmptyCurrentTest();
+            this.prepareTest(this.testName);
+            return;
+        }
 
+        if (this.testIndex >= this.testCount) {
+            this.resultMessage = `Finish! Errors: ${this.failedCount}`;
+            this.testIsFinished = true;
+            this.trueAnswer = 'disable pick button';
             return;
         }
 

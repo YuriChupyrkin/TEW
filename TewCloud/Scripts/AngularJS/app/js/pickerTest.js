@@ -18,6 +18,7 @@ var PickerTest = (function () {
         this.EnRuTest = "EnRuTest";
         this.RuEnTest = "RuEnTest";
         this.PickerTestsController = '/api/PickerTests';
+        this.WordsLevelUpdaterController = 'api/WordsLevelUpdater';
         this.testSet = new Array();
         this.initEmptyCurrentTest();
     }
@@ -58,25 +59,42 @@ var PickerTest = (function () {
             return;
         }
         this.trueAnswer = this.currentTest.Answers[this.currentTest.AnswerId];
+        var isTrueAnswer = false;
         if (this.trueAnswer != answer) {
-            this.resultMessage = "Error! \"" + this.currentTest.Word + "\" = \"" + this.trueAnswer + "\"";
+            this.resultMessage = "Error!<br/>\"" + this.currentTest.Word + "\" = \"" + this.trueAnswer + "\"";
             this.failedCount++;
         }
         else {
+            isTrueAnswer = true;
             this.setNextTest();
         }
-        this.sendTestResult();
+        this.sendTestResult(this.currentTest.WordId, isTrueAnswer);
     };
-    PickerTest.prototype.sendTestResult = function () {
-        console.log("sendind test result...");
+    PickerTest.prototype.sendTestResult = function (wordId, isTrueAnswer) {
+        var postObject = {
+            WordId: wordId,
+            IsTrueAnswer: isTrueAnswer,
+            TestType: this.testName
+        };
+        this.httpService
+            .processPost(postObject, this.WordsLevelUpdaterController)
+            .subscribe();
     };
     PickerTest.prototype.setNextTest = function () {
         this.choosenAnswer = '';
         this.trueAnswer = '';
         this.resultMessage = '';
         this.testIndex++;
+        if (this.testIsFinished) {
+            this.testIsFinished = false;
+            this.initEmptyCurrentTest();
+            this.prepareTest(this.testName);
+            return;
+        }
         if (this.testIndex >= this.testCount) {
-            alert("RESULTS....");
+            this.resultMessage = "Finish! Errors: " + this.failedCount;
+            this.testIsFinished = true;
+            this.trueAnswer = 'disable pick button';
             return;
         }
         this.currentTest = this.testSet[this.testIndex];
