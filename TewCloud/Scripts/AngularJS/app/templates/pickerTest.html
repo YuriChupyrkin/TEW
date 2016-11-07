@@ -29,15 +29,15 @@
                 <br />
 
                 <!-- disabled when set true answer (picked)-->
-                <button [disabled]="trueAnswer" (click)="pickAnswer(choosenAnswer)" class="btn">Pick answer</button>
+                <button [disabled]="trueAnswer" (click)="pickAnswer(choosenAnswer)" class="btn btn-success">Pick answer</button>
             </div>
         </div>
 
         <!-- result -->
         <div class="col-md-5">
             <div [hidden]="!resultMessage">
-                <div>{{resultMessage}}</div>
-                <button (click)="setNextTest()">Next</button>
+                <h3>{{resultMessage}}</h3>
+                <button class="btn btn-warning" (click)="setNextTest()">Next</button>
             </div>
         </div>
     </div>

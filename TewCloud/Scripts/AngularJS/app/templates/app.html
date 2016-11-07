@@ -1,4 +1,5 @@
-﻿<div>
+﻿<!-- desctop -->
+<div class="visible-desktop">
     <div class="menu-header">
         <div class="row menu-header-links">
             <a href="void:alert('feature is cooming soon')">New feature</a>
@@ -11,8 +12,13 @@
             <a class="menu-tab" routerLink="/picker-test" routerLinkActive="menu-tab-active">Picker test</a>
         </div>
     </div>
+</div>
 
-    <div id="route-container" class="body-margin-30">
-        <router-outlet></router-outlet>
-    </div>
+<!-- mobile -->
+<div class="visible-phone visible-tablet">
+    <a class="btn" routerLink="/home">Home</a>
+</div>
+
+<div id="route-container" class="body-margin-30">
+    <router-outlet></router-outlet>
 </div>

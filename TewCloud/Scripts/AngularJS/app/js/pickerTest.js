@@ -24,6 +24,7 @@ var PickerTest = (function () {
     }
     PickerTest.prototype.prepareTest = function (testName) {
         var _this = this;
+        this.initEmptyCurrentTest();
         this.testName = testName == this.EnRuTest ? this.EnRuTest : this.RuEnTest;
         console.log("prepareTest: " + this.testName);
         var url = this.PickerTestsController + "?userId=" + constantStorage_1.ConstantStorage.getUserId() + "&testType=" + this.testName;
@@ -45,6 +46,9 @@ var PickerTest = (function () {
         this.currentTest = new pickerTestModel_1.PickerTestModel();
         this.currentTest.Answers = [];
         this.currentTest.Word = '';
+        this.choosenAnswer = '';
+        this.trueAnswer = '';
+        this.resultMessage = '';
     };
     PickerTest.prototype.setAnswer = function (answer) {
         if (!answer || this.trueAnswer) {
@@ -61,14 +65,16 @@ var PickerTest = (function () {
         this.trueAnswer = this.currentTest.Answers[this.currentTest.AnswerId];
         var isTrueAnswer = false;
         if (this.trueAnswer != answer) {
-            this.resultMessage = "Error!<br/>\"" + this.currentTest.Word + "\" = \"" + this.trueAnswer + "\"";
+            this.resultMessage = "Error! \"" + this.currentTest.Word + "\" = \"" + this.trueAnswer + "\"";
             this.failedCount++;
         }
         else {
             isTrueAnswer = true;
-            this.setNextTest();
         }
         this.sendTestResult(this.currentTest.WordId, isTrueAnswer);
+        if (isTrueAnswer) {
+            this.setNextTest();
+        }
     };
     PickerTest.prototype.sendTestResult = function (wordId, isTrueAnswer) {
         var postObject = {
@@ -78,7 +84,7 @@ var PickerTest = (function () {
         };
         this.httpService
             .processPost(postObject, this.WordsLevelUpdaterController)
-            .subscribe();
+            .subscribe(function (r) { return console.dir(r); });
     };
     PickerTest.prototype.setNextTest = function () {
         this.choosenAnswer = '';

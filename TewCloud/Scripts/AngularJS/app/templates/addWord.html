@@ -1,38 +1,82 @@
-<div class="center-block">
-    <h3>Add word</h3>
+<div >
+    <h3 class="center-block">Add word</h3>
 
-    <span class="label">English word:</span>
-    <br />
-    <input class="form-control inline-block" type="text" (keyup.enter)="translate()" [(ngModel)]="englishWord" />
-    <button class="btn btn-info" (click)="translate()">Translate</button>
+    <!-- desctop -->
+    <div class="visible-desktop">
+        <div class="row add-word-area">
+            <div class="col-md-6">
+                <span class="label">English word:</span>
+                <br />
 
-    <div class="row add-word-area">
-        <div class="col-md-6">
-            <span class="label">Your translate:</span>
-            <br />
-            <input class="form-control inline-block" type="text" [(ngModel)]="chosenTranslate" (keyup.enter)="save()" />
+                <input class="form-control add-word-english-word" style="float: left" type="text" (keyup.enter)="translate()" [(ngModel)]="englishWord" />
+                <button class="btn btn-info glyphicon glyphicon-search" (click)="translate()"></button>
+                <br />
+                <br />
+                <span class="label">Your translate:</span>
+                <br />
+                <input class="form-control" type="text" [(ngModel)]="chosenTranslate" (keyup.enter)="save()" />
+                <br />
+                <span class="label">Example of use:</span>
+                <br />
 
-            <br />
-            <div class="margin-50" [hidden]="translates.length < 1">
-                <span class="label">Translates:</span>
+                <textarea class="form-control" [(ngModel)]="exampleOfUser"></textarea>
+                <br />
 
-                <div class="list-items" >
-                    <div *ngFor="let translate of translates;">
-                        <div class="list-item cursor-pointer" 
-                                [class.choosen-list-item]="translate == chosenTranslate" 
-                                (click)="chooseTranslate(translate)">
-                            {{translate}}
+                <button class="btn btn-success" (click)="save()">Add word</button>
+            </div>
+            <div class="col-md-6">
+                <div class="margin-50" [hidden]="translates.length < 1">
+                    <span class="label">Translates:</span>
+                    <div class="list-items">
+                        <div *ngFor="let translate of translates;">
+                            <div class="list-item cursor-pointer"
+                                 [class.choosen-list-item]="translate == chosenTranslate"
+                                 (click)="chooseTranslate(translate)">
+                                {{translate}}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <span class="label">Example of use:</span>
-            <br/>
-            <textarea class="form-control inline-block" [(ngModel)]="exampleOfUser"></textarea>
-            <br/>
-            <button class="btn btn-success margin-30" (click)="save()">Add word</button>
+    </div>
+
+    <!-- mobile -->
+    <div class="visible-phone visible-tablet">
+        <span class="label">English word:</span>
+        <br />
+
+        <input class="form-control add-word-english-word" style="float: left" type="text" (keyup.enter)="translate()" [(ngModel)]="englishWord" />
+        <button class="btn btn-info glyphicon glyphicon-search" (click)="translate()"></button>
+        <br />
+        <br />
+
+        <span class="label">Your translate:</span>
+        <br />
+
+        <input class="form-control" type="text" [(ngModel)]="chosenTranslate" (keyup.enter)="save()" />
+        <br />
+
+        <div class="margin-50" [hidden]="translates.length < 1">
+            <span class="label">Translates:</span>
+            <div class="list-items">
+                <div *ngFor="let translate of translates;">
+                    <div class="list-item cursor-pointer"
+                         [class.choosen-list-item]="translate == chosenTranslate"
+                         (click)="chooseTranslate(translate)">
+                        {{translate}}
+                    </div>
+                </div>
+            </div>
         </div>
+        <br/>
+
+        <span class="label">Example of use:</span>
+        <br />
+
+        <textarea class="form-control" [(ngModel)]="exampleOfUser"></textarea>
+        <br />
+
+        <button class="btn btn-success" (click)="save()">Add word</button>
     </div>
 </div>

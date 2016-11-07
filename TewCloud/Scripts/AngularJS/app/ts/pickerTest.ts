@@ -32,6 +32,7 @@ export class PickerTest {
     }
 
     private prepareTest(testName: string) {
+        this.initEmptyCurrentTest();
         this.testName = testName == this.EnRuTest ? this.EnRuTest : this.RuEnTest;
         console.log("prepareTest: " + this.testName);
 
@@ -57,6 +58,10 @@ export class PickerTest {
         this.currentTest = new PickerTestModel();
         this.currentTest.Answers = [];
         this.currentTest.Word = '';
+
+        this.choosenAnswer = '';
+        this.trueAnswer = '';
+        this.resultMessage = '';
     }
 
     private setAnswer(answer: string) {
@@ -79,14 +84,17 @@ export class PickerTest {
         var isTrueAnswer = false;
 
         if (this.trueAnswer != answer) {
-            this.resultMessage = `Error!<br/>"${this.currentTest.Word}" = "${this.trueAnswer}"`;
+            this.resultMessage = `Error! "${this.currentTest.Word}" = "${this.trueAnswer}"`;
             this.failedCount++;
         } else {
             isTrueAnswer = true;
-            this.setNextTest();
         }
 
         this.sendTestResult(this.currentTest.WordId, isTrueAnswer);
+
+        if (isTrueAnswer) {
+            this.setNextTest();
+        }
     }
 
     private sendTestResult(wordId: number, isTrueAnswer: boolean) {
@@ -98,7 +106,7 @@ export class PickerTest {
 
         this.httpService
             .processPost(postObject, this.WordsLevelUpdaterController)
-            .subscribe();
+            .subscribe(r => console.dir(r));
     }
 
     private setNextTest() {
