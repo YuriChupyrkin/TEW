@@ -46,6 +46,7 @@ namespace TewCloud.Auth
 
 						return user;
 					}
+
 					throw new NullReferenceException("Role not found!");
 				}
 				catch (Exception ex)
@@ -53,6 +54,7 @@ namespace TewCloud.Auth
 					throw new Exception(ex.Message);
 				}
 			}
+
 			return null;
 		}
 

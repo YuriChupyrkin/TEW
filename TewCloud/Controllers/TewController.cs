@@ -2,16 +2,17 @@
 
 namespace TewCloud.Controllers
 {
-    public class TewController : Controller
-    {
-        public ActionResult Index()
-        {
-            return View();
-        }
+	public class TewController : Controller
+	{
+		public ActionResult Index()
+		{
+			return View();
+		}
 
-        public ActionResult Learning()
-        {
-            return View();
-        }
-    }
+		[Authorize]
+		public ActionResult Learning()
+		{
+			return View();
+		}
+	}
 }

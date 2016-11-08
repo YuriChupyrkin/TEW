@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "SignIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using TewCloud.Models;
+@model SignInModel
+
+<h2>SignIn</h2>
+
+<div>
+	@using (Html.BeginForm())
+	{
+		@Html.ValidationSummary(true)
+
+		<div>
+			<fieldset>
+				<div class="editor-label">
+					@Html.LabelFor(m => m.Email)
+				</div>
+				<div class="editor-field">
+					@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+					@Html.ValidationMessageFor(m => m.Email)
+				</div>
+
+				<div class="editor-label">
+					@Html.LabelFor(m => m.Password)
+				</div>
+				<div class="editor-field">
+					@Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+					@Html.ValidationMessageFor(m => m.Password)
+				</div>
+
+				<div class="editor-label">
+					@Html.LabelFor(m => m.StayInLogin)
+				</div>
+				<div class="editor-field">
+					@Html.CheckBoxFor(m => m.StayInLogin, new { @class = "form-control" })
+				</div>
+
+				<p>
+					<input class="btn btn-info" type="submit" value="Sign In" />
+				</p>
+			</fieldset>
+		</div>
+	}
+
+
+</div>

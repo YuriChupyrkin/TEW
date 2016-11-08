@@ -11,6 +11,11 @@ namespace TewCloud
       bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                   "~/Scripts/jquery-{version}.js"));
 
+			bundles.Add(new ScriptBundle("~/bundles/jqueryValidation").Include(
+									"~/Scripts/jquery.validate.js",
+									"~/Scripts/jquery.validate-vsdoc.js",
+									"~/Scripts/jquery.validate.unobtrusive.js"));
+
       bundles.Add(new ScriptBundle("~/bundles/tewScripts").Include(
                   "~/Scripts/TewScripts/TewInfo.js"));
 
