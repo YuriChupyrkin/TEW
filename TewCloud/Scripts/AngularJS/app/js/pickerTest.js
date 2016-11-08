@@ -106,6 +106,11 @@ var PickerTest = (function () {
         this.currentTest = this.testSet[this.testIndex];
         console.dir(this.currentTest);
     };
+    PickerTest.prototype.deleteWord = function (pickerTestModel) {
+        if (confirm("Delete word: " + pickerTestModel.Word)) {
+            alert("deleted.... id: " + pickerTestModel.WordId);
+        }
+    };
     PickerTest = __decorate([
         core_1.Component({
             selector: 'picker-test',

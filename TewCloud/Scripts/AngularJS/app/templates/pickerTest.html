@@ -1,17 +1,17 @@
 ﻿<div class="center-block">
-    <h3>Picker test</h3>
+    <div class="page-title">Picker test</div>
 
     <!-- buttons -->
     <div>
-        <button (click)="prepareTest('EnRuTest')" class="btn">English-Russian</button>
-        <button (click)="prepareTest('RuEnTest')" class="btn">Russian-English</button>
+        <button (click)="prepareTest('EnRuTest')" class="btn">Eng-Rus</button>
+        <button (click)="prepareTest('RuEnTest')" class="btn">Rus-Eng</button>
     </div>
     
     <div class="row">
         <div class="col-md-7">
             <!-- test area -->
             <div [hidden]="!currentTest.Word">
-                <h2>{{currentTest.Word}}</h2>
+                <div class="tests-test-word">{{currentTest.Word}}</div>
                 <br />
 
                 <div class="list-items">
@@ -29,7 +29,11 @@
                 <br />
 
                 <!-- disabled when set true answer (picked)-->
-                <button [disabled]="trueAnswer" (click)="pickAnswer(choosenAnswer)" class="btn btn-success">Pick answer</button>
+                <button [disabled]="trueAnswer" (click)="pickAnswer(choosenAnswer)" class="btn btn-success">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </button>
+                <button class="btn btn-info"><span class="glyphicon glyphicon-minus"></span></button>
+                <button (click)="deleteWord(currentTest)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
             </div>
         </div>
 

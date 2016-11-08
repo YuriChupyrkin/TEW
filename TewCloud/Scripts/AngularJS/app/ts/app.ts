@@ -27,4 +27,10 @@ export class AppComponent {
         this.userName = user.Email;
         this.router.navigate(['/home']);
     }
+
+    private logOff() {
+        if (confirm("log out?")) {
+            window.location.href = '/account/SignOff';
+        }
+    }
 }

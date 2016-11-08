@@ -109,3 +109,23 @@
 .mobile-text {
     font-size: 18px;
 }
+
+.tests-test-word {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.page-title {
+    font-style: italic;
+    font-size: 22px;
+    color: orange;
+}
+
+.mobile-home-button {
+    width: 20%;
+    height: 20%;
+}
+
+.mobile-home-link {
+    font-size: 28px;
+}

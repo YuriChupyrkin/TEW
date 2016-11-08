@@ -24,7 +24,7 @@
     </div>
     <!-- mobile -->
     <div class="visible-phone visible-tablet center-block">
-        <a class="btn btn-info" routerLink="/home">
+        <a class="btn btn-info mobile-home-button" routerLink="/home">
             <span class="glyphicon glyphicon-home"></span>
         </a>
         <span class="mobile-text">
@@ -32,7 +32,8 @@
                 <span class="glyphicon glyphicon-user"></span>
                 {{userName}}
             </span>
-            <span><a href="/account/SignOff">Log out</a></span>
+            <br/>
+            <span><a (click)="logOff()">Log out</a></span>
         </span>
     </div>
 </div>

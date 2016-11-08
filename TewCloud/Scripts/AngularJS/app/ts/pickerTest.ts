@@ -133,4 +133,10 @@ export class PickerTest {
         this.currentTest = this.testSet[this.testIndex];
         console.dir(this.currentTest);
     }
+
+    private deleteWord(pickerTestModel: PickerTestModel) {
+        if (confirm(`Delete word: ${pickerTestModel.Word}`)) {
+            alert(`deleted.... id: ${pickerTestModel.WordId}`);
+        }
+    }
 }

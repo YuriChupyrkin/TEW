@@ -28,6 +28,11 @@ var AppComponent = (function () {
         this.userName = user.Email;
         this.router.navigate(['/home']);
     };
+    AppComponent.prototype.logOff = function () {
+        if (confirm("log out?")) {
+            window.location.href = '/account/SignOff';
+        }
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
