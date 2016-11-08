@@ -17,6 +17,7 @@ namespace TewCloud.Models
 		[MaxLength(30, ErrorMessage = "Your name's field should not contain more than 30 characters")]
 		public string Password { get; set; }
 
-		public bool StayInLogin { get; set; }
+        [Display(Name = "Save password")]
+        public bool StayInLogin { get; set; }
 	}
 }

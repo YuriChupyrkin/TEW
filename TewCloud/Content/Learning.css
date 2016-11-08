@@ -58,7 +58,6 @@
 }
 
 .menu-header {
-    background-color: wheat;
     padding: 17px;
 }
 
@@ -81,4 +80,32 @@
 .add-word-english-word {
     float: left;
     margin-right: 10px;
+}
+
+.field-validation-error {
+    font-size: 16px;
+    color: red;
+}
+
+.validation-summary-errors {
+    font-size: 18px;
+    color: red;
+}
+
+.learning-main-background {
+    background-color: wheat;
+}
+
+.menu-header-user-name {
+    text-align: right;
+    font-size: 16px;
+}
+
+.log-out-link {
+    color: white;
+    margin-left: 15px;
+}
+
+.mobile-text {
+    font-size: 18px;
 }

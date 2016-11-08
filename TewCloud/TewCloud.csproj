@@ -187,10 +187,10 @@
     <Compile Include="Controllers\WebAppVersion\DeleteWordController.cs" />
     <Compile Include="Controllers\WebAppVersion\PickerTestsController.cs" />
     <Compile Include="Controllers\WebAppVersion\ResetPasswordController.cs" />
+    <Compile Include="Controllers\WebAppVersion\UserInfoController.cs" />
     <Compile Include="Controllers\WebAppVersion\WordsManagerController.cs" />
     <Compile Include="Controllers\WebAppVersion\SignInController.cs" />
     <Compile Include="Controllers\WebAppVersion\SignUpController.cs" />
-    <Compile Include="Controllers\SynchronizeController.cs" />
     <Compile Include="Controllers\TewController.cs" />
     <Compile Include="Controllers\TewInfoController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -244,6 +244,7 @@
     <Content Include="Scripts\AngularJS\app\templates\app.html" />
     <Content Include="Scripts\AngularJS\app\templates\home.html" />
     <Content Include="Scripts\AngularJS\app\templates\addWord.html" />
+    <Content Include="Scripts\AngularJS\app\templates\loadingAnimation.html" />
     <Content Include="Scripts\AngularJS\app\templates\myWords.html" />
     <Content Include="Scripts\AngularJS\app\templates\pickerTest.html" />
     <Content Include="Scripts\AngularJS\gulpfile.js" />
@@ -284,6 +285,7 @@
     <Content Include="Views\Shared\_LearningLayout.cshtml" />
     <Content Include="Views\Account\SignUp.cshtml" />
     <Content Include="Views\Account\SignIn.cshtml" />
+    <Content Include="Views\Shared\_WebAppLayout.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -361,10 +363,12 @@
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\app.routes.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\app.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\boot.ts" />
+    <TypeScriptCompile Include="Scripts\AngularJS\app\ts\loadingAnimation.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\main.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\home.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\addWord.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\models\pickerTestModel.ts" />
+    <TypeScriptCompile Include="Scripts\AngularJS\app\ts\models\user.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\models\userWords.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\models\word.ts" />
     <TypeScriptCompile Include="Scripts\AngularJS\app\ts\models\wordsCloudModel.ts" />

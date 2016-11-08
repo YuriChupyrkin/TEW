@@ -2,47 +2,48 @@
 using System.Web.Security;
 using Domain.RepositoryFactories;
 using TewCloud.Auth;
+using Domain.Entities;
+
 namespace TewCloud.Providers
 {
 	public class TewMembershipProvider : MembershipProvider
 	{
-		private readonly UserProvider _userProvider;
-
-		public TewMembershipProvider()
-		{
-			_userProvider = new UserProvider(RepositoryFactory);
-		}
-
-		public IRepositoryFactory RepositoryFactory
-		{
-			get
-			{
-				return (IRepositoryFactory) DependencyResolver.Current.GetService(typeof (IRepositoryFactory));
-			}
-		}
+        internal UserProvider UserProvider
+        {
+            get
+            {
+                return new UserProvider((IRepositoryFactory)DependencyResolver.Current.GetService(typeof(IRepositoryFactory)));
+            }
+        }
 
 		public bool CreateUser(string email, string password)
 		{
-			var user = _userProvider.CreateUser(email, password);
+			var user = UserProvider.CreateUser(email, password);
 
 			return user != null;
 		}
 
 		public override bool ChangePassword(string username, string oldPassword, string newPassword)
 		{
-			return _userProvider.ChangePassword(username, oldPassword, newPassword);
+			return UserProvider.ChangePassword(username, oldPassword, newPassword);
 		}
 
 		public override string ResetPassword(string username, string answer)
 		{
-			return _userProvider.ResetPassword(username);
+			return UserProvider.ResetPassword(username);
 		}
 
 		public override bool ValidateUser(string username, string password)
 		{
-			var user = _userProvider.ValidateUser(username, password);
+			var user = UserProvider.ValidateUser(username, password);
 			return user != null;
 		}
+
+        public User GetUserByEmail(string email)
+        {
+            var user = UserProvider.GetUser(email);
+            return new User { Email = user.Email, Id = user.Id };
+        }
 
 		// Not necessary
 		public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)

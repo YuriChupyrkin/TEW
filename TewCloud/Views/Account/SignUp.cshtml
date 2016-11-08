@@ -1,51 +1,52 @@
 ﻿
 @{
     ViewBag.Title = "SignUp";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_WebAppLayout.cshtml";
 }
 
 @using TewCloud.Models;
 @model SignUpModel
 
-<h2>SignUp</h2>
 
-<div class="center-block">
+<div class="margin-30">
+    <h2>Sign up</h2>
+    <br/>
+
 	@using (Html.BeginForm())
 	{
 		@Html.ValidationSummary(true)
 
 		<div>
 			<fieldset>
-				<legend>Account Information</legend>
 				<div class="editor-label">
 					@Html.LabelFor(m => m.Email)
 				</div>
 				<div class="editor-field">
-					@Html.TextBoxFor(m => m.Email, new { @class = "form-control inline-block" })
+					@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
 					@Html.ValidationMessageFor(m => m.Email)
 				</div>
+                <br/>
 
 				<div class="editor-label">
 					@Html.LabelFor(m => m.Password)
 				</div>
 				<div class="editor-field">
-					@Html.PasswordFor(m => m.Password, new { @class = "form-control inline-block" })
+					@Html.PasswordFor(m => m.Password, new { @class = "form-control" })
 					@Html.ValidationMessageFor(m => m.Password)
 				</div>
+                <br />
 
 				<div class="editor-label">
 					@Html.LabelFor(m => m.ConfirmPassword)
 				</div>
 				<div class="editor-field">
-					@Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control inline-block" })
+					@Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
 					@Html.ValidationMessageFor(m => m.ConfirmPassword)
 				</div>
+                <br />
 
-				<p>
-					<input class="btn btn-info" type="submit" value="Sign Up" />
-				</p>
+				<input class="btn btn-info" type="submit" value="Sign Up" />
 			</fieldset>
 		</div>
 	}
-
 </div>

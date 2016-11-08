@@ -1,24 +1,46 @@
-﻿<!-- desctop -->
-<div class="visible-desktop">
-    <div class="menu-header">
-        <div class="row menu-header-links">
-            <a href="void:alert('feature is cooming soon')">New feature</a>
+﻿<div *ngIf="userName">
+    <!-- desctop -->
+    <div class="visible-desktop">
+        <div class="menu-header learning-main-background">
+            <div class="row menu-header-links">
+                <div class="col-md-8">
+                    <a href="void:alert('feature is cooming soon')">New feature</a>
+                </div>
+                <div class="col-md-4 menu-header-user-name">
+                    <span>
+                        <span class="glyphicon glyphicon-user"></span>
+                        {{userName}}
+                        </span>
+                    <span><a class="log-out-link" href="/account/SignOff">Log out</a></span>
+                </div>
+            </div>
+            <div class="center-block row">
+                <a class="menu-tab" routerLink="/home" routerLinkActive="menu-tab-active">Home</a>
+                <a class="menu-tab" routerLink="/add-word" routerLinkActive="menu-tab-active">Add word</a>
+                <a class="menu-tab" routerLink="/my-words" routerLinkActive="menu-tab-active">My words</a>
+                <a class="menu-tab" routerLink="/picker-test" routerLinkActive="menu-tab-active">Picker test</a>
+            </div>
         </div>
-
-        <div class="center-block row">
-            <a class="menu-tab" routerLink="/home" routerLinkActive="menu-tab-active">Home</a>
-            <a class="menu-tab" routerLink="/add-word" routerLinkActive="menu-tab-active">Add word</a>
-            <a class="menu-tab" routerLink="/my-words" routerLinkActive="menu-tab-active">My words</a>
-            <a class="menu-tab" routerLink="/picker-test" routerLinkActive="menu-tab-active">Picker test</a>
-        </div>
+    </div>
+    <!-- mobile -->
+    <div class="visible-phone visible-tablet center-block">
+        <a class="btn btn-info" routerLink="/home">
+            <span class="glyphicon glyphicon-home"></span>
+        </a>
+        <span class="mobile-text">
+            <span>
+                <span class="glyphicon glyphicon-user"></span>
+                {{userName}}
+            </span>
+            <span><a href="/account/SignOff">Log out</a></span>
+        </span>
     </div>
 </div>
 
-<!-- mobile -->
-<div class="visible-phone visible-tablet">
-    <a class="btn" routerLink="/home">Home</a>
+<div [hidden]="!userName" class="body-margin-30">
+    <router-outlet></router-outlet>
 </div>
 
-<div id="route-container" class="body-margin-30">
-    <router-outlet></router-outlet>
+<div *ngIf="!userName">
+    <loading-animation></loading-animation>
 </div>

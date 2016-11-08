@@ -20,6 +20,7 @@ var app_routes_1 = require('./app.routes');
 var common_1 = require('@angular/common');
 var httpService_1 = require('./services/httpService');
 var http_1 = require('@angular/http');
+var loadingAnimation_1 = require('./loadingAnimation');
 // For textbox binding
 var forms_1 = require('@angular/forms');
 var AppModule = (function () {
@@ -28,7 +29,7 @@ var AppModule = (function () {
     AppModule = __decorate([
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule, app_routes_1.routing, http_1.HttpModule, forms_1.FormsModule],
-            declarations: [app_1.AppComponent, home_1.Home, addWord_1.AddWord, myWords_1.MyWords, pickerTest_1.PickerTest],
+            declarations: [app_1.AppComponent, home_1.Home, addWord_1.AddWord, myWords_1.MyWords, pickerTest_1.PickerTest, loadingAnimation_1.LoadingAnimation],
             bootstrap: [app_1.AppComponent],
             providers: [
                 { provide: common_1.APP_BASE_HREF, useValue: '/#' },

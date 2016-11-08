@@ -10,6 +10,7 @@ import { appRoutingProviders, routing } from './app.routes';
 import { APP_BASE_HREF } from '@angular/common';
 import { HttpService } from './services/httpService';
 import { HttpModule } from '@angular/http';
+import { LoadingAnimation } from './loadingAnimation';
 
 // For textbox binding
 import { FormsModule } from '@angular/forms';
@@ -17,7 +18,7 @@ import { FormsModule } from '@angular/forms';
 @NgModule({
     imports: [BrowserModule, routing, HttpModule, FormsModule ],
 
-    declarations: [AppComponent, Home, AddWord, MyWords, PickerTest],
+    declarations: [AppComponent, Home, AddWord, MyWords, PickerTest, LoadingAnimation],
 
     bootstrap: [AppComponent],
 
