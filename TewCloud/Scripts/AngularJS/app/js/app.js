@@ -21,6 +21,7 @@ var AppComponent = (function () {
         this.userName = '';
         var url = '/api/UserInfo';
         this.httpService.processGet(url).subscribe(function (response) { return _this.setUserInfo(response); });
+        this.httpService.processGet('/api/ApplicationMessage').subscribe(function (response) { return _this.applicationMessage = response; });
     }
     AppComponent.prototype.setUserInfo = function (user) {
         constantStorage_1.ConstantStorage.setUserName(user.Email);

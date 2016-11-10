@@ -41,6 +41,7 @@
 .list-item {
     width: 100%;
     border-radius: 10px;
+    word-wrap: break-word;
 }
 
 .label {

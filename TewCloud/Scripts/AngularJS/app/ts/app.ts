@@ -11,7 +11,7 @@ import { Router} from '@angular/router';
 
 export class AppComponent {
     private userName: string;
-		private applicationMessage: string;
+    private applicationMessage: string;
 
     constructor(private httpService: HttpService, private router: Router) {
         ConstantStorage.setYandexTranslaterApiKey('dict.1.1.20160904T125311Z.5e2c6c9dfb5cd3c3.71b0d5220878e340d60dcfa0faf7f649af59c65f');
@@ -20,7 +20,7 @@ export class AppComponent {
         var url = '/api/UserInfo';
         this.httpService.processGet<User>(url).subscribe(response => this.setUserInfo(response));
 
-				this.httpService.processGet<string>('/api/ApplicationMessage').subscribe(response => this.applicationMessage = response);
+        this.httpService.processGet<string>('/api/ApplicationMessage').subscribe(response => this.applicationMessage = response);
     }
 
     private setUserInfo(user: User) {
