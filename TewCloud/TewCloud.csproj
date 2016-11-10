@@ -183,6 +183,7 @@
     <Compile Include="Controllers\CheckUpdateController.cs" />
     <Compile Include="Controllers\ClientFilesInfoController.cs" />
     <Compile Include="Controllers\ClientFilesUpdateController.cs" />
+    <Compile Include="Controllers\WebAppVersion\ApplicationMessageController.cs" />
     <Compile Include="Controllers\WebAppVersion\ChangePasswordController.cs" />
     <Compile Include="Controllers\WebAppVersion\DeleteWordController.cs" />
     <Compile Include="Controllers\WebAppVersion\PickerTestsController.cs" />

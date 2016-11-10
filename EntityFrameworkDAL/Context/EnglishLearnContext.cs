@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using Common;
 using Domain.Entities;
 
 namespace EntityFrameworkDAL.Context
@@ -6,7 +7,7 @@ namespace EntityFrameworkDAL.Context
   public class EnglishLearnContext : DbContext
   {
     internal EnglishLearnContext()
-      : base("EnglishLearnContext")
+			: base(GlobalConfiguration.IsDevelopmentEnvironment ? "EnglishLearnContext_Dev" : "EnglishLearnContext")
     {
       Database.SetInitializer(new EnglishLearnContextInitializer());
     }

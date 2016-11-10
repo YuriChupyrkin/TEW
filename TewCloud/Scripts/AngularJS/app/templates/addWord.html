@@ -46,10 +46,19 @@
         <span class="label">English word:</span>
         <br />
 
-        <input class="form-control add-word-english-word" style="float: left" type="text" (keyup.enter)="translate()" [(ngModel)]="englishWord" />
+				<div class="input-group">
+					<span class="input-group-btn">
+						<button class="btn btn-secondary" (click)="translate()" type="button">
+							<span class="form-control add-word-english-word"></span>
+						</button>
+					</span>
+					<input type="text" class="form-control" (keyup.enter)="translate()" [(ngmodel)]="englishWord"/>
+				</div>
+
+        <!--<input class="form-control add-word-english-word" style="float: left" type="text" (keyup.enter)="translate()" [(ngModel)]="englishWord" />
         <button class="btn btn-info glyphicon glyphicon-search" (click)="translate()"></button>
         <br />
-        <br />
+        <br />-->
 
         <span class="label">Your translate:</span>
         <br />
