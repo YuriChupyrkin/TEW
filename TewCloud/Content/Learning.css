@@ -30,7 +30,7 @@
 .list-items {
     background-color: #e0e0e0;
     border-radius: 10px;
-    font-size: 38px;
+    font-size: 28px;
 
     /* No selection after double click */
     -webkit-user-select: none; /* webkit (safari, chrome) browsers */
