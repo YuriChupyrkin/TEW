@@ -130,3 +130,8 @@
 .mobile-home-link {
     font-size: 28px;
 }
+
+.has-error {
+    color: red;
+    font-size: 18px;
+}
