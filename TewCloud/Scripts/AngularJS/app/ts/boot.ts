@@ -13,7 +13,7 @@ import { HttpModule } from '@angular/http';
 import { LoadingAnimation } from './loadingAnimation';
 
 // For textbox binding
-import { FormsModule, FormGroup, FormBuilder, Validators,  ReactiveFormsModule  } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
 @NgModule({
     imports: [BrowserModule, routing, HttpModule, FormsModule, ReactiveFormsModule],
@@ -25,8 +25,7 @@ import { FormsModule, FormGroup, FormBuilder, Validators,  ReactiveFormsModule  
     providers: [
         { provide: APP_BASE_HREF, useValue: '/#' },
         appRoutingProviders,
-        HttpService,
-        FormsModule
+        HttpService
     ]
 })
 export class AppModule { }

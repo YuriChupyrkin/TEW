@@ -34,8 +34,7 @@ var AppModule = (function () {
             providers: [
                 { provide: common_1.APP_BASE_HREF, useValue: '/#' },
                 app_routes_1.appRoutingProviders,
-                httpService_1.HttpService,
-                forms_1.FormsModule
+                httpService_1.HttpService
             ]
         }), 
         __metadata('design:paramtypes', [])
