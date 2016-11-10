@@ -13,13 +13,25 @@ var constantStorage_1 = require('./services/constantStorage');
 var httpService_1 = require('./services/httpService');
 var wordsCloudModel_1 = require('./models/wordsCloudModel');
 var word_1 = require('./models/word');
+var forms_1 = require('@angular/forms');
 var AddWord = (function () {
-    function AddWord(httpService) {
+    function AddWord(formBuilder, httpService) {
+        this.formBuilder = formBuilder;
         this.httpService = httpService;
         this.wordTranslaterController = '/api/WordTranslater';
         this.wordsManagerController = '/api/WordsManager';
         this.translates = new Array();
     }
+    AddWord.prototype.ngOnInit = function () {
+        console.log('on init');
+        this.addWordform = this.formBuilder.group({
+            english: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.minLength(2), forms_1.Validators.maxLength(15)])],
+        });
+    };
+    AddWord.prototype.submitForm = function (value) {
+        console.log('Reactive Form Data: ');
+        console.dir(value);
+    };
     AddWord.prototype.translate = function () {
         if (!this.englishWord) {
             return;
@@ -111,7 +123,7 @@ var AddWord = (function () {
             selector: 'add-word',
             templateUrl: '../../scripts/angularjs/app/templates/addWord.html'
         }), 
-        __metadata('design:paramtypes', [httpService_1.HttpService])
+        __metadata('design:paramtypes', [forms_1.FormBuilder, httpService_1.HttpService])
     ], AddWord);
     return AddWord;
 }());

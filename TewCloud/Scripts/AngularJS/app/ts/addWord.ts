@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { ConstantStorage } from './services/constantStorage';
 import { HttpService } from './services/httpService';
 import { WordsCloudModel } from './models/wordsCloudModel';
 import { Word } from './models/word';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Inject } from '@angular/core';
 
 @Component({
     selector: 'add-word',
     templateUrl: '../../scripts/angularjs/app/templates/addWord.html'
 })
 
-export class AddWord {
+export class AddWord implements OnInit {
     private wordTranslaterController: string = '/api/WordTranslater';
     private wordsManagerController = '/api/WordsManager';
 
@@ -18,8 +20,25 @@ export class AddWord {
     private exampleOfUser: string;
     private chosenTranslate: string;
 
-    constructor(private httpService: HttpService) {
+    private addWordform: FormGroup;
+
+    constructor(private formBuilder: FormBuilder, private httpService: HttpService) {
         this.translates = new Array<string>();
+    }
+
+    ngOnInit() {
+        console.log('on init');
+        this.addWordform = this.formBuilder.group({
+            english: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(15)])],
+           // example: ['', Validators.minLength(3)],
+           // russian: ['', Validators.maxLength(10)],
+        });
+    }
+
+
+    submitForm(value: any): void {
+        console.log('Reactive Form Data: ')
+        console.dir(value);
     }
 
     private translate() {

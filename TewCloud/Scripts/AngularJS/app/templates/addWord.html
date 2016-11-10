@@ -3,25 +3,31 @@
 
     <!-- desctop -->
     <div class="visible-desktop">
-        <form [formGroup]="complexForm">
+        <form [formGroup]="addWordform" (ngSubmit)="submitForm(addWordform.value)">
             <div class="row add-word-area">
                 <div class="col-md-6">
-                    <span class="label">English word:</span>
-                    <br />
-                    <input class="form-control add-word-english-word" style="float: left" type="text" (keyup.enter)="translate()" [(ngModel)]="englishWord" />
-                    <button class="btn glyphicon glyphicon-search" (click)="translate()"></button>
-                    <br />
-                    <br />
-                    <span class="label">Your translate:</span>
-                    <br />
-                    <input class="form-control" type="text" [(ngModel)]="chosenTranslate" (keyup.enter)="save()" />
-                    <br />
-                    <span class="label">Example of use:</span>
-                    <br />
-                    <textarea class="form-control" [(ngModel)]="exampleOfUser"></textarea>
-                    <br />
-                    <input type="submit" class="btn btn-success" (click)="save()" value="Add word"/>
-                </div>
+                    <span class="label form-group" [ngClass]="{'has-error':!addWordform.controls['english'].valid}">English word:</span>
+                    <div *ngIf="addWordform.controls['english'].hasError('required') && addWordform.controls['english'].touched" class="alert alert-danger">You must include a last name.</div>
+                    <div *ngIf="addWordform.controls['english'].hasError('minlength') && addWordform.controls['english'].touched" class="alert alert-danger">Min len.</div>
+                    <div *ngIf="addWordform.controls['english'].hasError('maxlength') && addWordform.controls['english'].touched" class="alert alert-danger">Max len.</div>
+
+                        <br />
+                        <input [formControl]="addWordform.controls['english']" name="english" class="form-control add-word-english-word" type="text" (keyup.enter)="translate()" />
+                        <button class="btn glyphicon glyphicon-search" (click)="translate()"></button>
+                        <br />
+                        <br />
+
+
+                        <span class="label">Your translate:</span>
+                        <br />
+                        <input name="russian" class="form-control" type="text" (keyup.enter)="save()" />
+                        <br />
+                        <span class="label">Example of use:</span>
+                        <br />
+                        <textarea name="example" class="form-control"></textarea>
+                        <br />
+                        <input type="submit" class="btn btn-success" [disabled]="!addWordform.valid" value="Add word" />
+                    </div>
                 <div class="col-md-6">
                     <div class="margin-50" [hidden]="translates.length < 1">
                         <span class="label">Translates:</span>
