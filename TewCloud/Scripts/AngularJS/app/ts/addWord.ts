@@ -41,8 +41,10 @@ export class AddWord implements OnInit {
             return;
         }
 
+        var englishWordWithoutSpaces = englishWord.replace(' ', '%20');
         this.clearTranslateResults(false);
-        this.translateByYandex(englishWord);
+
+        this.translateByYandex(englishWordWithoutSpaces);
         this.translateByExistsWords(englishWord);
     }
 
@@ -55,9 +57,8 @@ export class AddWord implements OnInit {
         let url = "https://dictionary.yandex.net/api/v1/dicservice.json/lookup";
         let translateLang = "en-ru";
         let apiKey = ConstantStorage.getYandexTranslaterApiKey();
-        let text = englishWord.replace(' ', '%20');
 
-        var resultUri = `${url}?key=${apiKey}&lang=${translateLang}&text=${text}`;
+        var resultUri = `${url}?key=${apiKey}&lang=${translateLang}&text=${englishWord}`;
         this.httpService.processGet<JSON>(resultUri)
             .subscribe(response => this.parseTranslate(response));
     }

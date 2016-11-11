@@ -37,8 +37,9 @@ var AddWord = (function () {
         if (!englishWord) {
             return;
         }
+        var englishWordWithoutSpaces = englishWord.replace(' ', '%20');
         this.clearTranslateResults(false);
-        this.translateByYandex(englishWord);
+        this.translateByYandex(englishWordWithoutSpaces);
         this.translateByExistsWords(englishWord);
     };
     AddWord.prototype.translateByExistsWords = function (englishWord) {
@@ -51,8 +52,7 @@ var AddWord = (function () {
         var url = "https://dictionary.yandex.net/api/v1/dicservice.json/lookup";
         var translateLang = "en-ru";
         var apiKey = constantStorage_1.ConstantStorage.getYandexTranslaterApiKey();
-        var text = englishWord.replace(' ', '%20');
-        var resultUri = url + "?key=" + apiKey + "&lang=" + translateLang + "&text=" + text;
+        var resultUri = url + "?key=" + apiKey + "&lang=" + translateLang + "&text=" + englishWord;
         this.httpService.processGet(resultUri)
             .subscribe(function (response) { return _this.parseTranslate(response); });
     };

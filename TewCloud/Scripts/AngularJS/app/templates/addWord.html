@@ -1,6 +1,6 @@
 <div>
     <div class="center-block page-title">Add word</div>
-    <!-- desctop -->
+    <!-- desktop -->
     <div class="visible-desktop">
         <form [formGroup]="addWordform" (ngSubmit)="submitForm(addWordform.value)">
             <div class="row add-word-area">
@@ -18,8 +18,8 @@
                         </div>
                         <input [formControl]="addWordform.controls['english']" class="form-control add-word-english-word" type="text" (keyup.enter)="translate()" />
                         <a class="btn glyphicon glyphicon-search" (click)="translate()"></a>
-                        <br />
-                        <br />
+                        <br/>
+                        <br/>
                     </div>
 
                     <div>
