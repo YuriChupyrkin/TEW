@@ -4,7 +4,6 @@ import { HttpService } from './services/httpService';
 import { WordsCloudModel } from './models/wordsCloudModel';
 import { Word } from './models/word';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Inject } from '@angular/core';
 
 @Component({
     selector: 'add-word',
@@ -15,11 +14,7 @@ export class AddWord implements OnInit {
     private wordTranslaterController: string = '/api/WordTranslater';
     private wordsManagerController = '/api/WordsManager';
 
-    private englishWord: string;
     private translates: Array<string>;
-    private exampleOfUser: string;
-    private chosenTranslate: string;
-
     private addWordform: FormGroup;
 
     constructor(private formBuilder: FormBuilder, private httpService: HttpService) {
@@ -27,40 +22,40 @@ export class AddWord implements OnInit {
     }
 
     ngOnInit() {
-        console.log('on init');
         this.addWordform = this.formBuilder.group({
-            english: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(15)])],
-           // example: ['', Validators.minLength(3)],
-           // russian: ['', Validators.maxLength(10)],
+            english: ['', Validators.compose([Validators.required, Validators.maxLength(25)])],
+            example: ['', Validators.maxLength(50)],
+            russian: ['', Validators.compose([Validators.required, Validators.maxLength(25)])]
         });
     }
 
 
-    submitForm(value: any): void {
-        console.log('Reactive Form Data: ')
-        console.dir(value);
+    private submitForm(value: any): void {
+        this.save(value['english'], value['russian'], value['example']);
     }
 
     private translate() {
-        if (!this.englishWord) {
+        let englishWord = this.addWordform.controls['english'].value;
+
+        if (!englishWord) {
             return;
         }
 
         this.clearTranslateResults(false);
-        this.translateByYandex();
-        this.translateByExistsWords();
+        this.translateByYandex(englishWord);
+        this.translateByExistsWords(englishWord);
     }
 
-    private translateByExistsWords() {
-        var url = `${this.wordTranslaterController}?word=${this.englishWord}`;
+    private translateByExistsWords(englishWord: string) {
+        var url = `${this.wordTranslaterController}?word=${englishWord}`;
         this.httpService.processGet<Array<string>>(url).subscribe(response => this.addTranslate(response));
     }
 
-    private translateByYandex() {
+    private translateByYandex(englishWord: string) {
         let url = "https://dictionary.yandex.net/api/v1/dicservice.json/lookup";
         let translateLang = "en-ru";
         let apiKey = ConstantStorage.getYandexTranslaterApiKey();
-        let text = this.englishWord.replace(' ', '%20');
+        let text = englishWord.replace(' ', '%20');
 
         var resultUri = `${url}?key=${apiKey}&lang=${translateLang}&text=${text}`;
         this.httpService.processGet<JSON>(resultUri)
@@ -88,33 +83,29 @@ export class AddWord implements OnInit {
                 }
 
                 if (translate && translate['ex'] && translate['ex'][0] && translate['ex'][0]['text']) {
-                    this.exampleOfUser = translate['ex'][0]['text'];
+                    var example = translate['ex'][0]['text'];
+                    this.addWordform.controls['example'].setValue(example.toString());
                 }
             }
         }
     }
 
     private chooseTranslate(translate: string) {
-        this.chosenTranslate = translate;
+        this.addWordform.controls['russian'].setValue(translate);
     }
 
     private clearTranslateResults(isClearEnglishWord: boolean) {
         if (isClearEnglishWord) {
-            this.englishWord = '';
+            this.addWordform.controls['english'].reset();
         }
 
-        this.chosenTranslate = '';
-        this.exampleOfUser = '';
+        this.addWordform.controls['russian'].reset();
+        this.addWordform.controls['example'].reset();
         this.translates = new Array<string>();
     }
 
     private addTranslate(translates: Array<string>) {
         var self = this;
-        //translates.forEach(function (translate: string) {
-        //    if (self.translates.indexOf(translate) == -1) {
-        //        self.translates.push(translate);
-        //    }
-        //});
 
         translates.forEach(translate => {
             if (self.translates.indexOf(translate) == -1) {
@@ -123,8 +114,8 @@ export class AddWord implements OnInit {
         });
     }
 
-    private save() {
-        if (!this.englishWord || !this.chosenTranslate) {
+    private save(englishWord: string, russianWord: string, example: string) {
+        if (!englishWord || !russianWord) {
             console.log("English and Translate are required!");
             return;
         }
@@ -133,14 +124,16 @@ export class AddWord implements OnInit {
         wordCloudModel.UserName = ConstantStorage.getUserName();
 
         var word = new Word();
-        word.English = this.englishWord;
-        word.Russian = this.chosenTranslate;
+        word.English = englishWord;
+        word.Russian = russianWord;
         word.UpdateDate = new Date();
-        word.Example = this.exampleOfUser;
+        word.Example = example;
 
         wordCloudModel.Words = [word];
 
         this.httpService.processPost(wordCloudModel, this.wordsManagerController)
-            .subscribe(response => this.clearTranslateResults(true), error => alert("error"));
+            .subscribe(response => console.dir(response), error => alert("error"));
+
+        this.clearTranslateResults(true);
     }
 }

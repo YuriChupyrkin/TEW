@@ -23,34 +23,35 @@ var AddWord = (function () {
         this.translates = new Array();
     }
     AddWord.prototype.ngOnInit = function () {
-        console.log('on init');
         this.addWordform = this.formBuilder.group({
-            english: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.minLength(2), forms_1.Validators.maxLength(15)])],
+            english: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.maxLength(25)])],
+            example: ['', forms_1.Validators.maxLength(50)],
+            russian: ['', forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.maxLength(25)])]
         });
     };
     AddWord.prototype.submitForm = function (value) {
-        console.log('Reactive Form Data: ');
-        console.dir(value);
+        this.save(value['english'], value['russian'], value['example']);
     };
     AddWord.prototype.translate = function () {
-        if (!this.englishWord) {
+        var englishWord = this.addWordform.controls['english'].value;
+        if (!englishWord) {
             return;
         }
         this.clearTranslateResults(false);
-        this.translateByYandex();
-        this.translateByExistsWords();
+        this.translateByYandex(englishWord);
+        this.translateByExistsWords(englishWord);
     };
-    AddWord.prototype.translateByExistsWords = function () {
+    AddWord.prototype.translateByExistsWords = function (englishWord) {
         var _this = this;
-        var url = this.wordTranslaterController + "?word=" + this.englishWord;
+        var url = this.wordTranslaterController + "?word=" + englishWord;
         this.httpService.processGet(url).subscribe(function (response) { return _this.addTranslate(response); });
     };
-    AddWord.prototype.translateByYandex = function () {
+    AddWord.prototype.translateByYandex = function (englishWord) {
         var _this = this;
         var url = "https://dictionary.yandex.net/api/v1/dicservice.json/lookup";
         var translateLang = "en-ru";
         var apiKey = constantStorage_1.ConstantStorage.getYandexTranslaterApiKey();
-        var text = this.englishWord.replace(' ', '%20');
+        var text = englishWord.replace(' ', '%20');
         var resultUri = url + "?key=" + apiKey + "&lang=" + translateLang + "&text=" + text;
         this.httpService.processGet(resultUri)
             .subscribe(function (response) { return _this.parseTranslate(response); });
@@ -72,51 +73,48 @@ var AddWord = (function () {
                     }
                 }
                 if (translate && translate['ex'] && translate['ex'][0] && translate['ex'][0]['text']) {
-                    this.exampleOfUser = translate['ex'][0]['text'];
+                    var example = translate['ex'][0]['text'];
+                    console.log("example: " + example);
+                    this.addWordform.controls['example'].setValue(example.toString());
                 }
             }
         }
     };
     AddWord.prototype.chooseTranslate = function (translate) {
-        this.chosenTranslate = translate;
+        this.addWordform.controls['russian'].setValue(translate);
     };
     AddWord.prototype.clearTranslateResults = function (isClearEnglishWord) {
         if (isClearEnglishWord) {
-            this.englishWord = '';
+            this.addWordform.controls['english'].reset();
         }
-        this.chosenTranslate = '';
-        this.exampleOfUser = '';
+        this.addWordform.controls['russian'].reset();
+        this.addWordform.controls['example'].reset();
         this.translates = new Array();
     };
     AddWord.prototype.addTranslate = function (translates) {
         var self = this;
-        //translates.forEach(function (translate: string) {
-        //    if (self.translates.indexOf(translate) == -1) {
-        //        self.translates.push(translate);
-        //    }
-        //});
         translates.forEach(function (translate) {
             if (self.translates.indexOf(translate) == -1) {
                 self.translates.push(translate);
             }
         });
     };
-    AddWord.prototype.save = function () {
-        var _this = this;
-        if (!this.englishWord || !this.chosenTranslate) {
+    AddWord.prototype.save = function (englishWord, russianWord, example) {
+        if (!englishWord || !russianWord) {
             console.log("English and Translate are required!");
             return;
         }
         var wordCloudModel = new wordsCloudModel_1.WordsCloudModel();
         wordCloudModel.UserName = constantStorage_1.ConstantStorage.getUserName();
         var word = new word_1.Word();
-        word.English = this.englishWord;
-        word.Russian = this.chosenTranslate;
+        word.English = englishWord;
+        word.Russian = russianWord;
         word.UpdateDate = new Date();
-        word.Example = this.exampleOfUser;
+        word.Example = example;
         wordCloudModel.Words = [word];
         this.httpService.processPost(wordCloudModel, this.wordsManagerController)
-            .subscribe(function (response) { return _this.clearTranslateResults(true); }, function (error) { return alert("error"); });
+            .subscribe(function (response) { return console.dir(response); }, function (error) { return alert("error"); });
+        this.clearTranslateResults(true);
     };
     AddWord = __decorate([
         core_1.Component({

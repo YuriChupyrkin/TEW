@@ -131,7 +131,7 @@
     font-size: 28px;
 }
 
-.has-error {
+.error-field {
     color: red;
-    font-size: 18px;
+    font-size: 12px;
 }
