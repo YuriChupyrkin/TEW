@@ -12,28 +12,30 @@
             <!-- test area -->
             <div [hidden]="!currentTest.Word">
                 <div class="tests-test-word">{{currentTest.Word}}</div>
+                <div class="tests-test-example">{{currentTest.Example}}</div>
                 <br />
 
-                <div class="list-items">
-                    <div *ngFor="let answer of currentTest.Answers;">
-                        <div (click)="setAnswer(answer)"
-                             (dblclick)="pickAnswer(answer)"
-                             [class.choosen-list-item]="answer == choosenAnswer"
-                             [class.background-color-green]="trueAnswer == answer"
-                             class="list-item cursor-pointer">
-                            {{answer}}
-                        </div>
+                <div *ngFor="let answer of currentTest.Answers;" class="list-items">
+                    <div (click)="setAnswer(answer)"
+                            (dblclick)="pickAnswer(answer)"
+                            [class.choosen-list-item]="answer == choosenAnswer"
+                            [class.background-color-green]="trueAnswer == answer"
+                            class="list-item cursor-pointer">
+                        {{answer}}
                     </div>
                 </div>
-
                 <br />
 
                 <!-- disabled when set true answer (picked)-->
                 <button [disabled]="trueAnswer" (click)="pickAnswer(choosenAnswer)" class="btn btn-success">
                     <span class="glyphicon glyphicon-ok"></span>
                 </button>
-                <button class="btn btn-info"><span class="glyphicon glyphicon-minus"></span></button>
-                <button (click)="deleteWord(currentTest)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+                <button [disabled]="trueAnswer || currentTest.Answers.length < 4" class="btn btn-warning" (click)="helpPick()">
+                    help
+                </button>
+                <button  [disabled]="trueAnswer" (click)="deleteWord(currentTest)" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
             </div>
         </div>
 
@@ -41,7 +43,7 @@
         <div class="col-md-5">
             <div [hidden]="!resultMessage">
                 <h3>{{resultMessage}}</h3>
-                <button class="btn btn-warning" (click)="setNextTest()">Next</button>
+                <button class="btn btn-info" (click)="setNextTest()">Next</button>
             </div>
         </div>
     </div>

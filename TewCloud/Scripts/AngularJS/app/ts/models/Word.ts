@@ -7,4 +7,5 @@
     Level: number;
     Example: string;
     Hidden: boolean;
+    Id: number;
 }

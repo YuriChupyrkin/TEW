@@ -12,6 +12,8 @@ var core_1 = require('@angular/core');
 var pickerTestModel_1 = require('./models/pickerTestModel');
 var constantStorage_1 = require('./services/constantStorage');
 var httpService_1 = require('./services/httpService');
+var word_1 = require('./models/word');
+var wordsCloudModel_1 = require('./models/wordsCloudModel');
 var PickerTest = (function () {
     function PickerTest(httpService) {
         this.httpService = httpService;
@@ -26,15 +28,13 @@ var PickerTest = (function () {
         var _this = this;
         this.initEmptyCurrentTest();
         this.testName = testName == this.EnRuTest ? this.EnRuTest : this.RuEnTest;
-        console.log("prepareTest: " + this.testName);
         var url = this.PickerTestsController + "?userId=" + constantStorage_1.ConstantStorage.getUserId() + "&testType=" + this.testName;
-        this.httpService.processGet(url).subscribe(function (response) { return _this.startTest(response); });
+        this.httpService.processGet(url).subscribe(function (response) { return _this.startTest(response); }, function (error) {
+            alert("\"Your words\" should be have than 3 words");
+            console.dir(error);
+        });
     };
     PickerTest.prototype.startTest = function (tests) {
-        if (tests.length < 4) {
-            alert("you must add words for test");
-            return;
-        }
         console.dir(tests);
         this.testSet = tests;
         this.testIndex = 0;
@@ -54,11 +54,9 @@ var PickerTest = (function () {
         if (!answer || this.trueAnswer) {
             return;
         }
-        console.log("set: " + answer);
         this.choosenAnswer = answer;
     };
     PickerTest.prototype.pickAnswer = function (answer) {
-        console.log("choosen: " + answer);
         if (!answer || this.trueAnswer) {
             return;
         }
@@ -104,11 +102,28 @@ var PickerTest = (function () {
             return;
         }
         this.currentTest = this.testSet[this.testIndex];
-        console.dir(this.currentTest);
     };
     PickerTest.prototype.deleteWord = function (pickerTestModel) {
-        if (confirm("Delete word: " + pickerTestModel.Word)) {
-            alert("deleted.... id: " + pickerTestModel.WordId);
+        if (confirm("Delete word: \"" + pickerTestModel.Word + "\"?") == false) {
+            return;
+        }
+        var wordsCloudModel = new wordsCloudModel_1.WordsCloudModel();
+        wordsCloudModel.UserName = constantStorage_1.ConstantStorage.getUserName();
+        var word = new word_1.Word();
+        word.Id = pickerTestModel.WordId;
+        word.English = pickerTestModel.Word;
+        wordsCloudModel.Words = [word];
+        var result = this.httpService.processPost(wordsCloudModel, '/api/DeleteWord');
+        result.subscribe(function (response) { return console.dir(response); });
+        this.setNextTest();
+    };
+    PickerTest.prototype.helpPick = function () {
+        if (0 != this.currentTest.AnswerId) {
+            this.currentTest.Answers.splice(0, 1);
+            this.currentTest.AnswerId--;
+        }
+        else {
+            this.currentTest.Answers.splice(1, 1);
         }
     };
     PickerTest = __decorate([

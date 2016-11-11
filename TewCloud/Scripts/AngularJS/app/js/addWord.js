@@ -74,7 +74,6 @@ var AddWord = (function () {
                 }
                 if (translate && translate['ex'] && translate['ex'][0] && translate['ex'][0]['text']) {
                     var example = translate['ex'][0]['text'];
-                    console.log("example: " + example);
                     this.addWordform.controls['example'].setValue(example.toString());
                 }
             }
