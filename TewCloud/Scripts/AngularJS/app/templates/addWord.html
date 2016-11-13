@@ -68,7 +68,7 @@
     </div>
 
     <!-- mobile -->
-    <div class="visible-phone visible-tablet center-block">
+    <div class="visible-phone visible-tablet">
         <form [formGroup]="addWordform" (ngSubmit)="submitForm(addWordform.value)">
             <div>
                 <span class="label">English word:</span>
@@ -81,13 +81,9 @@
                         Max length should be less than 25 symbols
                     </span>
                 </div>
-                <div class="input-group">
-                    <input [formControl]="addWordform.controls['english']" name="english" type="text" class="form-control"/>
-                    <span class="input-group-btn">
-                        <button class="btn btn-secondary" (click)="translate()" type="button">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </span>
+                <div>
+                    <input [formControl]="addWordform.controls['english']" name="english" type="text" class="form-control add-word-english-word"/>
+                    <a class="btn glyphicon glyphicon-search" (click)="translate()"></a>
                 </div>
                 <br />
             </div>
@@ -109,7 +105,7 @@
 
             <div class="margin-50" [hidden]="translates.length < 1">
                 <span class="label">Translates:</span>
-                <div *ngFor="let translate of translates;" class="list-items">
+                <div *ngFor="let translate of translates;" class="list-items center-block">
                     <div class="list-item cursor-pointer"
                          [class.choosen-list-item]="translate == addWordform.controls['russian'].value"
                          (click)="chooseTranslate(translate)">

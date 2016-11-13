@@ -3,7 +3,6 @@ import { ConstantStorage } from './services/constantStorage';
 import { HttpService } from './services/httpService';
 import { User } from './models/user';
 import { Router} from '@angular/router';
-import {  } from '';
 
 @Component({
     selector: 'my-app',
@@ -25,6 +24,10 @@ export class AppComponent implements OnInit {
         this.httpService.processGet<string>('/api/ApplicationMessage').subscribe(response => this.applicationMessage = response);
     }
 
+    ngOnInit() {
+        this.resized(null);
+    }
+
     private setUserInfo(user: User) {
         ConstantStorage.setUserName(user.Email);
         ConstantStorage.setUserId(user.Id);
@@ -33,22 +36,15 @@ export class AppComponent implements OnInit {
         this.router.navigate(['/home']);
     }
 
-    private logOff() {
-        if (confirm("log out?")) {
-            window.location.href = '/account/SignOff';
+    private resized(event: any) {
+        var width = window.innerWidth;
+
+        if (width < 980) {
+            this.desktopMode = false;
+        } else {
+            this.desktopMode = true;
         }
-    }
 
-    private isDesktopMode(isDesktopMode: boolean) {
-        this.desktopMode = isDesktopMode;
-        console.log("isDesktopMode" + this.desktopMode);
-    }
-
-    private showDesktopMode() {
-        console.log("showDesktopMode: " + this.desktopMode.toString());
-    }
-
-    ngOnInit() {
-        console.log("onInit: " + this.desktopMode);
+        console.log("resized: " + this.desktopMode);
     }
 }

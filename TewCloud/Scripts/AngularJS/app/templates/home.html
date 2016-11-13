@@ -4,6 +4,16 @@
 
 <!-- mobile -->
 <div class="visible-phone visible-tablet center-block">
+    <div>
+        <span class="mobile-text mobile-username-block" [hidden]="!userName">
+            <span>
+                <span class="glyphicon glyphicon-user"></span>
+                {{userName}}
+            </span>
+            <br />
+            <span><a (click)="logOff()">Log out</a></span>
+        </span>
+    </div>
     <div class="learning-main-background">
         <a class="mobile-home-link" routerLink="/add-word">Add word</a>
         <br/>

@@ -24,26 +24,24 @@ var AppComponent = (function () {
         this.httpService.processGet(url).subscribe(function (response) { return _this.setUserInfo(response); });
         this.httpService.processGet('/api/ApplicationMessage').subscribe(function (response) { return _this.applicationMessage = response; });
     }
+    AppComponent.prototype.ngOnInit = function () {
+        this.resized(null);
+    };
     AppComponent.prototype.setUserInfo = function (user) {
         constantStorage_1.ConstantStorage.setUserName(user.Email);
         constantStorage_1.ConstantStorage.setUserId(user.Id);
         this.userName = user.Email;
         this.router.navigate(['/home']);
     };
-    AppComponent.prototype.logOff = function () {
-        if (confirm("log out?")) {
-            window.location.href = '/account/SignOff';
+    AppComponent.prototype.resized = function (event) {
+        var width = window.innerWidth;
+        if (width < 980) {
+            this.desktopMode = false;
         }
-    };
-    AppComponent.prototype.isDesktopMode = function (isDesktopMode) {
-        this.desktopMode = isDesktopMode;
-        console.log("isDesktopMode" + this.desktopMode);
-    };
-    AppComponent.prototype.showDesktopMode = function () {
-        console.log("showDesktopMode: " + this.desktopMode.toString());
-    };
-    AppComponent.prototype.ngOnInit = function () {
-        console.log("onInit: " + this.desktopMode);
+        else {
+            this.desktopMode = true;
+        }
+        console.log("resized: " + this.desktopMode);
     };
     AppComponent = __decorate([
         core_1.Component({

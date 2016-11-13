@@ -159,3 +159,13 @@
     word-wrap: break-word;
     font-weight: bold;
 }
+
+.mobile-body {
+    padding-right: 15px;
+}
+
+.mobile-username-block {
+    padding-bottom: 15px;
+    padding-top: 15px;
+    display: block;
+}

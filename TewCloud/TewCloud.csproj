@@ -144,6 +144,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Client\" />
+    <Folder Include="Scripts\AngularJS\app\ts\services\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AutofacModule.cs" />
@@ -240,8 +241,8 @@
     <Content Include="Scripts\AngularJS\app\js\models\wordsCloudModel.js" />
     <Content Include="Scripts\AngularJS\app\js\myWords.js" />
     <Content Include="Scripts\AngularJS\app\js\pickerTest.js" />
+    <Content Include="Scripts\AngularJS\app\js\services\commonHelper.js" />
     <Content Include="Scripts\AngularJS\app\js\services\constantStorage.js" />
-    <Content Include="Scripts\AngularJS\app\js\services\getPostService.js" />
     <Content Include="Scripts\AngularJS\app\js\services\httpService.js" />
     <Content Include="Scripts\AngularJS\app\templates\app.html" />
     <Content Include="Scripts\AngularJS\app\templates\home.html" />

@@ -9,10 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var constantStorage_1 = require('./services/constantStorage');
+var commonHelper_1 = require('./services/commonHelper');
 var Home = (function () {
     function Home() {
-        this.description = "home";
     }
+    Home.prototype.logOff = function () {
+        commonHelper_1.CommonHelper.logOff();
+    };
+    Home.prototype.ngOnInit = function () {
+        this.userName = constantStorage_1.ConstantStorage.getUserName();
+    };
     Home = __decorate([
         core_1.Component({
             selector: 'home',

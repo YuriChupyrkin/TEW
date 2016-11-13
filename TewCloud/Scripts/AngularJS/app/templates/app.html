@@ -1,8 +1,8 @@
 ﻿<div class="row">
-    <div *ngIf="userName" class="col-md-2">
+    <div *ngIf="userName">
 
         <!-- desctop -->
-        <div class="visible-desktop">
+        <div class="visible-desktop col-md-2"  (window:resize)="resized($event)">
             <div class="learning-main-background menu-header">
                 <div class="menu-header-user-name">
                     <span class="glyphicon glyphicon-user"></span>
@@ -11,7 +11,7 @@
                         <span><a class="log-out-link" href="/account/SignOff">Log out</a></span>
                     </div>
                 </div>
-                <div class="header-server-message" (click)="showDesktopMode()">
+                <div class="header-server-message">
                     {{applicationMessage}}
                 </div>
                 <div class="menu-tabs">
@@ -32,22 +32,14 @@
          </div>
 
         <!-- mobile -->
-        <div class="visible-phone visible-tablet center-block">
+        <div class="visible-phone visible-tablet" >
             <a class="btn btn-info mobile-home-button" routerLink="/home">
-                <span class="glyphicon glyphicon-home"></span>
+                <span class="glyphicon glyphicon-align-justify"></span>
             </a>
-            <span class="mobile-text">
-                <span>
-                    <span class="glyphicon glyphicon-user"></span>
-                    {{userName}}
-                </span>
-                <br />
-                <span><a (click)="logOff()">Log out</a></span>
-            </span>
         </div>
     </div>
-
-    <div [hidden]="!userName" class="col-md-10">
+    
+    <div [hidden]="!userName" [class.col-md-10]="desktopMode" [class.mobile-body]="!desktopMode">
         <router-outlet></router-outlet>
     </div>
 </div>
