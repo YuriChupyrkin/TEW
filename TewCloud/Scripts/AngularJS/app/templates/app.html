@@ -1,47 +1,57 @@
-﻿<div *ngIf="userName">
-    <!-- desctop -->
-    <div class="visible-desktop">
-        <div class="menu-header learning-main-background">
-            <div class="row menu-header-links">
-                <div class="col-md-8">
-                    <div>{{applicationMessage}}</div>
+﻿<div class="row">
+    <div *ngIf="userName" class="col-md-2">
+
+        <!-- desctop -->
+        <div class="visible-desktop">
+            <div class="learning-main-background menu-header">
+                <div class="menu-header-user-name">
+                    <span class="glyphicon glyphicon-user"></span>
+                    {{userName}}
+                    <div>
+                        <span><a class="log-out-link" href="/account/SignOff">Log out</a></span>
+                    </div>
                 </div>
-                <div class="col-md-4 menu-header-user-name">
-                    <span>
-                        <span class="glyphicon glyphicon-user"></span>
-                        {{userName}}
-                        </span>
-                    <span><a class="log-out-link" href="/account/SignOff">Log out</a></span>
+                <div class="header-server-message" (click)="showDesktopMode()">
+                    {{applicationMessage}}
+                </div>
+                <div class="menu-tabs">
+                    <div>
+                        <a class="menu-tab" routerLink="/home" routerLinkActive="menu-tab-active">Home</a>
+                    </div>
+                    <div>
+                        <a class="menu-tab" routerLink="/add-word" routerLinkActive="menu-tab-active">Add word</a>
+                    </div>
+                    <div>
+                        <a class="menu-tab" routerLink="/my-words" routerLinkActive="menu-tab-active">My words</a>
+                    </div>
+                    <div>
+                        <a class="menu-tab" routerLink="/picker-test" routerLinkActive="menu-tab-active">Picker test</a>
+                    </div>
                 </div>
             </div>
-            <div class="center-block row">
-                <a class="menu-tab" routerLink="/home" routerLinkActive="menu-tab-active">Home</a>
-                <a class="menu-tab" routerLink="/add-word" routerLinkActive="menu-tab-active">Add word</a>
-                <a class="menu-tab" routerLink="/my-words" routerLinkActive="menu-tab-active">My words</a>
-                <a class="menu-tab" routerLink="/picker-test" routerLinkActive="menu-tab-active">Picker test</a>
-            </div>
+         </div>
+
+        <!-- mobile -->
+        <div class="visible-phone visible-tablet center-block">
+            <a class="btn btn-info mobile-home-button" routerLink="/home">
+                <span class="glyphicon glyphicon-home"></span>
+            </a>
+            <span class="mobile-text">
+                <span>
+                    <span class="glyphicon glyphicon-user"></span>
+                    {{userName}}
+                </span>
+                <br />
+                <span><a (click)="logOff()">Log out</a></span>
+            </span>
         </div>
     </div>
-    <!-- mobile -->
-    <div class="visible-phone visible-tablet center-block">
-        <a class="btn btn-info mobile-home-button" routerLink="/home">
-            <span class="glyphicon glyphicon-home"></span>
-        </a>
-        <span class="mobile-text">
-            <span>
-                <span class="glyphicon glyphicon-user"></span>
-                {{userName}}
-            </span>
-            <br/>
-            <span><a (click)="logOff()">Log out</a></span>
-        </span>
+
+    <div [hidden]="!userName" class="col-md-10">
+        <router-outlet></router-outlet>
     </div>
 </div>
 
-<div [hidden]="!userName" class="margin-20">
-    <router-outlet></router-outlet>
-</div>
-
-<div *ngIf="!userName">
+<div *ngIf="!userName" class="row">
     <loading-animation></loading-animation>
 </div>

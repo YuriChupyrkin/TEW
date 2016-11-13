@@ -17,6 +17,7 @@ var AppComponent = (function () {
         var _this = this;
         this.httpService = httpService;
         this.router = router;
+        this.desktopMode = true;
         constantStorage_1.ConstantStorage.setYandexTranslaterApiKey('dict.1.1.20160904T125311Z.5e2c6c9dfb5cd3c3.71b0d5220878e340d60dcfa0faf7f649af59c65f');
         this.userName = '';
         var url = '/api/UserInfo';
@@ -33,6 +34,16 @@ var AppComponent = (function () {
         if (confirm("log out?")) {
             window.location.href = '/account/SignOff';
         }
+    };
+    AppComponent.prototype.isDesktopMode = function (isDesktopMode) {
+        this.desktopMode = isDesktopMode;
+        console.log("isDesktopMode" + this.desktopMode);
+    };
+    AppComponent.prototype.showDesktopMode = function () {
+        console.log("showDesktopMode: " + this.desktopMode.toString());
+    };
+    AppComponent.prototype.ngOnInit = function () {
+        console.log("onInit: " + this.desktopMode);
     };
     AppComponent = __decorate([
         core_1.Component({

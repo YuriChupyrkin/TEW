@@ -16,8 +16,9 @@ namespace TewCloud.Controllers.WebAppVersion
 
 				if (Common.GlobalConfiguration.IsDevelopmentEnvironment)
 				{
-					message += " Dev environment";
-				}
+                message += @" Dev environment! 12334x rcr wrcwr cwr wrxcwr wrdcwr wrc";
+                message += @" Dev environment!";
+            }
 
 				return message;
 			}

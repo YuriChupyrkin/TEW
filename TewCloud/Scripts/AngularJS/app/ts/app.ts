@@ -1,17 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ConstantStorage } from './services/constantStorage';
 import { HttpService } from './services/httpService';
 import { User } from './models/user';
 import { Router} from '@angular/router';
+import {  } from '';
 
 @Component({
     selector: 'my-app',
     templateUrl: '../../scripts/angularjs/app/templates/app.html'
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
     private userName: string;
     private applicationMessage: string;
+    private desktopMode: boolean = true;
 
     constructor(private httpService: HttpService, private router: Router) {
         ConstantStorage.setYandexTranslaterApiKey('dict.1.1.20160904T125311Z.5e2c6c9dfb5cd3c3.71b0d5220878e340d60dcfa0faf7f649af59c65f');
@@ -35,5 +37,18 @@ export class AppComponent {
         if (confirm("log out?")) {
             window.location.href = '/account/SignOff';
         }
+    }
+
+    private isDesktopMode(isDesktopMode: boolean) {
+        this.desktopMode = isDesktopMode;
+        console.log("isDesktopMode" + this.desktopMode);
+    }
+
+    private showDesktopMode() {
+        console.log("showDesktopMode: " + this.desktopMode.toString());
+    }
+
+    ngOnInit() {
+        console.log("onInit: " + this.desktopMode);
     }
 }
