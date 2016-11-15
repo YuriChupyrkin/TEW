@@ -15,13 +15,15 @@
                 <div class="tests-test-example">{{currentTest.Example}}</div>
                 <br />
 
-                <div *ngFor="let answer of currentTest.Answers;" class="list-items">
-                    <div (click)="setAnswer(answer)"
-                            (dblclick)="pickAnswer(answer)"
-                            [class.choosen-list-item]="answer == choosenAnswer"
-                            [class.background-color-green]="trueAnswer == answer"
-                            class="list-item cursor-pointer">
-                        {{answer}}
+                <div class="margin-30">
+                    <div *ngFor="let answer of currentTest.Answers;" class="list-items">
+                        <div (click)="setAnswer(answer)"
+                             (dblclick)="pickAnswer(answer)"
+                             [class.choosen-list-item]="answer == choosenAnswer"
+                             [class.background-color-green]="trueAnswer == answer"
+                             class="list-item cursor-pointer">
+                            {{answer}}
+                        </div>
                     </div>
                 </div>
                 <br />

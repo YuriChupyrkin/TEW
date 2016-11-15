@@ -9,18 +9,17 @@ namespace TewCloud.Controllers.WebAppVersion
 {
     public class ApplicationMessageController : ApiController
     {
-			[HttpGet]
-			public string GetCurrentUserInfo()
-			{
-				var message = "Tew app...";
+        [HttpGet]
+        public string GetCurrentUserInfo()
+        {
+            var message = "Tew app... Alfa test";
 
-				if (Common.GlobalConfiguration.IsDevelopmentEnvironment)
-				{
-                message += @" Dev environment! 12334x rcr wrcwr cwr wrxcwr wrdcwr wrc";
-                message += @" Dev environment!";
+            if (Common.GlobalConfiguration.IsDevelopmentEnvironment)
+            {
+                message += @" Dev environment! test message. hello world, hello tew";
             }
 
-				return message;
-			}
+            return message;
+        }
     }
 }
