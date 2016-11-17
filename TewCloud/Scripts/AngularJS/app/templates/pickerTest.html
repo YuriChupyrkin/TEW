@@ -3,8 +3,8 @@
 
     <!-- buttons -->
     <div>
-        <button (click)="prepareTest('EnRuTest')" class="btn">Eng-Rus</button>
-        <button (click)="prepareTest('RuEnTest')" class="btn">Rus-Eng</button>
+        <button (click)="prepareTest('EnRuTest')" class="btn btn-orange">Eng-Rus</button>
+        <button (click)="prepareTest('RuEnTest')" class="btn btn-orange">Rus-Eng</button>
     </div>
     
     <div class="row">
@@ -20,7 +20,7 @@
                         <div (click)="setAnswer(answer)"
                              (dblclick)="pickAnswer(answer)"
                              [class.choosen-list-item]="answer == choosenAnswer"
-                             [class.background-color-green]="trueAnswer == answer"
+                             [class.list-item-error]="trueAnswer == answer"
                              class="list-item cursor-pointer">
                             {{answer}}
                         </div>
@@ -32,7 +32,7 @@
                 <button [disabled]="trueAnswer" (click)="pickAnswer(choosenAnswer)" class="btn btn-success">
                     <span class="glyphicon glyphicon-ok"></span>
                 </button>
-                <button [disabled]="trueAnswer || currentTest.Answers.length < 4" class="btn btn-warning" (click)="helpPick()">
+                <button [disabled]="trueAnswer || currentTest.Answers.length < 4" class="btn btn-orange" (click)="helpPick()">
                     help
                 </button>
                 <button  [disabled]="trueAnswer" (click)="deleteWord(currentTest)" class="btn btn-danger">
@@ -45,7 +45,7 @@
         <div class="col-md-5">
             <div [hidden]="!resultMessage">
                 <h3>{{resultMessage}}</h3>
-                <button class="btn btn-info" (click)="setNextTest()">Next</button>
+                <button class="btn btn-orange" (click)="setNextTest()">Next</button>
             </div>
         </div>
     </div>

@@ -16,7 +16,8 @@
 }
 
 .choosen-list-item {
-    background-color: #38c5d4;
+    background-color: #737272;
+    color: #ffc56d;
 }
 
 .add-word-area {
@@ -51,21 +52,23 @@
 .label {
     font-size: 16px;
     font-style: italic;
-    color: black;
+    color: #737272;
 }
 
 .cursor-pointer {
     cursor: pointer;
 }
 
-.background-color-green {
-    background-color: green;
+.list-item-error {
+    background-color: #ffa500;
+    color: white !important;
 }
 
 .menu-header {
     padding-left: 20px;
     position: fixed;
     height: 100vh;
+    color: #ffc56d;
 
     /* col-md-2 */
     max-width: 16.3%;
@@ -74,8 +77,12 @@
 .menu-tab {
     display:block;
     padding: 20px;
-    color: gray;
+    color: #ffc56d;
     font-size: 16px;
+}
+
+.menu-tab:hover {
+    background-color: #ffa500;
 }
 
 .menu-tabs {
@@ -83,8 +90,8 @@
 }
 
 .menu-tab-active {
-    background-color: gray;
-    color: white !important;
+    background-color: #ffc56d;
+    color: #737272 !important;
 }
 
 .menu-header-links {
@@ -99,16 +106,16 @@
 
 .field-validation-error {
     font-size: 16px;
-    color: red;
+    color: #fd6c01;
 }
 
 .validation-summary-errors {
     font-size: 18px;
-    color: red;
+    color: #fd6c01;
 }
 
 .learning-main-background {
-    background-color: wheat;
+    background-color: #737272;
 }
 
 .menu-header-user-name {
@@ -118,6 +125,10 @@
 
 .log-out-link {
     color: white;
+}
+
+.log-out-link:hover {
+    color: #ffe000 !important;
 }
 
 .mobile-text {
@@ -136,7 +147,7 @@
 .page-title {
     font-style: italic;
     font-size: 22px;
-    color: orange;
+    color: #737272;
 }
 
 .mobile-home-button {
@@ -146,6 +157,8 @@
 
 .mobile-home-link {
     font-size: 28px;
+    color: #ffc56d;
+    text-decoration: underline;
 }
 
 .error-field {
@@ -169,3 +182,30 @@
     padding-top: 15px;
     display: block;
 }
+
+.btn-orange {
+    background-color: #ffc56d;
+    color: #737272;
+}
+
+.learning-body {
+    color: #737272;
+}
+
+.document-body {
+    background-color: rgba(128,128,128,0.10);
+}
+
+.mobile-links {
+    border-radius: 10px;
+    background-color: #737272;
+    margin-top: 30px;
+}
+
+/*
+            COLORS:
+    orange - #ffc56d
+    gray - #737272
+    error - #fd6c01
+    hover - #ffa500
+*/

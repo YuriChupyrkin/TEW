@@ -49,10 +49,10 @@
                         <br />
                     </div>
 
-                    <input type="submit" class="btn btn-success" [disabled]="!addWordform.valid" value="Add word" />
+                    <input type="submit" class="btn btn-orange" [disabled]="!addWordform.valid" value="Add word" />
                 </div>
                 <div class="col-md-6">
-                    <div class="margin-50" [hidden]="translates.length < 1">
+                    <div class="margin-50 center-block" [hidden]="translates.length < 1">
                         <span class="label">Translates:</span>
                         <div *ngFor="let translate of translates;" class="list-items">
                             <div class="list-item cursor-pointer"
@@ -127,7 +127,7 @@
                 <br />
             </div>
 
-            <input type="submit" class="btn btn-success" [disabled]="!addWordform.valid" value="Add word" />
+            <input type="submit" class="btn btn-orange" [disabled]="!addWordform.valid" value="Add word" />
        </form>
     </div>
 </div>

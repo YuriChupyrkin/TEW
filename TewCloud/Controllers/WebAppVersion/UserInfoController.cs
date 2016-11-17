@@ -9,7 +9,7 @@ namespace TewCloud.Controllers.WebAppVersion
     {
         public IHttpActionResult GetCurrentUserInfo()
         {
-            Thread.Sleep(1000);
+            //Thread.Sleep(1000);
             var userEmail = User.Identity.Name;
 
             var user = ((TewMembershipProvider)Membership.Provider).GetUserByEmail(userEmail);
