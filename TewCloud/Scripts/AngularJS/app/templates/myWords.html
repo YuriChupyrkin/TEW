@@ -1,4 +1,7 @@
-﻿<div class="center-block page-title">My words</div>
+﻿<div class="center-block page-title">
+    My words
+    <span *ngIf="wordsCount > 0"> ({{wordsCount}})</span>
+</div>
 
 <div>    
     <div [hidden]="loaded">LOADING...</div>

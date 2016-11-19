@@ -16,6 +16,7 @@ export class MyWords {
 
     private loaded: boolean;
     private userWords: UserWords;
+    private wordsCount: number;
 
     constructor(private httpService: HttpService) {
         this.userWords = new UserWords();
@@ -51,6 +52,7 @@ export class MyWords {
     private setUserWords(userWords: UserWords) {
         this.loaded = true;
         this.userWords = userWords;
+        this.wordsCount = userWords.Words.length;
     }
 
     private removedWord(word: Word) {
@@ -61,5 +63,6 @@ export class MyWords {
         }
 
         this.userWords.Words.splice(wordIndex, 1);
+        this.wordsCount--;
     }
 }

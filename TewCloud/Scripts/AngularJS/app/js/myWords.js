@@ -42,6 +42,7 @@ var MyWords = (function () {
     MyWords.prototype.setUserWords = function (userWords) {
         this.loaded = true;
         this.userWords = userWords;
+        this.wordsCount = userWords.Words.length;
     };
     MyWords.prototype.removedWord = function (word) {
         var wordIndex = this.userWords.Words.indexOf(word);
@@ -49,6 +50,7 @@ var MyWords = (function () {
             return;
         }
         this.userWords.Words.splice(wordIndex, 1);
+        this.wordsCount--;
     };
     MyWords = __decorate([
         core_1.Component({

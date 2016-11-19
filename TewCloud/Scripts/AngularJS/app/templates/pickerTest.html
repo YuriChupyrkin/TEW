@@ -3,8 +3,12 @@
 
     <!-- buttons -->
     <div>
-        <button (click)="prepareTest('EnRuTest')" class="btn btn-orange">Eng-Rus</button>
-        <button (click)="prepareTest('RuEnTest')" class="btn btn-orange">Rus-Eng</button>
+        <button [disabled]="!currentTest.Word && !firstTestNOTloaded" (click)="prepareTest('EnRuTest')" class="btn btn-orange">
+            Eng-Rus
+        </button>
+        <button [disabled]="!currentTest.Word && !firstTestNOTloaded" (click)="prepareTest('RuEnTest')" class="btn btn-orange">
+            Rus-Eng
+        </button>
     </div>
     
     <div class="row">

@@ -22,10 +22,12 @@ var PickerTest = (function () {
         this.PickerTestsController = '/api/PickerTests';
         this.WordsLevelUpdaterController = 'api/WordsLevelUpdater';
         this.testSet = new Array();
+        this.firstTestNOTloaded = true;
         this.initEmptyCurrentTest();
     }
     PickerTest.prototype.prepareTest = function (testName) {
         var _this = this;
+        this.firstTestNOTloaded = false;
         this.initEmptyCurrentTest();
         this.testName = testName == this.EnRuTest ? this.EnRuTest : this.RuEnTest;
         var url = this.PickerTestsController + "?userId=" + constantStorage_1.ConstantStorage.getUserId() + "&testType=" + this.testName;

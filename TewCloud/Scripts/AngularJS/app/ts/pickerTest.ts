@@ -26,14 +26,17 @@ export class PickerTest {
     private trueAnswer: string;
     private resultMessage: string;
     private testIsFinished: boolean;
+    private firstTestNOTloaded: boolean;
 
     constructor(private httpService: HttpService) {
         this.testSet = new Array<PickerTestModel>();
 
+        this.firstTestNOTloaded = true;
         this.initEmptyCurrentTest();
     }
 
     private prepareTest(testName: string) {
+        this.firstTestNOTloaded = false;
         this.initEmptyCurrentTest();
         this.testName = testName == this.EnRuTest ? this.EnRuTest : this.RuEnTest;
 
