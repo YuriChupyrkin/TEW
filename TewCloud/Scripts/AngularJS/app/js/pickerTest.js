@@ -32,12 +32,16 @@ var PickerTest = (function () {
         this.testName = testName == this.EnRuTest ? this.EnRuTest : this.RuEnTest;
         var url = this.PickerTestsController + "?userId=" + constantStorage_1.ConstantStorage.getUserId() + "&testType=" + this.testName;
         this.httpService.processGet(url).subscribe(function (response) { return _this.startTest(response); }, function (error) {
-            alert("\"Your words\" should be have than 3 words");
+            _this.showError('"Your words" should be have than 4 words');
             console.dir(error);
         });
     };
     PickerTest.prototype.startTest = function (tests) {
         console.dir(tests);
+        if (!tests || tests.length == 0) {
+            this.showError('"Your words" should be have than 4 words');
+            return;
+        }
         this.testSet = tests;
         this.testIndex = 0;
         this.testCount = tests.length;
@@ -127,6 +131,9 @@ var PickerTest = (function () {
         else {
             this.currentTest.Answers.splice(1, 1);
         }
+    };
+    PickerTest.prototype.showError = function (message) {
+        alert(message);
     };
     PickerTest = __decorate([
         core_1.Component({

@@ -44,13 +44,18 @@ export class PickerTest {
         this.httpService.processGet<Array<PickerTestModel>>(url).subscribe(
             response => this.startTest(response),
             error => {
-                alert(`"Your words" should be have than 3 words`);
+                this.showError('"Your words" should be have than 4 words');
                 console.dir(error);
             });
     }
 
     private startTest(tests: Array<PickerTestModel>) {
         console.dir(tests);
+        if (!tests || tests.length == 0) {
+            this.showError('"Your words" should be have than 4 words');
+            return;
+        }
+
         this.testSet = tests;
         this.testIndex = 0;
         this.testCount = tests.length;
@@ -159,5 +164,9 @@ export class PickerTest {
         } else {
             this.currentTest.Answers.splice(1, 1);
         }
+    }
+
+    private showError(message: string) {
+        alert(message);
     }
 }

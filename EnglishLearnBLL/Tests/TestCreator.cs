@@ -11,10 +11,12 @@ namespace EnglishLearnBLL.Tests
   {
     private const int WordCount = 10;
     private readonly IRepositoryFactory _repositoryFactory;
+    private readonly Random _random;
 
     public TestCreator(IRepositoryFactory repositoryFactory)
     {
       _repositoryFactory = repositoryFactory;
+      _random = new Random();
     }
 
     public IEnumerable<WriteTestModel> WriteTest(int userId)
@@ -166,52 +168,45 @@ namespace EnglishLearnBLL.Tests
 
 		private IEnumerable<string> Get4RandonWords(string trueAnswer, int iteration, int userId, bool isEnRuTest)
 		{
-            IEnumerable<Entity<int>> answers;
+      IEnumerable<Entity<int>> answers;
 
-            if (isEnRuTest)
-            {
-                var words = _repositoryFactory.EnRuWordsRepository.AllEnRuWords().Where(r => r.UserId == userId)
-                    .Where(r => r.RussianWord.RuWord != trueAnswer)
-                    .OrderBy(r => (double)r.AnswerCount / (r.FailAnswerCount == 0 ? 1 : r.FailAnswerCount));
+      if (isEnRuTest)
+      {
+          var words = _repositoryFactory.EnRuWordsRepository.AllEnRuWords().Where(r => r.UserId == userId)
+              .Where(r => r.RussianWord.RuWord != trueAnswer)
+              .OrderBy(r => (double)r.AnswerCount / (r.FailAnswerCount == 0 ? 1 : r.FailAnswerCount));
 
-                answers = words.Select(r => r.RussianWord);
-            }
-            else
-            {
-                var words = _repositoryFactory.EnRuWordsRepository.AllEnRuWords().Where(r => r.UserId == userId)
-                    .Where(r => r.EnglishWord.EnWord != trueAnswer)
-                    .OrderBy(r => (double)r.AnswerCount / (r.FailAnswerCount == 0 ? 1 : r.FailAnswerCount));
+          answers = words.Select(r => r.RussianWord);
+      }
+      else
+      {
+          var words = _repositoryFactory.EnRuWordsRepository.AllEnRuWords().Where(r => r.UserId == userId)
+              .Where(r => r.EnglishWord.EnWord != trueAnswer)
+              .OrderBy(r => (double)r.AnswerCount / (r.FailAnswerCount == 0 ? 1 : r.FailAnswerCount));
 
-                answers = words.Select(r => r.EnglishWord);
-            }
+          answers = words.Select(r => r.EnglishWord);
+      }
 
-            if (answers.Count() < 4)
-            {
-                throw new Exception("Need more english words in data base");
-            }
+      if (answers.Count() < 4)
+      {
+          throw new Exception("Need more english words in data base");
+      }
 
-            var skip = 3 * iteration;
+      var skip = 3 * iteration;
 
-			if (answers.Count() < skip + 4)
-			{
-				skip = answers.Count() - skip - 4;
-			}
+      if (answers.Count() < skip + 4)
+      {
+        skip = _random.Next(0, answers.Count() - 4);
+      }
 
-			if (skip < 0 || skip + 4 <= answers.Count())
-			{
-				skip = 0;
-			}
-
-			var rnd = new Random();
-
-			if (isEnRuTest)
-			{
-				return ((IEnumerable<RussianWord>)answers).Skip(skip).Take(4).Select(r => r.RuWord);
-			}
-			else
-			{
-				return ((IEnumerable<EnglishWord>)answers).Skip(skip).Take(4).Select(r => r.EnWord);
-			}
+      if (isEnRuTest)
+      {
+        return ((IEnumerable<RussianWord>)answers).Skip(skip).Take(4).Select(r => r.RuWord);
+      }
+      else
+      {
+        return ((IEnumerable<EnglishWord>)answers).Skip(skip).Take(4).Select(r => r.EnWord);
+      }
 		}
 
 		#endregion
