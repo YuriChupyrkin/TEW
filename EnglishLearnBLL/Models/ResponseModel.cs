@@ -6,6 +6,6 @@ namespace EnglishLearnBLL.Models
   {
     public bool IsError { get; set; }
     public string ErrorMessage { get; set; }
-    public WordsCloudModel WordsCloudModel { get; set; } 
+    public WordsFullModel WordsCloudModel { get; set; } 
   }
 }

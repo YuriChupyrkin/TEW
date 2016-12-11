@@ -20,7 +20,7 @@ namespace TewCloud.Controllers.WebAppVersion
     }
 
     [HttpPost]
-    public IHttpActionResult DeleteWord(WordsCloudModel wordsModel)
+    public IHttpActionResult DeleteWord(WordsFullModel wordsModel)
     {
       if (wordsModel != null && wordsModel.Words.Any())
       {

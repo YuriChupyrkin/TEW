@@ -8,6 +8,7 @@ namespace EnglishLearnBLL.Models
     {
       Answers = new List<string>();
     }
+
     public int WordId { get; set; }
     public string Word { get; set; }
     public string Example { get; set; }

@@ -44,7 +44,7 @@ namespace TewCloud.Helpers
       return _repositoryFactory.EnRuWordsRepository.AllEnRuWords().Count(r => r.User.Email == userName);
     }
 
-    public WordsCloudModel GetUserWords(UserUpdateDateModel updateModel)
+    public WordsFullModel GetUserWords(UserUpdateDateModel updateModel)
     {
       var user = GetUser(updateModel.UserName);
 
@@ -61,18 +61,18 @@ namespace TewCloud.Helpers
       return wordsCloudModel;
     }
 
-    public WordsCloudModel CreateWordsCloudModel(string userName, IEnumerable<EnRuWord> enRuWords)
+    public WordsFullModel CreateWordsCloudModel(string userName, IEnumerable<EnRuWord> enRuWords)
     {
-      var wordsCloudModel = new WordsCloudModel
+      var wordsCloudModel = new WordsFullModel
       {
         UserName = userName
       };
 
-      var words = new List<WordJsonModel>();
+      var words = new List<WordModelModel>();
 
       foreach (var word in enRuWords)
       {
-        var viewModel = new WordJsonModel
+        var viewModel = new WordModelModel
         {
           English = word.EnglishWord.EnWord,
           Russian = word.RussianWord.RuWord,

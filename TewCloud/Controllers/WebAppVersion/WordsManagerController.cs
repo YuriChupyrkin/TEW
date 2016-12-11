@@ -19,7 +19,7 @@ namespace TewCloud.Controllers.WebAppVersion
 		}
 
 		[HttpPost]
-		public IHttpActionResult AddWords([FromBody] WordsCloudModel wordsModel)
+		public IHttpActionResult AddWords([FromBody] WordsFullModel wordsModel)
 		{
 			try
 			{
@@ -59,7 +59,7 @@ namespace TewCloud.Controllers.WebAppVersion
 			{
 				IsError = false,
 				ErrorMessage = string.Empty,
-				WordsCloudModel = new WordsCloudModel
+				WordsCloudModel = new WordsFullModel
 				{
 					TotalWords = _userHelper.GetWordCount(wordsModel.UserName)
 				}
@@ -76,7 +76,7 @@ namespace TewCloud.Controllers.WebAppVersion
 				UserName = userName
 			};
 
-			WordsCloudModel cloudModel;
+			WordsFullModel cloudModel;
 			try
 			{
 				cloudModel = _userHelper.GetUserWords(updateModel);
@@ -96,7 +96,7 @@ namespace TewCloud.Controllers.WebAppVersion
 		}
 
 		[HttpDelete]
-		public void DeleteWord([FromBody] WordsCloudModel wordsModel)
+		public void DeleteWord([FromBody] WordsFullModel wordsModel)
 		{
 			if (wordsModel != null && wordsModel.Words.Any())
 			{

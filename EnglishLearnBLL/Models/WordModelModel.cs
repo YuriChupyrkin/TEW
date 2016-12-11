@@ -2,7 +2,7 @@
 
 namespace EnglishLearnBLL.Models
 {
-  public class WordJsonModel : WordViewModel
+  public class WordModelModel : WordViewModel
   {
     public DateTime UpdateDate { get; set; }
 
