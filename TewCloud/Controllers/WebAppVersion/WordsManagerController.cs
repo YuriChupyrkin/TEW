@@ -10,12 +10,12 @@ namespace TewCloud.Controllers.WebAppVersion
 	public class WordsManagerController : ApiController
 	{
 		private readonly IRepositoryFactory _repositoryFactory;
-		private readonly SyncHelper _syncHelper;
+		private readonly UserHelper _userHelper;
 
 		public WordsManagerController(IRepositoryFactory repositoryFactory)
 		{
 			_repositoryFactory = repositoryFactory;
-			_syncHelper = new SyncHelper(repositoryFactory);
+      _userHelper = new UserHelper(repositoryFactory);
 		}
 
 		[HttpPost]
@@ -28,7 +28,7 @@ namespace TewCloud.Controllers.WebAppVersion
 					throw new ArgumentException("words model is null");
 				}
 
-				var userId = _syncHelper.GetUserId(wordsModel.UserName);
+				var userId = _userHelper.GetUserId(wordsModel.UserName);
 
 				foreach (var modelItem in wordsModel.Words)
 				{
@@ -61,7 +61,7 @@ namespace TewCloud.Controllers.WebAppVersion
 				ErrorMessage = string.Empty,
 				WordsCloudModel = new WordsCloudModel
 				{
-					TotalWords = _syncHelper.GetWordCount(wordsModel.UserName)
+					TotalWords = _userHelper.GetWordCount(wordsModel.UserName)
 				}
 			};
 
@@ -79,7 +79,7 @@ namespace TewCloud.Controllers.WebAppVersion
 			WordsCloudModel cloudModel;
 			try
 			{
-				cloudModel = _syncHelper.GetUserWords(updateModel);
+				cloudModel = _userHelper.GetUserWords(updateModel);
 			}
 			catch (Exception ex)
 			{
@@ -100,7 +100,7 @@ namespace TewCloud.Controllers.WebAppVersion
 		{
 			if (wordsModel != null && wordsModel.Words.Any())
 			{
-				var userId = _syncHelper.GetUserId(wordsModel.UserName);
+				var userId = _userHelper.GetUserId(wordsModel.UserName);
 				_repositoryFactory.EnRuWordsRepository.DeleteEnRuWord(wordsModel.Words.First().English, userId);
 			}
 		}

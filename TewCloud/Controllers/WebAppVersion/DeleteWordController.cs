@@ -8,29 +8,29 @@ using TewCloud.Helpers;
 
 namespace TewCloud.Controllers.WebAppVersion
 {
-    public class DeleteWordController : ApiController
+  public class DeleteWordController : ApiController
+  {
+    private readonly IRepositoryFactory _repositoryFactory;
+    private readonly UserHelper _userHelper;
+
+    public DeleteWordController(IRepositoryFactory repositoryFactory)
     {
-        private readonly IRepositoryFactory _repositoryFactory;
-        private readonly SyncHelper _syncHelper;
-
-        public DeleteWordController(IRepositoryFactory repositoryFactory)
-        {
-            _repositoryFactory = repositoryFactory;
-            _syncHelper = new SyncHelper(repositoryFactory);
-        }
-
-        [HttpPost]
-        public IHttpActionResult DeleteWord( WordsCloudModel wordsModel)
-        {
-            if (wordsModel != null && wordsModel.Words.Any())
-            {
-                var userId = _syncHelper.GetUserId(wordsModel.UserName);
-                _repositoryFactory.EnRuWordsRepository.DeleteEnRuWord(wordsModel.Words.First().English, userId);
-
-                return Ok();
-            }
-
-            return NotFound();
-        }
+      _repositoryFactory = repositoryFactory;
+      _userHelper = new UserHelper(repositoryFactory);
     }
+
+    [HttpPost]
+    public IHttpActionResult DeleteWord(WordsCloudModel wordsModel)
+    {
+      if (wordsModel != null && wordsModel.Words.Any())
+      {
+        var userId = _userHelper.GetUserId(wordsModel.UserName);
+        _repositoryFactory.EnRuWordsRepository.DeleteEnRuWord(wordsModel.Words.First().English, userId);
+
+        return Ok();
+      }
+
+      return NotFound();
+    }
+  }
 }
