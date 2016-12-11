@@ -11,9 +11,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 
 export class AddWord implements OnInit {
-    private wordTranslaterController: string = '/api/WordTranslater';
-    private wordsManagerController = '/api/WordsManager';
-
     private translates: Array<string>;
     private addWordform: FormGroup;
 
@@ -49,7 +46,7 @@ export class AddWord implements OnInit {
     }
 
     private translateByExistsWords(englishWord: string) {
-        var url = `${this.wordTranslaterController}?word=${englishWord}`;
+        var url = `${ConstantStorage.getWordTranslaterController()}?word=${englishWord}`;
         this.httpService.processGet<Array<string>>(url).subscribe(response => this.addTranslate(response));
     }
 
@@ -59,7 +56,7 @@ export class AddWord implements OnInit {
         let apiKey = ConstantStorage.getYandexTranslaterApiKey();
 
         var resultUri = `${url}?key=${apiKey}&lang=${translateLang}&text=${englishWord}`;
-        this.httpService.processGet<JSON>(resultUri)
+        this.httpService.processGet<JSON>(resultUri, true)
             .subscribe(response => this.parseTranslate(response));
     }
 
@@ -132,7 +129,7 @@ export class AddWord implements OnInit {
 
         wordCloudModel.Words = [word];
 
-        this.httpService.processPost(wordCloudModel, this.wordsManagerController)
+        this.httpService.processPost(wordCloudModel, ConstantStorage.getWordsManagerController())
             .subscribe(response => console.dir(response), error => alert("error"));
 
         this.clearTranslateResults(true);

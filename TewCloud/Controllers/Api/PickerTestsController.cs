@@ -5,10 +5,12 @@ using Domain.RepositoryFactories;
 using EnglishLearnBLL.Models;
 using EnglishLearnBLL.Tests;
 using EnglishLearnBLL.WordLevelManager;
+using TewCloud.FIlters;
 
-namespace TewCloud.Controllers.WebAppVersion
+namespace TewCloud.Controllers.Api
 {
-	public class PickerTestsController : ApiController
+  [UserActivityFilter]
+  public class PickerTestsController : ApiController
 	{
 		private readonly IRepositoryFactory _repositoryFactory;
 

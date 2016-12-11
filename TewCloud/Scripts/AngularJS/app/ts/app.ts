@@ -18,10 +18,10 @@ export class AppComponent implements OnInit {
         ConstantStorage.setYandexTranslaterApiKey('dict.1.1.20160904T125311Z.5e2c6c9dfb5cd3c3.71b0d5220878e340d60dcfa0faf7f649af59c65f');
 
         this.userName = '';
-        var url = '/api/UserInfo';
-        this.httpService.processGet<User>(url).subscribe(response => this.setUserInfo(response));
+        this.httpService.processGet<User>(ConstantStorage.getUserInfoController()).subscribe(response => this.setUserInfo(response));
 
-        this.httpService.processGet<string>('/api/ApplicationMessage').subscribe(response => this.applicationMessage = response);
+        this.httpService.processGet<string>(ConstantStorage.getApplicationMessageController())
+            .subscribe(response => this.applicationMessage = response);
     }
 
     ngOnInit() {

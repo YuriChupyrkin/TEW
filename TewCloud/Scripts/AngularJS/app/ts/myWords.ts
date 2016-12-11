@@ -11,9 +11,6 @@ import { ConstantStorage } from './services/constantStorage';
 })
 
 export class MyWords {
-    private wordsManagerController: string = '/api/WordsManager';
-    private deleteWordController: string = '/api/DeleteWord';
-
     private loaded: boolean;
     private userWords: UserWords;
     private wordsCount: number;
@@ -26,7 +23,7 @@ export class MyWords {
     }
 
     private getWords() {
-        var url = this.wordsManagerController + '?userName=' + ConstantStorage.getUserName();
+        var url = `${ConstantStorage.getWordsManagerController()}?userName=${ConstantStorage.getUserName()}`;
 
         var result = this.httpService.processGet<UserWords>(url);
         result.subscribe(json => this.setUserWords(json));
@@ -42,7 +39,7 @@ export class MyWords {
         wordsCloudModel.UserName = ConstantStorage.getUserName();
         wordsCloudModel.Words = [word];
 
-        var result = this.httpService.processPost<WordsCloudModel>(wordsCloudModel, this.deleteWordController);
+        var result = this.httpService.processPost<WordsCloudModel>(wordsCloudModel, ConstantStorage.getDeleteWordController());
 
         result.subscribe(
             response => this.removedWord(word),

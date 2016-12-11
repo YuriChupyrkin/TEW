@@ -8,21 +8,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
-require('rxjs/add/operator/map');
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
+var constantStorage_1 = require("./constantStorage");
+require("rxjs/add/operator/map");
 var HttpService = (function () {
     function HttpService(http) {
         this.http = http;
     }
-    HttpService.prototype.processGet = function (url) {
+    HttpService.prototype.processGet = function (url, isExternalRequest) {
+        if (isExternalRequest === void 0) { isExternalRequest = false; }
         console.log("get: " + url);
-        return this.http.get(url).map(function (response) { return response.json(); });
+        var headers = new http_1.Headers();
+        var userId = constantStorage_1.ConstantStorage.getUserId();
+        if (isExternalRequest == false && userId) {
+            headers.append('Authorization', userId.toString());
+        }
+        return this.http.get(url, { headers: headers }).map(function (response) { return response.json(); });
     };
     HttpService.prototype.processPost = function (object, url) {
         console.log("post: " + url);
-        return this.http.post(url, object);
-        //return this.http.post(url, object).map(j => j.json()).catch(this.handleError);
+        var headers = new http_1.Headers();
+        var userId = constantStorage_1.ConstantStorage.getUserId();
+        if (userId) {
+            headers.append('Authorization', userId.toString());
+        }
+        return this.http.post(url, object, { headers: headers });
     };
     HttpService.prototype.processDelete = function (object, url) {
         console.log("delete: " + url);
@@ -31,10 +42,10 @@ var HttpService = (function () {
     HttpService.prototype.handleError = function () {
         console.log("ERRROR");
     };
-    HttpService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
-    ], HttpService);
     return HttpService;
 }());
+HttpService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], HttpService);
 exports.HttpService = HttpService;

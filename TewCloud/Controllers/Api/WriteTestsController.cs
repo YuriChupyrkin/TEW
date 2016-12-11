@@ -1,10 +1,12 @@
 ﻿using System.Web.Http;
 using Domain.RepositoryFactories;
 using EnglishLearnBLL.Tests;
+using TewCloud.FIlters;
 
-namespace TewCloud.Controllers.WebAppVersion
+namespace TewCloud.Controllers.Api
 {
-	public class WriteTestsController : ApiController
+  [UserActivityFilter]
+  public class WriteTestsController : ApiController
 	{
 		private readonly IRepositoryFactory _repositoryFactory;
 

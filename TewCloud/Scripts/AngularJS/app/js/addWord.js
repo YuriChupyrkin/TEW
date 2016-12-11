@@ -8,18 +8,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var constantStorage_1 = require('./services/constantStorage');
-var httpService_1 = require('./services/httpService');
-var wordsCloudModel_1 = require('./models/wordsCloudModel');
-var word_1 = require('./models/word');
-var forms_1 = require('@angular/forms');
+var core_1 = require("@angular/core");
+var constantStorage_1 = require("./services/constantStorage");
+var httpService_1 = require("./services/httpService");
+var wordsCloudModel_1 = require("./models/wordsCloudModel");
+var word_1 = require("./models/word");
+var forms_1 = require("@angular/forms");
 var AddWord = (function () {
     function AddWord(formBuilder, httpService) {
         this.formBuilder = formBuilder;
         this.httpService = httpService;
-        this.wordTranslaterController = '/api/WordTranslater';
-        this.wordsManagerController = '/api/WordsManager';
         this.translates = new Array();
     }
     AddWord.prototype.ngOnInit = function () {
@@ -44,7 +42,7 @@ var AddWord = (function () {
     };
     AddWord.prototype.translateByExistsWords = function (englishWord) {
         var _this = this;
-        var url = this.wordTranslaterController + "?word=" + englishWord;
+        var url = constantStorage_1.ConstantStorage.getWordTranslaterController() + "?word=" + englishWord;
         this.httpService.processGet(url).subscribe(function (response) { return _this.addTranslate(response); });
     };
     AddWord.prototype.translateByYandex = function (englishWord) {
@@ -53,7 +51,7 @@ var AddWord = (function () {
         var translateLang = "en-ru";
         var apiKey = constantStorage_1.ConstantStorage.getYandexTranslaterApiKey();
         var resultUri = url + "?key=" + apiKey + "&lang=" + translateLang + "&text=" + englishWord;
-        this.httpService.processGet(resultUri)
+        this.httpService.processGet(resultUri, true)
             .subscribe(function (response) { return _this.parseTranslate(response); });
     };
     AddWord.prototype.parseTranslate = function (response) {
@@ -111,17 +109,17 @@ var AddWord = (function () {
         word.UpdateDate = new Date();
         word.Example = example;
         wordCloudModel.Words = [word];
-        this.httpService.processPost(wordCloudModel, this.wordsManagerController)
+        this.httpService.processPost(wordCloudModel, constantStorage_1.ConstantStorage.getWordsManagerController())
             .subscribe(function (response) { return console.dir(response); }, function (error) { return alert("error"); });
         this.clearTranslateResults(true);
     };
-    AddWord = __decorate([
-        core_1.Component({
-            selector: 'add-word',
-            templateUrl: '../../scripts/angularjs/app/templates/addWord.html'
-        }), 
-        __metadata('design:paramtypes', [forms_1.FormBuilder, httpService_1.HttpService])
-    ], AddWord);
     return AddWord;
 }());
+AddWord = __decorate([
+    core_1.Component({
+        selector: 'add-word',
+        templateUrl: '../../scripts/angularjs/app/templates/addWord.html'
+    }),
+    __metadata("design:paramtypes", [forms_1.FormBuilder, httpService_1.HttpService])
+], AddWord);
 exports.AddWord = AddWord;

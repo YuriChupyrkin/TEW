@@ -1,12 +1,13 @@
 ﻿using System;
-using System.Linq;
 using System.Web.Http;
 using Domain.RepositoryFactories;
 using EnglishLearnBLL.Models;
+using TewCloud.FIlters;
 using TewCloud.Helpers;
 
-namespace TewCloud.Controllers.WebAppVersion
+namespace TewCloud.Controllers.Api
 {
+  [UserActivityFilter]
 	public class WordsManagerController : ApiController
 	{
 		private readonly IRepositoryFactory _repositoryFactory;
@@ -95,6 +96,7 @@ namespace TewCloud.Controllers.WebAppVersion
 			return Json(cloudModel);
 		}
 
+    /*
 		[HttpDelete]
 		public void DeleteWord([FromBody] WordsFullModel wordsModel)
 		{
@@ -103,6 +105,6 @@ namespace TewCloud.Controllers.WebAppVersion
 				var userId = _userHelper.GetUserId(wordsModel.UserName);
 				_repositoryFactory.EnRuWordsRepository.DeleteEnRuWord(wordsModel.Words.First().English, userId);
 			}
-		}
+		} */
 	}
 }

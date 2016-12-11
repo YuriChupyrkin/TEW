@@ -1,5 +1,14 @@
 ﻿<div class="visible-desktop">
     <h1> Home </h1>
+    <div *ngIf="userStatModel != null">
+        <ul>
+            <li>User email: {{userStatModel.Email}}</li>
+            <li>User nickname: {{userStatModel.NickName}}</li>
+            <li>User WordsLevel: {{userStatModel.WordsLevel}}</li>
+            <li>User ActivityLevel: {{userStatModel.ActivityLevel}}</li>
+            <li>User LastActivityDate: {{userStatModel.LastActivityDate}}</li>
+        </ul>
+    </div>
 </div>
 
 <!-- mobile -->

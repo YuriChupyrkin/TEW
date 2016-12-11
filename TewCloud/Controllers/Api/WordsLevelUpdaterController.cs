@@ -3,10 +3,12 @@ using Domain.Entities;
 using Domain.RepositoryFactories;
 using EnglishLearnBLL.Models;
 using EnglishLearnBLL.WordLevelManager;
+using TewCloud.FIlters;
 
-namespace TewCloud.Controllers.WebAppVersion
+namespace TewCloud.Controllers.Api
 {
-	public class WordsLevelUpdaterController : ApiController
+  [UserActivityFilter]
+  public class WordsLevelUpdaterController : ApiController
 	{
 		private readonly IRepositoryFactory _repositoryFactory;
 

@@ -8,17 +8,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
+var core_1 = require("@angular/core");
 var LoadingAnimation = (function () {
     function LoadingAnimation() {
     }
-    LoadingAnimation = __decorate([
-        core_1.Component({
-            selector: 'loading-animation',
-            templateUrl: '../../scripts/angularjs/app/templates/loadingAnimation.html'
-        }), 
-        __metadata('design:paramtypes', [])
-    ], LoadingAnimation);
     return LoadingAnimation;
 }());
+LoadingAnimation = __decorate([
+    core_1.Component({
+        selector: 'loading-animation',
+        templateUrl: '../../scripts/angularjs/app/templates/loadingAnimation.html'
+    }),
+    __metadata("design:paramtypes", [])
+], LoadingAnimation);
 exports.LoadingAnimation = LoadingAnimation;

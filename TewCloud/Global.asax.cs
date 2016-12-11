@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -20,9 +21,9 @@ namespace TewCloud
 
       AutofacModule.RegisterAutoFac();
 
-      var repositoryFactory = DependencyResolver.Current.GetService <IRepositoryFactory>();
-      repositoryFactory.EnRuWordsRepository.AddTranslate("TEW", "TEW", "TEW", 1);
-      ((IUnitOfWork)repositoryFactory).Commit();
+      //var repositoryFactory = DependencyResolver.Current.GetService <IRepositoryFactory>();
+      //repositoryFactory.EnRuWordsRepository.AddTranslate("TEW", "TEW", "TEW", 1);
+      //((IUnitOfWork)repositoryFactory).Commit();
     }
   }
 }

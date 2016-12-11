@@ -61,6 +61,14 @@ namespace EnglishLearnBLL.WordLevelManager
 			return word;
 		}
 
+	  public long GetUserWordsLevel(int userId)
+	  {
+	    var userWords = _repositoryFactory.EnRuWordsRepository.AllEnRuWords(r => r.UserId == userId);
+
+	    long level = userWords.Sum(r => r.WordLevel);
+	    return level;
+	  }
+
 		private EnRuWord LevelUp(EnRuWord word, int maxLevel)
 		{
 			if (word.WordLevel < maxLevel)
@@ -74,6 +82,5 @@ namespace EnglishLearnBLL.WordLevelManager
 
 			return word;
 		}
-
 	}
 }

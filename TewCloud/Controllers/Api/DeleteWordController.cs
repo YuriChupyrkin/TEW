@@ -1,13 +1,13 @@
-﻿using Domain.RepositoryFactories;
-using EnglishLearnBLL.Models;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Linq;
 using System.Web.Http;
+using Domain.RepositoryFactories;
+using EnglishLearnBLL.Models;
+using TewCloud.FIlters;
 using TewCloud.Helpers;
 
-namespace TewCloud.Controllers.WebAppVersion
+namespace TewCloud.Controllers.Api
 {
+  [UserActivityFilter]
   public class DeleteWordController : ApiController
   {
     private readonly IRepositoryFactory _repositoryFactory;

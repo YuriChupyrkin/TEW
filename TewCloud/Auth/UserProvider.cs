@@ -34,6 +34,8 @@ namespace TewCloud.Auth
 					user = new User();
 					user.Email = login;
 					user.Password = HashPassword(password);
+          user.LastActivity = DateTime.Now;
+				  user.NickName = "Default nickname";
 
 					var role = _repositoryFactory
 						.RoleRepository.Find(x => x.RoleName == "user");

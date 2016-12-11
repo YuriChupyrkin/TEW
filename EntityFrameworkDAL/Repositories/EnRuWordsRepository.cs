@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using Domain.Entities;
 using Domain.Repositories;
 using EntityFrameworkDAL.Context;
@@ -19,6 +20,11 @@ namespace EntityFrameworkDAL.Repositories
     public IEnumerable<EnRuWord> AllEnRuWords()
     {
       return _context.EnRuWords.AsEnumerable();
+    }
+
+    public IEnumerable<EnRuWord> AllEnRuWords(Expression<Func<EnRuWord, bool>> predicate)
+    {
+      return _context.EnRuWords.Where(predicate).AsEnumerable();
     }
 
     public void DeleteEnRuWord(string enWord, int userId)

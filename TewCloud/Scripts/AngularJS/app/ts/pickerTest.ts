@@ -13,8 +13,6 @@ import { WordsCloudModel } from './models/wordsCloudModel';
 export class PickerTest {
     private EnRuTest: string = "EnRuTest";
     private RuEnTest: string = "RuEnTest";
-    private PickerTestsController: string = '/api/PickerTests';
-    private WordsLevelUpdaterController = 'api/WordsLevelUpdater';
 
     private testSet: Array<PickerTestModel>;
     private testName: string;
@@ -40,7 +38,7 @@ export class PickerTest {
         this.initEmptyCurrentTest();
         this.testName = testName == this.EnRuTest ? this.EnRuTest : this.RuEnTest;
 
-        var url = `${this.PickerTestsController}?userId=${ConstantStorage.getUserId()}&testType=${this.testName}`;
+        var url = `${ConstantStorage.getPickerTestsController()}?userId=${ConstantStorage.getUserId()}&testType=${this.testName}`;
         this.httpService.processGet<Array<PickerTestModel>>(url).subscribe(
             response => this.startTest(response),
             error => {
@@ -111,7 +109,7 @@ export class PickerTest {
         };
 
         this.httpService
-            .processPost(postObject, this.WordsLevelUpdaterController)
+            .processPost(postObject, ConstantStorage.getWordsLevelUpdaterController())
             .subscribe(r => console.dir(r));
     }
 
@@ -151,7 +149,7 @@ export class PickerTest {
         word.English = pickerTestModel.Word;
         wordsCloudModel.Words = [word];
 
-        var result = this.httpService.processPost<WordsCloudModel>(wordsCloudModel, '/api/DeleteWord');
+        var result = this.httpService.processPost<WordsCloudModel>(wordsCloudModel, ConstantStorage.getDeleteWordController());
 
         result.subscribe(response => console.dir(response));
         this.setNextTest();

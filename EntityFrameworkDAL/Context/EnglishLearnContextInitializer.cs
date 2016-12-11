@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using Domain.Entities;
+using System;
 
 namespace EntityFrameworkDAL.Context
 {
   internal class EnglishLearnContextInitializer
     : DropCreateDatabaseIfModelChanges<EnglishLearnContext>
-
   {
     protected override void Seed(EnglishLearnContext context)
     {
@@ -23,7 +23,8 @@ namespace EntityFrameworkDAL.Context
       {
         Email = "admin@admin.admin",
         Password = "admin",
-        RoleId = 1
+        RoleId = 1,
+        LastActivity = DateTime.Now
       };
 
       context.Users.Add(user);

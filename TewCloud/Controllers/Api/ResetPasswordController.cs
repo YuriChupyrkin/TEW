@@ -3,7 +3,7 @@ using Domain.Entities;
 using Domain.RepositoryFactories;
 using TewCloud.Auth;
 
-namespace TewCloud.Controllers.WebAppVersion
+namespace TewCloud.Controllers.Api
 {
 	public class ResetPasswordController : ApiController
 	{

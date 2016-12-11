@@ -8,19 +8,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var pickerTestModel_1 = require('./models/pickerTestModel');
-var constantStorage_1 = require('./services/constantStorage');
-var httpService_1 = require('./services/httpService');
-var word_1 = require('./models/word');
-var wordsCloudModel_1 = require('./models/wordsCloudModel');
+var core_1 = require("@angular/core");
+var pickerTestModel_1 = require("./models/pickerTestModel");
+var constantStorage_1 = require("./services/constantStorage");
+var httpService_1 = require("./services/httpService");
+var word_1 = require("./models/word");
+var wordsCloudModel_1 = require("./models/wordsCloudModel");
 var PickerTest = (function () {
     function PickerTest(httpService) {
         this.httpService = httpService;
         this.EnRuTest = "EnRuTest";
         this.RuEnTest = "RuEnTest";
-        this.PickerTestsController = '/api/PickerTests';
-        this.WordsLevelUpdaterController = 'api/WordsLevelUpdater';
         this.testSet = new Array();
         this.firstTestNOTloaded = true;
         this.initEmptyCurrentTest();
@@ -30,7 +28,7 @@ var PickerTest = (function () {
         this.firstTestNOTloaded = false;
         this.initEmptyCurrentTest();
         this.testName = testName == this.EnRuTest ? this.EnRuTest : this.RuEnTest;
-        var url = this.PickerTestsController + "?userId=" + constantStorage_1.ConstantStorage.getUserId() + "&testType=" + this.testName;
+        var url = constantStorage_1.ConstantStorage.getPickerTestsController() + "?userId=" + constantStorage_1.ConstantStorage.getUserId() + "&testType=" + this.testName;
         this.httpService.processGet(url).subscribe(function (response) { return _this.startTest(response); }, function (error) {
             _this.showError('"Your words" should be have than 4 words');
             console.dir(error);
@@ -87,7 +85,7 @@ var PickerTest = (function () {
             TestType: this.testName
         };
         this.httpService
-            .processPost(postObject, this.WordsLevelUpdaterController)
+            .processPost(postObject, constantStorage_1.ConstantStorage.getWordsLevelUpdaterController())
             .subscribe(function (r) { return console.dir(r); });
     };
     PickerTest.prototype.setNextTest = function () {
@@ -119,7 +117,7 @@ var PickerTest = (function () {
         word.Id = pickerTestModel.WordId;
         word.English = pickerTestModel.Word;
         wordsCloudModel.Words = [word];
-        var result = this.httpService.processPost(wordsCloudModel, '/api/DeleteWord');
+        var result = this.httpService.processPost(wordsCloudModel, constantStorage_1.ConstantStorage.getDeleteWordController());
         result.subscribe(function (response) { return console.dir(response); });
         this.setNextTest();
     };
@@ -135,13 +133,13 @@ var PickerTest = (function () {
     PickerTest.prototype.showError = function (message) {
         alert(message);
     };
-    PickerTest = __decorate([
-        core_1.Component({
-            selector: 'picker-test',
-            templateUrl: '../../scripts/angularjs/app/templates/pickerTest.html'
-        }), 
-        __metadata('design:paramtypes', [httpService_1.HttpService])
-    ], PickerTest);
     return PickerTest;
 }());
+PickerTest = __decorate([
+    core_1.Component({
+        selector: 'picker-test',
+        templateUrl: '../../scripts/angularjs/app/templates/pickerTest.html'
+    }),
+    __metadata("design:paramtypes", [httpService_1.HttpService])
+], PickerTest);
 exports.PickerTest = PickerTest;

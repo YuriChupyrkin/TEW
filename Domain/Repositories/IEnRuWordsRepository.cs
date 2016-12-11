@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using Domain.Entities;
 
 namespace Domain.Repositories
@@ -13,7 +14,8 @@ namespace Domain.Repositories
 
 		IDictionary<string, string> GetWordsForUser(int userId);
 		IEnumerable<EnRuWord> AllEnRuWords();
-		IEnumerable<RussianWord> AllRussianWords();
+    IEnumerable<EnRuWord> AllEnRuWords(Expression<Func<EnRuWord, bool>> predicate);
+    IEnumerable<RussianWord> AllRussianWords();
 		IEnumerable<EnglishWord> AllEnglishWords();
 		void ChangeWordLevel(int enRuWordId, int levelShift);
 		void DeleteEnRuWord(string enWord, int userId);

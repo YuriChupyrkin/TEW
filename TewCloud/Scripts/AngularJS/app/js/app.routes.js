@@ -1,9 +1,9 @@
 "use strict";
-var router_1 = require('@angular/router');
-var home_1 = require('./home');
-var addWord_1 = require('./addWord');
-var myWords_1 = require('./myWords');
-var pickerTest_1 = require('./pickerTest');
+var router_1 = require("@angular/router");
+var home_1 = require("./home");
+var addWord_1 = require("./addWord");
+var myWords_1 = require("./myWords");
+var pickerTest_1 = require("./pickerTest");
 var appRoutes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: home_1.Home },

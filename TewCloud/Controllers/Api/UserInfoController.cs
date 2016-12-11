@@ -1,9 +1,8 @@
-﻿using System.Threading;
-using System.Web.Http;
+﻿using System.Web.Http;
 using System.Web.Security;
 using TewCloud.Providers;
 
-namespace TewCloud.Controllers.WebAppVersion
+namespace TewCloud.Controllers.Api
 {
     public class UserInfoController : ApiController
     {

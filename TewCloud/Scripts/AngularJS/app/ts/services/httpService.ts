@@ -1,6 +1,7 @@
 ﻿import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { ConstantStorage } from './constantStorage'
 
 import 'rxjs/add/operator/map';
 
@@ -9,17 +10,30 @@ export class HttpService {
 
     constructor(private http: Http) { }
 
-    public processGet<T>(url: string): Observable<T> {
+    public processGet<T>(url: string, isExternalRequest = false): Observable<T> {
         console.log(`get: ${url}`);
 
-        return this.http.get(url).map(response => <T>response.json());
+        let headers = new Headers();
+        let userId = ConstantStorage.getUserId()
+
+        if (isExternalRequest == false && userId) {
+            headers.append('Authorization', userId.toString());
+        }
+
+        return this.http.get(url, { headers: headers}).map(response => <T>response.json());
     }
 
     public processPost<T>(object: T, url: string) {
         console.log(`post: ${url}`);
-        return this.http.post(url, object);
 
-        //return this.http.post(url, object).map(j => j.json()).catch(this.handleError);
+        let headers = new Headers();
+
+        let userId = ConstantStorage.getUserId()
+        if (userId) {
+            headers.append('Authorization', userId.toString());
+        }
+
+        return this.http.post(url, object, { headers: headers });
     }
 
     public processDelete<T>(object: T, url: string) {
