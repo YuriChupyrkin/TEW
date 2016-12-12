@@ -38,20 +38,22 @@ export class HttpService {
 
         // start loading...
         PubSub.Pub(ConstantStorage.getLoadingEvent(), true);
-        
+
         var postRequest = this.http.post(url, object, { headers: headers });
         postRequest.subscribe(r => this.requestFinished(), e => this.requestFinishedWithError(url, 'post', e));
         return postRequest;
     }
 
-    private requestFinished(){
-        console.log("request is done!");          
+    private requestFinished() {
+        // end loading... 
         PubSub.Pub(ConstantStorage.getLoadingEvent(), false);
     }
 
     private requestFinishedWithError(url: string, method: string, error: any) {
-        PubSub.Pub(ConstantStorage.getLoadingEvent(), false);
         console.log(`${url} (${method}): request finished with error:`);
         console.log(error);
+
+        // end loading...
+        PubSub.Pub(ConstantStorage.getLoadingEvent(), false);
     }
 }

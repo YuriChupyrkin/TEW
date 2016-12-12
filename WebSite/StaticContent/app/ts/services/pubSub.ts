@@ -6,8 +6,6 @@ export class PubSub {
             return;
         }
 
-        console.log('Pub: ' + this.registry[name].length);
-        
         this.registry[name].forEach(x => {
             x.apply(null, args);
         });
@@ -15,14 +13,10 @@ export class PubSub {
 
     public static Sub (name: string, fn: any) {
         if (this.registry && name && fn) {
-            
-            if (!this.registry[name]) {
-                console.log('Sub: new sub');
 
+            if (!this.registry[name]) {
                 this.registry[name] = [fn];
             } else if(this.registry[name].length) {
-                console.log('Pub: ' + this.registry[name].length);
-
                 this.registry[name].push(fn);
             }
         }

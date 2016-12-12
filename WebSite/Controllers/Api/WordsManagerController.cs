@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using System.Web.Http;
 using Domain.RepositoryFactories;
 using EnglishLearnBLL.Models;
@@ -73,7 +72,6 @@ namespace TewCloud.Controllers.Api
 		[HttpGet]
 		public IHttpActionResult GetWords(string userName)
 		{
-		  Thread.Sleep(2000);
 			UserUpdateDateModel updateModel = new UserUpdateDateModel
 			{
 				UserName = userName

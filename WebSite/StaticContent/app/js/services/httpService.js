@@ -45,13 +45,14 @@ var HttpService = (function () {
         return postRequest;
     };
     HttpService.prototype.requestFinished = function () {
-        console.log("request is done!");
+        // end loading... 
         pubSub_1.PubSub.Pub(constantStorage_1.ConstantStorage.getLoadingEvent(), false);
     };
     HttpService.prototype.requestFinishedWithError = function (url, method, error) {
-        pubSub_1.PubSub.Pub(constantStorage_1.ConstantStorage.getLoadingEvent(), false);
         console.log(url + " (" + method + "): request finished with error:");
         console.log(error);
+        // end loading...
+        pubSub_1.PubSub.Pub(constantStorage_1.ConstantStorage.getLoadingEvent(), false);
     };
     return HttpService;
 }());

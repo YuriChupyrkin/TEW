@@ -7,17 +7,15 @@ import { ConstantStorage } from './services/constantStorage';
 
 @Component({
     selector: 'my-words',
-    templateUrl: '../StaticContent/app/templates/myWords.html'
+    templateUrl: '../StaticContent/app/templates/myWordsNext.html'
 })
 
 export class MyWords {
-    private loaded: boolean;
     private userWords: UserWords;
     private wordsCount: number;
 
     constructor(private httpService: HttpService) {
         this.userWords = new UserWords();
-        this.loaded = false;
 
         this.getWords();
     }
@@ -47,9 +45,11 @@ export class MyWords {
     }
 
     private setUserWords(userWords: UserWords) {
-        this.loaded = true;
         this.userWords = userWords;
-        this.wordsCount = userWords.Words.length;
+
+        if(this.userWords.Words) { 
+            this.wordsCount = userWords.Words.length;
+        }
     }
 
     private removedWord(word: Word) {

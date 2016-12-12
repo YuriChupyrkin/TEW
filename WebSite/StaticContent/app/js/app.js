@@ -24,25 +24,20 @@ var AppComponent = (function () {
         this.httpService.processGet(constantStorage_1.ConstantStorage.getUserInfoController()).subscribe(function (response) { return _this.setUserInfo(response); });
         this.httpService.processGet(constantStorage_1.ConstantStorage.getApplicationMessageController())
             .subscribe(function (response) { return _this.applicationMessage = response; });
+    }
+    AppComponent.prototype.ngOnInit = function () {
+        var self = this;
         pubSub_1.PubSub.Sub('loading', function () {
-            var _this = this;
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
                 args[_i] = arguments[_i];
             }
             if (args && args.length) {
                 args.forEach(function (x) {
-                    console.log('loading status: ', x);
-                    if (x === true && _this != null) {
-                    }
-                    else if (x === false && _this != null) {
-                        _this.showLoading = false;
-                    }
+                    self.showLoading = x === true ? true : false;
                 });
             }
         });
-    }
-    AppComponent.prototype.ngOnInit = function () {
     };
     AppComponent.prototype.setUserInfo = function (user) {
         constantStorage_1.ConstantStorage.setUserName(user.Email);

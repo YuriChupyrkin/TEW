@@ -4,11 +4,8 @@
 </div>
 
 <div>    
-    <div [hidden]="loaded">LOADING...</div>
-
-    <!-- desctop -->
     <div class="visible-desktop">
-        <table class="table table-hover" [hidden]="!loaded">
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th></th>
@@ -23,7 +20,7 @@
             <tbody *ngFor="let word of userWords.Words;">
                 <tr [hidden]="word.Hidden">
                     <td>
-                        <img class="cursor-pointer" (click)="removeWord(word)" src="/Scripts/AngularJS/app/images/delete.png" style="height: 30px" />
+                        <i class="fa fa-times fa-lg cursor-pointer" aria-hidden="true" (click)="removeWord(word)"></i>
                     </td>
                     <td>{{word.English}}</td>
                     <td>{{word.Russian}}</td>
@@ -38,7 +35,7 @@
 
     <!-- mobile -->
     <div class="visible-phone visible-tablet">
-        <table class="table table-hover" [hidden]="!loaded">
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th></th>
@@ -50,7 +47,7 @@
             <tbody *ngFor="let word of userWords.Words;">
                 <tr [hidden]="word.Hidden">
                     <td>
-                        <img class="cursor-pointer" (click)="removeWord(word)" src="/Scripts/AngularJS/app/images/delete.png" style="height: 30px" />
+                        <i class="fa fa-times fa-lg cursor-pointer" aria-hidden="true" (click)="removeWord(word)"></i>
                     </td>
                     <td>{{word.English}}</td>
                     <td>{{word.Russian}}</td>

@@ -24,28 +24,18 @@ export class AppComponent implements OnInit {
 
         this.httpService.processGet<string>(ConstantStorage.getApplicationMessageController())
             .subscribe(response => this.applicationMessage = response);
-
-        PubSub.Sub('loading', function (...args: Array<any>) {
-            if(args && args.length){
-
-                args.forEach(x => {
-                    console.log('loading status: ', x);
-
-                    
-
-                    if (x === true && this != null) {
-                        //this.showLoading = true;
-                    }
-                    else if (x === false && this != null) {
-                        this.showLoading = false;
-                    }
-                });
-            }
-        }); 
     }
 
     ngOnInit() {
+        var self = this;
 
+        PubSub.Sub('loading', (...args: Array<any>) => {
+            if(args && args.length) {
+                args.forEach(x => {   
+                    self.showLoading = x === true ? true : false
+                });
+            }
+        }); 
     }
 
     private setUserInfo(user: User) {

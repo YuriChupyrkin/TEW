@@ -17,7 +17,6 @@ var MyWords = (function () {
     function MyWords(httpService) {
         this.httpService = httpService;
         this.userWords = new userWords_1.UserWords();
-        this.loaded = false;
         this.getWords();
     }
     MyWords.prototype.getWords = function () {
@@ -38,9 +37,10 @@ var MyWords = (function () {
         result.subscribe(function (response) { return _this.removedWord(word); }, function (error) { return word.Hidden = false; });
     };
     MyWords.prototype.setUserWords = function (userWords) {
-        this.loaded = true;
         this.userWords = userWords;
-        this.wordsCount = userWords.Words.length;
+        if (this.userWords.Words) {
+            this.wordsCount = userWords.Words.length;
+        }
     };
     MyWords.prototype.removedWord = function (word) {
         var wordIndex = this.userWords.Words.indexOf(word);
@@ -55,7 +55,7 @@ var MyWords = (function () {
 MyWords = __decorate([
     core_1.Component({
         selector: 'my-words',
-        templateUrl: '../StaticContent/app/templates/myWords.html'
+        templateUrl: '../StaticContent/app/templates/myWordsNext.html'
     }),
     __metadata("design:paramtypes", [httpService_1.HttpService])
 ], MyWords);

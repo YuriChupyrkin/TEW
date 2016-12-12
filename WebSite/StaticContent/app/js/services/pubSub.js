@@ -10,7 +10,6 @@ var PubSub = (function () {
         if (!this.registry[name]) {
             return;
         }
-        console.log('Pub: ' + this.registry[name].length);
         this.registry[name].forEach(function (x) {
             x.apply(null, args);
         });
@@ -18,11 +17,9 @@ var PubSub = (function () {
     PubSub.Sub = function (name, fn) {
         if (this.registry && name && fn) {
             if (!this.registry[name]) {
-                console.log('Sub: new sub');
                 this.registry[name] = [fn];
             }
             else if (this.registry[name].length) {
-                console.log('Pub: ' + this.registry[name].length);
                 this.registry[name].push(fn);
             }
         }

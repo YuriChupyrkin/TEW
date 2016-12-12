@@ -12,22 +12,22 @@
                 <div class="collapse navbar-collapse" id="responsive-menu">
                     <ul class="nav navbar-nav responsive-menu ">
                         <li>
-                            <a routerLink="/home" routerLinkActive="active-menu-item" data-toggle="collapse" data-target=".navbar-collapse">
+                            <a routerLink="/home" routerLinkActive="active-menu-item">
                                 Home
                             </a>
                         </li>
                         <li>
-                            <a routerLink="/add-word" routerLinkActive="active-menu-item" data-toggle="collapse" data-target=".navbar-collapse">
+                            <a routerLink="/add-word" routerLinkActive="active-menu-item">
                                 Add word
                             </a>
                         </li>
                         <li>
-                            <a routerLink="/my-words" routerLinkActive="active-menu-item" data-toggle="collapse" data-target=".navbar-collapse">
+                            <a routerLink="/my-words" routerLinkActive="active-menu-item">
                                 My words
                             </a>
                         </li>
                         <li>
-                            <a routerLink="/picker-test" routerLinkActive="active-menu-item" data-toggle="collapse" data-target=".navbar-collapse">
+                            <a routerLink="/picker-test" routerLinkActive="active-menu-item">
                                 Picker test
                             </a>
                         </li>
@@ -53,7 +53,7 @@
             </div>
     </div>
     <div class="tew-body">
-        <div [hidden]="!showLoading">
+        <div [style.visibility]="showLoading ? 'visible' : 'hidden'">
             <loading-animation></loading-animation>
         </div>
 
