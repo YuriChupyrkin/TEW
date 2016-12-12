@@ -37,6 +37,7 @@ namespace TewCloud
       bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",
                 "~/Content/bootstrap-responsive.css",
+                "~/Content/font-awesome.css",
                 "~/Content/Tew.css",
                 "~/Content/site.css"));
 

@@ -1,0 +1,44 @@
+﻿<div class="container">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle responsive-menu-button" data-toggle="collapse" data-target="#responsive-menu">
+                        <span class="sr-only">Open menu</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="responsive-menu">
+                    <ul class="nav navbar-nav responsive-menu ">
+                        <li><a routerLink="/home" routerLinkActive="active-menu-item">Home</a></li>
+                        <li><a routerLink="/add-word" routerLinkActive="active-menu-item">Add word</a></li>
+                        <li><a routerLink="/my-words" routerLinkActive="active-menu-item">My words</a></li>
+                        <li><a routerLink="/picker-test" routerLinkActive="active-menu-item">Picker test</a></li>
+                    </ul>
+
+                    <span>
+                        <ul class="nav navbar-nav navbar-right responsive-menu ">
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                                    {{userName}}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/account/SignOff">
+                                   <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                   Log out
+                                </a>
+                            </li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+    </div>
+    <div class="tew-body">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+

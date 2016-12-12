@@ -6,7 +6,7 @@ import { Router} from '@angular/router';
 
 @Component({
     selector: 'my-app',
-    templateUrl: '../StaticContent/app/templates/app.html'
+    templateUrl: '../StaticContent/app/templates/appNext.html'
 })
 
 export class AppComponent implements OnInit {
