@@ -26,6 +26,10 @@ var ConstantStorage = (function () {
     ConstantStorage.getWordsManagerController = function () {
         return this.wordsManagerController;
     };
+    // end of urls
+    ConstantStorage.getLoadingEvent = function () {
+        return this.loadingEvent;
+    };
     ConstantStorage.setUserName = function (name) {
         this.userName = name;
     };
@@ -46,6 +50,7 @@ var ConstantStorage = (function () {
     };
     return ConstantStorage;
 }());
+ConstantStorage.loadingEvent = 'loading';
 // urls
 ConstantStorage.wordTranslaterController = '/api/WordTranslater';
 ConstantStorage.wordsManagerController = '/api/WordsManager';

@@ -1,0 +1,33 @@
+"use strict";
+var PubSub = (function () {
+    function PubSub() {
+    }
+    PubSub.Pub = function (name) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        if (!this.registry[name]) {
+            return;
+        }
+        console.log('Pub: ' + this.registry[name].length);
+        this.registry[name].forEach(function (x) {
+            x.apply(null, args);
+        });
+    };
+    PubSub.Sub = function (name, fn) {
+        if (this.registry && name && fn) {
+            if (!this.registry[name]) {
+                console.log('Sub: new sub');
+                this.registry[name] = [fn];
+            }
+            else if (this.registry[name].length) {
+                console.log('Pub: ' + this.registry[name].length);
+                this.registry[name].push(fn);
+            }
+        }
+    };
+    return PubSub;
+}());
+PubSub.registry = {};
+exports.PubSub = PubSub;

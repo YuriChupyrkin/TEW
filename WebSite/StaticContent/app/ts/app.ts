@@ -3,6 +3,7 @@ import { ConstantStorage } from './services/constantStorage';
 import { HttpService } from './services/httpService';
 import { User } from './models/user';
 import { Router} from '@angular/router';
+import { PubSub } from './services/pubSub';
 
 @Component({
     selector: 'my-app',
@@ -12,9 +13,10 @@ import { Router} from '@angular/router';
 export class AppComponent implements OnInit {
     private userName: string;
     private applicationMessage: string;
-    private desktopMode: boolean = true;
+    public showLoading: boolean;
 
     constructor(private httpService: HttpService, private router: Router) {
+        this.showLoading = false;
         ConstantStorage.setYandexTranslaterApiKey('dict.1.1.20160904T125311Z.5e2c6c9dfb5cd3c3.71b0d5220878e340d60dcfa0faf7f649af59c65f');
 
         this.userName = '';
@@ -22,10 +24,28 @@ export class AppComponent implements OnInit {
 
         this.httpService.processGet<string>(ConstantStorage.getApplicationMessageController())
             .subscribe(response => this.applicationMessage = response);
+
+        PubSub.Sub('loading', function (...args: Array<any>) {
+            if(args && args.length){
+
+                args.forEach(x => {
+                    console.log('loading status: ', x);
+
+                    
+
+                    if (x === true && this != null) {
+                        //this.showLoading = true;
+                    }
+                    else if (x === false && this != null) {
+                        this.showLoading = false;
+                    }
+                });
+            }
+        }); 
     }
 
     ngOnInit() {
-        this.resized(null);
+
     }
 
     private setUserInfo(user: User) {
@@ -34,17 +54,5 @@ export class AppComponent implements OnInit {
 
         this.userName = user.Email;
         this.router.navigate(['/home']);
-    }
-
-    private resized(event: any) {
-        var width = window.innerWidth;
-
-        if (width < 980) {
-            this.desktopMode = false;
-        } else {
-            this.desktopMode = true;
-        }
-
-        console.log("resized: " + this.desktopMode);
     }
 }

@@ -2,6 +2,7 @@
     private static userName: string;
     private static yandexTranslaterApiKey: string;
     private static userId: number;
+    private static loadingEvent = 'loading';
 
     // urls
     private static wordTranslaterController = '/api/WordTranslater';
@@ -43,6 +44,12 @@
 
     public static getWordsManagerController(){
         return this.wordsManagerController;
+    }
+
+    // end of urls
+
+    public static getLoadingEvent() {
+        return this.loadingEvent;
     }
 
     public static setUserName(name: string) {

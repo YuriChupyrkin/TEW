@@ -2,17 +2,17 @@
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { ConstantStorage } from './constantStorage'
+import { PubSub } from './pubSub';
 
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class HttpService {
 
-    constructor(private http: Http) { }
+    constructor(private http: Http) { 
+    }
 
     public processGet<T>(url: string, isExternalRequest = false): Observable<T> {
-        console.log(`get: ${url}`);
-
         let headers = new Headers();
         let userId = ConstantStorage.getUserId()
 
@@ -20,12 +20,15 @@ export class HttpService {
             headers.append('Authorization', userId.toString());
         }
 
-        return this.http.get(url, { headers: headers}).map(response => <T>response.json());
+        // start loading...
+        PubSub.Pub(ConstantStorage.getLoadingEvent(), true);
+
+        var getRequest = this.http.get(url, { headers: headers}).map(response => <T>response.json());
+        getRequest.subscribe(r => this.requestFinished(), e => this.requestFinishedWithError(url, 'get', e));
+        return getRequest;
     }
 
     public processPost<T>(object: T, url: string) {
-        console.log(`post: ${url}`);
-
         let headers = new Headers();
 
         let userId = ConstantStorage.getUserId()
@@ -33,15 +36,22 @@ export class HttpService {
             headers.append('Authorization', userId.toString());
         }
 
-        return this.http.post(url, object, { headers: headers });
+        // start loading...
+        PubSub.Pub(ConstantStorage.getLoadingEvent(), true);
+        
+        var postRequest = this.http.post(url, object, { headers: headers });
+        postRequest.subscribe(r => this.requestFinished(), e => this.requestFinishedWithError(url, 'post', e));
+        return postRequest;
     }
 
-    public processDelete<T>(object: T, url: string) {
-        console.log(`delete: ${url}`);
-        return this.http.delete(url, object);
+    private requestFinished(){
+        console.log("request is done!");          
+        PubSub.Pub(ConstantStorage.getLoadingEvent(), false);
     }
 
-    private handleError() {
-        console.log("ERRROR");
+    private requestFinishedWithError(url: string, method: string, error: any) {
+        PubSub.Pub(ConstantStorage.getLoadingEvent(), false);
+        console.log(`${url} (${method}): request finished with error:`);
+        console.log(error);
     }
 }

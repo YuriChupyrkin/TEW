@@ -53,6 +53,10 @@
             </div>
     </div>
     <div class="tew-body">
+        <div [hidden]="!showLoading">
+            <loading-animation></loading-animation>
+        </div>
+
         <router-outlet></router-outlet>
     </div>
 </div>

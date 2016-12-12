@@ -12,36 +12,43 @@ var core_1 = require("@angular/core");
 var constantStorage_1 = require("./services/constantStorage");
 var httpService_1 = require("./services/httpService");
 var router_1 = require("@angular/router");
+var pubSub_1 = require("./services/pubSub");
 var AppComponent = (function () {
     function AppComponent(httpService, router) {
         var _this = this;
         this.httpService = httpService;
         this.router = router;
-        this.desktopMode = true;
+        this.showLoading = false;
         constantStorage_1.ConstantStorage.setYandexTranslaterApiKey('dict.1.1.20160904T125311Z.5e2c6c9dfb5cd3c3.71b0d5220878e340d60dcfa0faf7f649af59c65f');
         this.userName = '';
         this.httpService.processGet(constantStorage_1.ConstantStorage.getUserInfoController()).subscribe(function (response) { return _this.setUserInfo(response); });
         this.httpService.processGet(constantStorage_1.ConstantStorage.getApplicationMessageController())
             .subscribe(function (response) { return _this.applicationMessage = response; });
+        pubSub_1.PubSub.Sub('loading', function () {
+            var _this = this;
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            if (args && args.length) {
+                args.forEach(function (x) {
+                    console.log('loading status: ', x);
+                    if (x === true && _this != null) {
+                    }
+                    else if (x === false && _this != null) {
+                        _this.showLoading = false;
+                    }
+                });
+            }
+        });
     }
     AppComponent.prototype.ngOnInit = function () {
-        this.resized(null);
     };
     AppComponent.prototype.setUserInfo = function (user) {
         constantStorage_1.ConstantStorage.setUserName(user.Email);
         constantStorage_1.ConstantStorage.setUserId(user.Id);
         this.userName = user.Email;
         this.router.navigate(['/home']);
-    };
-    AppComponent.prototype.resized = function (event) {
-        var width = window.innerWidth;
-        if (width < 980) {
-            this.desktopMode = false;
-        }
-        else {
-            this.desktopMode = true;
-        }
-        console.log("resized: " + this.desktopMode);
     };
     return AppComponent;
 }());

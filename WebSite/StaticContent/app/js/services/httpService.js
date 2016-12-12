@@ -11,36 +11,47 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var constantStorage_1 = require("./constantStorage");
+var pubSub_1 = require("./pubSub");
 require("rxjs/add/operator/map");
 var HttpService = (function () {
     function HttpService(http) {
         this.http = http;
     }
     HttpService.prototype.processGet = function (url, isExternalRequest) {
+        var _this = this;
         if (isExternalRequest === void 0) { isExternalRequest = false; }
-        console.log("get: " + url);
         var headers = new http_1.Headers();
         var userId = constantStorage_1.ConstantStorage.getUserId();
         if (isExternalRequest == false && userId) {
             headers.append('Authorization', userId.toString());
         }
-        return this.http.get(url, { headers: headers }).map(function (response) { return response.json(); });
+        // start loading...
+        pubSub_1.PubSub.Pub(constantStorage_1.ConstantStorage.getLoadingEvent(), true);
+        var getRequest = this.http.get(url, { headers: headers }).map(function (response) { return response.json(); });
+        getRequest.subscribe(function (r) { return _this.requestFinished(); }, function (e) { return _this.requestFinishedWithError(url, 'get', e); });
+        return getRequest;
     };
     HttpService.prototype.processPost = function (object, url) {
-        console.log("post: " + url);
+        var _this = this;
         var headers = new http_1.Headers();
         var userId = constantStorage_1.ConstantStorage.getUserId();
         if (userId) {
             headers.append('Authorization', userId.toString());
         }
-        return this.http.post(url, object, { headers: headers });
+        // start loading...
+        pubSub_1.PubSub.Pub(constantStorage_1.ConstantStorage.getLoadingEvent(), true);
+        var postRequest = this.http.post(url, object, { headers: headers });
+        postRequest.subscribe(function (r) { return _this.requestFinished(); }, function (e) { return _this.requestFinishedWithError(url, 'post', e); });
+        return postRequest;
     };
-    HttpService.prototype.processDelete = function (object, url) {
-        console.log("delete: " + url);
-        return this.http.delete(url, object);
+    HttpService.prototype.requestFinished = function () {
+        console.log("request is done!");
+        pubSub_1.PubSub.Pub(constantStorage_1.ConstantStorage.getLoadingEvent(), false);
     };
-    HttpService.prototype.handleError = function () {
-        console.log("ERRROR");
+    HttpService.prototype.requestFinishedWithError = function (url, method, error) {
+        pubSub_1.PubSub.Pub(constantStorage_1.ConstantStorage.getLoadingEvent(), false);
+        console.log(url + " (" + method + "): request finished with error:");
+        console.log(error);
     };
     return HttpService;
 }());
