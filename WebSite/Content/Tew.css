@@ -1,4 +1,4 @@
-﻿.margin-10 {
+﻿/*.margin-10 {
     margin: 10px;
 }
 
@@ -15,11 +15,6 @@
     display:inline-block;
 }
 
-.choosen-list-item {
-    background-color: #737272;
-    color: #ffc56d;
-}
-
 .add-word-area {
     margin: 50px;
 }
@@ -30,23 +25,6 @@
 
 .margin-30 {
      margin: 30px;
-}
-
-.list-items {
-    background-color: #e0e0e0;
-    border-radius: 10px;
-    font-size: 28px;
-
-    /* No selection after double click */
-    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
-    -moz-user-select: none; /* mozilla browsers */
-    -ms-user-select: none; /* IE10+ */
-}
-
-.list-item {
-    width: 100%;
-    border-radius: 10px;
-    word-wrap: break-word;
 }
 
 .label {
@@ -70,7 +48,6 @@
     height: 100vh;
     color: #ffc56d;
 
-    /* col-md-2 */
     max-width: 16.3%;
 }
 
@@ -161,11 +138,6 @@
     text-decoration: underline;
 }
 
-.error-field {
-    color: red;
-    font-size: 12px;
-}
-
 .header-server-message {
     margin-top: 50px;
     margin-bottom: 30px;
@@ -201,6 +173,7 @@
     background-color: #737272;
     margin-top: 30px;
 }
+*/
 
 /*
             COLORS:
@@ -212,9 +185,26 @@
 
 /**************************** TEW NEXT ********************************************/
 
+/*** 
+        COLORS 
+    lists:
+background-color: #e0e0e0
+active item > background-color: #737272
+active item > color: black
+
+
+***/
+
+
 .tew-body {
-	margin-top: 55px;
+	margin-top: 60px;
 }
+
+@media (max-width: 979px) {
+    .tew-body {
+	    margin-top: 0px;
+    }
+} 
 
 .responsive-menu {
 	margin-left: 5px;
@@ -239,4 +229,57 @@
 .active-menu-item {
 	font-size: 20px;
 	color: red !important;
+}
+
+.error-field {
+    color: red;
+    font-size: 14px;
+}
+
+.field-label {
+    font-size: 16px;
+}
+
+.center-block {
+    text-align: center;
+}
+
+.xs-visible {
+    display: none;
+}
+
+.xs-hidden {
+    display: inline;
+}
+
+@media (max-width: 768px) {
+    .xs-visible {
+	    display: inline;
+    }
+
+    .xs-hidden {
+        display: none;
+    }
+}
+
+.list-items {
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    font-size: 24px;
+
+    /* No selection after double click */
+    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -ms-user-select: none; /* IE10+ */
+}
+
+.list-item {
+    width: 100%;
+    border-radius: 10px;
+    word-wrap: break-word;
+}
+
+.active-list-item {
+    background-color: #737272;
+    color: black;
 }

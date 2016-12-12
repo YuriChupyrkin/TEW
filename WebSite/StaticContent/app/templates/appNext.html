@@ -11,12 +11,27 @@
                 </div>
                 <div class="collapse navbar-collapse" id="responsive-menu">
                     <ul class="nav navbar-nav responsive-menu ">
-                        <li><a routerLink="/home" routerLinkActive="active-menu-item">Home</a></li>
-                        <li><a routerLink="/add-word" routerLinkActive="active-menu-item">Add word</a></li>
-                        <li><a routerLink="/my-words" routerLinkActive="active-menu-item">My words</a></li>
-                        <li><a routerLink="/picker-test" routerLinkActive="active-menu-item">Picker test</a></li>
+                        <li>
+                            <a routerLink="/home" routerLinkActive="active-menu-item" data-toggle="collapse" data-target=".navbar-collapse">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="/add-word" routerLinkActive="active-menu-item" data-toggle="collapse" data-target=".navbar-collapse">
+                                Add word
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="/my-words" routerLinkActive="active-menu-item" data-toggle="collapse" data-target=".navbar-collapse">
+                                My words
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="/picker-test" routerLinkActive="active-menu-item" data-toggle="collapse" data-target=".navbar-collapse">
+                                Picker test
+                            </a>
+                        </li>
                     </ul>
-
                     <span>
                         <ul class="nav navbar-nav navbar-right responsive-menu ">
                             <li class="divider"></li>

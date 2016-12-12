@@ -118,7 +118,7 @@ var AddWord = (function () {
 AddWord = __decorate([
     core_1.Component({
         selector: 'add-word',
-        templateUrl: '../StaticContent/app/templates/addWord.html'
+        templateUrl: '../StaticContent/app/templates/addWordNext.html'
     }),
     __metadata("design:paramtypes", [forms_1.FormBuilder, httpService_1.HttpService])
 ], AddWord);

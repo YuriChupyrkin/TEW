@@ -1,9 +1,4 @@
-﻿using Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Security;
 using TewCloud.Models;
 using TewCloud.Providers;
@@ -34,7 +29,7 @@ namespace TewCloud.Controllers
                 }
 
                 FormsAuthentication.SetAuthCookie(signUpModel.Email, false);
-                return RedirectToAction("Learning", "Tew");
+                return RedirectToAction("Index", "Tew");
             }
 
             return View();
@@ -68,7 +63,7 @@ namespace TewCloud.Controllers
                     return Redirect(returnUrl);
                 }
 
-                return RedirectToAction("Learning", "Tew");
+                return RedirectToAction("Index", "Tew");
             }
 
             return View();
