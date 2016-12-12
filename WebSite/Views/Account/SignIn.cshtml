@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "SignIn";
+    Layout = "~/Views/Shared/_WebAppLayout.cshtml";
+}
+
+@using TewCloud.Models;
+@model SignInModel
+
+<div class="margin-30">
+    <h2>Sign in</h2>
+    <br/>
+
+	@using (Html.BeginForm())
+	{
+		@Html.ValidationSummary(true)
+
+		<div>
+			<fieldset>
+				<div class="editor-label">
+					@Html.LabelFor(m => m.Email)
+				</div>
+				<div class="editor-field">
+					@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+					@Html.ValidationMessageFor(m => m.Email)
+				</div>
+                <br/>
+
+				<div class="editor-label">
+					@Html.LabelFor(m => m.Password)
+				</div>
+				<div class="editor-field">
+					@Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+					@Html.ValidationMessageFor(m => m.Password)
+				</div>
+                <br />
+
+				<div class="editor-label">
+                    @Html.CheckBoxFor(m => m.StayInLogin)
+					@Html.LabelFor(m => m.StayInLogin)
+				</div>
+                <br />
+
+				<input class="btn btn-info" type="submit" value="Sign In" />
+			</fieldset>
+		</div>
+	}
+
+    @Html.ActionLink("Sign up", "SignUp")
+</div>
+
+
+<!-- redirect to new domen -->
+@*<script type="text/javascript">
+    $(document).ready(function () { window.location.href = 'http://tew2.azurewebsites.net' });
+</script>*@

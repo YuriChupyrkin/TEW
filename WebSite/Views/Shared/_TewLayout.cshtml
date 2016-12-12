@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width"/>
+        <meta charset="utf-8" />
+        <title>Learning</title>
+
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/angular2")
+
+        @RenderSection("scripts", required: false)
+    </head>
+    <body class="document-body">
+         @RenderBody()
+    </body>
+</html>

@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Learning";
+    Layout = "~/Views/Shared/_TewLayout.cshtml";
+}
+
+<!-- INIT SCRIPTS -->
+<script src="~/StaticContent/systemjs.config.js"></script>
+<script>
+    var main = '@Url.Content("~/StaticContent/app/js/main.js")';
+    System.import(main).catch(function (err)
+    {
+        console.error(err);
+    });
+</script>
+<!-- END OF INIT SCRIPTS -->
+
+<div>
+    <my-app></my-app>
+</div>
+
+<!-- redirect to new domen -->
+@*<script type="text/javascript">
+    $(document).ready(function () { window.location.href = 'http://tew2.azurewebsites.net' });
+</script>*@
+
