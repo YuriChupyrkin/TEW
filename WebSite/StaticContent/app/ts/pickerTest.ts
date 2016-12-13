@@ -7,7 +7,7 @@ import { WordsCloudModel } from './models/wordsCloudModel';
 
 @Component({
     selector: 'picker-test',
-    templateUrl: '../StaticContent/app/templates/pickerTest.html'
+    templateUrl: '../StaticContent/app/templates/pickerTestNext.html'
 })
 
 export class PickerTest {
@@ -25,15 +25,19 @@ export class PickerTest {
     private resultMessage: string;
     private testIsFinished: boolean;
     private firstTestNOTloaded: boolean;
+    private progress: number;
 
     constructor(private httpService: HttpService) {
         this.testSet = new Array<PickerTestModel>();
+        this.progress = 10;
 
         this.firstTestNOTloaded = true;
         this.initEmptyCurrentTest();
     }
 
     private prepareTest(testName: string) {
+        this.progress = 180;
+
         this.firstTestNOTloaded = false;
         this.initEmptyCurrentTest();
         this.testName = testName == this.EnRuTest ? this.EnRuTest : this.RuEnTest;

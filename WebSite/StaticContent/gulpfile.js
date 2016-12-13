@@ -34,7 +34,8 @@ gulp.task('ts', function (done) {
     var tsResult = gulp.src([
             "app/ts/*.ts",
             "app/ts/services/*.ts",
-            "app/ts/models/*.ts"
+            "app/ts/models/*.ts",
+            "app/ts/helpComponents/*.ts"
     ])
         .pipe(ts(tsProject), undefined, ts.reporter.fullReporter());
     return tsResult.js.pipe(gulp.dest('./app/js'));

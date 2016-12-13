@@ -1,0 +1,60 @@
+﻿<div class="center-block">
+
+    <!-- buttons -->
+    <div>
+        <button [disabled]="!currentTest.Word && !firstTestNOTloaded" (click)="prepareTest('EnRuTest')" class="btn btn-primary">
+            Eng-Rus
+        </button>
+        <button [disabled]="!currentTest.Word && !firstTestNOTloaded" (click)="prepareTest('RuEnTest')" class="btn btn-primary">
+            Rus-Eng
+        </button>
+    </div>
+
+    <div class="row center-block">
+        <progress-bar [progress]="progress"></progress-bar>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-7 col-md-7 col-sm-8 col-xs-12 picker-test-block">
+            <!-- test area -->
+            <div [hidden]="!currentTest.Word">
+                <div class="tests-test-word">{{currentTest.Word}}</div>
+                <div class="tests-test-example">{{currentTest.Example}}</div>
+                <br />
+
+                <div>
+                    <div *ngFor="let answer of currentTest.Answers;" class="list-items">
+                        <div (click)="setAnswer(answer)"
+                             (dblclick)="pickAnswer(answer)"
+                             [class.active-list-item]="answer == choosenAnswer"
+                             [class.list-item-error]="trueAnswer == answer"
+                             class="list-item cursor-pointer">
+                            {{answer}}
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <!-- disabled when set true answer (picked)-->
+                <button [disabled]="trueAnswer" (click)="pickAnswer(choosenAnswer)" class="btn btn-lg btn-success">
+                   <i class="fa fa-check" aria-hidden="true"></i>
+                </button>
+                <button [disabled]="trueAnswer || currentTest.Answers.length < 4" class="btn btn-lg  btn-warning" (click)="helpPick()">
+                    <i class="fa fa-question" aria-hidden="true"></i>
+                </button>
+                <button  [disabled]="trueAnswer" (click)="deleteWord(currentTest)" class="btn btn-lg  btn-danger">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- result -->
+        <div class="col-lg-5 col-md-5 col-sm-4 picker-test-message">
+            <div [hidden]="!resultMessage">
+                <div>{{resultMessage}}</div>
+                <button class="btn btn-warning" (click)="setNextTest()">Next</button>
+            </div>
+        </div>
+    </div>
+
+</div>

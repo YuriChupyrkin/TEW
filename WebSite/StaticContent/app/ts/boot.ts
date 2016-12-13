@@ -10,7 +10,8 @@ import { appRoutingProviders, routing } from './app.routes';
 import { APP_BASE_HREF } from '@angular/common';
 import { HttpService } from './services/httpService';
 import { HttpModule } from '@angular/http';
-import { LoadingAnimation } from './loadingAnimation';
+import { LoadingAnimation } from './helpComponents/loadingAnimation';
+import { ProgressBar } from './helpComponents/progressBar';
 
 // For textbox binding
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
@@ -18,7 +19,7 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 @NgModule({
     imports: [BrowserModule, routing, HttpModule, FormsModule, ReactiveFormsModule],
 
-    declarations: [AppComponent, Home, AddWord, MyWords, PickerTest, LoadingAnimation],
+    declarations: [AppComponent, Home, AddWord, MyWords, PickerTest, LoadingAnimation, ProgressBar],
 
     bootstrap: [AppComponent],
 

@@ -33,11 +33,6 @@
     color: #737272;
 }
 
-.list-item-error {
-    background-color: #ffa500;
-    color: white !important;
-}
-
 .menu-header {
     padding-left: 20px;
     position: fixed;
@@ -106,21 +101,6 @@
 
 .mobile-text {
     font-size: 18px;
-}
-
-.tests-test-word {
-    font-size: 40px;
-    font-weight: bold;
-}
-
-.tests-test-example {
-    font-size: 20px;
-}
-
-.page-title {
-    font-style: italic;
-    font-size: 22px;
-    color: #737272;
 }
 
 .mobile-home-button {
@@ -282,4 +262,37 @@ active item > color: black
 
 .cursor-pointer {
     cursor: pointer;
+}
+
+.progress-bar {
+    border-radius: 5px;
+    min-width: 1%;
+}
+
+.page-title {
+    font-style: italic;
+    font-size: 22px;
+}
+
+.tests-test-word {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.tests-test-example {
+    font-size: 20px;
+}
+
+.list-item-error {
+    background-color: #3c763d;
+    color: white;
+}
+
+.picker-test-message {
+    font-size: 26px;
+    margin-bottom: 30px;
+}
+
+.picker-test-block {
+    margin-bottom: 30px;
 }

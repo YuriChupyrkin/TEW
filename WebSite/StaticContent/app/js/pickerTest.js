@@ -20,11 +20,13 @@ var PickerTest = (function () {
         this.EnRuTest = "EnRuTest";
         this.RuEnTest = "RuEnTest";
         this.testSet = new Array();
+        this.progress = 10;
         this.firstTestNOTloaded = true;
         this.initEmptyCurrentTest();
     }
     PickerTest.prototype.prepareTest = function (testName) {
         var _this = this;
+        this.progress = 180;
         this.firstTestNOTloaded = false;
         this.initEmptyCurrentTest();
         this.testName = testName == this.EnRuTest ? this.EnRuTest : this.RuEnTest;
@@ -138,7 +140,7 @@ var PickerTest = (function () {
 PickerTest = __decorate([
     core_1.Component({
         selector: 'picker-test',
-        templateUrl: '../StaticContent/app/templates/pickerTest.html'
+        templateUrl: '../StaticContent/app/templates/pickerTestNext.html'
     }),
     __metadata("design:paramtypes", [httpService_1.HttpService])
 ], PickerTest);

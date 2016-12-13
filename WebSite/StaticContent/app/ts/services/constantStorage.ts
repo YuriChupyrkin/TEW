@@ -5,14 +5,14 @@
     private static loadingEvent = 'loading';
 
     // urls
-    private static wordTranslaterController = '/api/WordTranslater';
-    private static wordsManagerController = '/api/WordsManager';
-    private static userInfoController = '/api/UserInfo';
-    private static applicationMessageController = '/api/ApplicationMessage';
-    private static userStatController = '/api/userStat';
-    private static deleteWordController = '/api/DeleteWord';
-    private static pickerTestsController = '/api/PickerTests';
-    private static wordsLevelUpdaterController = 'api/WordsLevelUpdater';
+    private static readonly wordTranslaterController = '/api/WordTranslater';
+    private static readonly wordsManagerController = '/api/WordsManager';
+    private static readonly userInfoController = '/api/UserInfo';
+    private static readonly applicationMessageController = '/api/ApplicationMessage';
+    private static readonly userStatController = '/api/userStat';
+    private static readonly deleteWordController = '/api/DeleteWord';
+    private static readonly pickerTestsController = '/api/PickerTests';
+    private static readonly wordsLevelUpdaterController = 'api/WordsLevelUpdater';
 
     public static getWordsLevelUpdaterController(){
         return this.wordsLevelUpdaterController;
