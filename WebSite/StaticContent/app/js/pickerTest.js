@@ -20,13 +20,13 @@ var PickerTest = (function () {
         this.EnRuTest = "EnRuTest";
         this.RuEnTest = "RuEnTest";
         this.testSet = new Array();
-        this.progress = 10;
+        this.progress = 1;
         this.firstTestNOTloaded = true;
         this.initEmptyCurrentTest();
     }
     PickerTest.prototype.prepareTest = function (testName) {
         var _this = this;
-        this.progress = 180;
+        this.progress = 5;
         this.firstTestNOTloaded = false;
         this.initEmptyCurrentTest();
         this.testName = testName == this.EnRuTest ? this.EnRuTest : this.RuEnTest;
@@ -95,6 +95,8 @@ var PickerTest = (function () {
         this.trueAnswer = '';
         this.resultMessage = '';
         this.testIndex++;
+        // set progress
+        this.progress = Math.round(this.testIndex / this.testCount * 100);
         if (this.testIsFinished) {
             this.testIsFinished = false;
             this.initEmptyCurrentTest();

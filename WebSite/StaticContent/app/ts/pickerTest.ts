@@ -11,8 +11,8 @@ import { WordsCloudModel } from './models/wordsCloudModel';
 })
 
 export class PickerTest {
-    private EnRuTest: string = "EnRuTest";
-    private RuEnTest: string = "RuEnTest";
+    private readonly EnRuTest: string = "EnRuTest";
+    private readonly RuEnTest: string = "RuEnTest";
 
     private testSet: Array<PickerTestModel>;
     private testName: string;
@@ -29,14 +29,14 @@ export class PickerTest {
 
     constructor(private httpService: HttpService) {
         this.testSet = new Array<PickerTestModel>();
-        this.progress = 10;
+        this.progress = 1;
 
         this.firstTestNOTloaded = true;
         this.initEmptyCurrentTest();
     }
 
     private prepareTest(testName: string) {
-        this.progress = 180;
+        this.progress = 5;
 
         this.firstTestNOTloaded = false;
         this.initEmptyCurrentTest();
@@ -123,6 +123,9 @@ export class PickerTest {
         this.resultMessage = '';
 
         this.testIndex++;
+        
+        // set progress
+        this.progress = Math.round(this.testIndex / this.testCount * 100);
 
         if (this.testIsFinished) {
             this.testIsFinished = false;

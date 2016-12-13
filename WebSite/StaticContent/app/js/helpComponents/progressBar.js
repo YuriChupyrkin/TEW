@@ -11,20 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var ProgressBar = (function () {
     function ProgressBar() {
-        this.setProgress(5);
+        this.currentProgress = 0;
     }
     Object.defineProperty(ProgressBar.prototype, "progress", {
         set: function (value) {
-            this.setProgress(value);
+            var progress = this.validateProgress(value);
+            this.currentProgress = progress;
         },
         enumerable: true,
         configurable: true
     });
-    ProgressBar.prototype.setProgress = function (progress) {
-        progress = this.validateProgress(progress);
-        this.currentProgress = progress;
-        console.log("setProgress: " + progress);
-    };
     ProgressBar.prototype.validateProgress = function (progress) {
         if (progress > 100) {
             return 100;

@@ -9,17 +9,12 @@ export class ProgressBar {
     private currentProgress: number;
    
     @Input() set progress(value) {
-        this.setProgress(value);
+        let progress = this.validateProgress(value);
+        this.currentProgress = progress;
     }
 
     constructor() {
-        this.setProgress(5);
-    }
-
-    public setProgress(progress: number) {
-        progress = this.validateProgress(progress);
-        this.currentProgress = progress;
-        console.log(`setProgress: ${progress}`);
+        this.currentProgress = 0;
     }
 
     private  validateProgress(progress: number): number {

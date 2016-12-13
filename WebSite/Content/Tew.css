@@ -2,10 +2,6 @@
     margin: 10px;
 }
 
-.margin-20 {
-    margin: 20px;
-}
-
 .center-form{
     text-align: center;
     display:inline-block;
@@ -167,7 +163,10 @@
 background-color: #e0e0e0
 active item > background-color: #737272
 active item > color: black
+error > background-color: #3c763d
 
+    menu:
+acitve link > color: #5af35d
 
 ***/
 
@@ -204,7 +203,7 @@ active item > color: black
 
 .active-menu-item {
 	font-size: 20px;
-	color: red !important;
+	color: #5af35d !important;
 }
 
 .error-field {
@@ -295,4 +294,8 @@ active item > color: black
 
 .picker-test-block {
     margin-bottom: 30px;
+}
+
+.margin-20 {
+    margin: 20px;
 }
