@@ -27,6 +27,15 @@ var Home = (function () {
             this.httpService.processGet(constantStorage_1.ConstantStorage.getUserStatController() + "?userId=" + userId)
                 .subscribe(function (result) { return _this.userStatModel = result; });
         }
+        this.modalConfig = {
+            headerText: 'Hello',
+            bodyText: 'My name is....',
+            isApplyButton: true,
+            applyButtonText: 'apply'
+        };
+    };
+    Home.prototype.modalApplied = function () {
+        console.log('home applied');
     };
     return Home;
 }());

@@ -12,9 +12,9 @@ import { HttpService } from './services/httpService';
 export class Home implements OnInit  {
     private userName: string;
     private userStatModel: UserStatModel;
+    private modalConfig: any;
 
     constructor(private httpService: HttpService){
-
     }
 
     private logOff() {
@@ -29,5 +29,16 @@ export class Home implements OnInit  {
             this.httpService.processGet<UserStatModel>(`${ConstantStorage.getUserStatController()}?userId=${userId}`)
                 .subscribe(result => this.userStatModel = result);
         }
+
+        this.modalConfig = {
+            headerText: 'Hello',
+            bodyText: 'My name is....',
+            isApplyButton: true,
+            applyButtonText: 'apply'
+        }
+    }
+
+    private modalApplied(){
+        console.log('home applied');
     }
 }
