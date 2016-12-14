@@ -1,5 +1,5 @@
 <div>
-    <div class="modal fade" id="modal-window">
+    <div class="modal fade"  [attr.id]="modal_window_id">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -12,11 +12,13 @@
                     <p>{{config.bodyText}}</p>
                 </div>
                 <div class="modal-footer">
-                    <button *ngIf="config.isApplyButton" class="btn btn-success" type="button" data-dismiss="modal" (click)="applyWindow()">
+                    <button *ngIf="config.isApplyButton" class="btn btn-success" 
+                        type="button" data-dismiss="modal" (click)="applyWindow()">
                         {{config.applyButtonText}}
                     </button>
-                    <button *ngIf="config.isCancelButton" class="btn btn-danger" type="button" data-dismiss="modal">
-                        Cancel
+                    <button *ngIf="config.isCancelButton" class="btn btn-danger" 
+                        type="button" data-dismiss="modal" (click)="cancelWindow()">
+                        {{config.cancelButtonText}}
                     </button> 
                 </div>
             </div>

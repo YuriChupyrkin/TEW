@@ -18,7 +18,6 @@ var HttpService = (function () {
         this.http = http;
     }
     HttpService.prototype.processGet = function (url, isExternalRequest) {
-        var _this = this;
         if (isExternalRequest === void 0) { isExternalRequest = false; }
         var headers = new http_1.Headers();
         var userId = constantStorage_1.ConstantStorage.getUserId();
@@ -28,11 +27,10 @@ var HttpService = (function () {
         // start loading...
         pubSub_1.PubSub.Pub(constantStorage_1.ConstantStorage.getLoadingEvent(), true);
         var getRequest = this.http.get(url, { headers: headers }).map(function (response) { return response.json(); });
-        getRequest.subscribe(function (r) { return _this.requestFinished(); }, function (e) { return _this.requestFinishedWithError(url, 'get', e); });
+        //getRequest.subscribe(r => this.requestFinished(), e => this.requestFinishedWithError(url, 'get', e));
         return getRequest;
     };
     HttpService.prototype.processPost = function (object, url) {
-        var _this = this;
         var headers = new http_1.Headers();
         var userId = constantStorage_1.ConstantStorage.getUserId();
         if (userId) {
@@ -41,7 +39,7 @@ var HttpService = (function () {
         // start loading...
         pubSub_1.PubSub.Pub(constantStorage_1.ConstantStorage.getLoadingEvent(), true);
         var postRequest = this.http.post(url, object, { headers: headers });
-        postRequest.subscribe(function (r) { return _this.requestFinished(); }, function (e) { return _this.requestFinishedWithError(url, 'post', e); });
+        //postRequest.subscribe(r => this.requestFinished(), e => this.requestFinishedWithError(url, 'post', e));
         return postRequest;
     };
     HttpService.prototype.requestFinished = function () {

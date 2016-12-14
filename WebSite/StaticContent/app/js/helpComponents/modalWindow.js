@@ -9,9 +9,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var jqueryHelper_1 = require("../services/jqueryHelper");
 var ModalWindow = (function () {
     function ModalWindow() {
+        this.modal_window_id = "tew-modal-window";
         this.windowApplied = new core_1.EventEmitter();
+        this.windowCanceled = new core_1.EventEmitter();
         if (!this.config) {
             this.windowConfig = undefined;
         }
@@ -23,13 +26,7 @@ var ModalWindow = (function () {
             }
             else {
                 // default config
-                this.config = {
-                    headerText: 'header',
-                    bodyText: 'body',
-                    isApplyButton: false,
-                    isCancelButton: true,
-                    applyButtonText: 'apply'
-                };
+                this.config = this.buildDefaultConfig();
             }
             if (this.config.isApplyButton === undefined) {
                 this.config.isApplyButton = false;
@@ -37,26 +34,65 @@ var ModalWindow = (function () {
             if (this.config.isCancelButton === undefined) {
                 this.config.isCancelButton = true;
             }
+            if (!this.config.cancelButtonText) {
+                this.config.cancelButtonText = 'Cancel';
+            }
         },
         enumerable: true,
         configurable: true
     });
-    ModalWindow.prototype.showWindow = function () {
+    ModalWindow.showWindow = function () {
+        var element = jqueryHelper_1.JQueryHelper.getElementById(this.MODAL_WINDOW_ID);
+        if (element && element.modal) {
+            // wait for previous modal if they were...
+            setTimeout(function () { return element.modal(); }, 550);
+        }
     };
     ModalWindow.prototype.applyWindow = function () {
-        this.windowApplied.emit();
+        if (this.config.applyCallback) {
+            this.config.applyCallback();
+        }
+        else {
+            this.windowApplied.emit();
+        }
+    };
+    ModalWindow.prototype.cancelWindow = function () {
+        if (this.config.cancelCallback) {
+            this.config.cancelCallback();
+        }
+        else {
+            this.windowCanceled.emit();
+        }
+    };
+    ModalWindow.prototype.buildDefaultConfig = function () {
+        var config = {
+            headerText: 'header',
+            bodyText: 'body',
+            isApplyButton: false,
+            isCancelButton: true,
+            applyButtonText: 'apply',
+            cancelButtonText: 'cancel',
+            applyCallback: function () { return console.log('apply callback'); },
+            cancelCallback: function () { return console.log('cancel callback'); }
+        };
+        return config;
     };
     return ModalWindow;
 }());
+ModalWindow.MODAL_WINDOW_ID = "tew-modal-window";
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", Object)
+], ModalWindow.prototype, "windowApplied", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", Object)
+], ModalWindow.prototype, "windowCanceled", void 0);
 __decorate([
     core_1.Input(),
     __metadata("design:type", Object),
     __metadata("design:paramtypes", [Object])
 ], ModalWindow.prototype, "windowConfig", null);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], ModalWindow.prototype, "windowApplied", void 0);
 ModalWindow = __decorate([
     core_1.Component({
         selector: 'modal-window',

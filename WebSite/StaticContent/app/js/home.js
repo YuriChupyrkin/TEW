@@ -12,6 +12,7 @@ var core_1 = require("@angular/core");
 var constantStorage_1 = require("./services/constantStorage");
 var commonHelper_1 = require("./services/commonHelper");
 var httpService_1 = require("./services/httpService");
+var ModalWindow_1 = require("./helpComponents/ModalWindow");
 var Home = (function () {
     function Home(httpService) {
         this.httpService = httpService;
@@ -36,6 +37,23 @@ var Home = (function () {
     };
     Home.prototype.modalApplied = function () {
         console.log('home applied');
+    };
+    Home.prototype.setModalWindow1 = function () {
+        this.modalConfig = {
+            headerText: 'Hello 1',
+            bodyText: 'My name is Yuri',
+            isApplyButton: true,
+            applyButtonText: 'ok'
+        };
+    };
+    Home.prototype.setModalWindow2 = function () {
+        this.modalConfig = {
+            headerText: 'Header for 2',
+            bodyText: 'text text text',
+            isApplyButton: true,
+            applyButtonText: 'da!'
+        };
+        ModalWindow_1.ModalWindow.showWindow();
     };
     return Home;
 }());

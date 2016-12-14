@@ -3,6 +3,7 @@ import { ConstantStorage } from './services/constantStorage';
 import { CommonHelper } from './services/commonHelper';
 import { UserStatModel } from './models/userStatModel';
 import { HttpService } from './services/httpService';
+import { ModalWindow } from './helpComponents/ModalWindow';
 
 @Component({
     selector: 'home',
@@ -40,5 +41,25 @@ export class Home implements OnInit  {
 
     private modalApplied(){
         console.log('home applied');
+    }
+
+    public setModalWindow1(){
+         this.modalConfig = {
+            headerText: 'Hello 1',
+            bodyText: 'My name is Yuri',
+            isApplyButton: true,
+            applyButtonText: 'ok'
+        }
+    }
+
+    public setModalWindow2(){
+         this.modalConfig = {
+            headerText: 'Header for 2',
+            bodyText: 'text text text',
+            isApplyButton: true,
+            applyButtonText: 'da!'
+        }
+
+        ModalWindow.showWindow();
     }
 }

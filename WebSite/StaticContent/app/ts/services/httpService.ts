@@ -24,7 +24,7 @@ export class HttpService {
         PubSub.Pub(ConstantStorage.getLoadingEvent(), true);
 
         var getRequest = this.http.get(url, { headers: headers}).map(response => <T>response.json());
-        getRequest.subscribe(r => this.requestFinished(), e => this.requestFinishedWithError(url, 'get', e));
+        //getRequest.subscribe(r => this.requestFinished(), e => this.requestFinishedWithError(url, 'get', e));
         return getRequest;
     }
 
@@ -40,7 +40,7 @@ export class HttpService {
         PubSub.Pub(ConstantStorage.getLoadingEvent(), true);
 
         var postRequest = this.http.post(url, object, { headers: headers });
-        postRequest.subscribe(r => this.requestFinished(), e => this.requestFinishedWithError(url, 'post', e));
+        //postRequest.subscribe(r => this.requestFinished(), e => this.requestFinishedWithError(url, 'post', e));
         return postRequest;
     }
 

@@ -283,6 +283,7 @@
     <Content Include="StaticContent\app\js\services\commonHelper.js" />
     <Content Include="StaticContent\app\js\services\constantStorage.js" />
     <Content Include="StaticContent\app\js\services\httpService.js" />
+    <Content Include="StaticContent\app\js\services\jqueryHelper.js" />
     <Content Include="StaticContent\app\js\services\pubSub.js" />
     <Content Include="StaticContent\app\templates\addWord.html" />
     <Content Include="StaticContent\app\templates\app.html" />

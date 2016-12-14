@@ -4,6 +4,7 @@ import { ConstantStorage } from './services/constantStorage';
 import { HttpService } from './services/httpService';
 import { Word } from './models/word';
 import { WordsCloudModel } from './models/wordsCloudModel';
+import { ModalWindow } from './helpComponents/ModalWindow';
 
 @Component({
     selector: 'picker-test',
@@ -26,6 +27,7 @@ export class PickerTest {
     private testIsFinished: boolean;
     private firstTestNOTloaded: boolean;
     private progress: number;
+    private modalWindowConfig: any;
 
     constructor(private httpService: HttpService) {
         this.testSet = new Array<PickerTestModel>();
@@ -92,7 +94,9 @@ export class PickerTest {
         var isTrueAnswer = false;
 
         if (this.trueAnswer != answer) {
-            this.resultMessage = `Error! "${this.currentTest.Word}" = "${this.trueAnswer}"`;
+            //this.resultMessage = `Error! "${this.currentTest.Word}" = "${this.trueAnswer}"`;
+            var message = `"${this.currentTest.Word}" = "${this.trueAnswer}"`;
+            this.showFailedAnswerInModal(message);
             this.failedCount++;
         } else {
             isTrueAnswer = true;
@@ -114,7 +118,7 @@ export class PickerTest {
 
         this.httpService
             .processPost(postObject, ConstantStorage.getWordsLevelUpdaterController())
-            .subscribe(r => console.dir(r));
+            .subscribe();
     }
 
     private setNextTest() {
@@ -135,20 +139,27 @@ export class PickerTest {
         }
 
         if (this.testIndex >= this.testCount) {
-            this.resultMessage = `Finish! Errors: ${this.failedCount}`;
+            let message = `Errors!!: ${this.failedCount}`;
+            this.resultMessage = message
             this.testIsFinished = true;
             this.trueAnswer = 'disable pick button';
+            this.showResultsInModal(message);
             return;
         }
 
         this.currentTest = this.testSet[this.testIndex];
     }
 
-    private deleteWord(pickerTestModel: PickerTestModel) {
-        if (confirm(`Delete word: "${pickerTestModel.Word}"?`) == false) {
-            return;
+    private helpPick() {
+        if (0 != this.currentTest.AnswerId) {
+            this.currentTest.Answers.splice(0, 1);
+            this.currentTest.AnswerId--;
+        } else {
+            this.currentTest.Answers.splice(1, 1);
         }
+    }
 
+    private deleteWord(pickerTestModel: PickerTestModel) {
         var wordsCloudModel = new WordsCloudModel();
         wordsCloudModel.UserName = ConstantStorage.getUserName();
         var word = new Word();
@@ -161,17 +172,60 @@ export class PickerTest {
         result.subscribe(response => console.dir(response));
         this.setNextTest();
     }
+     
+    private showError(message: string) {
+        this.modalWindowConfig = {
+             headerText: 'PAGE ERROR',
+             bodyText: message,
+             isCancelButton: true,
+             cancelButtonText: 'Cancel'
+        };
 
-    private helpPick() {
-        if (0 != this.currentTest.AnswerId) {
-            this.currentTest.Answers.splice(0, 1);
-            this.currentTest.AnswerId--;
-        } else {
-            this.currentTest.Answers.splice(1, 1);
-        }
+        ModalWindow.showWindow();
     }
 
-    private showError(message: string) {
-        alert(message);
+    private showIsDeleteModal(pickerTestModel: PickerTestModel) {
+        this.modalWindowConfig = {
+             headerText: 'Delete',
+             bodyText: `Delete word: "${pickerTestModel.Word}"?`,
+             isApplyButton: true,
+             isCancelButton: true,
+             applyButtonText: 'Yes',
+             cancelButtonText: 'No',
+             applyCallback: () => this.deleteWord(pickerTestModel)
+        };
+
+        ModalWindow.showWindow();
+    }
+
+    private showFailedAnswerInModal(message: string) {
+        this.modalWindowConfig = {
+             headerText: 'Error',
+             bodyText: message,
+             isApplyButton: true,
+             isCancelButton: false,
+             applyButtonText: 'ok',
+             applyCallback: () => this.setNextTest()
+        }
+
+        ModalWindow.showWindow();
+    }
+
+    private showResultsInModal(message: string) {
+        this.modalWindowConfig = {
+             headerText: 'Done',
+             bodyText: message,
+             isApplyButton: true,
+             isCancelButton: false,
+             applyButtonText: 'ok',
+             applyCallback: () => this.setNextTest()
+        }
+
+        ModalWindow.showWindow();
+    }
+
+    private modalApplied(){
+        console.log('ModalApplied');
+        //this.setNextTest();
     }
 }

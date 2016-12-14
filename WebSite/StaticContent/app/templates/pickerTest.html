@@ -1,4 +1,5 @@
 ﻿<div class="center-block">
+    <modal-window [windowConfig]="modalWindowConfig" (windowApplied)="modalApplied($event)"></modal-window>
 
     <!-- buttons -->
     <div>
@@ -42,7 +43,7 @@
                 <button [disabled]="trueAnswer || currentTest.Answers.length < 4" class="btn btn-lg  btn-warning" (click)="helpPick()">
                     <i class="fa fa-question" aria-hidden="true"></i>
                 </button>
-                <button  [disabled]="trueAnswer" (click)="deleteWord(currentTest)" class="btn btn-lg  btn-danger">
+                <button  [disabled]="trueAnswer" (click)="showIsDeleteModal(currentTest)" class="btn btn-lg  btn-danger">
                     <i class="fa fa-times" aria-hidden="true"></i>
                 </button>
             </div>
