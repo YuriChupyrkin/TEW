@@ -7,7 +7,7 @@ import { ConstantStorage } from './services/constantStorage';
 
 @Component({
     selector: 'my-words',
-    templateUrl: '../StaticContent/app/templates/myWordsNext.html'
+    templateUrl: '../StaticContent/app/templates/myWords.html'
 })
 
 export class MyWords {

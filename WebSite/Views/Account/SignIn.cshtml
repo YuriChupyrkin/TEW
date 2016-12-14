@@ -1,13 +1,13 @@
 ﻿
 @{
-    ViewBag.Title = "SignIn";
+    ViewBag.Title = "Sign In";
     Layout = "~/Views/Shared/_WebAppLayout.cshtml";
 }
 
 @using TewCloud.Models;
 @model SignInModel
 
-<div class="margin-30">
+<div class="container">
     <h2>Sign in</h2>
     <br/>
 
@@ -24,29 +24,29 @@
 					@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
 					@Html.ValidationMessageFor(m => m.Email)
 				</div>
-                <br/>
+        <br/>
 
 				<div class="editor-label">
 					@Html.LabelFor(m => m.Password)
 				</div>
+				
 				<div class="editor-field">
 					@Html.PasswordFor(m => m.Password, new { @class = "form-control" })
 					@Html.ValidationMessageFor(m => m.Password)
 				</div>
-                <br />
+        <br />
 
 				<div class="editor-label">
-                    @Html.CheckBoxFor(m => m.StayInLogin)
+          @Html.CheckBoxFor(m => m.StayInLogin)
 					@Html.LabelFor(m => m.StayInLogin)
 				</div>
-                <br />
+        <br />
 
-				<input class="btn btn-info" type="submit" value="Sign In" />
+				<input class="btn btn-success" type="submit" value="Sign In" />
+				@Html.ActionLink("Sign up", "SignUp", new { }, new {@class="btn btn-primary" })
 			</fieldset>
 		</div>
 	}
-
-    @Html.ActionLink("Sign up", "SignUp")
 </div>
 
 

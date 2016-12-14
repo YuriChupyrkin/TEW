@@ -1,0 +1,59 @@
+﻿<div class="center-block page-title">
+    My words
+    <span *ngIf="wordsCount > 0"> ({{wordsCount}})</span>
+</div>
+
+<div>    
+    <div class="visible-desktop">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>English</th>
+                    <th>Russian</th>
+                    <th>Level</th>
+                    <th>Answer count</th>
+                    <th>Fail count</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let word of userWords.Words;">
+                <tr [hidden]="word.Hidden">
+                    <td>
+                        <i class="fa fa-times fa-lg cursor-pointer" aria-hidden="true" (click)="removeWord(word)"></i>
+                    </td>
+                    <td>{{word.English}}</td>
+                    <td>{{word.Russian}}</td>
+                    <td>{{word.Level}}</td>
+                    <td>{{word.AnswerCount}}</td>
+                    <td>{{word.FailAnswerCount}}</td>
+                    <td>{{word.Example}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- mobile -->
+    <div class="visible-phone visible-tablet">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>English</th>
+                    <th>Russian</th>
+                    <th>Level</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let word of userWords.Words;">
+                <tr [hidden]="word.Hidden">
+                    <td>
+                        <i class="fa fa-times fa-lg cursor-pointer" aria-hidden="true" (click)="removeWord(word)"></i>
+                    </td>
+                    <td>{{word.English}}</td>
+                    <td>{{word.Russian}}</td>
+                    <td>{{word.Level}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

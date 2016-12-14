@@ -55,7 +55,7 @@ var MyWords = (function () {
 MyWords = __decorate([
     core_1.Component({
         selector: 'my-words',
-        templateUrl: '../StaticContent/app/templates/myWordsNext.html'
+        templateUrl: '../StaticContent/app/templates/myWords.html'
     }),
     __metadata("design:paramtypes", [httpService_1.HttpService])
 ], MyWords);

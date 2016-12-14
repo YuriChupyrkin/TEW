@@ -7,7 +7,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
     selector: 'add-word',
-    templateUrl: '../StaticContent/app/templates/addWordNext.html'
+    templateUrl: '../StaticContent/app/templates/addWord.html'
 })
 
 export class AddWord implements OnInit {

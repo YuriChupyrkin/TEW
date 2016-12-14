@@ -7,7 +7,7 @@ import { PubSub } from './services/pubSub';
 
 @Component({
     selector: 'my-app',
-    templateUrl: '../StaticContent/app/templates/appNext.html'
+    templateUrl: '../StaticContent/app/templates/app.html'
 })
 
 export class AppComponent implements OnInit {

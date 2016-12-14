@@ -68,16 +68,6 @@
     margin-right: 10px;
 }
 
-.field-validation-error {
-    font-size: 16px;
-    color: #fd6c01;
-}
-
-.validation-summary-errors {
-    font-size: 18px;
-    color: #fd6c01;
-}
-
 .learning-main-background {
     background-color: #737272;
 }
@@ -298,4 +288,14 @@ acitve link > color: #5af35d
 
 .margin-20 {
     margin: 20px;
+}
+
+.field-validation-error {
+    font-size: 16px;
+    color: red;
+}
+
+.validation-summary-errors {
+    font-size: 18px;
+    color: red;
 }

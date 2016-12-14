@@ -50,7 +50,7 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
-        templateUrl: '../StaticContent/app/templates/appNext.html'
+        templateUrl: '../StaticContent/app/templates/app.html'
     }),
     __metadata("design:paramtypes", [httpService_1.HttpService, router_1.Router])
 ], AppComponent);

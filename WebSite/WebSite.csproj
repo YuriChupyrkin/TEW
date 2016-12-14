@@ -284,15 +284,12 @@
     <Content Include="StaticContent\app\js\services\httpService.js" />
     <Content Include="StaticContent\app\js\services\pubSub.js" />
     <Content Include="StaticContent\app\templates\addWord.html" />
-    <Content Include="StaticContent\app\templates\addWordNext.html" />
     <Content Include="StaticContent\app\templates\app.html" />
-    <Content Include="StaticContent\app\templates\appNext.html" />
     <Content Include="StaticContent\app\templates\helpComponents\loadingAnimation.html" />
     <Content Include="StaticContent\app\templates\helpComponents\progressBar.html" />
     <Content Include="StaticContent\app\templates\home.html" />
-    <Content Include="StaticContent\app\templates\myWordsNext.html" />
+    <Content Include="StaticContent\app\templates\myWords.html" />
     <Content Include="StaticContent\app\templates\pickerTest.html" />
-    <Content Include="StaticContent\app\templates\pickerTestNext.html" />
     <Content Include="StaticContent\node_modules\%40angular\common\bundles\common-testing.umd.js" />
     <Content Include="StaticContent\node_modules\%40angular\common\bundles\common.umd.js" />
     <Content Include="StaticContent\node_modules\%40angular\common\bundles\common.umd.min.js" />

@@ -1,133 +1,74 @@
-<div>
-    <div class="center-block page-title">Add word</div>
-    <!-- desktop -->
-    <div class="visible-desktop">
-        <form [formGroup]="addWordform" (ngSubmit)="submitForm(addWordform.value)">
-            <div class="row add-word-area">
-                <div class="col-md-6">
-                    <div>
-                        <span class="label">English word:</span>
-                        <br />
-                        <div class="error-field">
-                            <span *ngIf="addWordform.controls['english'].hasError('required') && addWordform.controls['english'].touched">
-                                Enter english word
-                            </span>
-                            <span *ngIf="addWordform.controls['english'].hasError('maxlength') && addWordform.controls['english'].touched">
-                                Max length should be less than 25 symbols
-                            </span>
-                        </div>
-                        <input [formControl]="addWordform.controls['english']" class="form-control add-word-english-word" type="text" (keyup.enter)="translate()" />
-                        <a class="btn glyphicon glyphicon-search" (click)="translate()"></a>
-                        <br/>
-                        <br/>
-                    </div>
-
-                    <div>
-                        <span class="label">Your translate:</span>
-                        <br />
-                        <div class="error-field">
-                            <span *ngIf="addWordform.controls['russian'].hasError('required') && addWordform.controls['russian'].touched">
-                                Enter translate
-                            </span>
-                            <span *ngIf="addWordform.controls['russian'].hasError('maxlength') && addWordform.controls['russian'].touched">
-                                Max length should be less than 25 symbols
-                            </span>
-                        </div>
-                        <input [formControl]="addWordform.controls['russian']" class="form-control" type="text" (keyup.enter)="submitForm(addWordform.value)" />
-                        <br />
-                    </div>
-
-                    <div>
-                        <span class="label">Example of use:</span>
-                        <br />
-                        <div class="error-field">
-                            <span *ngIf="addWordform.controls['example'].hasError('maxlength') && addWordform.controls['example'].touched">
-                                Max length should be less than 50 symbols
-                            </span>
-                        </div>
-                        <textarea [formControl]="addWordform.controls['example']" class="form-control"></textarea>
-                        <br />
-                    </div>
-
-                    <input type="submit" class="btn btn-orange" [disabled]="!addWordform.valid" value="Add word" />
-                </div>
-                <div class="col-md-6">
-                    <div class="margin-50 center-block" [hidden]="translates.length < 1">
-                        <span class="label">Translates:</span>
-                        <div *ngFor="let translate of translates;" class="list-items">
-                            <div class="list-item cursor-pointer"
-                                 [class.choosen-list-item]="translate == addWordform.controls['russian'].value"
-                                 (click)="chooseTranslate(translate)">
-                                {{translate}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-
-    <!-- mobile -->
-    <div class="visible-phone visible-tablet">
-        <form [formGroup]="addWordform" (ngSubmit)="submitForm(addWordform.value)">
+<div class="row">
+    <form [formGroup]="addWordform" (ngSubmit)="submitForm(addWordform.value)">
+        <!-- first column -->
+        <div class="col-lg-6 col-md-6 col-sm-5 col-xs-12">
             <div>
-                <span class="label">English word:</span>
-                <br />
-                <div class="error-field">
-                    <span *ngIf="addWordform.controls['english'].hasError('required') && addWordform.controls['english'].touched">
-                        Enter english word
-                    </span>
-                    <span *ngIf="addWordform.controls['english'].hasError('maxlength') && addWordform.controls['english'].touched">
-                        Max length should be less than 25 symbols
-                    </span>
+                <div>
+                    <span class="field-label">English word:</span>
+                    <br />
+                    <div class="error-field">
+                        <span *ngIf="addWordform.controls['english'].hasError('required') && addWordform.controls['english'].touched">
+                            Enter english word
+                        </span>
+                        <span *ngIf="addWordform.controls['english'].hasError('maxlength') && addWordform.controls['english'].touched">
+                            Max length should be less than 25 symbols
+                        </span>
+                    </div>
+                    <div class="input-group">
+                        <input [formControl]="addWordform.controls['english']" type="text" class="form-control" (keyup.enter)="translate()"/>
+                        <span class="input-group-btn" style="width:0;">
+                            <button class="btn btn-default"  type="button" (click)="translate()">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+                        </span>		
+                    </div>
+                    <br/>
                 </div>
                 <div>
-                    <input [formControl]="addWordform.controls['english']" name="english" type="text" class="form-control add-word-english-word"/>
-                    <a class="btn glyphicon glyphicon-search" (click)="translate()"></a>
-                </div>
-                <br />
-            </div>
-
-            <div>
-                <span class="label">Your translate:</span>
-                <br />
-                <div class="error-field">
-                    <span *ngIf="addWordform.controls['russian'].hasError('required') && addWordform.controls['russian'].touched">
-                        Enter translate
-                    </span>
-                    <span *ngIf="addWordform.controls['russian'].hasError('maxlength') && addWordform.controls['russian'].touched">
-                        Max length should be less than 25 symbols
-                    </span>
-                </div>
-                <input [formControl]="addWordform.controls['russian']" class="form-control" type="text" />
-                <br />
-            </div>
-
-            <div class="margin-50" [hidden]="translates.length < 1">
-                <span class="label">Translates:</span>
-                <div *ngFor="let translate of translates;" class="list-items center-block">
-                    <div class="list-item cursor-pointer"
-                         [class.choosen-list-item]="translate == addWordform.controls['russian'].value"
-                         (click)="chooseTranslate(translate)">
-                        {{translate}}
+                    <span class="field-label">Your translate:</span>
+                    <br />
+                    <div class="error-field">
+                        <span *ngIf="addWordform.controls['russian'].hasError('required') && addWordform.controls['russian'].touched">
+                            Enter translate
+                        </span>
+                        <span *ngIf="addWordform.controls['russian'].hasError('maxlength') && addWordform.controls['russian'].touched">
+                            Max length should be less than 25 symbols
+                        </span>
                     </div>
+                    <input [formControl]="addWordform.controls['russian']" class="form-control" type="text" (keyup.enter)="submitForm(addWordform.value)" />
+                    <br />
                 </div>
-                <br />
-            </div>
-
-            <div>
-                <span class="label">Example of use:</span>
-                <br />
-                <div class="error-field">
-                    <span *ngIf="addWordform.controls['example'].hasError('maxlength') && addWordform.controls['example'].touched">
-                        Max length should be less than 50 symbols
-                    </span>
+                <div>
+                    <span class="field-label">Example of use:</span>
+                    <br />
+                    <div class="error-field">
+                        <span *ngIf="addWordform.controls['example'].hasError('maxlength') && addWordform.controls['example'].touched">
+                            Max length should be less than 50 symbols
+                        </span>
+                    </div>
+                    <textarea [formControl]="addWordform.controls['example']" class="form-control"></textarea>
+                    <br />
                 </div>
-                <textarea [formControl]="addWordform.controls['example']" name="example"  class="form-control"></textarea>
-                <br />
+                <input type="submit" class="btn btn-success xs-hidden" [disabled]="!addWordform.valid" value="Add word" />
             </div>
+        </div>
 
-            <input type="submit" class="btn btn-orange" [disabled]="!addWordform.valid" value="Add word" />
-       </form>
-    </div>
+        <!-- second column -->
+        <div class="col-lg-6 col-md-6 col-sm-7 col-xs-12">
+            <div [hidden]="translates.length < 1">
+                <div class="center-block">
+                    <span class="field-label">Translates:</span>
+                    <div *ngFor="let translate of translates;" class="list-items">
+                        <div class="list-item cursor-pointer"
+                                [class.active-list-item]="translate == addWordform.controls['russian'].value"
+                                (click)="chooseTranslate(translate)">
+                            {{translate}}
+                        </div>
+                    </div>
+                    <br/>
+                </div>
+            </div>
+            <input type="submit" class="btn btn-success xs-visible center-block" [disabled]="!addWordform.valid" value="Add word"/>
+        </div>
+    </form>
 </div>
