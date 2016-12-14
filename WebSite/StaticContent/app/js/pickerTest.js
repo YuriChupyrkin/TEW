@@ -55,7 +55,6 @@ var PickerTest = (function () {
         this.currentTest.Word = '';
         this.choosenAnswer = '';
         this.trueAnswer = '';
-        this.resultMessage = '';
     };
     PickerTest.prototype.setAnswer = function (answer) {
         if (!answer || this.trueAnswer) {
@@ -70,7 +69,6 @@ var PickerTest = (function () {
         this.trueAnswer = this.currentTest.Answers[this.currentTest.AnswerId];
         var isTrueAnswer = false;
         if (this.trueAnswer != answer) {
-            //this.resultMessage = `Error! "${this.currentTest.Word}" = "${this.trueAnswer}"`;
             var message = "\"" + this.currentTest.Word + "\" = \"" + this.trueAnswer + "\"";
             this.showFailedAnswerInModal(message);
             this.failedCount++;
@@ -96,7 +94,6 @@ var PickerTest = (function () {
     PickerTest.prototype.setNextTest = function () {
         this.choosenAnswer = '';
         this.trueAnswer = '';
-        this.resultMessage = '';
         this.testIndex++;
         // set progress
         this.progress = Math.round(this.testIndex / this.testCount * 100);
@@ -108,7 +105,6 @@ var PickerTest = (function () {
         }
         if (this.testIndex >= this.testCount) {
             var message = "Errors!!: " + this.failedCount;
-            this.resultMessage = message;
             this.testIsFinished = true;
             this.trueAnswer = 'disable pick button';
             this.showResultsInModal(message);
@@ -181,10 +177,6 @@ var PickerTest = (function () {
             applyCallback: function () { return _this.setNextTest(); }
         };
         modalWindowServise_1.ModalWindowServise.showModalWindow(modalWindowConfig);
-    };
-    PickerTest.prototype.modalApplied = function () {
-        console.log('ModalApplied');
-        //this.setNextTest();
     };
     return PickerTest;
 }());

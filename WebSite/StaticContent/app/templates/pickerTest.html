@@ -14,7 +14,7 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-7 col-md-7 col-sm-8 col-xs-12 picker-test-block">
+        <div class="picker-test-block">
             <!-- test area -->
             <div [hidden]="!currentTest.Word">
                 <div class="tests-test-word">{{currentTest.Word}}</div>
@@ -44,14 +44,6 @@
                 <button  [disabled]="trueAnswer" (click)="showIsDeleteModal(currentTest)" class="btn btn-lg  btn-danger">
                     <i class="fa fa-times" aria-hidden="true"></i>
                 </button>
-            </div>
-        </div>
-
-        <!-- result -->
-        <div class="col-lg-5 col-md-5 col-sm-4 picker-test-message">
-            <div [hidden]="!resultMessage">
-                <div>{{resultMessage}}</div>
-                <button class="btn btn-success" (click)="setNextTest()">Next</button>
             </div>
         </div>
     </div>

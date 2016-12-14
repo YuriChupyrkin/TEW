@@ -54,7 +54,7 @@
             </div>
     </div>
     <div class="tew-body">
-        <div [style.visibility]="showLoading ? 'visible' : 'hidden'">
+        <div [style.visibility]="showLoadingArr.length > 0 ? 'visible' : 'hidden'">
             <loading-animation></loading-animation>
         </div>
 

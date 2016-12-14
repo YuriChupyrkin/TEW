@@ -5,11 +5,13 @@ export class ModalWindowServise {
     private static appComponent: AppComponent 
 
     public static initModalWindowService(app: AppComponent){
-        this.appComponent = app;
+        if(!this.appComponent) {
+            this.appComponent = app;
+        }
     }
 
     public static showModalWindow(config: any) {
-        if(!config || !this.appComponent){
+        if (!config || !this.appComponent){
             throw new Error("invalid config");
         }
 

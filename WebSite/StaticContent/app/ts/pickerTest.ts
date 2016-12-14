@@ -23,7 +23,6 @@ export class PickerTest {
     private currentTest: PickerTestModel;
     private choosenAnswer: string;
     private trueAnswer: string;
-    private resultMessage: string;
     private testIsFinished: boolean;
     private firstTestNOTloaded: boolean;
     private progress: number;
@@ -73,7 +72,6 @@ export class PickerTest {
 
         this.choosenAnswer = '';
         this.trueAnswer = '';
-        this.resultMessage = '';
     }
 
     private setAnswer(answer: string) {
@@ -93,7 +91,6 @@ export class PickerTest {
         var isTrueAnswer = false;
 
         if (this.trueAnswer != answer) {
-            //this.resultMessage = `Error! "${this.currentTest.Word}" = "${this.trueAnswer}"`;
             var message = `"${this.currentTest.Word}" = "${this.trueAnswer}"`;
             this.showFailedAnswerInModal(message);
             this.failedCount++;
@@ -123,7 +120,6 @@ export class PickerTest {
     private setNextTest() {
         this.choosenAnswer = '';
         this.trueAnswer = '';
-        this.resultMessage = '';
 
         this.testIndex++;
         
@@ -139,7 +135,6 @@ export class PickerTest {
 
         if (this.testIndex >= this.testCount) {
             let message = `Errors!!: ${this.failedCount}`;
-            this.resultMessage = message
             this.testIsFinished = true;
             this.trueAnswer = 'disable pick button';
             this.showResultsInModal(message);
@@ -221,10 +216,5 @@ export class PickerTest {
         }
 
         ModalWindowServise.showModalWindow(modalWindowConfig);
-    }
-
-    private modalApplied(){
-        console.log('ModalApplied');
-        //this.setNextTest();
     }
 }

@@ -16,15 +16,15 @@ import { ModalWindowServise } from './services/modalWindowServise';
 export class AppComponent implements OnInit {
     private userName: string;
     private applicationMessage: string;
-    private showLoading: boolean;
     private modalConfig: any;
+    private showLoadingArr = [];
 
     constructor(private httpService: HttpService, private router: Router) {
-        this.showLoading = false;
         ConstantStorage.setYandexTranslaterApiKey('dict.1.1.20160904T125311Z.5e2c6c9dfb5cd3c3.71b0d5220878e340d60dcfa0faf7f649af59c65f');
 
         this.userName = '';
-        this.httpService.processGet<User>(ConstantStorage.getUserInfoController()).then(response => this.setUserInfo(response));
+        this.httpService.processGet<User>(ConstantStorage.getUserInfoController())
+            .then(response => this.setUserInfo(response));
 
         this.httpService.processGet<string>(ConstantStorage.getApplicationMessageController())
             .then(response => this.applicationMessage = response);
@@ -37,7 +37,12 @@ export class AppComponent implements OnInit {
         PubSub.Sub('loading', (...args: Array<any>) => {
             if(args && args.length) {
                 args.forEach(x => {   
-                    self.showLoading = x === true ? true : false
+                    if (x === true){
+                        this.showLoadingArr.push(x);
+                    }
+                    else if(this.showLoadingArr.length > 0){
+                        this.showLoadingArr.pop();
+                    }
                 });
             }
         }); 
@@ -67,9 +72,5 @@ export class AppComponent implements OnInit {
         };
 
         ModalWindowServise.showModalWindow(modalConfig);
-
-        // var modal = ConstantStorage.getModalWindow();
-        // modal.windowConfig = this.modalConfig;
-        // modal.showWindow();
     }
 }

@@ -20,14 +20,16 @@ var AppComponent = (function () {
         var _this = this;
         this.httpService = httpService;
         this.router = router;
-        this.showLoading = false;
+        this.showLoadingArr = [];
         constantStorage_1.ConstantStorage.setYandexTranslaterApiKey('dict.1.1.20160904T125311Z.5e2c6c9dfb5cd3c3.71b0d5220878e340d60dcfa0faf7f649af59c65f');
         this.userName = '';
-        this.httpService.processGet(constantStorage_1.ConstantStorage.getUserInfoController()).then(function (response) { return _this.setUserInfo(response); });
+        this.httpService.processGet(constantStorage_1.ConstantStorage.getUserInfoController())
+            .then(function (response) { return _this.setUserInfo(response); });
         this.httpService.processGet(constantStorage_1.ConstantStorage.getApplicationMessageController())
             .then(function (response) { return _this.applicationMessage = response; });
     }
     AppComponent.prototype.ngOnInit = function () {
+        var _this = this;
         var self = this;
         modalWindowServise_1.ModalWindowServise.initModalWindowService(this);
         pubSub_1.PubSub.Sub('loading', function () {
@@ -37,7 +39,12 @@ var AppComponent = (function () {
             }
             if (args && args.length) {
                 args.forEach(function (x) {
-                    self.showLoading = x === true ? true : false;
+                    if (x === true) {
+                        _this.showLoadingArr.push(x);
+                    }
+                    else if (_this.showLoadingArr.length > 0) {
+                        _this.showLoadingArr.pop();
+                    }
                 });
             }
         });
@@ -62,9 +69,6 @@ var AppComponent = (function () {
             applyCallback: function () { return commonHelper_1.CommonHelper.logOff(); }
         };
         modalWindowServise_1.ModalWindowServise.showModalWindow(modalConfig);
-        // var modal = ConstantStorage.getModalWindow();
-        // modal.windowConfig = this.modalConfig;
-        // modal.showWindow();
     };
     return AppComponent;
 }());

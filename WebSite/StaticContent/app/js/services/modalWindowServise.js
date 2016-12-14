@@ -4,7 +4,9 @@ var ModalWindowServise = (function () {
     function ModalWindowServise() {
     }
     ModalWindowServise.initModalWindowService = function (app) {
-        this.appComponent = app;
+        if (!this.appComponent) {
+            this.appComponent = app;
+        }
     };
     ModalWindowServise.showModalWindow = function (config) {
         if (!config || !this.appComponent) {
