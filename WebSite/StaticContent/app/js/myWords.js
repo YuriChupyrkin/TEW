@@ -23,7 +23,7 @@ var MyWords = (function () {
         var _this = this;
         var url = constantStorage_1.ConstantStorage.getWordsManagerController() + "?userName=" + constantStorage_1.ConstantStorage.getUserName();
         var result = this.httpService.processGet(url);
-        result.subscribe(function (json) { return _this.setUserWords(json); });
+        result.then(function (json) { return _this.setUserWords(json); });
     };
     MyWords.prototype.removeWord = function (word) {
         var _this = this;
@@ -34,7 +34,7 @@ var MyWords = (function () {
         wordsCloudModel.UserName = constantStorage_1.ConstantStorage.getUserName();
         wordsCloudModel.Words = [word];
         var result = this.httpService.processPost(wordsCloudModel, constantStorage_1.ConstantStorage.getDeleteWordController());
-        result.subscribe(function (response) { return _this.removedWord(word); }, function (error) { return word.Hidden = false; });
+        result.then(function (response) { return _this.removedWord(word); }, function (error) { return word.Hidden = false; });
     };
     MyWords.prototype.setUserWords = function (userWords) {
         this.userWords = userWords;

@@ -27,8 +27,19 @@ var HttpService = (function () {
         // start loading...
         pubSub_1.PubSub.Pub(constantStorage_1.ConstantStorage.getLoadingEvent(), true);
         var getRequest = this.http.get(url, { headers: headers }).map(function (response) { return response.json(); });
-        //getRequest.subscribe(r => this.requestFinished(), e => this.requestFinishedWithError(url, 'get', e));
-        return getRequest;
+        //return getRequest;
+        var promise = new Promise(function (resolve, reject) {
+            getRequest.subscribe(function (r) {
+                pubSub_1.PubSub.Pub(constantStorage_1.ConstantStorage.getLoadingEvent(), false);
+                resolve(r);
+            }, function (e) {
+                console.log(url + " (GET): request finished with error:");
+                console.log(e);
+                pubSub_1.PubSub.Pub(constantStorage_1.ConstantStorage.getLoadingEvent(), false);
+                reject(e);
+            });
+        });
+        return promise;
     };
     HttpService.prototype.processPost = function (object, url) {
         var headers = new http_1.Headers();
@@ -40,17 +51,19 @@ var HttpService = (function () {
         pubSub_1.PubSub.Pub(constantStorage_1.ConstantStorage.getLoadingEvent(), true);
         var postRequest = this.http.post(url, object, { headers: headers });
         //postRequest.subscribe(r => this.requestFinished(), e => this.requestFinishedWithError(url, 'post', e));
-        return postRequest;
-    };
-    HttpService.prototype.requestFinished = function () {
-        // end loading... 
-        pubSub_1.PubSub.Pub(constantStorage_1.ConstantStorage.getLoadingEvent(), false);
-    };
-    HttpService.prototype.requestFinishedWithError = function (url, method, error) {
-        console.log(url + " (" + method + "): request finished with error:");
-        console.log(error);
-        // end loading...
-        pubSub_1.PubSub.Pub(constantStorage_1.ConstantStorage.getLoadingEvent(), false);
+        //return postRequest;
+        var promise = new Promise(function (resolve, reject) {
+            postRequest.subscribe(function (r) {
+                pubSub_1.PubSub.Pub(constantStorage_1.ConstantStorage.getLoadingEvent(), false);
+                resolve(r);
+            }, function (e) {
+                console.log(url + " (POST): request finished with error:");
+                console.log(e);
+                pubSub_1.PubSub.Pub(constantStorage_1.ConstantStorage.getLoadingEvent(), false);
+                reject(e);
+            });
+        });
+        return promise;
     };
     return HttpService;
 }());

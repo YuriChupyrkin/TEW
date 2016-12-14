@@ -299,3 +299,16 @@ acitve link > color: #5af35d
     font-size: 18px;
     color: red;
 }
+
+.tew-modal-title {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.tew-modal-body {
+    font-size: 20px;
+}
+
+.tew-modal-button {
+    min-width: 80px;
+}

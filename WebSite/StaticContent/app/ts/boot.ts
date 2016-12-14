@@ -13,6 +13,7 @@ import { HttpModule } from '@angular/http';
 import { LoadingAnimation } from './helpComponents/loadingAnimation';
 import { ProgressBar } from './helpComponents/progressBar';
 import { ModalWindow } from './helpComponents/modalWindow';
+import { UserStat } from './userStat';
 
 // For textbox binding
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
@@ -20,7 +21,17 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 @NgModule({
     imports: [BrowserModule, routing, HttpModule, FormsModule, ReactiveFormsModule],
 
-    declarations: [AppComponent, Home, AddWord, MyWords, PickerTest, LoadingAnimation, ProgressBar, ModalWindow],
+    declarations: [
+        AppComponent, 
+        Home, 
+        AddWord, 
+        MyWords, 
+        PickerTest, 
+        LoadingAnimation, 
+        ProgressBar, 
+        ModalWindow, 
+        UserStat
+    ],
 
     bootstrap: [AppComponent],
 

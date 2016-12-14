@@ -47,7 +47,7 @@ export class AddWord implements OnInit {
 
     private translateByExistsWords(englishWord: string) {
         var url = `${ConstantStorage.getWordTranslaterController()}?word=${englishWord}`;
-        this.httpService.processGet<Array<string>>(url).subscribe(response => this.addTranslate(response));
+        this.httpService.processGet<Array<string>>(url).then(response => this.addTranslate(response));
     }
 
     private translateByYandex(englishWord: string) {
@@ -57,7 +57,7 @@ export class AddWord implements OnInit {
 
         var resultUri = `${url}?key=${apiKey}&lang=${translateLang}&text=${englishWord}`;
         this.httpService.processGet<JSON>(resultUri, true)
-            .subscribe(response => this.parseTranslate(response));
+            .then(response => this.parseTranslate(response));
     }
 
     private parseTranslate(response: JSON) {
@@ -130,7 +130,7 @@ export class AddWord implements OnInit {
         wordCloudModel.Words = [word];
 
         this.httpService.processPost(wordCloudModel, ConstantStorage.getWordsManagerController())
-            .subscribe(response => console.dir(response), error => alert("error"));
+            .then(response => console.dir(response), error => alert("error"));
 
         this.clearTranslateResults(true);
     }

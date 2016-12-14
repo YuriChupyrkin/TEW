@@ -4,7 +4,7 @@ import { ConstantStorage } from './services/constantStorage';
 import { HttpService } from './services/httpService';
 import { Word } from './models/word';
 import { WordsCloudModel } from './models/wordsCloudModel';
-import { ModalWindow } from './helpComponents/ModalWindow';
+import { ModalWindowServise } from './services/modalWindowServise';
 
 @Component({
     selector: 'picker-test',
@@ -27,7 +27,6 @@ export class PickerTest {
     private testIsFinished: boolean;
     private firstTestNOTloaded: boolean;
     private progress: number;
-    private modalWindowConfig: any;
 
     constructor(private httpService: HttpService) {
         this.testSet = new Array<PickerTestModel>();
@@ -45,7 +44,7 @@ export class PickerTest {
         this.testName = testName == this.EnRuTest ? this.EnRuTest : this.RuEnTest;
 
         var url = `${ConstantStorage.getPickerTestsController()}?userId=${ConstantStorage.getUserId()}&testType=${this.testName}`;
-        this.httpService.processGet<Array<PickerTestModel>>(url).subscribe(
+        this.httpService.processGet<Array<PickerTestModel>>(url).then(
             response => this.startTest(response),
             error => {
                 this.showError('"Your words" should be have than 4 words');
@@ -118,7 +117,7 @@ export class PickerTest {
 
         this.httpService
             .processPost(postObject, ConstantStorage.getWordsLevelUpdaterController())
-            .subscribe();
+            .then();
     }
 
     private setNextTest() {
@@ -169,23 +168,23 @@ export class PickerTest {
 
         var result = this.httpService.processPost<WordsCloudModel>(wordsCloudModel, ConstantStorage.getDeleteWordController());
 
-        result.subscribe(response => console.dir(response));
+        result.then(response => console.dir(response));
         this.setNextTest();
     }
      
     private showError(message: string) {
-        this.modalWindowConfig = {
+        let modalWindowConfig = {
              headerText: 'PAGE ERROR',
              bodyText: message,
              isCancelButton: true,
              cancelButtonText: 'Cancel'
         };
 
-        ModalWindow.showWindow();
+       ModalWindowServise.showModalWindow(modalWindowConfig);
     }
 
     private showIsDeleteModal(pickerTestModel: PickerTestModel) {
-        this.modalWindowConfig = {
+        let modalWindowConfig = {
              headerText: 'Delete',
              bodyText: `Delete word: "${pickerTestModel.Word}"?`,
              isApplyButton: true,
@@ -195,11 +194,11 @@ export class PickerTest {
              applyCallback: () => this.deleteWord(pickerTestModel)
         };
 
-        ModalWindow.showWindow();
+        ModalWindowServise.showModalWindow(modalWindowConfig);
     }
 
     private showFailedAnswerInModal(message: string) {
-        this.modalWindowConfig = {
+        let modalWindowConfig = {
              headerText: 'Error',
              bodyText: message,
              isApplyButton: true,
@@ -208,11 +207,11 @@ export class PickerTest {
              applyCallback: () => this.setNextTest()
         }
 
-        ModalWindow.showWindow();
+        ModalWindowServise.showModalWindow(modalWindowConfig);
     }
 
     private showResultsInModal(message: string) {
-        this.modalWindowConfig = {
+        let modalWindowConfig = {
              headerText: 'Done',
              bodyText: message,
              isApplyButton: true,
@@ -221,7 +220,7 @@ export class PickerTest {
              applyCallback: () => this.setNextTest()
         }
 
-        ModalWindow.showWindow();
+        ModalWindowServise.showModalWindow(modalWindowConfig);
     }
 
     private modalApplied(){

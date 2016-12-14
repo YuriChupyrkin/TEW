@@ -14,7 +14,7 @@ var constantStorage_1 = require("./services/constantStorage");
 var httpService_1 = require("./services/httpService");
 var word_1 = require("./models/word");
 var wordsCloudModel_1 = require("./models/wordsCloudModel");
-var ModalWindow_1 = require("./helpComponents/ModalWindow");
+var modalWindowServise_1 = require("./services/modalWindowServise");
 var PickerTest = (function () {
     function PickerTest(httpService) {
         this.httpService = httpService;
@@ -32,7 +32,7 @@ var PickerTest = (function () {
         this.initEmptyCurrentTest();
         this.testName = testName == this.EnRuTest ? this.EnRuTest : this.RuEnTest;
         var url = constantStorage_1.ConstantStorage.getPickerTestsController() + "?userId=" + constantStorage_1.ConstantStorage.getUserId() + "&testType=" + this.testName;
-        this.httpService.processGet(url).subscribe(function (response) { return _this.startTest(response); }, function (error) {
+        this.httpService.processGet(url).then(function (response) { return _this.startTest(response); }, function (error) {
             _this.showError('"Your words" should be have than 4 words');
             console.dir(error);
         });
@@ -91,7 +91,7 @@ var PickerTest = (function () {
         };
         this.httpService
             .processPost(postObject, constantStorage_1.ConstantStorage.getWordsLevelUpdaterController())
-            .subscribe();
+            .then();
     };
     PickerTest.prototype.setNextTest = function () {
         this.choosenAnswer = '';
@@ -133,21 +133,21 @@ var PickerTest = (function () {
         word.English = pickerTestModel.Word;
         wordsCloudModel.Words = [word];
         var result = this.httpService.processPost(wordsCloudModel, constantStorage_1.ConstantStorage.getDeleteWordController());
-        result.subscribe(function (response) { return console.dir(response); });
+        result.then(function (response) { return console.dir(response); });
         this.setNextTest();
     };
     PickerTest.prototype.showError = function (message) {
-        this.modalWindowConfig = {
+        var modalWindowConfig = {
             headerText: 'PAGE ERROR',
             bodyText: message,
             isCancelButton: true,
             cancelButtonText: 'Cancel'
         };
-        ModalWindow_1.ModalWindow.showWindow();
+        modalWindowServise_1.ModalWindowServise.showModalWindow(modalWindowConfig);
     };
     PickerTest.prototype.showIsDeleteModal = function (pickerTestModel) {
         var _this = this;
-        this.modalWindowConfig = {
+        var modalWindowConfig = {
             headerText: 'Delete',
             bodyText: "Delete word: \"" + pickerTestModel.Word + "\"?",
             isApplyButton: true,
@@ -156,11 +156,11 @@ var PickerTest = (function () {
             cancelButtonText: 'No',
             applyCallback: function () { return _this.deleteWord(pickerTestModel); }
         };
-        ModalWindow_1.ModalWindow.showWindow();
+        modalWindowServise_1.ModalWindowServise.showModalWindow(modalWindowConfig);
     };
     PickerTest.prototype.showFailedAnswerInModal = function (message) {
         var _this = this;
-        this.modalWindowConfig = {
+        var modalWindowConfig = {
             headerText: 'Error',
             bodyText: message,
             isApplyButton: true,
@@ -168,11 +168,11 @@ var PickerTest = (function () {
             applyButtonText: 'ok',
             applyCallback: function () { return _this.setNextTest(); }
         };
-        ModalWindow_1.ModalWindow.showWindow();
+        modalWindowServise_1.ModalWindowServise.showModalWindow(modalWindowConfig);
     };
     PickerTest.prototype.showResultsInModal = function (message) {
         var _this = this;
-        this.modalWindowConfig = {
+        var modalWindowConfig = {
             headerText: 'Done',
             bodyText: message,
             isApplyButton: true,
@@ -180,7 +180,7 @@ var PickerTest = (function () {
             applyButtonText: 'ok',
             applyCallback: function () { return _this.setNextTest(); }
         };
-        ModalWindow_1.ModalWindow.showWindow();
+        modalWindowServise_1.ModalWindowServise.showModalWindow(modalWindowConfig);
     };
     PickerTest.prototype.modalApplied = function () {
         console.log('ModalApplied');

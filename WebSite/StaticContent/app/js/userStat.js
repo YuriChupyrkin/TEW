@@ -10,53 +10,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var constantStorage_1 = require("./services/constantStorage");
-var commonHelper_1 = require("./services/commonHelper");
 var httpService_1 = require("./services/httpService");
-var modalWindowServise_1 = require("./services/modalWindowServise");
-var Home = (function () {
-    function Home(httpService) {
+var UserStat = (function () {
+    function UserStat(httpService) {
         this.httpService = httpService;
     }
-    Home.prototype.logOff = function () {
-        commonHelper_1.CommonHelper.logOff();
-    };
-    Home.prototype.ngOnInit = function () {
+    UserStat.prototype.ngOnInit = function () {
         var _this = this;
-        this.userName = constantStorage_1.ConstantStorage.getUserName();
         var userId = constantStorage_1.ConstantStorage.getUserId();
         if (userId != 0 && userId != undefined) {
             this.httpService.processGet(constantStorage_1.ConstantStorage.getUserStatController() + "?userId=" + userId)
                 .then(function (result) { return _this.userStatModel = result; });
         }
     };
-    Home.prototype.modalApplied = function () {
-        console.log('home applied');
-    };
-    Home.prototype.setModalWindow1 = function () {
-        var modalConfig = {
-            headerText: 'Hello 1',
-            bodyText: 'My name is Yuri',
-            isApplyButton: true,
-            applyButtonText: 'ok'
-        };
-        modalWindowServise_1.ModalWindowServise.showModalWindow(modalConfig);
-    };
-    Home.prototype.setModalWindow2 = function () {
-        var modalConfig = {
-            headerText: 'Header for 2',
-            bodyText: 'text text text',
-            isApplyButton: true,
-            applyButtonText: 'da!'
-        };
-        modalWindowServise_1.ModalWindowServise.showModalWindow(modalConfig);
-    };
-    return Home;
+    return UserStat;
 }());
-Home = __decorate([
+UserStat = __decorate([
     core_1.Component({
-        selector: 'home',
-        templateUrl: '../StaticContent/app/templates/home.html'
+        selector: 'user-stat',
+        templateUrl: '../StaticContent/app/templates/userStat.html'
     }),
     __metadata("design:paramtypes", [httpService_1.HttpService])
-], Home);
-exports.Home = Home;
+], UserStat);
+exports.UserStat = UserStat;

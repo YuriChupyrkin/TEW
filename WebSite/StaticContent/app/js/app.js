@@ -13,6 +13,8 @@ var constantStorage_1 = require("./services/constantStorage");
 var httpService_1 = require("./services/httpService");
 var router_1 = require("@angular/router");
 var pubSub_1 = require("./services/pubSub");
+var commonHelper_1 = require("./services/commonHelper");
+var modalWindowServise_1 = require("./services/modalWindowServise");
 var AppComponent = (function () {
     function AppComponent(httpService, router) {
         var _this = this;
@@ -21,12 +23,13 @@ var AppComponent = (function () {
         this.showLoading = false;
         constantStorage_1.ConstantStorage.setYandexTranslaterApiKey('dict.1.1.20160904T125311Z.5e2c6c9dfb5cd3c3.71b0d5220878e340d60dcfa0faf7f649af59c65f');
         this.userName = '';
-        this.httpService.processGet(constantStorage_1.ConstantStorage.getUserInfoController()).subscribe(function (response) { return _this.setUserInfo(response); });
+        this.httpService.processGet(constantStorage_1.ConstantStorage.getUserInfoController()).then(function (response) { return _this.setUserInfo(response); });
         this.httpService.processGet(constantStorage_1.ConstantStorage.getApplicationMessageController())
-            .subscribe(function (response) { return _this.applicationMessage = response; });
+            .then(function (response) { return _this.applicationMessage = response; });
     }
     AppComponent.prototype.ngOnInit = function () {
         var self = this;
+        modalWindowServise_1.ModalWindowServise.initModalWindowService(this);
         pubSub_1.PubSub.Sub('loading', function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
@@ -39,11 +42,29 @@ var AppComponent = (function () {
             }
         });
     };
+    AppComponent.prototype.setModalConfig = function (config) {
+        this.modalConfig = config;
+    };
     AppComponent.prototype.setUserInfo = function (user) {
         constantStorage_1.ConstantStorage.setUserName(user.Email);
         constantStorage_1.ConstantStorage.setUserId(user.Id);
         this.userName = user.Email;
         this.router.navigate(['/home']);
+    };
+    AppComponent.prototype.logOut = function () {
+        var modalConfig = {
+            headerText: 'Sign out',
+            bodyText: "Do you want sign out?",
+            isApplyButton: true,
+            isCancelButton: true,
+            applyButtonText: 'Yes',
+            cancelButtonText: 'No',
+            applyCallback: function () { return commonHelper_1.CommonHelper.logOff(); }
+        };
+        modalWindowServise_1.ModalWindowServise.showModalWindow(modalConfig);
+        // var modal = ConstantStorage.getModalWindow();
+        // modal.windowConfig = this.modalConfig;
+        // modal.showWindow();
     };
     return AppComponent;
 }());

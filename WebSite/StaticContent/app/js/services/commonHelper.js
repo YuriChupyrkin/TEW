@@ -3,9 +3,7 @@ var CommonHelper = (function () {
     function CommonHelper() {
     }
     CommonHelper.logOff = function () {
-        if (confirm("log out?")) {
-            window.location.href = '/account/SignOff';
-        }
+        window.location.href = '/account/SignOff';
     };
     return CommonHelper;
 }());

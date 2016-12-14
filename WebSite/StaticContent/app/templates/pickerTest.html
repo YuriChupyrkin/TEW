@@ -1,6 +1,4 @@
 ﻿<div class="center-block">
-    <modal-window [windowConfig]="modalWindowConfig" (windowApplied)="modalApplied($event)"></modal-window>
-
     <!-- buttons -->
     <div>
         <button [disabled]="!currentTest.Word && !firstTestNOTloaded" (click)="prepareTest('EnRuTest')" class="btn btn-primary">

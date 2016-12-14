@@ -24,7 +24,7 @@ export class MyWords {
         var url = `${ConstantStorage.getWordsManagerController()}?userName=${ConstantStorage.getUserName()}`;
 
         var result = this.httpService.processGet<UserWords>(url);
-        result.subscribe(json => this.setUserWords(json));
+        result.then(json => this.setUserWords(json));
     }
 
     private removeWord(word: Word) {
@@ -39,7 +39,7 @@ export class MyWords {
 
         var result = this.httpService.processPost<WordsCloudModel>(wordsCloudModel, ConstantStorage.getDeleteWordController());
 
-        result.subscribe(
+        result.then(
             response => this.removedWord(word),
             error => word.Hidden = false);
     }

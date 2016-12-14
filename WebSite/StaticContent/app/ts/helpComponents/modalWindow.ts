@@ -22,15 +22,15 @@ export class ModalWindow {
             this.config = this.buildDefaultConfig();
         }
 
-        if (this.config.isApplyButton === undefined){
+        if (this.config.isApplyButton === undefined) {
             this.config.isApplyButton = false;
         }
 
-        if (this.config.isCancelButton === undefined){
+        if (this.config.isCancelButton === undefined) {
             this.config.isCancelButton = true;
         }
 
-        if (!this.config.cancelButtonText){
+        if (!this.config.cancelButtonText) {
             this.config.cancelButtonText = 'Cancel';
         }
     }

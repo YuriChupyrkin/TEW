@@ -1,4 +1,5 @@
 ﻿<div class="container">
+    <modal-window [windowConfig]="modalConfig"></modal-window>
     <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -36,13 +37,13 @@
                         <ul class="nav navbar-nav navbar-right responsive-menu ">
                             <li class="divider"></li>
                             <li>
-                                <a href="#">
+                                <a routerLink="/user-stat" routerLinkActive="active-menu-item">
                                     <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                                     {{userName}}
                                 </a>
                             </li>
                             <li>
-                                <a href="/account/SignOff">
+                                <a (click)="logOut()">
                                    <i class="fa fa-sign-out" aria-hidden="true"></i>
                                    Log out
                                 </a>

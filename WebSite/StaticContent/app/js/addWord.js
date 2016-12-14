@@ -43,7 +43,7 @@ var AddWord = (function () {
     AddWord.prototype.translateByExistsWords = function (englishWord) {
         var _this = this;
         var url = constantStorage_1.ConstantStorage.getWordTranslaterController() + "?word=" + englishWord;
-        this.httpService.processGet(url).subscribe(function (response) { return _this.addTranslate(response); });
+        this.httpService.processGet(url).then(function (response) { return _this.addTranslate(response); });
     };
     AddWord.prototype.translateByYandex = function (englishWord) {
         var _this = this;
@@ -52,7 +52,7 @@ var AddWord = (function () {
         var apiKey = constantStorage_1.ConstantStorage.getYandexTranslaterApiKey();
         var resultUri = url + "?key=" + apiKey + "&lang=" + translateLang + "&text=" + englishWord;
         this.httpService.processGet(resultUri, true)
-            .subscribe(function (response) { return _this.parseTranslate(response); });
+            .then(function (response) { return _this.parseTranslate(response); });
     };
     AddWord.prototype.parseTranslate = function (response) {
         var def = response['def'];
@@ -110,7 +110,7 @@ var AddWord = (function () {
         word.Example = example;
         wordCloudModel.Words = [word];
         this.httpService.processPost(wordCloudModel, constantStorage_1.ConstantStorage.getWordsManagerController())
-            .subscribe(function (response) { return console.dir(response); }, function (error) { return alert("error"); });
+            .then(function (response) { return console.dir(response); }, function (error) { return alert("error"); });
         this.clearTranslateResults(true);
     };
     return AddWord;

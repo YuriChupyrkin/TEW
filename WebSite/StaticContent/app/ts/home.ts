@@ -3,7 +3,7 @@ import { ConstantStorage } from './services/constantStorage';
 import { CommonHelper } from './services/commonHelper';
 import { UserStatModel } from './models/userStatModel';
 import { HttpService } from './services/httpService';
-import { ModalWindow } from './helpComponents/ModalWindow';
+import { ModalWindowServise } from './services/modalWindowServise';
 
 @Component({
     selector: 'home',
@@ -13,7 +13,6 @@ import { ModalWindow } from './helpComponents/ModalWindow';
 export class Home implements OnInit  {
     private userName: string;
     private userStatModel: UserStatModel;
-    private modalConfig: any;
 
     constructor(private httpService: HttpService){
     }
@@ -28,14 +27,7 @@ export class Home implements OnInit  {
         var userId = ConstantStorage.getUserId();
         if (userId != 0 && userId != undefined) {
             this.httpService.processGet<UserStatModel>(`${ConstantStorage.getUserStatController()}?userId=${userId}`)
-                .subscribe(result => this.userStatModel = result);
-        }
-
-        this.modalConfig = {
-            headerText: 'Hello',
-            bodyText: 'My name is....',
-            isApplyButton: true,
-            applyButtonText: 'apply'
+                .then(result => this.userStatModel = result);
         }
     }
 
@@ -44,22 +36,24 @@ export class Home implements OnInit  {
     }
 
     public setModalWindow1(){
-         this.modalConfig = {
+        let modalConfig = {
             headerText: 'Hello 1',
             bodyText: 'My name is Yuri',
             isApplyButton: true,
             applyButtonText: 'ok'
         }
+
+        ModalWindowServise.showModalWindow(modalConfig);
     }
 
     public setModalWindow2(){
-         this.modalConfig = {
+        let modalConfig = {
             headerText: 'Header for 2',
             bodyText: 'text text text',
             isApplyButton: true,
             applyButtonText: 'da!'
         }
-
-        ModalWindow.showWindow();
+        
+        ModalWindowServise.showModalWindow(modalConfig);
     }
 }

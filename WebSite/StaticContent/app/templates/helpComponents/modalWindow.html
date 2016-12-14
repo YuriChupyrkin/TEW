@@ -1,22 +1,22 @@
 <div>
     <div class="modal fade"  [attr.id]="modal_window_id">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content modal-sm">
                 <div class="modal-header">
                     <button class="close" type="button" data-dismiss="modal">
                         <i class="fa fa-close"></i>
                     </button>
-                    <h4 class="modal-title">{{config.headerText}}</h4>
+                    <div class="modal-title tew-modal-title">{{config.headerText}}</div>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body tew-modal-body">
                     <p>{{config.bodyText}}</p>
                 </div>
                 <div class="modal-footer">
-                    <button *ngIf="config.isApplyButton" class="btn btn-success" 
+                    <button *ngIf="config.isApplyButton" class="btn btn-success tew-modal-button" 
                         type="button" data-dismiss="modal" (click)="applyWindow()">
                         {{config.applyButtonText}}
                     </button>
-                    <button *ngIf="config.isCancelButton" class="btn btn-danger" 
+                    <button *ngIf="config.isCancelButton" class="btn btn-danger tew-modal-button" 
                         type="button" data-dismiss="modal" (click)="cancelWindow()">
                         {{config.cancelButtonText}}
                     </button> 
