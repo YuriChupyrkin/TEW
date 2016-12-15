@@ -12,7 +12,12 @@
     private static readonly userStatController = '/api/userStat';
     private static readonly deleteWordController = '/api/DeleteWord';
     private static readonly pickerTestsController = '/api/PickerTests';
-    private static readonly wordsLevelUpdaterController = 'api/WordsLevelUpdater';
+    private static readonly wordsLevelUpdaterController = '/api/WordsLevelUpdater';
+    private static readonly tewInfoContoller = '/api/TewInfo'
+
+    public static getTewInfoContoller(){
+        return this.tewInfoContoller;
+    }
 
     public static getWordsLevelUpdaterController(){
         return this.wordsLevelUpdaterController;

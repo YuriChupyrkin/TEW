@@ -10,45 +10,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var constantStorage_1 = require("./services/constantStorage");
-var commonHelper_1 = require("./services/commonHelper");
 var httpService_1 = require("./services/httpService");
-var modalWindowServise_1 = require("./services/modalWindowServise");
 var Home = (function () {
     function Home(httpService) {
         this.httpService = httpService;
     }
-    Home.prototype.logOff = function () {
-        commonHelper_1.CommonHelper.logOff();
-    };
     Home.prototype.ngOnInit = function () {
         var _this = this;
-        this.userName = constantStorage_1.ConstantStorage.getUserName();
-        var userId = constantStorage_1.ConstantStorage.getUserId();
-        if (userId != 0 && userId != undefined) {
-            this.httpService.processGet(constantStorage_1.ConstantStorage.getUserStatController() + "?userId=" + userId)
-                .then(function (result) { return _this.userStatModel = result; });
-        }
-    };
-    Home.prototype.modalApplied = function () {
-        console.log('home applied');
-    };
-    Home.prototype.setModalWindow1 = function () {
-        var modalConfig = {
-            headerText: 'Hello 1',
-            bodyText: 'My name is Yuri',
-            isApplyButton: true,
-            applyButtonText: 'ok'
-        };
-        modalWindowServise_1.ModalWindowServise.showModalWindow(modalConfig);
-    };
-    Home.prototype.setModalWindow2 = function () {
-        var modalConfig = {
-            headerText: 'Header for 2',
-            bodyText: 'text text text',
-            isApplyButton: true,
-            applyButtonText: 'da!'
-        };
-        modalWindowServise_1.ModalWindowServise.showModalWindow(modalConfig);
+        this.httpService.processGet(constantStorage_1.ConstantStorage.getTewInfoContoller())
+            .then(function (response) {
+            _this.usersCount = response.Users;
+            _this.wordsCount = response.Words;
+            console.log(response);
+            console.log(_this.usersCount);
+            console.log(_this.wordsCount);
+        });
     };
     return Home;
 }());

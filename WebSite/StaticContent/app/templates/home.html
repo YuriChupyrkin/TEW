@@ -1,43 +1,10 @@
-﻿<div class="visible-desktop">
-    <h1> Home </h1>
-    <div *ngIf="userStatModel != null">
-        <ul>
-            <li>User email: {{userStatModel.Email}}</li>
-            <li>User nickname: {{userStatModel.NickName}}</li>
-            <li>User WordsLevel: {{userStatModel.WordsLevel}}</li>
-            <li>User ActivityLevel: {{userStatModel.ActivityLevel}}</li>
-            <li>User LastActivityDate: {{userStatModel.LastActivityDate}}</li>
-        </ul>
-    </div>
-</div>
+﻿<div>
+   <h2>Tew!!!</h2>
 
-<!-- mobile -->
-<div class="visible-phone visible-tablet center-block">
-    <div>
-        <span class="mobile-text mobile-username-block" [hidden]="!userName">
-            <span>
-                <span class="glyphicon glyphicon-user"></span>
-                {{userName}}
-            </span>
-            <br />
-            <span><a class="mobile-home-link" (click)="logOff()">Log out</a></span>
-        </span>
-    </div>
-    <div class="mobile-links">
-        <a class="mobile-home-link" routerLink="/add-word">Add word</a>
-        <br/>
-
-        <a class="mobile-home-link" routerLink="/my-words">My words</a>
-        <br/>
-
-        <a class="mobile-home-link" routerLink="/picker-test">Picker test</a>
-        <br/>
-    </div>
-</div>
-
-<div>
-    <div>
-        <button (click)="setModalWindow1()" class="btn btn-success" type="button" data-toggle="modal" data-target="#tew-modal-window">Open 1</button>
-        <button (click)="setModalWindow2()" class="btn btn-success" type="button">Open 2</button>
-    </div>
+   <div>
+        Users: {{usersCount}}
+   </div>
+   <div>
+        {{wordsCount}}
+   </div>
 </div>
