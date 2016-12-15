@@ -21,9 +21,6 @@ var Home = (function () {
             .then(function (response) {
             _this.usersCount = response.Users;
             _this.wordsCount = response.Words;
-            console.log(response);
-            console.log(_this.usersCount);
-            console.log(_this.wordsCount);
         });
     };
     return Home;
