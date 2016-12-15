@@ -197,6 +197,7 @@
     <Compile Include="Controllers\Api\WordsLevelUpdaterController.cs" />
     <Compile Include="Controllers\Api\WordTranslaterController.cs" />
     <Compile Include="Controllers\Api\WriteTestsController.cs" />
+    <Compile Include="Controllers\WordsUploaderController.cs" />
     <Compile Include="FIlters\UserActivityFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -4640,6 +4641,7 @@
     <Content Include="StaticContent\node_modules\systemjs\LICENSE" />
     <Content Include="StaticContent\node_modules\systemjs\package.json" />
     <Content Include="StaticContent\node_modules\systemjs\README.md" />
+    <Content Include="Views\WordsUploader\Index.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

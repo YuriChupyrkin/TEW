@@ -1,6 +1,5 @@
 ﻿using Domain.Entities;
 using Domain.RepositoryFactories;
-using Domain.UnitOfWork;
 using EnglishLearnBLL.Models;
 using System;
 using System.Collections.Generic;
@@ -11,12 +10,10 @@ namespace TewCloud.Helpers
   public class UserHelper
   {
     private readonly IRepositoryFactory _repositoryFactory;
-    private readonly IUnitOfWork _unitOfWork;
 
     public UserHelper(IRepositoryFactory repositoryFactory)
     {
       _repositoryFactory = repositoryFactory;
-      _unitOfWork = (IUnitOfWork)repositoryFactory;
     }
 
     public User GetUser(string userName)

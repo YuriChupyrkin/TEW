@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Upload";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model string
+
+<div class="container">
+    <h2>Uploader</h2>
+
+    <div>
+        <h3 style="color: red;">@ViewBag.Error</h3>
+
+        @if (ViewBag.Success != null && ViewBag.Success.ToString().Length > 0)
+        {
+            <h3>@ViewBag.Success</h3>
+            @Html.ActionLink("Go to main page", "Index", "Tew")
+            <br/>
+        }
+    </div>
+
+
+    @using (Html.BeginForm())
+    {
+        <div class="editor-label">
+			Upload your words (JSON format)
+		</div>
+        <div class="editor-field">
+            <textarea name="wordsJson" class="form-control"></textarea>
+        </div>
+        <br/>
+        <input type="submit" class="btn btn-success" value="OK"/>
+    }
+</div>
