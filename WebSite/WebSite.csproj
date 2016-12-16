@@ -186,6 +186,7 @@
     <Compile Include="Controllers\Api\DeleteWordController.cs" />
     <Compile Include="Controllers\Api\PickerTestsController.cs" />
     <Compile Include="Controllers\Api\ResetPasswordController.cs" />
+    <Compile Include="Controllers\Api\ResetWordsLevelController.cs" />
     <Compile Include="Controllers\Api\UserInfoController.cs" />
     <Compile Include="Controllers\Api\UserStatController.cs" />
     <Compile Include="Controllers\Api\WordsManagerController.cs" />

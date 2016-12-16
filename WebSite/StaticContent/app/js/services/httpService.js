@@ -27,7 +27,6 @@ var HttpService = (function () {
         // start loading...
         pubSub_1.PubSub.Pub(constantStorage_1.ConstantStorage.getLoadingEvent(), true);
         var getRequest = this.http.get(url, { headers: headers }).map(function (response) { return response.json(); });
-        //return getRequest;
         var promise = new Promise(function (resolve, reject) {
             getRequest.subscribe(function (r) {
                 pubSub_1.PubSub.Pub(constantStorage_1.ConstantStorage.getLoadingEvent(), false);
@@ -50,8 +49,6 @@ var HttpService = (function () {
         // start loading...
         pubSub_1.PubSub.Pub(constantStorage_1.ConstantStorage.getLoadingEvent(), true);
         var postRequest = this.http.post(url, object, { headers: headers });
-        //postRequest.subscribe(r => this.requestFinished(), e => this.requestFinishedWithError(url, 'post', e));
-        //return postRequest;
         var promise = new Promise(function (resolve, reject) {
             postRequest.subscribe(function (r) {
                 pubSub_1.PubSub.Pub(constantStorage_1.ConstantStorage.getLoadingEvent(), false);

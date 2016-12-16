@@ -23,8 +23,7 @@ export class HttpService {
         // start loading...
         PubSub.Pub(ConstantStorage.getLoadingEvent(), true);
 
-        var getRequest = this.http.get(url, { headers: headers}).map(response => <T>response.json());
-        //return getRequest;
+        let getRequest = this.http.get(url, { headers: headers}).map(response => <T>response.json());
 
         let promise = new Promise<T>((resolve, reject) => {
             getRequest.subscribe(
@@ -56,11 +55,7 @@ export class HttpService {
         // start loading...
         PubSub.Pub(ConstantStorage.getLoadingEvent(), true);
 
-        var postRequest = this.http.post(url, object, { headers: headers });
-
-        //postRequest.subscribe(r => this.requestFinished(), e => this.requestFinishedWithError(url, 'post', e));
-        //return postRequest;
-
+        let postRequest = this.http.post(url, object, { headers: headers });
          
         let promise = new Promise((resolve, reject) => {
             postRequest.subscribe(
@@ -80,17 +75,4 @@ export class HttpService {
   
         return promise;
     }
-
-    // private requestFinished() {
-    //     // end loading... 
-    //     PubSub.Pub(ConstantStorage.getLoadingEvent(), false);
-    // }
-
-    // private requestFinishedWithError(url: string, method: string, error: any) {
-    //     console.log(`${url} (${method}): request finished with error:`);
-    //     console.log(error);
-
-    //     // end loading...
-    //     PubSub.Pub(ConstantStorage.getLoadingEvent(), false);
-    // }
 }

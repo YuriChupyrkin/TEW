@@ -11,16 +11,44 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var constantStorage_1 = require("./services/constantStorage");
 var httpService_1 = require("./services/httpService");
+var modalWindowServise_1 = require("./services/modalWindowServise");
+var user_1 = require("./models/user");
 var UserStat = (function () {
     function UserStat(httpService) {
         this.httpService = httpService;
     }
     UserStat.prototype.ngOnInit = function () {
+        this.updateUserStat();
+    };
+    UserStat.prototype.updateUserStat = function () {
         var _this = this;
         var userId = constantStorage_1.ConstantStorage.getUserId();
         if (userId != 0 && userId != undefined) {
             this.httpService.processGet(constantStorage_1.ConstantStorage.getUserStatController() + "?userId=" + userId)
                 .then(function (result) { return _this.userStatModel = result; });
+        }
+    };
+    UserStat.prototype.resetUserWords = function () {
+        var _this = this;
+        var modalWindowConfig = {
+            headerText: 'Reset',
+            bodyText: 'Do you really want reset level of your words?',
+            isApplyButton: true,
+            isCancelButton: true,
+            applyButtonText: 'Yes',
+            cancelButtonText: 'No',
+            applyCallback: function () { return _this.resetLevel(); }
+        };
+        modalWindowServise_1.ModalWindowServise.showModalWindow(modalWindowConfig);
+    };
+    UserStat.prototype.resetLevel = function () {
+        var _this = this;
+        var userId = constantStorage_1.ConstantStorage.getUserId();
+        var user = new user_1.User();
+        user.Id = userId;
+        if (userId != 0 && userId != undefined) {
+            this.httpService.processPost(user, constantStorage_1.ConstantStorage.getResetWordsLevelController())
+                .then(function (r) { return _this.updateUserStat(); });
         }
     };
     return UserStat;

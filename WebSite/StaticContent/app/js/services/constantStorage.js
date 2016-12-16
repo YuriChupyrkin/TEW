@@ -2,6 +2,9 @@
 var ConstantStorage = (function () {
     function ConstantStorage() {
     }
+    ConstantStorage.getResetWordsLevelController = function () {
+        return this.resetWordsLevelContoller;
+    };
     ConstantStorage.getTewInfoContoller = function () {
         return this.tewInfoContoller;
     };
@@ -64,4 +67,5 @@ ConstantStorage.deleteWordController = '/api/DeleteWord';
 ConstantStorage.pickerTestsController = '/api/PickerTests';
 ConstantStorage.wordsLevelUpdaterController = '/api/WordsLevelUpdater';
 ConstantStorage.tewInfoContoller = '/api/TewInfo';
+ConstantStorage.resetWordsLevelContoller = '/api/ResetWordsLevel';
 exports.ConstantStorage = ConstantStorage;
