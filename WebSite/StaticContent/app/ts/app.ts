@@ -7,6 +7,7 @@ import { PubSub } from './services/pubSub';
 import { CommonHelper } from './services/commonHelper';
 import { ModalWindow } from './helpComponents/modalWindow';
 import { ModalWindowServise } from './services/modalWindowServise';
+import { JQueryHelper } from './services/jQueryHelper';
 
 @Component({
     selector: 'my-app',
@@ -44,6 +45,15 @@ export class AppComponent implements OnInit {
                         this.showLoadingArr.pop();
                     }
                 });
+            }
+        });
+
+        // auto toggle
+        let windowWidth = JQueryHelper.getElement(window).width();
+
+        JQueryHelper.getElement('.navbar-collapse a:not(.dropdown-toggle)').click(function(){
+            if (windowWidth < 768 ) {
+                JQueryHelper.getElement('.navbar-collapse').collapse('hide');
             }
         }); 
     }

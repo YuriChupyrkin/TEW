@@ -15,6 +15,7 @@ var router_1 = require("@angular/router");
 var pubSub_1 = require("./services/pubSub");
 var commonHelper_1 = require("./services/commonHelper");
 var modalWindowServise_1 = require("./services/modalWindowServise");
+var jQueryHelper_1 = require("./services/jQueryHelper");
 var AppComponent = (function () {
     function AppComponent(httpService, router) {
         var _this = this;
@@ -46,6 +47,13 @@ var AppComponent = (function () {
                         _this.showLoadingArr.pop();
                     }
                 });
+            }
+        });
+        // auto toggle
+        var windowWidth = jQueryHelper_1.JQueryHelper.getElement(window).width();
+        jQueryHelper_1.JQueryHelper.getElement('.navbar-collapse a:not(.dropdown-toggle)').click(function () {
+            if (windowWidth < 768) {
+                jQueryHelper_1.JQueryHelper.getElement('.navbar-collapse').collapse('hide');
             }
         });
     };
