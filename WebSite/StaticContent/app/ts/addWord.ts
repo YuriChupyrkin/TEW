@@ -13,6 +13,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class AddWord implements OnInit {
     private translates: Array<string>;
     private addWordform: FormGroup;
+    private translateFor: string;
 
     constructor(private formBuilder: FormBuilder, private httpService: HttpService) {
         this.translates = new Array<string>();
@@ -26,7 +27,6 @@ export class AddWord implements OnInit {
         });
     }
 
-
     private submitForm(value: any): void {
         this.save(value['english'], value['russian'], value['example']);
     }
@@ -37,6 +37,8 @@ export class AddWord implements OnInit {
         if (!englishWord) {
             return;
         }
+
+        this.translateFor = englishWord;
 
         var englishWordWithoutSpaces = englishWord.replace(' ', '%20');
         this.clearTranslateResults(false);
@@ -115,6 +117,11 @@ export class AddWord implements OnInit {
     private save(englishWord: string, russianWord: string, example: string) {
         if (!englishWord || !russianWord) {
             console.log("English and Translate are required!");
+            return;
+        }
+
+        if (englishWord != this.translateFor){
+            this.clearTranslateResults(false);
             return;
         }
 

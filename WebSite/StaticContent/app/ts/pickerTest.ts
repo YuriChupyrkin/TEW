@@ -134,7 +134,7 @@ export class PickerTest {
         }
 
         if (this.testIndex >= this.testCount) {
-            let message = `Errors!!: ${this.failedCount}`;
+            let message = `Errors count: ${this.failedCount}`;
             this.testIsFinished = true;
             this.trueAnswer = 'disable pick button';
             this.showResultsInModal(message);

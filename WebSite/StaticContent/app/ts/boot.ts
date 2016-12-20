@@ -14,6 +14,7 @@ import { LoadingAnimation } from './helpComponents/loadingAnimation';
 import { ProgressBar } from './helpComponents/progressBar';
 import { ModalWindow } from './helpComponents/modalWindow';
 import { UserStat } from './userStat';
+import { IrregularVerbs } from './irregularVerbs';
 
 // For textbox binding
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
@@ -30,7 +31,8 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
         LoadingAnimation, 
         ProgressBar, 
         ModalWindow, 
-        UserStat
+        UserStat,
+        IrregularVerbs
     ],
 
     bootstrap: [AppComponent],

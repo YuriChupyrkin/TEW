@@ -35,6 +35,7 @@ var AddWord = (function () {
         if (!englishWord) {
             return;
         }
+        this.translateFor = englishWord;
         var englishWordWithoutSpaces = englishWord.replace(' ', '%20');
         this.clearTranslateResults(false);
         this.translateByYandex(englishWordWithoutSpaces);
@@ -99,6 +100,10 @@ var AddWord = (function () {
     AddWord.prototype.save = function (englishWord, russianWord, example) {
         if (!englishWord || !russianWord) {
             console.log("English and Translate are required!");
+            return;
+        }
+        if (englishWord != this.translateFor) {
+            this.clearTranslateResults(false);
             return;
         }
         var wordCloudModel = new wordsCloudModel_1.WordsCloudModel();

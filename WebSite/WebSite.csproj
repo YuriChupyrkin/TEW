@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="StaticContent\app\images\" />
     <Folder Include="StaticContent\node_modules\rxjs\node_modules\symbol-observable\es\" />
     <Folder Include="StaticContent\node_modules\rxjs\node_modules\symbol-observable\lib\" />
   </ItemGroup>
@@ -264,7 +265,6 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="StaticContent\app\images\delete.png" />
     <Content Include="StaticContent\app\js\addWord.js" />
     <Content Include="StaticContent\app\js\app.js" />
     <Content Include="StaticContent\app\js\app.routes.js" />
@@ -273,6 +273,7 @@
     <Content Include="StaticContent\app\js\helpComponents\modalWindow.js" />
     <Content Include="StaticContent\app\js\helpComponents\progressBar.js" />
     <Content Include="StaticContent\app\js\home.js" />
+    <Content Include="StaticContent\app\js\irregularVerbs.js" />
     <Content Include="StaticContent\app\js\loadingAnimation.js" />
     <Content Include="StaticContent\app\js\main.js" />
     <Content Include="StaticContent\app\js\mainMenu.js" />
@@ -297,6 +298,7 @@
     <Content Include="StaticContent\app\templates\helpComponents\modalWindow.html" />
     <Content Include="StaticContent\app\templates\helpComponents\progressBar.html" />
     <Content Include="StaticContent\app\templates\home.html" />
+    <Content Include="StaticContent\app\templates\irregularVerbs.html" />
     <Content Include="StaticContent\app\templates\myWords.html" />
     <Content Include="StaticContent\app\templates\pickerTest.html" />
     <Content Include="StaticContent\app\templates\userStat.html" />

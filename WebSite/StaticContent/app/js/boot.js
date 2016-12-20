@@ -24,6 +24,7 @@ var loadingAnimation_1 = require("./helpComponents/loadingAnimation");
 var progressBar_1 = require("./helpComponents/progressBar");
 var modalWindow_1 = require("./helpComponents/modalWindow");
 var userStat_1 = require("./userStat");
+var irregularVerbs_1 = require("./irregularVerbs");
 // For textbox binding
 var forms_1 = require("@angular/forms");
 var AppModule = (function () {
@@ -43,7 +44,8 @@ AppModule = __decorate([
             loadingAnimation_1.LoadingAnimation,
             progressBar_1.ProgressBar,
             modalWindow_1.ModalWindow,
-            userStat_1.UserStat
+            userStat_1.UserStat,
+            irregularVerbs_1.IrregularVerbs
         ],
         bootstrap: [app_1.AppComponent],
         providers: [

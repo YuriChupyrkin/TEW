@@ -6,6 +6,7 @@ import { PickerTest } from './pickerTest';
 import { AppComponent } from './app';
 import { UserStat } from './userStat';
 import { ModuleWithProviders }  from '@angular/core';
+import { IrregularVerbs } from './irregularVerbs';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -13,7 +14,8 @@ const appRoutes: Routes = [
     { path: 'add-word', component: AddWord },
     { path: 'my-words', component: MyWords },
     { path: 'picker-test', component: PickerTest },
-    { path: 'user-stat', component: UserStat}
+    { path: 'user-stat', component: UserStat },
+    { path: 'irregular-verbs', component: IrregularVerbs }
 ];
 
 export const appRoutingProviders: any[] = [];

@@ -180,7 +180,7 @@ acitve link > color: #5af35d
 	margin-right: 20px;
 }
 
-.navbar-inverse .navbar-nav > li > a {
+.navbar-inverse .navbar-nav > li > a, .navbar-dropdown-menu-item {
 	font-size: 18px;
 	color: #d1cdcd;
 }
@@ -193,7 +193,7 @@ acitve link > color: #5af35d
 
 .active-menu-item {
 	font-size: 20px;
-	color: #a8fba3 !important;
+	color: #39e82e !important;
 }
 
 .error-field {
@@ -311,4 +311,8 @@ acitve link > color: #5af35d
 
 .tew-modal-button {
     min-width: 80px;
+}
+
+.irregular-verbs-rus {
+    font: bold italic 130% serif;
 }

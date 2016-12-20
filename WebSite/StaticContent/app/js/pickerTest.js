@@ -104,7 +104,7 @@ var PickerTest = (function () {
             return;
         }
         if (this.testIndex >= this.testCount) {
-            var message = "Errors!!: " + this.failedCount;
+            var message = "Errors count: " + this.failedCount;
             this.testIsFinished = true;
             this.trueAnswer = 'disable pick button';
             this.showResultsInModal(message);
