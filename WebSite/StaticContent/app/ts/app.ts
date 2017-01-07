@@ -67,7 +67,8 @@ export class AppComponent implements OnInit {
         ConstantStorage.setUserId(user.Id);
 
         this.userName = user.Email;
-        this.router.navigate(['/home']);
+        //this.router.navigate(['/home']);
+        this.router.navigate(['/user-stat']);
     }
 
     private logOut(){

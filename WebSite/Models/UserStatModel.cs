@@ -4,7 +4,7 @@ namespace TewCloud.Models
 {
   public class UserStatModel
   {
-    public DateTime LastActivityDate { get; set; }
+    public string LastActivityDate { get; set; }
 
     public long ActivityLevel { get; set; }
 

@@ -32,7 +32,7 @@ namespace TewCloud.Controllers.Api
         ActivityLevel = user.ActivityLevel,
         NickName = user.NickName,
         Email = user.Email,
-        LastActivityDate = user.LastActivity,
+        LastActivityDate = user.LastActivity.ToShortDateString(),
         WordsLevel = wordLevel
       };
 

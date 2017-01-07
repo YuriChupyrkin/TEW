@@ -64,7 +64,8 @@ var AppComponent = (function () {
         constantStorage_1.ConstantStorage.setUserName(user.Email);
         constantStorage_1.ConstantStorage.setUserId(user.Id);
         this.userName = user.Email;
-        this.router.navigate(['/home']);
+        //this.router.navigate(['/home']);
+        this.router.navigate(['/user-stat']);
     };
     AppComponent.prototype.logOut = function () {
         var modalConfig = {

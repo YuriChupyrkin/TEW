@@ -1,5 +1,5 @@
 export class UserStatModel {
-    LastActivityDate: Date;
+    LastActivityDate: string;
     ActivityLevel: number;
     WordsLevel: number;
     Email: string;
