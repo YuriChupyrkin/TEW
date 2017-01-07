@@ -120,7 +120,7 @@ export class AddWord implements OnInit {
             return;
         }
 
-        if (englishWord != this.translateFor){
+        if (englishWord != this.translateFor && this.translateFor != undefined){
             this.clearTranslateResults(false);
             return;
         }

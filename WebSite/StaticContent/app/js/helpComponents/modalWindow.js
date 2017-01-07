@@ -23,19 +23,19 @@ var ModalWindow = (function () {
         set: function (value) {
             if (value) {
                 this.config = value;
+                if (this.config.isApplyButton === undefined) {
+                    this.config.isApplyButton = false;
+                }
+                if (this.config.isCancelButton === undefined) {
+                    this.config.isCancelButton = true;
+                }
+                if (!this.config.cancelButtonText) {
+                    this.config.cancelButtonText = 'Cancel';
+                }
             }
             else {
                 // default config
                 this.config = this.buildDefaultConfig();
-            }
-            if (this.config.isApplyButton === undefined) {
-                this.config.isApplyButton = false;
-            }
-            if (this.config.isCancelButton === undefined) {
-                this.config.isCancelButton = true;
-            }
-            if (!this.config.cancelButtonText) {
-                this.config.cancelButtonText = 'Cancel';
             }
         },
         enumerable: true,
@@ -64,6 +64,15 @@ var ModalWindow = (function () {
             this.windowCanceled.emit();
         }
     };
+    // set event for X (close)
+    ModalWindow.prototype.closeWindow = function () {
+        if (this.config.isCancelButton) {
+            this.cancelWindow();
+        }
+        else if (this.config.isApplyButton) {
+            this.applyWindow();
+        }
+    };
     ModalWindow.prototype.buildDefaultConfig = function () {
         var config = {
             headerText: 'header',
@@ -73,7 +82,8 @@ var ModalWindow = (function () {
             applyButtonText: 'apply',
             cancelButtonText: 'cancel',
             applyCallback: function () { return console.log('apply callback'); },
-            cancelCallback: function () { return console.log('cancel callback'); }
+            cancelCallback: function () { return console.log('cancel callback'); },
+            closeCallback: function () { return console.log('close callback'); }
         };
         return config;
     };

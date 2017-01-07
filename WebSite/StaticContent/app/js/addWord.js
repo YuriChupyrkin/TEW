@@ -102,7 +102,7 @@ var AddWord = (function () {
             console.log("English and Translate are required!");
             return;
         }
-        if (englishWord != this.translateFor) {
+        if (englishWord != this.translateFor && this.translateFor != undefined) {
             this.clearTranslateResults(false);
             return;
         }

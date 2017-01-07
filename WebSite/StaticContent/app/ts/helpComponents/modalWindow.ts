@@ -17,25 +17,25 @@ export class ModalWindow {
     @Input() set windowConfig(value: any){
         if (value) {
             this.config = value;
+            
+            if (this.config.isApplyButton === undefined) {
+                this.config.isApplyButton = false;
+            }
+
+            if (this.config.isCancelButton === undefined) {
+                this.config.isCancelButton = true;
+            }
+
+            if (!this.config.cancelButtonText) {
+                this.config.cancelButtonText = 'Cancel';
+            }
         } else {
             // default config
             this.config = this.buildDefaultConfig();
         }
-
-        if (this.config.isApplyButton === undefined) {
-            this.config.isApplyButton = false;
-        }
-
-        if (this.config.isCancelButton === undefined) {
-            this.config.isCancelButton = true;
-        }
-
-        if (!this.config.cancelButtonText) {
-            this.config.cancelButtonText = 'Cancel';
-        }
     }
 
-    constructor(){
+    constructor() {
         if (!this.config) {
             this.windowConfig = undefined;
         }
@@ -68,7 +68,17 @@ export class ModalWindow {
         }
     }
 
-    private buildDefaultConfig(){
+    // set event for X (close)
+    private closeWindow() {
+        if (this.config.isCancelButton) {
+            this.cancelWindow();
+        }
+        else if (this.config.isApplyButton) {
+            this.applyWindow();
+        }
+    }
+
+    private buildDefaultConfig() {
         let config = {
             headerText: 'header',
             bodyText: 'body',
@@ -77,7 +87,8 @@ export class ModalWindow {
             applyButtonText: 'apply',
             cancelButtonText: 'cancel',
             applyCallback: () => console.log('apply callback'),
-            cancelCallback: () => console.log('cancel callback')
+            cancelCallback: () => console.log('cancel callback'),
+            closeCallback: () => console.log('close callback')
         };
 
         return config;
