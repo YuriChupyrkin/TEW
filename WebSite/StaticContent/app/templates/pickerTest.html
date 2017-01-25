@@ -18,7 +18,7 @@
             <!-- test area -->
             <div [hidden]="!currentTest.Word">
                 <div class="tests-test-word">{{currentTest.Word}}</div>
-                <div class="tests-test-example">{{currentTest.Example}}</div>
+                <div *ngIf="testName != RuEnTest" class="tests-test-example">{{currentTest.Example}}</div>
                 <br />
 
                 <div>
