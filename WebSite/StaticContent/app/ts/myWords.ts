@@ -1,4 +1,4 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, HostListener } from '@angular/core';
 import { HttpService } from './services/httpService';
 import { UserWords } from './models/userWords';
 import { Word } from './models/word';
@@ -11,13 +11,38 @@ import { ConstantStorage } from './services/constantStorage';
 })
 
 export class MyWords {
+    private readonly wordsPerPage = 100;
+    private currentPage: number;
     private userWords: UserWords;
     private wordsCount: number;
 
     constructor(private httpService: HttpService) {
         this.userWords = new UserWords();
+        this.currentPage = 1;
 
         this.getWords();
+    }
+    
+    @HostListener('window:scroll', ['$event']) 
+    private doSomething(event) {
+        var scrollTop = document.body.scrollTop;
+        var scrollHeight = document.body.scrollHeight;
+        var clientHeight = document.documentElement.clientHeight;
+        
+        console.log('---------------------------');
+        console.debug("Scroll scrollTop", scrollTop);
+        console.debug("Scroll scrollHeight", scrollHeight);
+        console.debug("Scroll clientHeight", clientHeight);
+        console.log('---------------------------');
+
+        if (scrollTop + clientHeight + 50 >= scrollHeight) {
+            console.log('!!!!!!!! LOAD !!!!!!!!!!!!!!');
+            this.fakeAddWords();
+        }
+    }
+
+    private fakeAddWords () {
+        this.userWords.Words.push.apply(this.userWords.Words, this.userWords.Words);
     }
 
     private getWords() {
@@ -48,7 +73,8 @@ export class MyWords {
         this.userWords = userWords;
 
         if(this.userWords.Words) { 
-            this.wordsCount = userWords.Words.length;
+            // this.wordsCount = userWords.Words.length;
+            this.wordsCount = userWords.TotalWords;
         }
     }
 

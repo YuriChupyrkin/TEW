@@ -84,7 +84,8 @@ namespace TewCloud.Helpers
       }
 
       wordsCloudModel.Words = words;
-      wordsCloudModel.TotalWords = GetWordCount(userName);
+      //wordsCloudModel.TotalWords = GetWordCount(userName);
+      wordsCloudModel.TotalWords = enRuWords.Count();
 
       return wordsCloudModel;
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using Common;
 using Domain.RepositoryFactories;
 using EnglishLearnBLL.Models;
 using Newtonsoft.Json;
@@ -71,6 +72,30 @@ namespace WebSite.Controllers
       }
 
       ViewBag.Success = "Uploaded...";
+      return View();
+    }
+
+    public ActionResult AddUserWords(int id)
+    {
+      var wordCount = GlobalConfiguration.IsDevelopmentEnvironment ? 0 : 0;
+
+      for (var i = 0; i < wordCount; i++)
+      {
+        _repositoryFactory.EnRuWordsRepository
+            .AddTranslate(
+              $"english_{i}",
+              $"russian_{i}",
+              $"example_{i}",
+              id,
+              DateTime.Now,
+              0,
+              0,
+              0);
+      }
+
+      ViewBag.AddedCount = wordCount;
+      ViewBag.UserId = id;
+
       return View();
     }
   }

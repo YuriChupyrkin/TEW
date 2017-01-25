@@ -16,9 +16,28 @@ var constantStorage_1 = require("./services/constantStorage");
 var MyWords = (function () {
     function MyWords(httpService) {
         this.httpService = httpService;
+        this.wordsPerPage = 100;
         this.userWords = new userWords_1.UserWords();
+        this.currentPage = 1;
         this.getWords();
     }
+    MyWords.prototype.doSomething = function (event) {
+        var scrollTop = document.body.scrollTop;
+        var scrollHeight = document.body.scrollHeight;
+        var clientHeight = document.documentElement.clientHeight;
+        console.log('---------------------------');
+        console.debug("Scroll scrollTop", scrollTop);
+        console.debug("Scroll scrollHeight", scrollHeight);
+        console.debug("Scroll clientHeight", clientHeight);
+        console.log('---------------------------');
+        if (scrollTop + clientHeight + 50 >= scrollHeight) {
+            console.log('!!!!!!!! LOAD !!!!!!!!!!!!!!');
+            this.fakeAddWords();
+        }
+    };
+    MyWords.prototype.fakeAddWords = function () {
+        this.userWords.Words.push.apply(this.userWords.Words, this.userWords.Words);
+    };
     MyWords.prototype.getWords = function () {
         var _this = this;
         var url = constantStorage_1.ConstantStorage.getWordsManagerController() + "?userName=" + constantStorage_1.ConstantStorage.getUserName();
@@ -39,7 +58,8 @@ var MyWords = (function () {
     MyWords.prototype.setUserWords = function (userWords) {
         this.userWords = userWords;
         if (this.userWords.Words) {
-            this.wordsCount = userWords.Words.length;
+            // this.wordsCount = userWords.Words.length;
+            this.wordsCount = userWords.TotalWords;
         }
     };
     MyWords.prototype.removedWord = function (word) {
@@ -52,6 +72,12 @@ var MyWords = (function () {
     };
     return MyWords;
 }());
+__decorate([
+    core_1.HostListener('window:scroll', ['$event']),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], MyWords.prototype, "doSomething", null);
 MyWords = __decorate([
     core_1.Component({
         selector: 'my-words',
