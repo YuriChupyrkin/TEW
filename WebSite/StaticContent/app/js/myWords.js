@@ -48,7 +48,8 @@ var MyWords = (function () {
     };
     // ************* PAGING LOGIC (START START REGION) ****************
     MyWords.prototype.scrollEvent = function (event) {
-        var scrollTop = document.body.scrollTop;
+        var scrollTop = (document.documentElement && document.documentElement.scrollTop)
+            || document.body.scrollTop;
         var scrollHeight = document.body.scrollHeight;
         var clientHeight = document.documentElement.clientHeight;
         var tenPercents = (scrollTop + clientHeight) / 100 * 10;

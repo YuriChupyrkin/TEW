@@ -61,7 +61,8 @@ export class MyWords {
     // ************* PAGING LOGIC (START START REGION) ****************
     @HostListener('window:scroll', ['$event']) 
     private scrollEvent (event) {
-        var scrollTop = document.body.scrollTop;
+        var scrollTop = (document.documentElement && document.documentElement.scrollTop)
+            || document.body.scrollTop;
         var scrollHeight = document.body.scrollHeight;
         var clientHeight = document.documentElement.clientHeight;
         var tenPercents = (scrollTop + clientHeight) / 100 * 10;
