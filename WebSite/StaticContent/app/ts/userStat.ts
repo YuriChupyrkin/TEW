@@ -48,7 +48,7 @@ export class UserStat implements OnInit  {
         user.Id = userId;
 
         if (userId != 0 && userId != undefined) {
-            this.httpService.processPost<User>(user, ConstantStorage.getResetWordsLevelController())
+            this.httpService.processPost(user, ConstantStorage.getResetWordsLevelController())
                 .then(r => this.updateUserStat());
         } 
     }

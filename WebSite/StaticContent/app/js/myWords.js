@@ -15,49 +15,27 @@ var constantStorage_1 = require("./services/constantStorage");
 var MyWords = (function () {
     function MyWords(httpService) {
         this.httpService = httpService;
-        this.wordsPerPage = 100;
+        this.wordsPerPage = 50;
+        this.isLoading = false;
         this.words = new Array();
-        this.currentPage = 1;
-        this.getWords();
+        this.wordsCount = 999999;
+        this.loadWords();
     }
-    MyWords.prototype.doSomething = function (event) {
-        var scrollTop = document.body.scrollTop;
-        var scrollHeight = document.body.scrollHeight;
-        var clientHeight = document.documentElement.clientHeight;
-        console.log('---------------------------');
-        console.debug("Scroll scrollTop", scrollTop);
-        console.debug("Scroll scrollHeight", scrollHeight);
-        console.debug("Scroll clientHeight", clientHeight);
-        console.log('---------------------------');
-        if (scrollTop + clientHeight + 50 >= scrollHeight) {
-            console.log('!!!!!!!! LOAD !!!!!!!!!!!!!!');
-            this.fakeAddWords();
-        }
-    };
-    MyWords.prototype.fakeAddWords = function () {
-        this.words.push.apply(this.words, this.words);
-    };
-    MyWords.prototype.getWords = function () {
-        var _this = this;
-        var url = constantStorage_1.ConstantStorage.getWordsManagerController() + "?userName=" + constantStorage_1.ConstantStorage.getUserName();
-        var result = this.httpService.processGet(url);
-        result.then(function (json) { return _this.setUserWords(json); });
-    };
     MyWords.prototype.removeWord = function (word) {
         var _this = this;
-        console.dir(word);
+        this.startLoading();
         // hidden
         word.Hidden = true;
         var wordsCloudModel = new wordsCloudModel_1.WordsCloudModel();
         wordsCloudModel.UserName = constantStorage_1.ConstantStorage.getUserName();
         wordsCloudModel.Words = [word];
         var result = this.httpService.processPost(wordsCloudModel, constantStorage_1.ConstantStorage.getDeleteWordController());
-        result.then(function (response) { return _this.removedWord(word); }, function (error) { return word.Hidden = false; });
+        result.then(function (response) { _this.removedWord(word); _this.endLoading(); }, function (error) { return word.Hidden = false; });
     };
     MyWords.prototype.setUserWords = function (userWords) {
         if (userWords.Words) {
             this.wordsCount = userWords.TotalWords;
-            this.words = userWords.Words;
+            this.words.push.apply(this.words, userWords.Words);
         }
     };
     MyWords.prototype.removedWord = function (word) {
@@ -68,6 +46,59 @@ var MyWords = (function () {
         this.words.splice(wordIndex, 1);
         this.wordsCount--;
     };
+    // ************* PAGING LOGIC (START START REGION) ****************
+    MyWords.prototype.scrollEvent = function (event) {
+        var scrollTop = document.body.scrollTop;
+        var scrollHeight = document.body.scrollHeight;
+        var clientHeight = document.documentElement.clientHeight;
+        if (scrollTop + clientHeight + 50 >= scrollHeight && this.canLoadPage()) {
+            this.loadWords();
+        }
+    };
+    MyWords.prototype.resuzeEvent = function (event) {
+        this.isNeedMoreWords();
+    };
+    MyWords.prototype.loadWords = function () {
+        var _this = this;
+        this.startLoading();
+        var url = "" + constantStorage_1.ConstantStorage.getWordsManagerController();
+        url += "?UserId=" + constantStorage_1.ConstantStorage.getUserId();
+        url += "&CurrentWordsCount=" + this.words.length;
+        url += "&WordsPerPage=" + this.wordsPerPage;
+        var result = this.httpService.processGet(url);
+        result.then(function (json) { _this.setUserWords(json); _this.endLoading(); _this.isNeedMoreWords(); }, function (error) { _this.endLoading(); alert('ERROR of loading words!!!'); });
+    };
+    // when page is loaded but scroll is hidden
+    MyWords.prototype.isNeedMoreWords = function () {
+        var self = this;
+        // wait for render
+        setTimeout(function () {
+            var scrollHeight = document.body.scrollHeight;
+            var clientHeight = document.documentElement.clientHeight;
+            if (scrollHeight == clientHeight && this.canLoadPage()) {
+                this.loadWords();
+            }
+        }, 300);
+    };
+    MyWords.prototype.startLoading = function () {
+        // disable scroll
+        var x = window.scrollX;
+        var y = window.scrollY;
+        window.onscroll = function () { window.scrollTo(x, y); };
+        this.isLoading = true;
+    };
+    MyWords.prototype.endLoading = function () {
+        window.onscroll = function () { };
+        this.isLoading = false;
+    };
+    MyWords.prototype.fakeAddWords = function () {
+        if (this.words.length < 1000) {
+            this.words.push.apply(this.words, this.words);
+        }
+    };
+    MyWords.prototype.canLoadPage = function () {
+        return this.wordsCount > this.words.length && this.isLoading == false;
+    };
     return MyWords;
 }());
 __decorate([
@@ -75,7 +106,13 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
-], MyWords.prototype, "doSomething", null);
+], MyWords.prototype, "scrollEvent", null);
+__decorate([
+    core_1.HostListener('window: resize', ['$event']),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], MyWords.prototype, "resuzeEvent", null);
 MyWords = __decorate([
     core_1.Component({
         selector: 'my-words',

@@ -11,6 +11,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { HttpService } from './services/httpService';
 import { HttpModule } from '@angular/http';
 import { LoadingAnimation } from './helpComponents/loadingAnimation';
+import { LoadingLockDisplay } from './helpComponents/loadingLockDisplay';
 import { ProgressBar } from './helpComponents/progressBar';
 import { ModalWindow } from './helpComponents/modalWindow';
 import { UserStat } from './userStat';
@@ -32,7 +33,8 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
         ProgressBar, 
         ModalWindow, 
         UserStat,
-        IrregularVerbs
+        IrregularVerbs,
+        LoadingLockDisplay
     ],
 
     bootstrap: [AppComponent],

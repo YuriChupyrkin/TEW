@@ -21,6 +21,7 @@ var common_1 = require("@angular/common");
 var httpService_1 = require("./services/httpService");
 var http_1 = require("@angular/http");
 var loadingAnimation_1 = require("./helpComponents/loadingAnimation");
+var loadingLockDisplay_1 = require("./helpComponents/loadingLockDisplay");
 var progressBar_1 = require("./helpComponents/progressBar");
 var modalWindow_1 = require("./helpComponents/modalWindow");
 var userStat_1 = require("./userStat");
@@ -45,7 +46,8 @@ AppModule = __decorate([
             progressBar_1.ProgressBar,
             modalWindow_1.ModalWindow,
             userStat_1.UserStat,
-            irregularVerbs_1.IrregularVerbs
+            irregularVerbs_1.IrregularVerbs,
+            loadingLockDisplay_1.LoadingLockDisplay
         ],
         bootstrap: [app_1.AppComponent],
         providers: [

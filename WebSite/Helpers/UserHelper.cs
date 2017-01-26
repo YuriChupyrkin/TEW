@@ -4,6 +4,7 @@ using EnglishLearnBLL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using WebSite.Models;
 
 namespace TewCloud.Helpers
 {
@@ -41,24 +42,28 @@ namespace TewCloud.Helpers
       return _repositoryFactory.EnRuWordsRepository.AllEnRuWords().Count(r => r.User.Email == userName);
     }
 
-    public WordsFullModel GetUserWords(UserUpdateDateModel updateModel)
+    public WordsFullModel GetUserWords(GetUserWordsModel getUserWordsModel)
     {
-      var user = GetUser(updateModel.UserName);
-
-      if (user == null)
-      {
-        throw new Exception("User not found");
-      }
-
       var enRuWords = _repositoryFactory.EnRuWordsRepository.AllEnRuWords()
-          .Where(r => r.UserId == user.Id);
+        .Where(r => r.UserId == getUserWordsModel.UserId);
 
-      var wordsCloudModel = CreateWordsCloudModel(updateModel.UserName, enRuWords);
+      var totalWordsCount = enRuWords.Count();
 
+      // todo: sort logic
+      // .....
+
+      // get needed words
+      enRuWords = enRuWords.Skip(getUserWordsModel.CurrentWordsCount).Take(getUserWordsModel.WordsPerPage);
+
+      // user name is not necessary
+      var wordsCloudModel = CreateWordsCloudModel(string.Empty, enRuWords, totalWordsCount);
       return wordsCloudModel;
     }
 
-    public WordsFullModel CreateWordsCloudModel(string userName, IEnumerable<EnRuWord> enRuWords)
+    public WordsFullModel CreateWordsCloudModel(
+      string userName,
+      IEnumerable<EnRuWord> enRuWords,
+      int totalWordsCount)
     {
       var wordsCloudModel = new WordsFullModel
       {
@@ -84,8 +89,7 @@ namespace TewCloud.Helpers
       }
 
       wordsCloudModel.Words = words;
-      //wordsCloudModel.TotalWords = GetWordCount(userName);
-      wordsCloudModel.TotalWords = enRuWords.Count();
+      wordsCloudModel.TotalWords = totalWordsCount == 0 ?GetWordCount(userName) : totalWordsCount;
 
       return wordsCloudModel;
     }

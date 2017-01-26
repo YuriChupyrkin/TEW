@@ -161,7 +161,7 @@ export class PickerTest {
         word.English = pickerTestModel.Word;
         wordsCloudModel.Words = [word];
 
-        var result = this.httpService.processPost<WordsCloudModel>(wordsCloudModel, ConstantStorage.getDeleteWordController());
+        var result = this.httpService.processPost(wordsCloudModel, ConstantStorage.getDeleteWordController());
 
         result.then(response => console.dir(response));
         this.setNextTest();

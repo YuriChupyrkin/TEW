@@ -3,7 +3,11 @@
     <span *ngIf="wordsCount > 0"> ({{wordsCount}})</span>
 </div>
 
-<div>    
+<div *ngIf="isLoading">
+    <loading-lock-display></loading-lock-display>
+</div>
+
+<div>
     <div class="visible-desktop">
         <table class="table table-hover">
             <thead>

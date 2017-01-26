@@ -4,6 +4,7 @@ using Domain.RepositoryFactories;
 using EnglishLearnBLL.Models;
 using TewCloud.FIlters;
 using TewCloud.Helpers;
+using WebSite.Models;
 
 namespace TewCloud.Controllers.Api
 {
@@ -69,42 +70,26 @@ namespace TewCloud.Controllers.Api
 			return Json(okResponse);
 		}
 
-		[HttpGet]
-		public IHttpActionResult GetWords(string userName)
-		{
-			UserUpdateDateModel updateModel = new UserUpdateDateModel
-			{
-				UserName = userName
-			};
+    [HttpGet]
+    public IHttpActionResult GetWords([FromUri] GetUserWordsModel getUserWordsModel)
+    {
+      WordsFullModel cloudModel;
+      try
+      {
+        cloudModel = _userHelper.GetUserWords(getUserWordsModel);
+      }
+      catch (Exception ex)
+      {
+        var response = new ResponseModel
+        {
+          IsError = true,
+          ErrorMessage = ex.Message
+        };
 
-			WordsFullModel cloudModel;
-			try
-			{
-				cloudModel = _userHelper.GetUserWords(updateModel);
-			}
-			catch (Exception ex)
-			{
-				var response = new ResponseModel
-				{
-					IsError = true,
-					ErrorMessage = ex.Message
-				};
+        return Json(response);
+      }
 
-				return Json(response);
-			}
-
-			return Json(cloudModel);
-		}
-
-    /*
-		[HttpDelete]
-		public void DeleteWord([FromBody] WordsFullModel wordsModel)
-		{
-			if (wordsModel != null && wordsModel.Words.Any())
-			{
-				var userId = _userHelper.GetUserId(wordsModel.UserName);
-				_repositoryFactory.EnRuWordsRepository.DeleteEnRuWord(wordsModel.Words.First().English, userId);
-			}
-		} */
+      return Json(cloudModel);
+    }
 	}
 }

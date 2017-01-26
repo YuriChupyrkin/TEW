@@ -44,7 +44,7 @@ export class HttpService {
         return promise;
     }
 
-    public processPost<T>(object: T, url: string) {
+    public processPost(object: any, url: string) {
         let headers = new Headers();
 
         let userId = ConstantStorage.getUserId()
@@ -70,9 +70,8 @@ export class HttpService {
                     reject(e);
                 }
             );
-
         });
-  
+
         return promise;
     }
 }
