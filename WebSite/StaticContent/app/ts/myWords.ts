@@ -13,11 +13,11 @@ import { ConstantStorage } from './services/constantStorage';
 export class MyWords {
     private readonly wordsPerPage = 100;
     private currentPage: number;
-    private userWords: UserWords;
     private wordsCount: number;
+    private words: Array<Word>;
 
     constructor(private httpService: HttpService) {
-        this.userWords = new UserWords();
+        this.words = new Array<Word>();
         this.currentPage = 1;
 
         this.getWords();
@@ -42,7 +42,7 @@ export class MyWords {
     }
 
     private fakeAddWords () {
-        this.userWords.Words.push.apply(this.userWords.Words, this.userWords.Words);
+        this.words.push.apply(this.words, this.words);
     }
 
     private getWords() {
@@ -70,22 +70,20 @@ export class MyWords {
     }
 
     private setUserWords(userWords: UserWords) {
-        this.userWords = userWords;
-
-        if(this.userWords.Words) { 
-            // this.wordsCount = userWords.Words.length;
+        if (userWords.Words) { 
             this.wordsCount = userWords.TotalWords;
+            this.words = userWords.Words;
         }
     }
 
     private removedWord(word: Word) {
-        var wordIndex = this.userWords.Words.indexOf(word);
+        var wordIndex = this.words.indexOf(word);
 
         if (wordIndex == -1) {
             return
         }
 
-        this.userWords.Words.splice(wordIndex, 1);
+        this.words.splice(wordIndex, 1);
         this.wordsCount--;
     }
 }

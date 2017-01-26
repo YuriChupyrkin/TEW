@@ -10,14 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var httpService_1 = require("./services/httpService");
-var userWords_1 = require("./models/userWords");
 var wordsCloudModel_1 = require("./models/wordsCloudModel");
 var constantStorage_1 = require("./services/constantStorage");
 var MyWords = (function () {
     function MyWords(httpService) {
         this.httpService = httpService;
         this.wordsPerPage = 100;
-        this.userWords = new userWords_1.UserWords();
+        this.words = new Array();
         this.currentPage = 1;
         this.getWords();
     }
@@ -36,7 +35,7 @@ var MyWords = (function () {
         }
     };
     MyWords.prototype.fakeAddWords = function () {
-        this.userWords.Words.push.apply(this.userWords.Words, this.userWords.Words);
+        this.words.push.apply(this.words, this.words);
     };
     MyWords.prototype.getWords = function () {
         var _this = this;
@@ -56,18 +55,17 @@ var MyWords = (function () {
         result.then(function (response) { return _this.removedWord(word); }, function (error) { return word.Hidden = false; });
     };
     MyWords.prototype.setUserWords = function (userWords) {
-        this.userWords = userWords;
-        if (this.userWords.Words) {
-            // this.wordsCount = userWords.Words.length;
+        if (userWords.Words) {
             this.wordsCount = userWords.TotalWords;
+            this.words = userWords.Words;
         }
     };
     MyWords.prototype.removedWord = function (word) {
-        var wordIndex = this.userWords.Words.indexOf(word);
+        var wordIndex = this.words.indexOf(word);
         if (wordIndex == -1) {
             return;
         }
-        this.userWords.Words.splice(wordIndex, 1);
+        this.words.splice(wordIndex, 1);
         this.wordsCount--;
     };
     return MyWords;
