@@ -64,8 +64,9 @@ export class MyWords {
         var scrollTop = document.body.scrollTop;
         var scrollHeight = document.body.scrollHeight;
         var clientHeight = document.documentElement.clientHeight;
+        var tenPercents = (scrollTop + clientHeight) / 100 * 10;
         
-        if (scrollTop + clientHeight + 50 >= scrollHeight && this.canLoadPage()) {
+        if (scrollTop + clientHeight + tenPercents >= scrollHeight && this.canLoadPage()) {
             this.loadWords();
         }
     }
@@ -98,8 +99,8 @@ export class MyWords {
             var scrollHeight = document.body.scrollHeight;
             var clientHeight = document.documentElement.clientHeight;
 
-            if (scrollHeight == clientHeight && this.canLoadPage()) {
-                this.loadWords();
+            if (scrollHeight == clientHeight && self.canLoadPage()) {
+                self.loadWords();
             }
         }, 300);
     }

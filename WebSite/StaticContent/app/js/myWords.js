@@ -51,7 +51,8 @@ var MyWords = (function () {
         var scrollTop = document.body.scrollTop;
         var scrollHeight = document.body.scrollHeight;
         var clientHeight = document.documentElement.clientHeight;
-        if (scrollTop + clientHeight + 50 >= scrollHeight && this.canLoadPage()) {
+        var tenPercents = (scrollTop + clientHeight) / 100 * 10;
+        if (scrollTop + clientHeight + tenPercents >= scrollHeight && this.canLoadPage()) {
             this.loadWords();
         }
     };
@@ -75,8 +76,8 @@ var MyWords = (function () {
         setTimeout(function () {
             var scrollHeight = document.body.scrollHeight;
             var clientHeight = document.documentElement.clientHeight;
-            if (scrollHeight == clientHeight && this.canLoadPage()) {
-                this.loadWords();
+            if (scrollHeight == clientHeight && self.canLoadPage()) {
+                self.loadWords();
             }
         }, 300);
     };
