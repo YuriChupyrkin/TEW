@@ -271,6 +271,7 @@
     <Content Include="StaticContent\app\js\app.routes.js" />
     <Content Include="StaticContent\app\js\boot.js" />
     <Content Include="StaticContent\app\js\helpComponents\loadingAnimation.js" />
+    <Content Include="StaticContent\app\js\helpComponents\loadingLockDisplay.js" />
     <Content Include="StaticContent\app\js\helpComponents\modalWindow.js" />
     <Content Include="StaticContent\app\js\helpComponents\progressBar.js" />
     <Content Include="StaticContent\app\js\home.js" />
@@ -296,6 +297,7 @@
     <Content Include="StaticContent\app\templates\addWord.html" />
     <Content Include="StaticContent\app\templates\app.html" />
     <Content Include="StaticContent\app\templates\helpComponents\loadingAnimation.html" />
+    <Content Include="StaticContent\app\templates\helpComponents\loadingLockDisplay.html" />
     <Content Include="StaticContent\app\templates\helpComponents\modalWindow.html" />
     <Content Include="StaticContent\app\templates\helpComponents\progressBar.html" />
     <Content Include="StaticContent\app\templates\home.html" />
