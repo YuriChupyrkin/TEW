@@ -16,19 +16,19 @@ import { JQueryHelper } from '../helpers/jQueryHelper';
 
 export class AppComponent implements OnInit {
     private userName: string;
-    private applicationMessage: string;
     private modalConfig: any;
     private showLoadingArr = [];
+    private isLoading = false;
 
     constructor(private httpService: HttpService, private router: Router) {
+        this.isLoading = true;
         ConstantStorage.setYandexTranslaterApiKey('dict.1.1.20160904T125311Z.5e2c6c9dfb5cd3c3.71b0d5220878e340d60dcfa0faf7f649af59c65f');
 
         this.userName = '';
         this.httpService.processGet<User>(ConstantStorage.getUserInfoController())
-            .then(response => this.setUserInfo(response));
-
-        this.httpService.processGet<string>(ConstantStorage.getApplicationMessageController())
-            .then(response => this.applicationMessage = response);
+            .then(
+                response => this.setUserInfo(response), 
+                error => this.isLoading = false);
     }
 
     ngOnInit() {
@@ -67,8 +67,8 @@ export class AppComponent implements OnInit {
         ConstantStorage.setUserId(user.Id);
 
         this.userName = user.Email;
-        //this.router.navigate(['/home']);
         this.router.navigate(['/user-stat']);
+        this.isLoading = false
     }
 
     private logOut(){

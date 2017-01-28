@@ -74,6 +74,10 @@
             <loading-animation></loading-animation>
         </div>
 
+        <div *ngIf="isLoading">
+            <loading-lock-display></loading-lock-display>
+        </div>
+
         <router-outlet></router-outlet>
     </div>
 </div>

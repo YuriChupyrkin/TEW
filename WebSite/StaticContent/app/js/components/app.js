@@ -22,12 +22,12 @@ var AppComponent = (function () {
         this.httpService = httpService;
         this.router = router;
         this.showLoadingArr = [];
+        this.isLoading = false;
+        this.isLoading = true;
         constantStorage_1.ConstantStorage.setYandexTranslaterApiKey('dict.1.1.20160904T125311Z.5e2c6c9dfb5cd3c3.71b0d5220878e340d60dcfa0faf7f649af59c65f');
         this.userName = '';
         this.httpService.processGet(constantStorage_1.ConstantStorage.getUserInfoController())
-            .then(function (response) { return _this.setUserInfo(response); });
-        this.httpService.processGet(constantStorage_1.ConstantStorage.getApplicationMessageController())
-            .then(function (response) { return _this.applicationMessage = response; });
+            .then(function (response) { return _this.setUserInfo(response); }, function (error) { return _this.isLoading = false; });
     }
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -64,8 +64,8 @@ var AppComponent = (function () {
         constantStorage_1.ConstantStorage.setUserName(user.Email);
         constantStorage_1.ConstantStorage.setUserId(user.Id);
         this.userName = user.Email;
-        //this.router.navigate(['/home']);
         this.router.navigate(['/user-stat']);
+        this.isLoading = false;
     };
     AppComponent.prototype.logOut = function () {
         var modalConfig = {
