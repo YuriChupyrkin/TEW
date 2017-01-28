@@ -10,11 +10,14 @@ export class ModalWindow {
     public static readonly MODAL_WINDOW_ID = "tew-modal-window";
     private readonly modal_window_id = "tew-modal-window";
     
-    private config: any;
     @Output() public windowApplied = new EventEmitter();
     @Output() public windowCanceled = new EventEmitter();
 
-    @Input() set windowConfig(value: any){
+    private config: any;
+    private dismissed: boolean;
+
+    @Input() set windowConfig(value: any) {
+        this.dismissed = false;
         if (value) {
             this.config = value;
             
@@ -36,9 +39,17 @@ export class ModalWindow {
     }
 
     constructor() {
+        var self = this;
+        this.dismissed = false;
         if (!this.config) {
             this.windowConfig = undefined;
         }
+
+        JQueryHelper.getElement(document).on(`hide.bs.modal`, `#${ModalWindow.MODAL_WINDOW_ID}`, function () {
+            if (self.dismissed == false) {
+                self.closeWindow();
+            }
+        });
     }
 
     public static showWindow() {
@@ -51,6 +62,7 @@ export class ModalWindow {
     }
 
     private applyWindow() {
+        this.dismissed = true;
         if (this.config.applyCallback) {
             this.config.applyCallback();
         }
@@ -60,6 +72,7 @@ export class ModalWindow {
     }
 
     private cancelWindow() {
+        this.dismissed = true;
         if (this.config.cancelCallback) {
             this.config.cancelCallback();
         }

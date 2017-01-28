@@ -10,17 +10,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var jqueryHelper_1 = require("../services/jqueryHelper");
-var ModalWindow = (function () {
+var ModalWindow = ModalWindow_1 = (function () {
     function ModalWindow() {
         this.modal_window_id = "tew-modal-window";
         this.windowApplied = new core_1.EventEmitter();
         this.windowCanceled = new core_1.EventEmitter();
+        var self = this;
+        this.dismissed = false;
         if (!this.config) {
             this.windowConfig = undefined;
         }
+        jqueryHelper_1.JQueryHelper.getElement(document).on("hide.bs.modal", "#" + ModalWindow_1.MODAL_WINDOW_ID, function () {
+            if (self.dismissed == false) {
+                self.closeWindow();
+            }
+        });
     }
     Object.defineProperty(ModalWindow.prototype, "windowConfig", {
         set: function (value) {
+            this.dismissed = false;
             if (value) {
                 this.config = value;
                 if (this.config.isApplyButton === undefined) {
@@ -49,6 +57,7 @@ var ModalWindow = (function () {
         }
     };
     ModalWindow.prototype.applyWindow = function () {
+        this.dismissed = true;
         if (this.config.applyCallback) {
             this.config.applyCallback();
         }
@@ -57,6 +66,7 @@ var ModalWindow = (function () {
         }
     };
     ModalWindow.prototype.cancelWindow = function () {
+        this.dismissed = true;
         if (this.config.cancelCallback) {
             this.config.cancelCallback();
         }
@@ -103,7 +113,7 @@ __decorate([
     __metadata("design:type", Object),
     __metadata("design:paramtypes", [Object])
 ], ModalWindow.prototype, "windowConfig", null);
-ModalWindow = __decorate([
+ModalWindow = ModalWindow_1 = __decorate([
     core_1.Component({
         selector: 'modal-window',
         templateUrl: '../../StaticContent/app/templates/helpComponents/modalWindow.html'
@@ -111,3 +121,4 @@ ModalWindow = __decorate([
     __metadata("design:paramtypes", [])
 ], ModalWindow);
 exports.ModalWindow = ModalWindow;
+var ModalWindow_1;
