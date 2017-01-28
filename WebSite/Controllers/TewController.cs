@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace TewCloud.Controllers
+namespace WebSite.Controllers
 {
 	public class TewController : Controller
 	{

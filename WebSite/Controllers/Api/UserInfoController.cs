@@ -1,8 +1,8 @@
 ﻿using System.Web.Http;
 using System.Web.Security;
-using TewCloud.Providers;
+using WebSite.Providers;
 
-namespace TewCloud.Controllers.Api
+namespace WebSite.Controllers.Api
 {
     public class UserInfoController : ApiController
     {

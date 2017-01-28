@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TewCloud.Models
+﻿namespace WebSite.Models
 {
   public class UserStatModel
   {

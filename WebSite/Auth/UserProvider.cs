@@ -4,7 +4,7 @@ using Domain.Entities;
 using Domain.RepositoryFactories;
 using Domain.UnitOfWork;
 
-namespace TewCloud.Auth
+namespace WebSite.Auth
 {
 	internal class UserProvider
 	{

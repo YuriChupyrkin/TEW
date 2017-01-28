@@ -8,7 +8,7 @@ using Common.Mail;
 using Domain.RepositoryFactories;
 using EntityFrameworkDAL.RepositoryFactories;
 
-namespace TewCloud.App_Start
+namespace WebSite
 {
   public sealed class AutofacModule
   {

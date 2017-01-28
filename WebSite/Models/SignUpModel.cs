@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-namespace TewCloud.Models
+
+namespace WebSite.Models
 {
 	public class SignUpModel : SignInModel
 	{

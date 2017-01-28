@@ -1,8 +1,7 @@
 ﻿using System.Web.Http;
 using Domain.RepositoryFactories;
-using TewCloud.FIlters;
 
-namespace TewCloud.Controllers.Api
+namespace WebSite.Controllers.Api
 {
   public class WordTranslaterController : ApiController
 	{

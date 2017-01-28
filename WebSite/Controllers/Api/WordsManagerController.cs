@@ -3,10 +3,10 @@ using System.Web.Http;
 using Domain.RepositoryFactories;
 using EnglishLearnBLL.Models;
 using TewCloud.FIlters;
-using TewCloud.Helpers;
+using WebSite.Helpers;
 using WebSite.Models;
 
-namespace TewCloud.Controllers.Api
+namespace WebSite.Controllers.Api
 {
   [UserActivityFilter]
 	public class WordsManagerController : ApiController

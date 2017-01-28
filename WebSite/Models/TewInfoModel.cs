@@ -1,4 +1,4 @@
-﻿namespace TewCloud.Models
+﻿namespace WebSite.Models
 {
   public class TewInfoModel
   {

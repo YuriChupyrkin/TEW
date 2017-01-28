@@ -1,9 +1,9 @@
 ﻿using System.Web.Http;
 using Domain.Entities;
 using Domain.RepositoryFactories;
-using TewCloud.Auth;
+using WebSite.Auth;
 
-namespace TewCloud.Controllers.Api
+namespace WebSite.Controllers.Api
 {
 	public class SignInController : ApiController
 	{

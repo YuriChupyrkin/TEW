@@ -30,7 +30,7 @@ namespace TewCloud.FIlters
 
     private void SaveActivity(int userId)
     {
-      var repositoryFactory = DependencyResolver.Current.GetService <IRepositoryFactory>();
+      var repositoryFactory = DependencyResolver.Current.GetService<IRepositoryFactory>();
       var user = repositoryFactory.UserRepository.Find(userId);
 
       if (user == null)

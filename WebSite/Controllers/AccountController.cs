@@ -1,9 +1,9 @@
 ﻿using System.Web.Mvc;
 using System.Web.Security;
-using TewCloud.Models;
-using TewCloud.Providers;
+using WebSite.Models;
+using WebSite.Providers;
 
-namespace TewCloud.Controllers
+namespace WebSite.Controllers
 {
     [Authorize]
     public class AccountController : Controller

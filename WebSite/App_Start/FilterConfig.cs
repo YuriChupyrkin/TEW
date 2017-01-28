@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace TewCloud
+namespace WebSite
 {
   public class FilterConfig
   {

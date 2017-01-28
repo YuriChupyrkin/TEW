@@ -1,10 +1,10 @@
 ﻿using System.Web.Mvc;
 using System.Web.Security;
-using Domain.RepositoryFactories;
-using TewCloud.Auth;
 using Domain.Entities;
+using Domain.RepositoryFactories;
+using WebSite.Auth;
 
-namespace TewCloud.Providers
+namespace WebSite.Providers
 {
 	public class TewMembershipProvider : MembershipProvider
 	{

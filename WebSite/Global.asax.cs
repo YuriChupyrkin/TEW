@@ -1,14 +1,8 @@
-﻿using System.Web;
-using System.Web.Http;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Domain.Entities;
-using Domain.RepositoryFactories;
-using Domain.UnitOfWork;
-using TewCloud.App_Start;
 
-namespace TewCloud
+namespace WebSite
 {
   public class WebApiApplication : System.Web.HttpApplication
   {

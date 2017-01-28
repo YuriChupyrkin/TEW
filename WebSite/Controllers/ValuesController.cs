@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
 
-namespace TewCloud.Controllers
+namespace WebSite.Controllers
 {
   public class ValuesController : ApiController
   {

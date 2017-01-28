@@ -1,9 +1,9 @@
 ﻿using System.Web.Http;
 using Domain.RepositoryFactories;
 using EnglishLearnBLL.WordLevelManager;
-using TewCloud.Models;
+using WebSite.Models;
 
-namespace TewCloud.Controllers.Api
+namespace WebSite.Controllers.Api
 {
   public class UserStatController : ApiController
   {

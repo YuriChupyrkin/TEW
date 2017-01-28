@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Web.Http;
 using Domain.RepositoryFactories;
-using TewCloud.Models;
+using WebSite.Models;
 
-namespace TewCloud.Controllers
+namespace WebSite.Controllers
 {
   public class TewInfoController : ApiController
   {
