@@ -1,151 +1,4 @@
-﻿/*.margin-10 {
-    margin: 10px;
-}
-
-.center-form{
-    text-align: center;
-    display:inline-block;
-}
-
-.inline-block {
-    display:inline-block;
-}
-
-.add-word-area {
-    margin: 50px;
-}
-
-.margin-60 {
-    margin: 50px;
-}
-
-.margin-30 {
-     margin: 30px;
-}
-
-.label {
-    font-size: 16px;
-    font-style: italic;
-    color: #737272;
-}
-
-.menu-header {
-    padding-left: 20px;
-    position: fixed;
-    height: 100vh;
-    color: #ffc56d;
-
-    max-width: 16.3%;
-}
-
-.menu-tab {
-    display:block;
-    padding: 20px;
-    color: #ffc56d;
-    font-size: 16px;
-}
-
-.menu-tab:hover {
-    background-color: #ffa500;
-}
-
-.menu-tabs {
-    text-align: right;
-}
-
-.menu-tab-active {
-    background-color: #ffc56d;
-    color: #737272 !important;
-}
-
-.menu-header-links {
-    padding-left: 30px;
-    padding-bottom: 40px;
-}
-
-.add-word-english-word {
-    float: left;
-    margin-right: 10px;
-}
-
-.learning-main-background {
-    background-color: #737272;
-}
-
-.menu-header-user-name {
-    font-size: 16px;
-    word-wrap: break-word;
-}
-
-.log-out-link {
-    color: white;
-}
-
-.log-out-link:hover {
-    color: #ffe000 !important;
-}
-
-.mobile-text {
-    font-size: 18px;
-}
-
-.mobile-home-button {
-    width: 20%;
-    height: 20%;
-}
-
-.mobile-home-link {
-    font-size: 28px;
-    color: #ffc56d;
-    text-decoration: underline;
-}
-
-.header-server-message {
-    margin-top: 50px;
-    margin-bottom: 30px;
-    word-wrap: break-word;
-    font-weight: bold;
-}
-
-.mobile-body {
-    padding-right: 15px;
-}
-
-.mobile-username-block {
-    padding-bottom: 15px;
-    padding-top: 15px;
-    display: block;
-}
-
-.btn-orange {
-    background-color: #ffc56d;
-    color: #737272;
-}
-
-.learning-body {
-    color: #737272;
-}
-
-.document-body {
-    background-color: rgba(128,128,128,0.05);
-}
-
-.mobile-links {
-    border-radius: 10px;
-    background-color: #737272;
-    margin-top: 30px;
-}
-*/
-
-/*
-            COLORS:
-    orange - #ffc56d
-    gray - #737272
-    error - #fd6c01
-    hover - #ffa500
-*/
-
-/**************************** TEW NEXT ********************************************/
+﻿/**************************** TEW NEXT ********************************************/
 
 /*** 
         COLORS 
@@ -340,9 +193,16 @@ acitve link > color: #5af35d
     top: 50%; 
     left: 45%;
     font-weight: bold;
-}
-
-.loading-lock-text {
     font-size: 28px;
     margin-left: 10px;
+}
+
+@media (max-width: 768px) {
+    .loading-lock-message {
+        font-size: 18px;
+    }
+
+    .loading-lock-message {
+        left: 30%;
+    }
 }
