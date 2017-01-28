@@ -9,16 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var LoadingAnimation = (function () {
-    function LoadingAnimation() {
+var constantStorage_1 = require("../helpers/constantStorage");
+var httpService_1 = require("../services/httpService");
+var Home = (function () {
+    function Home(httpService) {
+        this.httpService = httpService;
     }
-    return LoadingAnimation;
+    Home.prototype.ngOnInit = function () {
+        var _this = this;
+        this.httpService.processGet(constantStorage_1.ConstantStorage.getTewInfoContoller())
+            .then(function (response) {
+            _this.usersCount = response.Users;
+            _this.wordsCount = response.Words;
+        });
+    };
+    return Home;
 }());
-LoadingAnimation = __decorate([
+Home = __decorate([
     core_1.Component({
-        selector: 'loading-animation',
-        templateUrl: '../StaticContent/app/templates/loadingAnimation.html'
+        selector: 'home',
+        templateUrl: '../StaticContent/app/templates/components/home.html'
     }),
-    __metadata("design:paramtypes", [])
-], LoadingAnimation);
-exports.LoadingAnimation = LoadingAnimation;
+    __metadata("design:paramtypes", [httpService_1.HttpService])
+], Home);
+exports.Home = Home;

@@ -1,21 +1,21 @@
 ///<reference path="./../../typings/main.d.ts"/>
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from './app';
-import { Home } from './home';
-import { AddWord } from './addWord';
-import { MyWords } from './myWords';
-import { PickerTest } from './pickerTest';
+import { AppComponent } from './components/app';
+import { Home } from './components/home';
+import { AddWord } from './components/addWord';
+import { MyWords } from './components/myWords';
+import { PickerTest } from './components/pickerTest';
 import { appRoutingProviders, routing } from './app.routes';
 import { APP_BASE_HREF } from '@angular/common';
 import { HttpService } from './services/httpService';
-import { HttpModule } from '@angular/http';
 import { LoadingAnimation } from './helpComponents/loadingAnimation';
 import { LoadingLockDisplay } from './helpComponents/loadingLockDisplay';
 import { ProgressBar } from './helpComponents/progressBar';
 import { ModalWindow } from './helpComponents/modalWindow';
-import { UserStat } from './userStat';
-import { IrregularVerbs } from './irregularVerbs';
+import { UserStat } from './components/userStat';
+import { IrregularVerbs } from './components/irregularVerbs';
 
 // For textbox binding
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';

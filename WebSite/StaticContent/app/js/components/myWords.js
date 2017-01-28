@@ -9,9 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var httpService_1 = require("./services/httpService");
-var wordsCloudModel_1 = require("./models/wordsCloudModel");
-var constantStorage_1 = require("./services/constantStorage");
+var httpService_1 = require("../services/httpService");
+var wordsCloudModel_1 = require("../models/wordsCloudModel");
+var constantStorage_1 = require("../helpers/constantStorage");
 var MyWords = (function () {
     function MyWords(httpService) {
         this.httpService = httpService;
@@ -118,7 +118,7 @@ __decorate([
 MyWords = __decorate([
     core_1.Component({
         selector: 'my-words',
-        templateUrl: '../StaticContent/app/templates/myWords.html'
+        templateUrl: '../StaticContent/app/templates/components/myWords.html'
     }),
     __metadata("design:paramtypes", [httpService_1.HttpService])
 ], MyWords);

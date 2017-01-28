@@ -1,12 +1,12 @@
 ﻿import { Routes, RouterModule }   from '@angular/router';
-import { Home } from './home';
-import { AddWord } from './addWord';
-import { MyWords } from './myWords';
-import { PickerTest } from './pickerTest';
-import { AppComponent } from './app';
-import { UserStat } from './userStat';
 import { ModuleWithProviders }  from '@angular/core';
-import { IrregularVerbs } from './irregularVerbs';
+import { Home } from './components/home';
+import { AddWord } from './components/addWord';
+import { MyWords } from './components/myWords';
+import { PickerTest } from './components/pickerTest';
+import { AppComponent } from './components/app';
+import { UserStat } from './components/userStat';
+import { IrregularVerbs } from './components/irregularVerbs';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },

@@ -35,6 +35,8 @@ gulp.task('ts', function (done) {
             "app/ts/*.ts",
             "app/ts/services/*.ts",
             "app/ts/models/*.ts",
+            "app/ts/helpers/*.ts",
+            "app/ts/components/*.ts",
             "app/ts/helpComponents/*.ts"
     ])
         .pipe(ts(tsProject), undefined, ts.reporter.fullReporter());

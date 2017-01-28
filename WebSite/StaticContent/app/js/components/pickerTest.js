@@ -9,12 +9,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var pickerTestModel_1 = require("./models/pickerTestModel");
-var constantStorage_1 = require("./services/constantStorage");
-var httpService_1 = require("./services/httpService");
-var word_1 = require("./models/word");
-var wordsCloudModel_1 = require("./models/wordsCloudModel");
-var modalWindowServise_1 = require("./services/modalWindowServise");
+var pickerTestModel_1 = require("../models/pickerTestModel");
+var constantStorage_1 = require("../helpers/constantStorage");
+var httpService_1 = require("../services/httpService");
+var word_1 = require("../models/word");
+var wordsCloudModel_1 = require("../models/wordsCloudModel");
+var modalWindowServise_1 = require("../services/modalWindowServise");
 var PickerTest = (function () {
     function PickerTest(httpService) {
         this.httpService = httpService;
@@ -183,7 +183,7 @@ var PickerTest = (function () {
 PickerTest = __decorate([
     core_1.Component({
         selector: 'picker-test',
-        templateUrl: '../StaticContent/app/templates/pickerTest.html'
+        templateUrl: '../StaticContent/app/templates/components/pickerTest.html'
     }),
     __metadata("design:paramtypes", [httpService_1.HttpService])
 ], PickerTest);

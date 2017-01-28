@@ -1,0 +1,80 @@
+﻿<div class="container">
+    <modal-window [windowConfig]="modalConfig"></modal-window>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle responsive-menu-button" data-toggle="collapse" data-target="#responsive-menu">
+                        <span class="sr-only">Open menu</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="responsive-menu">
+                    <ul class="nav navbar-nav responsive-menu ">
+                        <!--<li>
+                            <a routerLink="/home" routerLinkActive="active-menu-item">
+                                Home
+                            </a>
+                        </li>-->
+                        <li>
+                            <a routerLink="/add-word" routerLinkActive="active-menu-item">
+                                Add word
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="/my-words" routerLinkActive="active-menu-item">
+                                My words
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Tests
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                     <a class="navbar-dropdown-menu-item" routerLink="/picker-test" routerLinkActive="active-menu-item">
+                                        Picker test
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="navbar-dropdown-menu-item" href="#/user-stat">Write test (not available)</a>
+                                </li>
+                            </ul>
+                        </li>
+                         <li>
+                            <a routerLink="/irregular-verbs" routerLinkActive="active-menu-item">
+                                Irregular verbs
+                            </a>
+                        </li>
+                    </ul>
+                    <span>
+                        <ul class="nav navbar-nav navbar-right responsive-menu ">
+                            <li class="divider"></li>
+                            <li>
+                                <a routerLink="/user-stat" routerLinkActive="active-menu-item">
+                                    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                                    {{userName}}
+                                </a>
+                            </li>
+                            <li>
+                                <a (click)="logOut()">
+                                   <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                   Log out
+                                </a>
+                            </li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+    </div>
+    <div class="tew-body">
+        <div [style.visibility]="showLoadingArr.length > 0 ? 'visible' : 'hidden'">
+            <loading-animation></loading-animation>
+        </div>
+
+        <router-outlet></router-outlet>
+    </div>
+</div>
+

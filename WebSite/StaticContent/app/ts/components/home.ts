@@ -1,13 +1,13 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { ConstantStorage } from './services/constantStorage';
-import { CommonHelper } from './services/commonHelper';
-import { UserStatModel } from './models/userStatModel';
-import { HttpService } from './services/httpService';
-import { ModalWindowServise } from './services/modalWindowServise';
+import { ConstantStorage } from '../helpers/constantStorage';
+import { CommonHelper } from '../helpers/commonHelper';
+import { UserStatModel } from '../models/userStatModel';
+import { HttpService } from '../services/httpService';
+import { ModalWindowServise } from '../services/modalWindowServise';
 
 @Component({
     selector: 'home',
-    templateUrl: '../StaticContent/app/templates/home.html'
+    templateUrl: '../StaticContent/app/templates/components/home.html'
 })
 
 export class Home implements OnInit  {

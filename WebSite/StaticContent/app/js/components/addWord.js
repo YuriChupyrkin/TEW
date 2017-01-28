@@ -9,10 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var constantStorage_1 = require("./services/constantStorage");
-var httpService_1 = require("./services/httpService");
-var wordsCloudModel_1 = require("./models/wordsCloudModel");
-var word_1 = require("./models/word");
+var constantStorage_1 = require("../helpers/constantStorage");
+var httpService_1 = require("../services/httpService");
+var wordsCloudModel_1 = require("../models/wordsCloudModel");
+var word_1 = require("../models/word");
 var forms_1 = require("@angular/forms");
 var AddWord = (function () {
     function AddWord(formBuilder, httpService) {
@@ -123,7 +123,7 @@ var AddWord = (function () {
 AddWord = __decorate([
     core_1.Component({
         selector: 'add-word',
-        templateUrl: '../StaticContent/app/templates/addWord.html'
+        templateUrl: '../StaticContent/app/templates/components/addWord.html'
     }),
     __metadata("design:paramtypes", [forms_1.FormBuilder, httpService_1.HttpService])
 ], AddWord);

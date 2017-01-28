@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { JQueryHelper } from '../services/jqueryHelper';
+import { JQueryHelper } from '../helpers/jqueryHelper';
 
 @Component({
     selector: 'modal-window',

@@ -9,13 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var constantStorage_1 = require("./services/constantStorage");
-var httpService_1 = require("./services/httpService");
+var constantStorage_1 = require("../helpers/constantStorage");
+var httpService_1 = require("../services/httpService");
 var router_1 = require("@angular/router");
-var pubSub_1 = require("./services/pubSub");
-var commonHelper_1 = require("./services/commonHelper");
-var modalWindowServise_1 = require("./services/modalWindowServise");
-var jQueryHelper_1 = require("./services/jQueryHelper");
+var pubSub_1 = require("../services/pubSub");
+var commonHelper_1 = require("../helpers/commonHelper");
+var modalWindowServise_1 = require("../services/modalWindowServise");
+var jQueryHelper_1 = require("../helpers/jQueryHelper");
 var AppComponent = (function () {
     function AppComponent(httpService, router) {
         var _this = this;
@@ -84,7 +84,7 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
-        templateUrl: '../StaticContent/app/templates/app.html'
+        templateUrl: '../StaticContent/app/templates/components/app.html'
     }),
     __metadata("design:paramtypes", [httpService_1.HttpService, router_1.Router])
 ], AppComponent);

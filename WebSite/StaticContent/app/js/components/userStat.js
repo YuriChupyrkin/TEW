@@ -9,10 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var constantStorage_1 = require("./services/constantStorage");
-var httpService_1 = require("./services/httpService");
-var modalWindowServise_1 = require("./services/modalWindowServise");
-var user_1 = require("./models/user");
+var constantStorage_1 = require("../helpers/constantStorage");
+var httpService_1 = require("../services/httpService");
+var modalWindowServise_1 = require("../services/modalWindowServise");
+var user_1 = require("../models/user");
 var UserStat = (function () {
     function UserStat(httpService) {
         this.httpService = httpService;
@@ -56,7 +56,7 @@ var UserStat = (function () {
 UserStat = __decorate([
     core_1.Component({
         selector: 'user-stat',
-        templateUrl: '../StaticContent/app/templates/userStat.html'
+        templateUrl: '../StaticContent/app/templates/components/userStat.html'
     }),
     __metadata("design:paramtypes", [httpService_1.HttpService])
 ], UserStat);

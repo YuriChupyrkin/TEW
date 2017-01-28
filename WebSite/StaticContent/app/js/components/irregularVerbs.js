@@ -8,18 +8,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var MainMenu = (function () {
-    function MainMenu() {
-        this.description = "main menu";
+var core_1 = require("@angular/core");
+var IrregularVerbs = (function () {
+    function IrregularVerbs() {
     }
-    MainMenu = __decorate([
-        core_1.Component({
-            selector: 'main-menu',
-            templateUrl: '../../scripts/angularjs/app/templates/mainMenu.html'
-        }), 
-        __metadata('design:paramtypes', [])
-    ], MainMenu);
-    return MainMenu;
+    return IrregularVerbs;
 }());
-exports.MainMenu = MainMenu;
+IrregularVerbs = __decorate([
+    core_1.Component({
+        selector: 'irregular-verbs',
+        templateUrl: '../StaticContent/app/templates/components/irregularVerbs.html'
+    }),
+    __metadata("design:paramtypes", [])
+], IrregularVerbs);
+exports.IrregularVerbs = IrregularVerbs;

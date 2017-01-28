@@ -18,11 +18,11 @@ export class ProgressBar {
     }
 
     private  validateProgress(progress: number): number {
-        if (progress > 100){
+        if (progress > 100) {
             return 100;
         }
 
-        if (progress < 0){
+        if (progress < 0) {
             return 0;
         }
 

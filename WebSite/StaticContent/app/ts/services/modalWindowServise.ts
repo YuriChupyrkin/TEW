@@ -1,4 +1,4 @@
-import { AppComponent } from '../app';
+import { AppComponent } from '../components/app';
 import { ModalWindow } from '../helpComponents/ModalWindow';
 
 export class ModalWindowServise {

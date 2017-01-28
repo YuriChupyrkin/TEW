@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var jqueryHelper_1 = require("../services/jqueryHelper");
+var jqueryHelper_1 = require("../helpers/jqueryHelper");
 var ModalWindow = ModalWindow_1 = (function () {
     function ModalWindow() {
         this.modal_window_id = "tew-modal-window";

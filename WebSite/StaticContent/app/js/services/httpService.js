@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
-var constantStorage_1 = require("./constantStorage");
+var constantStorage_1 = require("../helpers/constantStorage");
 var pubSub_1 = require("./pubSub");
 require("rxjs/add/operator/map");
 var HttpService = (function () {
