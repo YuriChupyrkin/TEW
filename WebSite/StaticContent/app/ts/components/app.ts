@@ -8,6 +8,7 @@ import { CommonHelper } from '../helpers/commonHelper';
 import { ModalWindow } from '../helpComponents/modalWindow';
 import { ModalWindowServise } from '../services/modalWindowServise';
 import { JQueryHelper } from '../helpers/jQueryHelper';
+import { ModalWindowModel } from '../models/modalWindowModel';
 
 @Component({
     selector: 'my-app',
@@ -16,7 +17,7 @@ import { JQueryHelper } from '../helpers/jQueryHelper';
 
 export class AppComponent implements OnInit {
     private userName: string;
-    private modalConfig: any;
+    private modalConfig: ModalWindowModel;
     private showLoadingArr = [];
     private isLoading = false;
 
@@ -58,7 +59,7 @@ export class AppComponent implements OnInit {
         }); 
     }
 
-    public setModalConfig(config: any){
+    public setModalConfig(config: ModalWindowModel) {
         this.modalConfig = config;
     }
 
@@ -71,17 +72,16 @@ export class AppComponent implements OnInit {
         this.isLoading = false
     }
 
-    private logOut(){
-        let modalConfig = {
-             headerText: 'Sign out',
-             bodyText: `Do you want sign out?`,
-             isApplyButton: true,
-             isCancelButton: true,
-             applyButtonText: 'Yes',
-             cancelButtonText: 'No',
-             applyCallback: () => CommonHelper.logOff()
-        };
+    private logOut() {
+         var modalWindowModel = new ModalWindowModel();
+        modalWindowModel.HeaderText = 'Sign out';
+        modalWindowModel.BodyText = `Do you want sign out?`;
+        modalWindowModel.IsApplyButton = true;
+        modalWindowModel.IsCancelButton = true;
+        modalWindowModel.ApplyButtonText = 'Yes';
+        modalWindowModel.CancelButtonText = 'No';
+        modalWindowModel.ApplyCallback = () => CommonHelper.logOff();
 
-        ModalWindowServise.showModalWindow(modalConfig);
+        ModalWindowServise.showModalWindow(modalWindowModel);
     }
 }

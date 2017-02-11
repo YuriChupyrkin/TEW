@@ -4,6 +4,7 @@ import { UserStatModel } from '../models/userStatModel';
 import { HttpService } from '../services/httpService';
 import { ModalWindowServise } from '../services/modalWindowServise';
 import { User } from '../models/user';
+import { ModalWindowModel } from '../models/modalWindowModel';
 
 @Component({
     selector: 'user-stat',
@@ -29,17 +30,16 @@ export class UserStat implements OnInit  {
     }
 
     private resetUserWords() {
-         let modalWindowConfig = {
-             headerText: 'Reset',
-             bodyText: 'Do you really want reset level of your words?',
-             isApplyButton: true,
-             isCancelButton: true,
-             applyButtonText: 'Yes',
-             cancelButtonText: 'No',
-             applyCallback: () => this.resetLevel()
-        }
+        var modalWindowModel = new ModalWindowModel();
+        modalWindowModel.HeaderText = 'Reset';
+        modalWindowModel.BodyText = `Do you really want reset level of your words?`;
+        modalWindowModel.IsApplyButton = true;
+        modalWindowModel.IsCancelButton = true;
+        modalWindowModel.ApplyButtonText = 'Yes';
+        modalWindowModel.CancelButtonText = 'No';
+        modalWindowModel.ApplyCallback = () => this.resetLevel();
 
-        ModalWindowServise.showModalWindow(modalWindowConfig);
+        ModalWindowServise.showModalWindow(modalWindowModel);
     }
 
     private resetLevel(){

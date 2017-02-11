@@ -15,6 +15,7 @@ var httpService_1 = require("../services/httpService");
 var word_1 = require("../models/word");
 var wordsCloudModel_1 = require("../models/wordsCloudModel");
 var modalWindowServise_1 = require("../services/modalWindowServise");
+var modalWindowModel_1 = require("../models/modalWindowModel");
 var PickerTest = (function () {
     function PickerTest(httpService) {
         this.httpService = httpService;
@@ -70,7 +71,7 @@ var PickerTest = (function () {
         var isTrueAnswer = false;
         if (this.trueAnswer != answer) {
             var message = "\"" + this.currentTest.Word + "\" = \"" + this.trueAnswer + "\"";
-            this.showFailedAnswerInModal(message);
+            this.showMessageAndNext(message, true);
             this.failedCount++;
         }
         else {
@@ -107,7 +108,7 @@ var PickerTest = (function () {
             var message = "Errors count: " + this.failedCount;
             this.testIsFinished = true;
             this.trueAnswer = 'disable pick button';
-            this.showResultsInModal(message);
+            this.showMessageAndNext(message, false);
             return;
         }
         this.currentTest = this.testSet[this.testIndex];
@@ -133,50 +134,35 @@ var PickerTest = (function () {
         this.setNextTest();
     };
     PickerTest.prototype.showError = function (message) {
-        var modalWindowConfig = {
-            headerText: 'PAGE ERROR',
-            bodyText: message,
-            isCancelButton: true,
-            cancelButtonText: 'Cancel'
-        };
-        modalWindowServise_1.ModalWindowServise.showModalWindow(modalWindowConfig);
+        var modalWindowModel = new modalWindowModel_1.ModalWindowModel();
+        modalWindowModel.HeaderText = 'PAGE ERROR';
+        modalWindowModel.BodyText = message;
+        modalWindowModel.IsCancelButton = true;
+        modalWindowModel.CancelButtonText = 'Cancel';
+        modalWindowServise_1.ModalWindowServise.showModalWindow(modalWindowModel);
     };
     PickerTest.prototype.showIsDeleteModal = function (pickerTestModel) {
         var _this = this;
-        var modalWindowConfig = {
-            headerText: 'Delete',
-            bodyText: "Delete word: \"" + pickerTestModel.Word + "\"?",
-            isApplyButton: true,
-            isCancelButton: true,
-            applyButtonText: 'Yes',
-            cancelButtonText: 'No',
-            applyCallback: function () { return _this.deleteWord(pickerTestModel); }
-        };
-        modalWindowServise_1.ModalWindowServise.showModalWindow(modalWindowConfig);
+        var modalWindowModel = new modalWindowModel_1.ModalWindowModel();
+        modalWindowModel.HeaderText = 'Delete';
+        modalWindowModel.BodyText = "Delete word: \"" + pickerTestModel.Word + "\"?";
+        modalWindowModel.IsApplyButton = true;
+        modalWindowModel.IsCancelButton = true;
+        modalWindowModel.ApplyButtonText = 'Yes';
+        modalWindowModel.CancelButtonText = 'No';
+        modalWindowModel.ApplyCallback = function () { return _this.deleteWord(pickerTestModel); };
+        modalWindowServise_1.ModalWindowServise.showModalWindow(modalWindowModel);
     };
-    PickerTest.prototype.showFailedAnswerInModal = function (message) {
+    PickerTest.prototype.showMessageAndNext = function (message, isError) {
         var _this = this;
-        var modalWindowConfig = {
-            headerText: 'Error',
-            bodyText: message,
-            isApplyButton: true,
-            isCancelButton: false,
-            applyButtonText: 'ok',
-            applyCallback: function () { return _this.setNextTest(); }
-        };
-        modalWindowServise_1.ModalWindowServise.showModalWindow(modalWindowConfig);
-    };
-    PickerTest.prototype.showResultsInModal = function (message) {
-        var _this = this;
-        var modalWindowConfig = {
-            headerText: 'Done',
-            bodyText: message,
-            isApplyButton: true,
-            isCancelButton: false,
-            applyButtonText: 'ok',
-            applyCallback: function () { return _this.setNextTest(); }
-        };
-        modalWindowServise_1.ModalWindowServise.showModalWindow(modalWindowConfig);
+        var modalWindowModel = new modalWindowModel_1.ModalWindowModel();
+        modalWindowModel.HeaderText = isError ? 'Error' : 'Done';
+        modalWindowModel.BodyText = message;
+        modalWindowModel.IsApplyButton = true;
+        modalWindowModel.IsCancelButton = false;
+        modalWindowModel.ApplyButtonText = 'ok';
+        modalWindowModel.ApplyCallback = function () { return _this.setNextTest(); };
+        modalWindowServise_1.ModalWindowServise.showModalWindow(modalWindowModel);
     };
     return PickerTest;
 }());

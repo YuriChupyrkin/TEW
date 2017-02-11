@@ -5,6 +5,7 @@ import { HttpService } from '../services/httpService';
 import { Word } from '../models/word';
 import { WordsCloudModel } from '../models/wordsCloudModel';
 import { ModalWindowServise } from '../services/modalWindowServise';
+import { ModalWindowModel } from '../models/modalWindowModel';
 
 @Component({
     selector: 'picker-test',
@@ -92,7 +93,7 @@ export class PickerTest {
 
         if (this.trueAnswer != answer) {
             var message = `"${this.currentTest.Word}" = "${this.trueAnswer}"`;
-            this.showFailedAnswerInModal(message);
+            this.showMessageAndNext(message, true);
             this.failedCount++;
         } else {
             isTrueAnswer = true;
@@ -137,7 +138,7 @@ export class PickerTest {
             let message = `Errors count: ${this.failedCount}`;
             this.testIsFinished = true;
             this.trueAnswer = 'disable pick button';
-            this.showResultsInModal(message);
+            this.showMessageAndNext(message, false);
             return;
         }
 
@@ -168,53 +169,37 @@ export class PickerTest {
     }
      
     private showError(message: string) {
-        let modalWindowConfig = {
-             headerText: 'PAGE ERROR',
-             bodyText: message,
-             isCancelButton: true,
-             cancelButtonText: 'Cancel'
-        };
+        var modalWindowModel = new ModalWindowModel();
+        modalWindowModel.HeaderText = 'PAGE ERROR';
+        modalWindowModel.BodyText = message;
+        modalWindowModel.IsCancelButton = true;
+        modalWindowModel.CancelButtonText = 'Cancel';
 
-       ModalWindowServise.showModalWindow(modalWindowConfig);
+       ModalWindowServise.showModalWindow(modalWindowModel);
     }
 
     private showIsDeleteModal(pickerTestModel: PickerTestModel) {
-        let modalWindowConfig = {
-             headerText: 'Delete',
-             bodyText: `Delete word: "${pickerTestModel.Word}"?`,
-             isApplyButton: true,
-             isCancelButton: true,
-             applyButtonText: 'Yes',
-             cancelButtonText: 'No',
-             applyCallback: () => this.deleteWord(pickerTestModel)
-        };
+        var modalWindowModel = new ModalWindowModel();
+        modalWindowModel.HeaderText = 'Delete';
+        modalWindowModel.BodyText = `Delete word: "${pickerTestModel.Word}"?`;
+        modalWindowModel.IsApplyButton = true;
+        modalWindowModel.IsCancelButton = true;
+        modalWindowModel.ApplyButtonText = 'Yes';
+        modalWindowModel.CancelButtonText = 'No';
+        modalWindowModel.ApplyCallback = () => this.deleteWord(pickerTestModel);
 
-        ModalWindowServise.showModalWindow(modalWindowConfig);
+        ModalWindowServise.showModalWindow(modalWindowModel);
     }
 
-    private showFailedAnswerInModal(message: string) {
-        let modalWindowConfig = {
-             headerText: 'Error',
-             bodyText: message,
-             isApplyButton: true,
-             isCancelButton: false,
-             applyButtonText: 'ok',
-             applyCallback: () => this.setNextTest()
-        }
+    private showMessageAndNext (message: string, isError: boolean) {
+        var modalWindowModel = new ModalWindowModel();
+        modalWindowModel.HeaderText = isError ? 'Error' : 'Done';
+        modalWindowModel.BodyText = message;
+        modalWindowModel.IsApplyButton = true;
+        modalWindowModel.IsCancelButton = false;
+        modalWindowModel.ApplyButtonText = 'ok';
+        modalWindowModel.ApplyCallback = () => this.setNextTest();
 
-        ModalWindowServise.showModalWindow(modalWindowConfig);
-    }
-
-    private showResultsInModal(message: string) {
-        let modalWindowConfig = {
-             headerText: 'Done',
-             bodyText: message,
-             isApplyButton: true,
-             isCancelButton: false,
-             applyButtonText: 'ok',
-             applyCallback: () => this.setNextTest()
-        }
-
-        ModalWindowServise.showModalWindow(modalWindowConfig);
+        ModalWindowServise.showModalWindow(modalWindowModel);
     }
 }

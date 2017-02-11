@@ -26,7 +26,11 @@
                     <td>
                         <i class="fa fa-times fa-lg cursor-pointer" aria-hidden="true" (click)="removeWord(word)"></i>
                     </td>
-                    <td>{{word.English}}</td>
+                    <td>
+                        <span style="cursor: help">
+                            {{word.English}}
+                        </span>
+                    </td>
                     <td>{{word.Russian}}</td>
                     <td>{{word.Level}}</td>
                     <td>{{word.AnswerCount}}</td>

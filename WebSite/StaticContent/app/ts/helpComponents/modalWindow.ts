@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { JQueryHelper } from '../helpers/jqueryHelper';
+import { ModalWindowModel } from '../models/modalWindowModel';
 
 @Component({
     selector: 'modal-window',
@@ -13,24 +14,24 @@ export class ModalWindow {
     @Output() public windowApplied = new EventEmitter();
     @Output() public windowCanceled = new EventEmitter();
 
-    private config: any;
+    private config: ModalWindowModel;
     private dismissed: boolean;
 
-    @Input() set windowConfig(value: any) {
+    @Input() set windowConfig(value: ModalWindowModel) {
         this.dismissed = false;
         if (value) {
             this.config = value;
             
-            if (this.config.isApplyButton === undefined) {
-                this.config.isApplyButton = false;
+            if (this.config.IsApplyButton === undefined) {
+                this.config.IsApplyButton = false;
             }
 
-            if (this.config.isCancelButton === undefined) {
-                this.config.isCancelButton = true;
+            if (this.config.IsCancelButton === undefined) {
+                this.config.IsCancelButton = true;
             }
 
-            if (!this.config.cancelButtonText) {
-                this.config.cancelButtonText = 'Cancel';
+            if (!this.config.CancelButtonText) {
+                this.config.CancelButtonText = 'Cancel';
             }
         } else {
             // default config
@@ -63,8 +64,8 @@ export class ModalWindow {
 
     private applyWindow() {
         this.dismissed = true;
-        if (this.config.applyCallback) {
-            this.config.applyCallback();
+        if (this.config.ApplyCallback) {
+            this.config.ApplyCallback();
         }
         else {
             this.windowApplied.emit();
@@ -73,8 +74,8 @@ export class ModalWindow {
 
     private cancelWindow() {
         this.dismissed = true;
-        if (this.config.cancelCallback) {
-            this.config.cancelCallback();
+        if (this.config.CancelCallback) {
+            this.config.CancelCallback();
         }
         else {
             this.windowCanceled.emit();
@@ -83,27 +84,26 @@ export class ModalWindow {
 
     // set event for X (close)
     private closeWindow() {
-        if (this.config.isCancelButton) {
+        if (this.config.IsCancelButton) {
             this.cancelWindow();
         }
-        else if (this.config.isApplyButton) {
+        else if (this.config.IsApplyButton) {
             this.applyWindow();
         }
     }
 
     private buildDefaultConfig() {
-        let config = {
-            headerText: 'header',
-            bodyText: 'body',
-            isApplyButton: false,
-            isCancelButton: true,
-            applyButtonText: 'apply',
-            cancelButtonText: 'cancel',
-            applyCallback: () => console.log('apply callback'),
-            cancelCallback: () => console.log('cancel callback'),
-            closeCallback: () => console.log('close callback')
-        };
+        var modalWindowModel = new ModalWindowModel();
+        modalWindowModel.HeaderText = 'header';
+        modalWindowModel.BodyText = 'body';
+        modalWindowModel.IsApplyButton = false;
+        modalWindowModel.IsCancelButton = true;
+        modalWindowModel.ApplyButtonText = 'apply';
+        modalWindowModel.CancelButtonText = 'cancel';
+        modalWindowModel.ApplyCallback = () => console.log('apply callback');
+        modalWindowModel.CancelCallback = () => console.log('cancel callback');
+        modalWindowModel.CloseCallback = () => console.log('close callback');
 
-        return config;
+        return modalWindowModel;
     }
 }

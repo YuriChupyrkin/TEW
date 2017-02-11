@@ -16,6 +16,7 @@ var pubSub_1 = require("../services/pubSub");
 var commonHelper_1 = require("../helpers/commonHelper");
 var modalWindowServise_1 = require("../services/modalWindowServise");
 var jQueryHelper_1 = require("../helpers/jQueryHelper");
+var modalWindowModel_1 = require("../models/modalWindowModel");
 var AppComponent = (function () {
     function AppComponent(httpService, router) {
         var _this = this;
@@ -68,16 +69,15 @@ var AppComponent = (function () {
         this.isLoading = false;
     };
     AppComponent.prototype.logOut = function () {
-        var modalConfig = {
-            headerText: 'Sign out',
-            bodyText: "Do you want sign out?",
-            isApplyButton: true,
-            isCancelButton: true,
-            applyButtonText: 'Yes',
-            cancelButtonText: 'No',
-            applyCallback: function () { return commonHelper_1.CommonHelper.logOff(); }
-        };
-        modalWindowServise_1.ModalWindowServise.showModalWindow(modalConfig);
+        var modalWindowModel = new modalWindowModel_1.ModalWindowModel();
+        modalWindowModel.HeaderText = 'Sign out';
+        modalWindowModel.BodyText = "Do you want sign out?";
+        modalWindowModel.IsApplyButton = true;
+        modalWindowModel.IsCancelButton = true;
+        modalWindowModel.ApplyButtonText = 'Yes';
+        modalWindowModel.CancelButtonText = 'No';
+        modalWindowModel.ApplyCallback = function () { return commonHelper_1.CommonHelper.logOff(); };
+        modalWindowServise_1.ModalWindowServise.showModalWindow(modalWindowModel);
     };
     return AppComponent;
 }());

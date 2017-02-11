@@ -6,19 +6,19 @@
                     <button class="close" type="button" data-dismiss="modal" (click)="closeWindow()">
                         <i class="fa fa-close"></i>
                     </button>
-                    <div class="modal-title tew-modal-title">{{config.headerText}}</div>
+                    <div class="modal-title tew-modal-title">{{config.HeaderText}}</div>
                 </div>
                 <div class="modal-body tew-modal-body">
-                    <p>{{config.bodyText}}</p>
+                    <p>{{config.BodyText}}</p>
                 </div>
                 <div class="modal-footer">
-                    <button *ngIf="config.isApplyButton" class="btn btn-success tew-modal-button" 
+                    <button *ngIf="config.IsApplyButton" class="btn btn-success tew-modal-button" 
                         type="button" data-dismiss="modal" (click)="applyWindow()">
-                        {{config.applyButtonText}}
+                        {{config.ApplyButtonText}}
                     </button>
-                    <button *ngIf="config.isCancelButton" class="btn btn-danger tew-modal-button" 
+                    <button *ngIf="config.IsCancelButton" class="btn btn-danger tew-modal-button" 
                         type="button" data-dismiss="modal" (click)="cancelWindow()">
-                        {{config.cancelButtonText}}
+                        {{config.CancelButtonText}}
                     </button> 
                 </div>
             </div>

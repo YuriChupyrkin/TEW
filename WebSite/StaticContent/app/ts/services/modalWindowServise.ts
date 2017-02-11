@@ -1,5 +1,6 @@
 import { AppComponent } from '../components/app';
 import { ModalWindow } from '../helpComponents/ModalWindow';
+import { ModalWindowModel } from '../models/modalWindowModel';
 
 export class ModalWindowServise {
     private static appComponent: AppComponent 
@@ -10,7 +11,7 @@ export class ModalWindowServise {
         }
     }
 
-    public static showModalWindow(config: any) {
+    public static showModalWindow(config: ModalWindowModel) {
         if (!config || !this.appComponent){
             throw new Error("invalid config");
         }

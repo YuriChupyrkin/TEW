@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var jqueryHelper_1 = require("../helpers/jqueryHelper");
+var modalWindowModel_1 = require("../models/modalWindowModel");
 var ModalWindow = ModalWindow_1 = (function () {
     function ModalWindow() {
         this.modal_window_id = "tew-modal-window";
@@ -31,14 +32,14 @@ var ModalWindow = ModalWindow_1 = (function () {
             this.dismissed = false;
             if (value) {
                 this.config = value;
-                if (this.config.isApplyButton === undefined) {
-                    this.config.isApplyButton = false;
+                if (this.config.IsApplyButton === undefined) {
+                    this.config.IsApplyButton = false;
                 }
-                if (this.config.isCancelButton === undefined) {
-                    this.config.isCancelButton = true;
+                if (this.config.IsCancelButton === undefined) {
+                    this.config.IsCancelButton = true;
                 }
-                if (!this.config.cancelButtonText) {
-                    this.config.cancelButtonText = 'Cancel';
+                if (!this.config.CancelButtonText) {
+                    this.config.CancelButtonText = 'Cancel';
                 }
             }
             else {
@@ -58,8 +59,8 @@ var ModalWindow = ModalWindow_1 = (function () {
     };
     ModalWindow.prototype.applyWindow = function () {
         this.dismissed = true;
-        if (this.config.applyCallback) {
-            this.config.applyCallback();
+        if (this.config.ApplyCallback) {
+            this.config.ApplyCallback();
         }
         else {
             this.windowApplied.emit();
@@ -67,8 +68,8 @@ var ModalWindow = ModalWindow_1 = (function () {
     };
     ModalWindow.prototype.cancelWindow = function () {
         this.dismissed = true;
-        if (this.config.cancelCallback) {
-            this.config.cancelCallback();
+        if (this.config.CancelCallback) {
+            this.config.CancelCallback();
         }
         else {
             this.windowCanceled.emit();
@@ -76,26 +77,25 @@ var ModalWindow = ModalWindow_1 = (function () {
     };
     // set event for X (close)
     ModalWindow.prototype.closeWindow = function () {
-        if (this.config.isCancelButton) {
+        if (this.config.IsCancelButton) {
             this.cancelWindow();
         }
-        else if (this.config.isApplyButton) {
+        else if (this.config.IsApplyButton) {
             this.applyWindow();
         }
     };
     ModalWindow.prototype.buildDefaultConfig = function () {
-        var config = {
-            headerText: 'header',
-            bodyText: 'body',
-            isApplyButton: false,
-            isCancelButton: true,
-            applyButtonText: 'apply',
-            cancelButtonText: 'cancel',
-            applyCallback: function () { return console.log('apply callback'); },
-            cancelCallback: function () { return console.log('cancel callback'); },
-            closeCallback: function () { return console.log('close callback'); }
-        };
-        return config;
+        var modalWindowModel = new modalWindowModel_1.ModalWindowModel();
+        modalWindowModel.HeaderText = 'header';
+        modalWindowModel.BodyText = 'body';
+        modalWindowModel.IsApplyButton = false;
+        modalWindowModel.IsCancelButton = true;
+        modalWindowModel.ApplyButtonText = 'apply';
+        modalWindowModel.CancelButtonText = 'cancel';
+        modalWindowModel.ApplyCallback = function () { return console.log('apply callback'); };
+        modalWindowModel.CancelCallback = function () { return console.log('cancel callback'); };
+        modalWindowModel.CloseCallback = function () { return console.log('close callback'); };
+        return modalWindowModel;
     };
     return ModalWindow;
 }());
@@ -110,8 +110,8 @@ __decorate([
 ], ModalWindow.prototype, "windowCanceled", void 0);
 __decorate([
     core_1.Input(),
-    __metadata("design:type", Object),
-    __metadata("design:paramtypes", [Object])
+    __metadata("design:type", modalWindowModel_1.ModalWindowModel),
+    __metadata("design:paramtypes", [modalWindowModel_1.ModalWindowModel])
 ], ModalWindow.prototype, "windowConfig", null);
 ModalWindow = ModalWindow_1 = __decorate([
     core_1.Component({
