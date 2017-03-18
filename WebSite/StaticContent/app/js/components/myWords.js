@@ -19,6 +19,8 @@ var MyWords = (function () {
         this.isLoading = false;
         this.words = new Array();
         this.wordsCount = 999999;
+        this.sortKey = 'level';
+        this.sortAsc = true;
         this.loadWords();
     }
     MyWords.prototype.removeWord = function (word) {
@@ -46,6 +48,24 @@ var MyWords = (function () {
         this.words.splice(wordIndex, 1);
         this.wordsCount--;
     };
+    // ************* SORT LOGIC *********************
+    MyWords.prototype.headerClick = function (sortKey) {
+        if (sortKey == this.sortKey) {
+            this.sortAsc = !this.sortAsc;
+        }
+        else {
+            this.sortKey = sortKey;
+            this.sortAsc = true;
+        }
+        console.group('sorting');
+        console.log("sort type: " + this.sortKey);
+        console.log("sort asc: " + this.sortAsc);
+        console.groupEnd();
+        // reset words
+        this.words = [];
+        this.loadWords();
+    };
+    // ************* END OF SORT LOGIC **************
     // ************* PAGING LOGIC (START START REGION) ****************
     MyWords.prototype.scrollEvent = function (event) {
         var scrollTop = (document.documentElement && document.documentElement.scrollTop)
@@ -67,6 +87,8 @@ var MyWords = (function () {
         url += "?UserId=" + constantStorage_1.ConstantStorage.getUserId();
         url += "&CurrentWordsCount=" + this.words.length;
         url += "&WordsPerPage=" + this.wordsPerPage;
+        url += "&sortKey=" + this.sortKey;
+        url += "&sortAsc=" + this.sortAsc;
         var result = this.httpService.processGet(url);
         result.then(function (json) { _this.setUserWords(json); _this.endLoading(); _this.isNeedMoreWords(); }, function (error) { _this.endLoading(); alert('ERROR of loading words!!!'); });
     };

@@ -1,0 +1,7 @@
+<span class="sortable-title">
+    {{Title}}
+    <span *ngIf="SortProperty === SortKey">
+        <i *ngIf="Asc" class="fa fa-sort-asc"></i>
+        <i *ngIf="!Asc" class="fa fa-sort-desc"></i>
+    </span>
+<span>

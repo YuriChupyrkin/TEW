@@ -15,10 +15,14 @@ export class MyWords {
     private wordsCount: number;
     private words: Array<Word>;
     private isLoading = false;
+    private sortKey: string;
+    private sortAsc: boolean;
 
     constructor(private httpService: HttpService) {
         this.words = new Array<Word>();
         this.wordsCount = 999999;
+        this.sortKey = 'level';
+        this.sortAsc = true;
 
         this.loadWords();
     }
@@ -58,6 +62,23 @@ export class MyWords {
         this.wordsCount--;
     }
 
+    // ************* SORT LOGIC *********************
+
+    private headerClick(sortKey: string) {
+        if (sortKey == this.sortKey) {
+            this.sortAsc = !this.sortAsc;
+        }
+        else {
+            this.sortKey = sortKey;
+            this.sortAsc = true;
+        }
+
+        // reset words
+        this.words = []
+        this.loadWords();
+    }
+    // ************* END OF SORT LOGIC **************
+
     // ************* PAGING LOGIC (START START REGION) ****************
     @HostListener('window:scroll', ['$event']) 
     private scrollEvent (event) {
@@ -84,6 +105,8 @@ export class MyWords {
         url += `?UserId=${ConstantStorage.getUserId()}`;
         url += `&CurrentWordsCount=${this.words.length}`;
         url += `&WordsPerPage=${this.wordsPerPage}`;
+        url += `&sortKey=${this.sortKey}`;
+        url += `&sortAsc=${this.sortAsc}`;
 
         var result = this.httpService.processGet<UserWords>(url);
         result.then(

@@ -13,11 +13,31 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>English</th>
-                    <th>Russian</th>
-                    <th>Level</th>
-                    <th>Answer count</th>
-                    <th>Fail count</th>
+                    <th (click)="headerClick('english')">
+                        <my-words-header [SortProperty]="sortKey" [Asc]="sortAsc"
+                            Title="English" SortKey="english">
+                        </my-words-header>
+                    </th>
+                    <th (click)="headerClick('russian')">
+                        <my-words-header [SortProperty]="sortKey" [Asc]="sortAsc"
+                            Title="Russian" SortKey="russian">
+                        </my-words-header>
+                    </th>
+                    <th (click)="headerClick('level')">
+                        <my-words-header [SortProperty]="sortKey" [Asc]="sortAsc"
+                            Title="Level" SortKey="level">
+                        </my-words-header>
+                    </th>
+                    <th (click)="headerClick('answer')">
+                        <my-words-header [SortProperty]="sortKey" [Asc]="sortAsc"
+                            Title="Answer count" SortKey="answer">
+                        </my-words-header>
+                    </th>
+                    <th (click)="headerClick('fail')">
+                        <my-words-header [SortProperty]="sortKey" [Asc]="sortAsc"
+                            Title="Fail count" SortKey="fail">
+                        </my-words-header>
+                    </th>
                     <th>Example</th>
                 </tr>
             </thead>
@@ -47,9 +67,21 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>English</th>
-                    <th>Russian</th>
-                    <th>Level</th>
+                    <th (click)="headerClick('english')">
+                        <my-words-header [SortProperty]="sortKey" [Asc]="sortAsc"
+                            Title="English" SortKey="english">
+                        </my-words-header>
+                    </th>
+                    <th (click)="headerClick('russian')">
+                        <my-words-header [SortProperty]="sortKey" [Asc]="sortAsc"
+                            Title="Russian" SortKey="russian">
+                        </my-words-header>
+                    </th>
+                    <th (click)="headerClick('level')">
+                        <my-words-header [SortProperty]="sortKey" [Asc]="sortAsc"
+                            Title="Level" SortKey="level">
+                        </my-words-header>
+                    </th>
                 </tr>
             </thead>
             <tbody *ngFor="let word of words;">

@@ -16,6 +16,7 @@ import { ProgressBar } from './helpComponents/progressBar';
 import { ModalWindow } from './helpComponents/modalWindow';
 import { UserStat } from './components/userStat';
 import { IrregularVerbs } from './components/irregularVerbs';
+import { MyWordsHeader } from './helpComponents/myWordsHeader';
 
 // For textbox binding
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
@@ -34,7 +35,8 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
         ModalWindow, 
         UserStat,
         IrregularVerbs,
-        LoadingLockDisplay
+        LoadingLockDisplay,
+        MyWordsHeader
     ],
 
     bootstrap: [AppComponent],

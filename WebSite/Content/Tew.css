@@ -188,21 +188,26 @@ acitve link > color: #5af35d
 }
 
 .loading-lock-message {
-    position: absolute; 
-    color: #191515; 
-    top: 50%; 
-    left: 45%;
-    font-weight: bold;
-    font-size: 28px;
-    margin-left: 10px;
+  position: absolute; 
+  color: #191515; 
+  top: 50%; 
+  left: 45%;
+  font-weight: bold;
+  font-size: 28px;
+  margin-left: 10px;
 }
 
 @media (max-width: 768px) {
-    .loading-lock-message {
-        font-size: 18px;
-    }
+  .loading-lock-message {
+      font-size: 18px;
+  }
 
-    .loading-lock-message {
-        left: 30%;
-    }
+  .loading-lock-message {
+      left: 30%;
+  }
+}
+
+.sortable-title {
+  cursor: pointer;
+  text-decoration: underline;
 }
