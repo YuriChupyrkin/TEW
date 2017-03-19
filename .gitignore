@@ -171,4 +171,4 @@ node_modules/
 libs/
 
 # compiled js
-/WebSite/StaticContent/app/js
+WebSite/StaticContent/app/js/
