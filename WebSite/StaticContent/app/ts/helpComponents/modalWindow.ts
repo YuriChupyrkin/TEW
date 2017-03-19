@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { JQueryHelper } from '../helpers/jqueryHelper';
 import { ModalWindowModel } from '../models/modalWindowModel';
 
@@ -13,6 +13,7 @@ export class ModalWindow {
     
     @Output() public windowApplied = new EventEmitter();
     @Output() public windowCanceled = new EventEmitter();
+    @ViewChild('innerComponent', {read: ViewContainerRef}) innerComponent: ViewContainerRef;
 
     private config: ModalWindowModel;
     private dismissed: boolean;
@@ -21,7 +22,13 @@ export class ModalWindow {
         this.dismissed = false;
         if (value) {
             this.config = value;
-            
+
+            if (value.InnerComponent) {
+                 let factory = this.resolver.resolveComponentFactory(value.InnerComponentType);
+                 var component = this.innerComponent.createComponent(factory); 
+                 component.instance.options = value.InnerComponentOptions;
+            }
+
             if (this.config.IsApplyButton === undefined) {
                 this.config.IsApplyButton = false;
             }
@@ -39,7 +46,7 @@ export class ModalWindow {
         }
     }
 
-    constructor() {
+    constructor(private viewContainerRef: ViewContainerRef, private resolver: ComponentFactoryResolver ) {
         var self = this;
         this.dismissed = false;
         if (!this.config) {
@@ -62,6 +69,14 @@ export class ModalWindow {
         }
     }
 
+    public static closeWindow() {
+        let element = JQueryHelper.getElementById(this.MODAL_WINDOW_ID);
+
+        if (element && element.modal) {
+            element.modal('hide');
+        }
+    }
+
     private applyWindow() {
         this.dismissed = true;
         if (this.config.ApplyCallback) {
@@ -70,6 +85,8 @@ export class ModalWindow {
         else {
             this.windowApplied.emit();
         }
+
+        this.dismiss();
     }
 
     private cancelWindow() {
@@ -80,6 +97,8 @@ export class ModalWindow {
         else {
             this.windowCanceled.emit();
         }
+
+        this.dismiss();
     }
 
     // set event for X (close)
@@ -90,6 +109,13 @@ export class ModalWindow {
         else if (this.config.IsApplyButton) {
             this.applyWindow();
         }
+        else {
+            this.dismiss();
+        }
+    }
+
+    private dismiss() {
+        this.innerComponent.clear();
     }
 
     private buildDefaultConfig() {

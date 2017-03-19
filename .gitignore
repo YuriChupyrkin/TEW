@@ -166,6 +166,9 @@ $RECYCLE.BIN/
 /packages
 /.vs/config
 
-#npm
+# npm
 node_modules/
 libs/
+
+# compiled js
+/WebSite/StaticContent/app/js

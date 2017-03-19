@@ -9,9 +9,10 @@
                     <div class="modal-title tew-modal-title">{{config.HeaderText}}</div>
                 </div>
                 <div class="modal-body tew-modal-body">
-                    <p>{{config.BodyText}}</p>
+                    <p *ngIf="!config.InnerComponent">{{config.BodyText}}</p>
+                    <template #innerComponent></template>
                 </div>
-                <div class="modal-footer">
+                <div *ngIf="config.IsCancelButton || config.IsApplyButton" class="modal-footer">
                     <button *ngIf="config.IsApplyButton" class="btn btn-success tew-modal-button" 
                         type="button" data-dismiss="modal" (click)="applyWindow()">
                         {{config.ApplyButtonText}}

@@ -19,4 +19,8 @@ export class ModalWindowServise {
         this.appComponent.setModalConfig(config);
         ModalWindow.showWindow();
     }
+
+    public static hideModalWindow() {
+        ModalWindow.closeWindow();
+    }
 }

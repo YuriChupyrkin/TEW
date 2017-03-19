@@ -170,7 +170,6 @@ namespace EntityFrameworkDAL.Repositories
       return result;
     }
 
-
     public IEnumerable<RussianWord> AllRussianWords()
     {
       return _context.RussianWords.AsEnumerable();
@@ -280,6 +279,27 @@ namespace EntityFrameworkDAL.Repositories
       {
         DeleteEnRuWord(word.Id);
       }
+    }
+
+    public void EditEnRuWord(EnRuWord updateEnRuWord, int userId)
+    {
+      var enRuWord = _context.EnRuWords.FirstOrDefault(r => r.Id == updateEnRuWord.Id);
+
+      if (enRuWord == null)
+      {
+        return;
+      }
+
+      int ruId = AddRusWord(updateEnRuWord.RussianWord.RuWord);
+
+      enRuWord.RussianWordId = ruId;
+      enRuWord.Example = updateEnRuWord.Example;
+      enRuWord.UpdateDate = DateTime.Now;
+      enRuWord.WordLevel = updateEnRuWord.WordLevel;
+      enRuWord.FailAnswerCount = updateEnRuWord.FailAnswerCount;
+      enRuWord.AnswerCount = updateEnRuWord.AnswerCount;
+
+      _context.SaveChanges();
     }
   }
 }

@@ -4,6 +4,10 @@ import { UserWords } from '../models/userWords';
 import { Word } from '../models/word';
 import { WordsCloudModel } from '../models/wordsCloudModel';
 import { ConstantStorage } from '../helpers/constantStorage';
+import { ModalWindowModel } from '../models/modalWindowModel';
+import { ModalWindowServise } from '../services/modalWindowServise';
+import { EditMyWord } from '../helpComponents/editMyWord';
+import { PubSub } from '../services/pubSub';
 
 @Component({
     selector: 'my-words',
@@ -24,6 +28,8 @@ export class MyWords {
         this.sortKey = 'level';
         this.sortAsc = true;
 
+        PubSub.Clear('editWord');
+        PubSub.Sub('editWord', (...args: Array<any>) => this.updateWordAfterEdit(args));
         this.loadWords();
     }
 
@@ -61,6 +67,35 @@ export class MyWords {
         this.words.splice(wordIndex, 1);
         this.wordsCount--;
     }
+
+    // ************* EDIT LOGIC *********************
+    private updateWordAfterEdit(...args: Array<any>) {
+        if (args && args.length) {
+            var word = args[0][0];
+            console.log(word);
+
+            var index = this.words.map(item => {
+                return item.English;
+            }).indexOf(word.English);
+
+            if (index != -1) {
+                this.words[index] = word;
+            }
+        }
+    }
+
+    private editWord(word: Word) {
+        var modalWindowModel = new ModalWindowModel();
+        modalWindowModel.HeaderText = `Edit ${word.English}`;
+        modalWindowModel.IsCancelButton = false;
+        modalWindowModel.InnerComponent = true;
+        modalWindowModel.InnerComponentType = EditMyWord;
+        modalWindowModel.InnerComponentOptions = word
+
+        ModalWindowServise.showModalWindow(modalWindowModel);
+    }
+
+    // ************* END OF EDIT LOGIC **************
 
     // ************* SORT LOGIC *********************
 

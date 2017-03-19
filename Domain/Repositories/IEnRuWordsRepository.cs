@@ -19,6 +19,7 @@ namespace Domain.Repositories
 		IEnumerable<EnglishWord> AllEnglishWords();
 		void ChangeWordLevel(int enRuWordId, int levelShift);
 		void DeleteEnRuWord(string enWord, int userId);
+    void EditEnRuWord(EnRuWord updateEnRuWord, int userId);
 		void DeleteEnRuWord(int wordId);
 		int ClearEnWords();
 		int ClearRuWords();

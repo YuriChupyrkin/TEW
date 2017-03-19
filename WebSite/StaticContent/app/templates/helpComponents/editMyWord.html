@@ -1,0 +1,52 @@
+<div>
+    <div>
+        <span>English:</span>
+        <span>{{word.English}}</span>
+    <div>
+    <div>
+        <span>Level:</span>
+        <span>{{word.Level}}</span>
+    <div>
+    <div>
+        <span>Answers count:</span>
+        <span>{{word.AnswerCount}}</span>
+    <div>
+    <div>
+        <span>Fails count:</span>
+        <span>{{word.FailAnswerCount}}</span>
+    <div>
+    <br/>
+
+    <form [formGroup]="editWordform" (ngSubmit)="save(editWordform.value)">
+        <div>
+            <span class="field-label">Russian:</span>
+            <br />
+            <div class="error-field">
+                <span *ngIf="editWordform.controls['Russian'].hasError('required') && editWordform.controls['Russian'].touched">
+                    Enter translate
+                </span>
+                <span *ngIf="editWordform.controls['Russian'].hasError('maxlength') && editWordform.controls['Russian'].touched">
+                    Max length should be less than 25 symbols
+                </span>
+            </div>
+            <input [formControl]="editWordform.controls['Russian']" type="text" class="form-control"/>
+            <br/>
+        </div>
+        <div>
+            <span class="field-label">Example of use:</span>
+            <br />
+            <div class="error-field">
+                <span *ngIf="editWordform.controls['Example'].hasError('maxlength') && editWordform.controls['Example'].touched">
+                    Max length should be less than 50 symbols
+                </span>
+            </div>
+            <textarea [formControl]="editWordform.controls['Example']" class="form-control"></textarea>
+            <br />
+        </div>
+
+        <input type="submit" [disabled]="!editWordform.valid" class="btn btn-success tew-modal-button" value="Save"/>
+        <button class="btn btn-danger tew-modal-button" type="button" data-dismiss="modal">
+            Cancel
+        </button> 
+    </form>
+</div>

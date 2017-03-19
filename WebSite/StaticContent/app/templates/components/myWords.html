@@ -35,7 +35,7 @@
                     </th>
                     <th (click)="headerClick('fail')">
                         <my-words-header [SortProperty]="sortKey" [Asc]="sortAsc"
-                            Title="Fail count" SortKey="fail">
+                            Title="Fails count" SortKey="fail">
                         </my-words-header>
                     </th>
                     <th>Example</th>
@@ -46,8 +46,8 @@
                     <td>
                         <i class="fa fa-times fa-lg cursor-pointer" aria-hidden="true" (click)="removeWord(word)"></i>
                     </td>
-                    <td>
-                        <span style="cursor: help">
+                    <td (click)="editWord(word)">
+                        <span class="english-word">
                             {{word.English}}
                         </span>
                     </td>

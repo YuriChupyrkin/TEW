@@ -21,4 +21,11 @@ export class PubSub {
             }
         }
     }
+
+    public static Clear(name: string) {
+        if (this.registry && name)
+        {
+            this.registry[name] = null;
+        }
+    }
 }

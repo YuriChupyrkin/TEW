@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
 
         PubSub.Sub('loading', (...args: Array<any>) => {
             if(args && args.length) {
-                args.forEach(x => {   
+                args.forEach(x => {
                     if (x === true){
                         this.showLoadingArr.push(x);
                     }

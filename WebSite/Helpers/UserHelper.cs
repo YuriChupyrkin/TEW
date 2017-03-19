@@ -82,7 +82,8 @@ namespace WebSite.Helpers
           Example = word.Example,
           UpdateDate = word.UpdateDate,
           AnswerCount = word.AnswerCount,
-          FailAnswerCount = word.FailAnswerCount
+          FailAnswerCount = word.FailAnswerCount,
+          Id = word.Id
         };
 
         words.Add(viewModel);

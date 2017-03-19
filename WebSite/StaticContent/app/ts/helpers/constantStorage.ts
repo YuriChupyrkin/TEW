@@ -15,6 +15,11 @@
     private static readonly wordsLevelUpdaterController = '/api/WordsLevelUpdater';
     private static readonly tewInfoContoller = '/api/TewInfo';
     private static readonly resetWordsLevelContoller = '/api/ResetWordsLevel';
+    private static readonly editWordController = '/api/EditWord';
+
+    public static getEditWordController() {
+        return this.editWordController;
+    }
 
     public static getResetWordsLevelController(){
         return this.resetWordsLevelContoller;
