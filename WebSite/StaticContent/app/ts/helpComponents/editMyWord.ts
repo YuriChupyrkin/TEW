@@ -46,12 +46,9 @@ export class EditMyWord {
         updateWord.Example = updateExample;
 
         // reset level if translate has been updated
-        if (updateRussian != this.word.Russian)
-        {
-            updateWord.FailAnswerCount = 0;
-            updateWord.AnswerCount = 0;
-            updateWord.Level = 0;
-        }
+        updateWord.FailAnswerCount = updateRussian == this.word.Russian ? this.word.FailAnswerCount : 0;
+        updateWord.AnswerCount = updateRussian == this.word.Russian ? this.word.AnswerCount : 0;
+        updateWord.Level = updateRussian == this.word.Russian ? this.word.Level : 0;
 
         var wordsCloudModel = new WordsCloudModel();
         wordsCloudModel.Words = [updateWord];

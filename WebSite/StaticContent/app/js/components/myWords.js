@@ -12,8 +12,13 @@ var core_1 = require("@angular/core");
 var httpService_1 = require("../services/httpService");
 var wordsCloudModel_1 = require("../models/wordsCloudModel");
 var constantStorage_1 = require("../helpers/constantStorage");
+var modalWindowModel_1 = require("../models/modalWindowModel");
+var modalWindowServise_1 = require("../services/modalWindowServise");
+var editMyWord_1 = require("../helpComponents/editMyWord");
+var pubSub_1 = require("../services/pubSub");
 var MyWords = (function () {
     function MyWords(httpService) {
+        var _this = this;
         this.httpService = httpService;
         this.wordsPerPage = 50;
         this.isLoading = false;
@@ -21,6 +26,14 @@ var MyWords = (function () {
         this.wordsCount = 999999;
         this.sortKey = 'level';
         this.sortAsc = true;
+        pubSub_1.PubSub.Clear('editWord');
+        pubSub_1.PubSub.Sub('editWord', function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return _this.updateWordAfterEdit(args);
+        });
         this.loadWords();
     }
     MyWords.prototype.removeWord = function (word) {
@@ -48,6 +61,33 @@ var MyWords = (function () {
         this.words.splice(wordIndex, 1);
         this.wordsCount--;
     };
+    // ************* EDIT LOGIC *********************
+    MyWords.prototype.updateWordAfterEdit = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        if (args && args.length) {
+            var word = args[0][0];
+            console.log(word);
+            var index = this.words.map(function (item) {
+                return item.English;
+            }).indexOf(word.English);
+            if (index != -1) {
+                this.words[index] = word;
+            }
+        }
+    };
+    MyWords.prototype.editWord = function (word) {
+        var modalWindowModel = new modalWindowModel_1.ModalWindowModel();
+        modalWindowModel.HeaderText = "Edit " + word.English;
+        modalWindowModel.IsCancelButton = false;
+        modalWindowModel.InnerComponent = true;
+        modalWindowModel.InnerComponentType = editMyWord_1.EditMyWord;
+        modalWindowModel.InnerComponentOptions = word;
+        modalWindowServise_1.ModalWindowServise.showModalWindow(modalWindowModel);
+    };
+    // ************* END OF EDIT LOGIC **************
     // ************* SORT LOGIC *********************
     MyWords.prototype.headerClick = function (sortKey) {
         if (sortKey == this.sortKey) {
@@ -57,10 +97,6 @@ var MyWords = (function () {
             this.sortKey = sortKey;
             this.sortAsc = true;
         }
-        console.group('sorting');
-        console.log("sort type: " + this.sortKey);
-        console.log("sort asc: " + this.sortAsc);
-        console.groupEnd();
         // reset words
         this.words = [];
         this.loadWords();

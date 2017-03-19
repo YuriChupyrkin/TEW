@@ -12,7 +12,9 @@ var core_1 = require("@angular/core");
 var jqueryHelper_1 = require("../helpers/jqueryHelper");
 var modalWindowModel_1 = require("../models/modalWindowModel");
 var ModalWindow = ModalWindow_1 = (function () {
-    function ModalWindow() {
+    function ModalWindow(viewContainerRef, resolver) {
+        this.viewContainerRef = viewContainerRef;
+        this.resolver = resolver;
         this.modal_window_id = "tew-modal-window";
         this.windowApplied = new core_1.EventEmitter();
         this.windowCanceled = new core_1.EventEmitter();
@@ -32,6 +34,11 @@ var ModalWindow = ModalWindow_1 = (function () {
             this.dismissed = false;
             if (value) {
                 this.config = value;
+                if (value.InnerComponent) {
+                    var factory = this.resolver.resolveComponentFactory(value.InnerComponentType);
+                    var component = this.innerComponent.createComponent(factory);
+                    component.instance.options = value.InnerComponentOptions;
+                }
                 if (this.config.IsApplyButton === undefined) {
                     this.config.IsApplyButton = false;
                 }
@@ -57,6 +64,12 @@ var ModalWindow = ModalWindow_1 = (function () {
             setTimeout(function () { return element.modal(); }, 550);
         }
     };
+    ModalWindow.closeWindow = function () {
+        var element = jqueryHelper_1.JQueryHelper.getElementById(this.MODAL_WINDOW_ID);
+        if (element && element.modal) {
+            element.modal('hide');
+        }
+    };
     ModalWindow.prototype.applyWindow = function () {
         this.dismissed = true;
         if (this.config.ApplyCallback) {
@@ -65,6 +78,7 @@ var ModalWindow = ModalWindow_1 = (function () {
         else {
             this.windowApplied.emit();
         }
+        this.dismiss();
     };
     ModalWindow.prototype.cancelWindow = function () {
         this.dismissed = true;
@@ -74,6 +88,7 @@ var ModalWindow = ModalWindow_1 = (function () {
         else {
             this.windowCanceled.emit();
         }
+        this.dismiss();
     };
     // set event for X (close)
     ModalWindow.prototype.closeWindow = function () {
@@ -83,6 +98,12 @@ var ModalWindow = ModalWindow_1 = (function () {
         else if (this.config.IsApplyButton) {
             this.applyWindow();
         }
+        else {
+            this.dismiss();
+        }
+    };
+    ModalWindow.prototype.dismiss = function () {
+        this.innerComponent.clear();
     };
     ModalWindow.prototype.buildDefaultConfig = function () {
         var modalWindowModel = new modalWindowModel_1.ModalWindowModel();
@@ -109,6 +130,10 @@ __decorate([
     __metadata("design:type", Object)
 ], ModalWindow.prototype, "windowCanceled", void 0);
 __decorate([
+    core_1.ViewChild('innerComponent', { read: core_1.ViewContainerRef }),
+    __metadata("design:type", core_1.ViewContainerRef)
+], ModalWindow.prototype, "innerComponent", void 0);
+__decorate([
     core_1.Input(),
     __metadata("design:type", modalWindowModel_1.ModalWindowModel),
     __metadata("design:paramtypes", [modalWindowModel_1.ModalWindowModel])
@@ -118,7 +143,7 @@ ModalWindow = ModalWindow_1 = __decorate([
         selector: 'modal-window',
         templateUrl: '../../StaticContent/app/templates/helpComponents/modalWindow.html'
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [core_1.ViewContainerRef, core_1.ComponentFactoryResolver])
 ], ModalWindow);
 exports.ModalWindow = ModalWindow;
 var ModalWindow_1;

@@ -34,7 +34,10 @@ namespace WebSite.Controllers.Api
            RussianWord = new RussianWord { RuWord = word.Russian },
            //EnglishWord = new EnglishWord { EnWord = word.English },
            Example = word.Example,
-           Id = word.Id
+           Id = word.Id,
+           FailAnswerCount = word.FailAnswerCount,
+           WordLevel = word.Level,
+           AnswerCount = word.AnswerCount
         };
 
         _repositoryFactory.EnRuWordsRepository.EditEnRuWord(enRuWord, wordsModel.UserId);

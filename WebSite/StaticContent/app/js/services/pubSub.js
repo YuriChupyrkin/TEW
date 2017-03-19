@@ -24,6 +24,11 @@ var PubSub = (function () {
             }
         }
     };
+    PubSub.Clear = function (name) {
+        if (this.registry && name) {
+            this.registry[name] = null;
+        }
+    };
     return PubSub;
 }());
 PubSub.registry = {};

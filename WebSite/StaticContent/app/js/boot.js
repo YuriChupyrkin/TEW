@@ -27,6 +27,7 @@ var modalWindow_1 = require("./helpComponents/modalWindow");
 var userStat_1 = require("./components/userStat");
 var irregularVerbs_1 = require("./components/irregularVerbs");
 var myWordsHeader_1 = require("./helpComponents/myWordsHeader");
+var editMyWord_1 = require("./helpComponents/editMyWord");
 // For textbox binding
 var forms_1 = require("@angular/forms");
 var AppModule = (function () {
@@ -49,9 +50,13 @@ AppModule = __decorate([
             userStat_1.UserStat,
             irregularVerbs_1.IrregularVerbs,
             loadingLockDisplay_1.LoadingLockDisplay,
-            myWordsHeader_1.MyWordsHeader
+            myWordsHeader_1.MyWordsHeader,
+            editMyWord_1.EditMyWord
         ],
         bootstrap: [app_1.AppComponent],
+        entryComponents: [
+            editMyWord_1.EditMyWord
+        ],
         providers: [
             { provide: common_1.APP_BASE_HREF, useValue: '/#' },
             app_routes_1.appRoutingProviders,

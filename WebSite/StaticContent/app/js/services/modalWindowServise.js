@@ -15,6 +15,9 @@ var ModalWindowServise = (function () {
         this.appComponent.setModalConfig(config);
         ModalWindow_1.ModalWindow.showWindow();
     };
+    ModalWindowServise.hideModalWindow = function () {
+        ModalWindow_1.ModalWindow.closeWindow();
+    };
     return ModalWindowServise;
 }());
 exports.ModalWindowServise = ModalWindowServise;
