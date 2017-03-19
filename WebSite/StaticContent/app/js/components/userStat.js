@@ -13,7 +13,7 @@ var constantStorage_1 = require("../helpers/constantStorage");
 var httpService_1 = require("../services/httpService");
 var modalWindowServise_1 = require("../services/modalWindowServise");
 var user_1 = require("../models/user");
-var modalWindowModel_1 = require("../models/modalWindowModel");
+var commonHelper_1 = require("../helpers/commonHelper");
 var UserStat = (function () {
     function UserStat(httpService) {
         this.httpService = httpService;
@@ -30,15 +30,7 @@ var UserStat = (function () {
         }
     };
     UserStat.prototype.resetUserWords = function () {
-        var _this = this;
-        var modalWindowModel = new modalWindowModel_1.ModalWindowModel();
-        modalWindowModel.HeaderText = 'Reset';
-        modalWindowModel.BodyText = "Do you really want reset level of your words?";
-        modalWindowModel.IsApplyButton = true;
-        modalWindowModel.IsCancelButton = true;
-        modalWindowModel.ApplyButtonText = 'Yes';
-        modalWindowModel.CancelButtonText = 'No';
-        modalWindowModel.ApplyCallback = function () { return _this.resetLevel(); };
+        var modalWindowModel = commonHelper_1.CommonHelper.buildOkCancelModalConfig("Reset", "Do you really want reset level of your words?", this.resetLevel.bind(this));
         modalWindowServise_1.ModalWindowServise.showModalWindow(modalWindowModel);
     };
     UserStat.prototype.resetLevel = function () {

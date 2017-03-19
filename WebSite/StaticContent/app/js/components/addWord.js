@@ -30,9 +30,15 @@ var AddWord = (function () {
     AddWord.prototype.submitForm = function (value) {
         this.save(value['english'], value['russian'], value['example']);
     };
+    AddWord.prototype.focusOut = function () {
+        var englishWord = this.addWordform.controls['english'].value;
+        if (this.translateFor != englishWord) {
+            this.translate();
+        }
+    };
     AddWord.prototype.translate = function () {
         var englishWord = this.addWordform.controls['english'].value;
-        if (!englishWord) {
+        if (!englishWord || this.translateFor == englishWord) {
             return;
         }
         this.translateFor = englishWord;

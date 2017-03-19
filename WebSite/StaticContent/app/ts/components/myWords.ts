@@ -8,6 +8,7 @@ import { ModalWindowModel } from '../models/modalWindowModel';
 import { ModalWindowServise } from '../services/modalWindowServise';
 import { EditMyWord } from '../helpComponents/editMyWord';
 import { PubSub } from '../services/pubSub';
+import { CommonHelper } from '../helpers/commonHelper';
 
 @Component({
     selector: 'my-words',
@@ -31,6 +32,15 @@ export class MyWords {
         PubSub.Clear('editWord');
         PubSub.Sub('editWord', (...args: Array<any>) => this.updateWordAfterEdit(args));
         this.loadWords();
+    }
+
+    private askRemoveWord(word: Word) {
+        var config = CommonHelper.buildOkCancelModalConfig(
+            `Remove word`,
+            `Do you really want remove ${word.English}`,
+            this.removeWord.bind(this, word));
+        
+        ModalWindowServise.showModalWindow(config);
     }
 
     private removeWord(word: Word) {
@@ -72,8 +82,6 @@ export class MyWords {
     private updateWordAfterEdit(...args: Array<any>) {
         if (args && args.length) {
             var word = args[0][0];
-            console.log(word);
-
             var index = this.words.map(item => {
                 return item.English;
             }).indexOf(word.English);
@@ -86,11 +94,11 @@ export class MyWords {
 
     private editWord(word: Word) {
         var modalWindowModel = new ModalWindowModel();
-        modalWindowModel.HeaderText = `Edit ${word.English}`;
+        modalWindowModel.HeaderText = `Edit word: "${word.English}"`;
         modalWindowModel.IsCancelButton = false;
         modalWindowModel.InnerComponent = true;
         modalWindowModel.InnerComponentType = EditMyWord;
-        modalWindowModel.InnerComponentOptions = word
+        modalWindowModel.InnerComponentOptions = word;
 
         ModalWindowServise.showModalWindow(modalWindowModel);
     }

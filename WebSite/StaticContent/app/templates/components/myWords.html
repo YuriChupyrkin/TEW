@@ -44,12 +44,10 @@
             <tbody *ngFor="let word of words;">
                 <tr [hidden]="word.Hidden" class="my-words-tr">
                     <td>
-                        <i class="fa fa-times fa-lg cursor-pointer" aria-hidden="true" (click)="removeWord(word)"></i>
+                        <i class="fa fa-times fa-lg cursor-pointer" aria-hidden="true" (click)="askRemoveWord(word)"></i>
                     </td>
                     <td (click)="editWord(word)">
-                        <span class="english-word">
-                            {{word.English}}
-                        </span>
+                        <a href="javascript:;">{{word.English}}</a>
                     </td>
                     <td>{{word.Russian}}</td>
                     <td>{{word.Level}}</td>
@@ -87,9 +85,11 @@
             <tbody *ngFor="let word of words;">
                 <tr [hidden]="word.Hidden">
                     <td>
-                        <i class="fa fa-times fa-lg cursor-pointer" aria-hidden="true" (click)="removeWord(word)"></i>
+                        <i class="fa fa-times fa-lg cursor-pointer" aria-hidden="true" (click)="askRemoveWord(word)"></i>
                     </td>
-                    <td>{{word.English}}</td>
+                    <td (click)="editWord(word)">
+                        <a href="javascript:;">{{word.English}}</a>
+                    </td>
                     <td>{{word.Russian}}</td>
                     <td>{{word.Level}}</td>
                 </tr>

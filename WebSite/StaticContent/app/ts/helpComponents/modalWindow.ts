@@ -10,6 +10,7 @@ import { ModalWindowModel } from '../models/modalWindowModel';
 export class ModalWindow {
     public static readonly MODAL_WINDOW_ID = "tew-modal-window";
     private readonly modal_window_id = "tew-modal-window";
+    private windowSizeClass: string;
     
     @Output() public windowApplied = new EventEmitter();
     @Output() public windowCanceled = new EventEmitter();
@@ -28,6 +29,8 @@ export class ModalWindow {
                  var component = this.innerComponent.createComponent(factory); 
                  component.instance.options = value.InnerComponentOptions;
             }
+
+            this.windowSizeClass = this.config.MediumWindowSize ? 'modal-md' : 'modal-sm'
 
             if (this.config.IsApplyButton === undefined) {
                 this.config.IsApplyButton = false;
@@ -48,6 +51,7 @@ export class ModalWindow {
 
     constructor(private viewContainerRef: ViewContainerRef, private resolver: ComponentFactoryResolver ) {
         var self = this;
+        this.windowSizeClass = 'modal-sm'
         this.dismissed = false;
         if (!this.config) {
             this.windowConfig = undefined;

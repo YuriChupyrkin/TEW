@@ -1,19 +1,15 @@
 <div>
     <div>
-        <span>English:</span>
-        <span>{{word.English}}</span>
+        <span class="field-label">English: {{word.English}}</span>
     <div>
     <div>
-        <span>Level:</span>
-        <span>{{word.Level}}</span>
+        <span class="field-label">Level: {{word.Level}}</span>
     <div>
     <div>
-        <span>Answers count:</span>
-        <span>{{word.AnswerCount}}</span>
+        <span class="field-label">Answers count: {{word.AnswerCount}}</span>
     <div>
     <div>
-        <span>Fails count:</span>
-        <span>{{word.FailAnswerCount}}</span>
+        <span class="field-label">Fails count: {{word.FailAnswerCount}}</span>
     <div>
     <br/>
 
@@ -43,10 +39,11 @@
             <textarea [formControl]="editWordform.controls['Example']" class="form-control"></textarea>
             <br />
         </div>
-
-        <input type="submit" [disabled]="!editWordform.valid" class="btn btn-success tew-modal-button" value="Save"/>
-        <button class="btn btn-danger tew-modal-button" type="button" data-dismiss="modal">
-            Cancel
-        </button> 
+        <div class="modal-window-footer edit-word-buttons">
+            <input type="submit" [disabled]="!editWordform.valid" class="btn btn-success tew-modal-button" value="Save"/>
+            <button class="btn btn-danger tew-modal-button" type="button" data-dismiss="modal">
+                Cancel
+            </button>
+        </div>
     </form>
 </div>

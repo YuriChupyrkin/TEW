@@ -31,10 +31,18 @@ export class AddWord implements OnInit {
         this.save(value['english'], value['russian'], value['example']);
     }
 
+    private focusOut() {
+        let englishWord = this.addWordform.controls['english'].value;
+
+        if (this.translateFor != englishWord) {
+            this.translate();
+        }
+    }
+
     private translate() {
         let englishWord = this.addWordform.controls['english'].value;
 
-        if (!englishWord) {
+        if (!englishWord || this.translateFor == englishWord) {
             return;
         }
 

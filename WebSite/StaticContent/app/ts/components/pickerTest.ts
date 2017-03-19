@@ -6,6 +6,7 @@ import { Word } from '../models/word';
 import { WordsCloudModel } from '../models/wordsCloudModel';
 import { ModalWindowServise } from '../services/modalWindowServise';
 import { ModalWindowModel } from '../models/modalWindowModel';
+import { CommonHelper } from '../helpers/commonHelper';
 
 @Component({
     selector: 'picker-test',
@@ -127,18 +128,17 @@ export class PickerTest {
         // set progress
         this.progress = Math.round(this.testIndex / this.testCount * 100);
 
-        if (this.testIsFinished) {
-            this.testIsFinished = false;
-            this.initEmptyCurrentTest();
-            this.prepareTest(this.testName);
-            return;
-        }
-
         if (this.testIndex >= this.testCount) {
             let message = `Errors count: ${this.failedCount}`;
             this.testIsFinished = true;
             this.trueAnswer = 'disable pick button';
             this.showMessageAndNext(message, false);
+
+            // reset progress
+            this.progress = 0;
+            this.firstTestNOTloaded = true;
+            this.initEmptyCurrentTest();
+
             return;
         }
 
@@ -179,14 +179,10 @@ export class PickerTest {
     }
 
     private showIsDeleteModal(pickerTestModel: PickerTestModel) {
-        var modalWindowModel = new ModalWindowModel();
-        modalWindowModel.HeaderText = 'Delete';
-        modalWindowModel.BodyText = `Delete word: "${pickerTestModel.Word}"?`;
-        modalWindowModel.IsApplyButton = true;
-        modalWindowModel.IsCancelButton = true;
-        modalWindowModel.ApplyButtonText = 'Yes';
-        modalWindowModel.CancelButtonText = 'No';
-        modalWindowModel.ApplyCallback = () => this.deleteWord(pickerTestModel);
+        var modalWindowModel = CommonHelper.buildOkCancelModalConfig(
+            `Remove word`,
+            `Do you really want remove ${pickerTestModel.Word}`,
+            this.deleteWord.bind(this, pickerTestModel));
 
         ModalWindowServise.showModalWindow(modalWindowModel);
     }
@@ -197,8 +193,11 @@ export class PickerTest {
         modalWindowModel.BodyText = message;
         modalWindowModel.IsApplyButton = true;
         modalWindowModel.IsCancelButton = false;
-        modalWindowModel.ApplyButtonText = 'ok';
-        modalWindowModel.ApplyCallback = () => this.setNextTest();
+        modalWindowModel.ApplyButtonText = 'OK';
+
+        if (isError) {
+            modalWindowModel.ApplyCallback = () => this.setNextTest();
+        }
 
         ModalWindowServise.showModalWindow(modalWindowModel);
     }

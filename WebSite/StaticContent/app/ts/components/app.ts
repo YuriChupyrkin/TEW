@@ -73,14 +73,10 @@ export class AppComponent implements OnInit {
     }
 
     private logOut() {
-         var modalWindowModel = new ModalWindowModel();
-        modalWindowModel.HeaderText = 'Sign out';
-        modalWindowModel.BodyText = `Do you want sign out?`;
-        modalWindowModel.IsApplyButton = true;
-        modalWindowModel.IsCancelButton = true;
-        modalWindowModel.ApplyButtonText = 'Yes';
-        modalWindowModel.CancelButtonText = 'No';
-        modalWindowModel.ApplyCallback = () => CommonHelper.logOff();
+        var modalWindowModel = CommonHelper.buildOkCancelModalConfig(
+            `Sign out`,
+            `Do you want sign out?`,
+            CommonHelper.logOff);
 
         ModalWindowServise.showModalWindow(modalWindowModel);
     }

@@ -16,6 +16,7 @@ var modalWindowModel_1 = require("../models/modalWindowModel");
 var modalWindowServise_1 = require("../services/modalWindowServise");
 var editMyWord_1 = require("../helpComponents/editMyWord");
 var pubSub_1 = require("../services/pubSub");
+var commonHelper_1 = require("../helpers/commonHelper");
 var MyWords = (function () {
     function MyWords(httpService) {
         var _this = this;
@@ -36,6 +37,10 @@ var MyWords = (function () {
         });
         this.loadWords();
     }
+    MyWords.prototype.askRemoveWord = function (word) {
+        var config = commonHelper_1.CommonHelper.buildOkCancelModalConfig("Remove word", "Do you really want remove " + word.English, this.removeWord.bind(this, word));
+        modalWindowServise_1.ModalWindowServise.showModalWindow(config);
+    };
     MyWords.prototype.removeWord = function (word) {
         var _this = this;
         this.startLoading();
@@ -69,7 +74,6 @@ var MyWords = (function () {
         }
         if (args && args.length) {
             var word = args[0][0];
-            console.log(word);
             var index = this.words.map(function (item) {
                 return item.English;
             }).indexOf(word.English);
@@ -80,7 +84,7 @@ var MyWords = (function () {
     };
     MyWords.prototype.editWord = function (word) {
         var modalWindowModel = new modalWindowModel_1.ModalWindowModel();
-        modalWindowModel.HeaderText = "Edit " + word.English;
+        modalWindowModel.HeaderText = "Edit word: \"" + word.English + "\"";
         modalWindowModel.IsCancelButton = false;
         modalWindowModel.InnerComponent = true;
         modalWindowModel.InnerComponentType = editMyWord_1.EditMyWord;

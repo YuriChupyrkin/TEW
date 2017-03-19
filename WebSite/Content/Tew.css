@@ -216,3 +216,12 @@ acitve link > color: #5af35d
   cursor: pointer;
   text-decoration: underline;
 }
+
+.modal-window-footer {
+  text-align: right;
+  padding: 15px;
+}
+
+.edit-word-buttons {
+  margin: -15px;
+}

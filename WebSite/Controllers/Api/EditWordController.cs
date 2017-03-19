@@ -32,7 +32,6 @@ namespace WebSite.Controllers.Api
         var enRuWord = new EnRuWord
         {
            RussianWord = new RussianWord { RuWord = word.Russian },
-           //EnglishWord = new EnglishWord { EnWord = word.English },
            Example = word.Example,
            Id = word.Id,
            FailAnswerCount = word.FailAnswerCount,

@@ -13,4 +13,5 @@ export class ModalWindowModel {
     InnerComponent: boolean;
     InnerComponentType: Type<any>;
     InnerComponentOptions: any;
+    MediumWindowSize: boolean;
 }

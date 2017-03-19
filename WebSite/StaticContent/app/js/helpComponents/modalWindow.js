@@ -19,6 +19,7 @@ var ModalWindow = ModalWindow_1 = (function () {
         this.windowApplied = new core_1.EventEmitter();
         this.windowCanceled = new core_1.EventEmitter();
         var self = this;
+        this.windowSizeClass = 'modal-sm';
         this.dismissed = false;
         if (!this.config) {
             this.windowConfig = undefined;
@@ -39,6 +40,7 @@ var ModalWindow = ModalWindow_1 = (function () {
                     var component = this.innerComponent.createComponent(factory);
                     component.instance.options = value.InnerComponentOptions;
                 }
+                this.windowSizeClass = this.config.MediumWindowSize ? 'modal-md' : 'modal-sm';
                 if (this.config.IsApplyButton === undefined) {
                     this.config.IsApplyButton = false;
                 }

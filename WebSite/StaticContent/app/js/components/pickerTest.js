@@ -16,6 +16,7 @@ var word_1 = require("../models/word");
 var wordsCloudModel_1 = require("../models/wordsCloudModel");
 var modalWindowServise_1 = require("../services/modalWindowServise");
 var modalWindowModel_1 = require("../models/modalWindowModel");
+var commonHelper_1 = require("../helpers/commonHelper");
 var PickerTest = (function () {
     function PickerTest(httpService) {
         this.httpService = httpService;
@@ -98,17 +99,15 @@ var PickerTest = (function () {
         this.testIndex++;
         // set progress
         this.progress = Math.round(this.testIndex / this.testCount * 100);
-        if (this.testIsFinished) {
-            this.testIsFinished = false;
-            this.initEmptyCurrentTest();
-            this.prepareTest(this.testName);
-            return;
-        }
         if (this.testIndex >= this.testCount) {
             var message = "Errors count: " + this.failedCount;
             this.testIsFinished = true;
             this.trueAnswer = 'disable pick button';
             this.showMessageAndNext(message, false);
+            // reset progress
+            this.progress = 0;
+            this.firstTestNOTloaded = true;
+            this.initEmptyCurrentTest();
             return;
         }
         this.currentTest = this.testSet[this.testIndex];
@@ -142,15 +141,7 @@ var PickerTest = (function () {
         modalWindowServise_1.ModalWindowServise.showModalWindow(modalWindowModel);
     };
     PickerTest.prototype.showIsDeleteModal = function (pickerTestModel) {
-        var _this = this;
-        var modalWindowModel = new modalWindowModel_1.ModalWindowModel();
-        modalWindowModel.HeaderText = 'Delete';
-        modalWindowModel.BodyText = "Delete word: \"" + pickerTestModel.Word + "\"?";
-        modalWindowModel.IsApplyButton = true;
-        modalWindowModel.IsCancelButton = true;
-        modalWindowModel.ApplyButtonText = 'Yes';
-        modalWindowModel.CancelButtonText = 'No';
-        modalWindowModel.ApplyCallback = function () { return _this.deleteWord(pickerTestModel); };
+        var modalWindowModel = commonHelper_1.CommonHelper.buildOkCancelModalConfig("Remove word", "Do you really want remove " + pickerTestModel.Word, this.deleteWord.bind(this, pickerTestModel));
         modalWindowServise_1.ModalWindowServise.showModalWindow(modalWindowModel);
     };
     PickerTest.prototype.showMessageAndNext = function (message, isError) {
@@ -160,8 +151,10 @@ var PickerTest = (function () {
         modalWindowModel.BodyText = message;
         modalWindowModel.IsApplyButton = true;
         modalWindowModel.IsCancelButton = false;
-        modalWindowModel.ApplyButtonText = 'ok';
-        modalWindowModel.ApplyCallback = function () { return _this.setNextTest(); };
+        modalWindowModel.ApplyButtonText = 'OK';
+        if (isError) {
+            modalWindowModel.ApplyCallback = function () { return _this.setNextTest(); };
+        }
         modalWindowServise_1.ModalWindowServise.showModalWindow(modalWindowModel);
     };
     return PickerTest;
