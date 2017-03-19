@@ -9,8 +9,7 @@ import { UserStat } from './components/userStat';
 import { IrregularVerbs } from './components/irregularVerbs';
 
 const appRoutes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'home', component: Home },
+    { path: '', redirectTo: 'user-stat', pathMatch: 'full' },
     { path: 'add-word', component: AddWord },
     { path: 'my-words', component: MyWords },
     { path: 'picker-test', component: PickerTest },

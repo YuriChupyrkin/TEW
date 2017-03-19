@@ -4,4 +4,5 @@ export class UserStatModel {
     WordsLevel: number;
     Email: string;
     NickName: string;
+    Id: number;
 }

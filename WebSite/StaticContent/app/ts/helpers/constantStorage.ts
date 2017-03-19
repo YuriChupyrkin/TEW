@@ -1,8 +1,9 @@
-﻿export class ConstantStorage {
-    private static userName: string;
+﻿import { UserStatModel } from '../models/userStatModel';
+
+export class ConstantStorage {
     private static yandexTranslaterApiKey: string;
-    private static userId: number;
     private static loadingEvent = 'loading';
+    private static userStatModel: UserStatModel;
 
     // urls
     private static readonly wordTranslaterController = '/api/WordTranslater';
@@ -67,12 +68,8 @@
         return this.loadingEvent;
     }
 
-    public static setUserName(name: string) {
-        this.userName = name;
-    }
-
     public static getUserName() {
-        return this.userName;
+        return this.userStatModel ? this.userStatModel.Email : '';
     }
 
     public static setYandexTranslaterApiKey(apiKey: string) {
@@ -83,11 +80,15 @@
         return this.yandexTranslaterApiKey;
     }
 
-    public static setUserId(id: number) {
-        this.userId = id;
+    public static getUserId() {
+        return this.userStatModel ? this.userStatModel.Id : 0;
     }
 
-    public static getUserId() {
-        return this.userId;
+    public static setUserStatModel (userModel: UserStatModel) {
+        this.userStatModel = userModel;
+    }
+
+    public static getUserStatModel () {
+        return this.userStatModel;
     }
 }

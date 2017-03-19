@@ -11,5 +11,7 @@
     public string Email { get; set; }
 
     public string NickName { get; set; }
+
+    public int Id { get; set; }
   }
 }

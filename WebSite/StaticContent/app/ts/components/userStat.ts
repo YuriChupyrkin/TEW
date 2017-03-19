@@ -23,11 +23,17 @@ export class UserStat implements OnInit  {
     }
 
     private updateUserStat() {
+        // show loaded info
+        this.userStatModel = ConstantStorage.getUserStatModel();
+
+        // update info
         let userId = ConstantStorage.getUserId();
-        if (userId !== 0 && userId !== undefined) {
-            this.httpService.processGet<UserStatModel>(`${ConstantStorage.getUserStatController()}?userId=${userId}`)
-                .then(result => this.userStatModel = result);
-        }
+        let url = `${ConstantStorage.getUserInfoController()}?userId=${userId}`;
+        this.httpService.processGet<UserStatModel>(url)
+            .then(result => {
+                this.userStatModel = result;
+                ConstantStorage.setUserStatModel(result);
+            });
     }
 
     private resetUserWords() {

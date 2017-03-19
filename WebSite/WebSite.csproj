@@ -189,7 +189,6 @@
     <Compile Include="Controllers\Api\ResetPasswordController.cs" />
     <Compile Include="Controllers\Api\ResetWordsLevelController.cs" />
     <Compile Include="Controllers\Api\UserInfoController.cs" />
-    <Compile Include="Controllers\Api\UserStatController.cs" />
     <Compile Include="Controllers\Api\WordsManagerController.cs" />
     <Compile Include="Controllers\Api\SignInController.cs" />
     <Compile Include="Controllers\Api\SignUpController.cs" />
