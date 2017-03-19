@@ -16,15 +16,14 @@ export class PubSub {
 
             if (!this.registry[name]) {
                 this.registry[name] = [fn];
-            } else if(this.registry[name].length) {
+            } else if (this.registry[name].length) {
                 this.registry[name].push(fn);
             }
         }
     }
 
     public static Clear(name: string) {
-        if (this.registry && name)
-        {
+        if (this.registry && name) {
             this.registry[name] = null;
         }
     }

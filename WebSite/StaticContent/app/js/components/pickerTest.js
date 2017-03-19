@@ -20,8 +20,8 @@ var commonHelper_1 = require("../helpers/commonHelper");
 var PickerTest = (function () {
     function PickerTest(httpService) {
         this.httpService = httpService;
-        this.EnRuTest = "EnRuTest";
-        this.RuEnTest = "RuEnTest";
+        this.EnRuTest = 'EnRuTest';
+        this.RuEnTest = 'RuEnTest';
         this.testSet = new Array();
         this.progress = 3;
         this.firstTestNOTloaded = true;
@@ -32,8 +32,9 @@ var PickerTest = (function () {
         this.progress = 5;
         this.firstTestNOTloaded = false;
         this.initEmptyCurrentTest();
-        this.testName = testName == this.EnRuTest ? this.EnRuTest : this.RuEnTest;
-        var url = constantStorage_1.ConstantStorage.getPickerTestsController() + "?userId=" + constantStorage_1.ConstantStorage.getUserId() + "&testType=" + this.testName;
+        this.testName = testName === this.EnRuTest ? this.EnRuTest : this.RuEnTest;
+        var url = constantStorage_1.ConstantStorage.getPickerTestsController() + "?" +
+            ("userId=" + constantStorage_1.ConstantStorage.getUserId() + "&testType=" + this.testName);
         this.httpService.processGet(url).then(function (response) { return _this.startTest(response); }, function (error) {
             _this.showError('"Your words" should be have than 4 words');
             console.dir(error);
@@ -41,7 +42,7 @@ var PickerTest = (function () {
     };
     PickerTest.prototype.startTest = function (tests) {
         console.dir(tests);
-        if (!tests || tests.length == 0) {
+        if (!tests || tests.length === 0) {
             this.showError('"Your words" should be have than 4 words');
             return;
         }
@@ -70,7 +71,7 @@ var PickerTest = (function () {
         }
         this.trueAnswer = this.currentTest.Answers[this.currentTest.AnswerId];
         var isTrueAnswer = false;
-        if (this.trueAnswer != answer) {
+        if (this.trueAnswer !== answer) {
             var message = "\"" + this.currentTest.Word + "\" = \"" + this.trueAnswer + "\"";
             this.showMessageAndNext(message, true);
             this.failedCount++;
@@ -113,7 +114,7 @@ var PickerTest = (function () {
         this.currentTest = this.testSet[this.testIndex];
     };
     PickerTest.prototype.helpPick = function () {
-        if (0 != this.currentTest.AnswerId) {
+        if (0 !== this.currentTest.AnswerId) {
             this.currentTest.Answers.splice(0, 1);
             this.currentTest.AnswerId--;
         }

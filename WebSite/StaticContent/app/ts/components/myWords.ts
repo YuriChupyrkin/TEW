@@ -35,11 +35,11 @@ export class MyWords {
     }
 
     private askRemoveWord(word: Word) {
-        var config = CommonHelper.buildOkCancelModalConfig(
+        let config = CommonHelper.buildOkCancelModalConfig(
             `Remove word`,
             `Do you really want remove ${word.English}`,
             this.removeWord.bind(this, word));
-        
+
         ModalWindowServise.showModalWindow(config);
     }
 
@@ -49,11 +49,11 @@ export class MyWords {
         // hidden
         word.Hidden = true;
 
-        var wordsCloudModel = new WordsCloudModel();
+        let wordsCloudModel = new WordsCloudModel();
         wordsCloudModel.UserName = ConstantStorage.getUserName();
         wordsCloudModel.Words = [word];
 
-        var result = this.httpService.processPost(wordsCloudModel, ConstantStorage.getDeleteWordController());
+        let result = this.httpService.processPost(wordsCloudModel, ConstantStorage.getDeleteWordController());
 
         result.then(
             response => { this.removedWord(word); this.endLoading(); },
@@ -61,16 +61,16 @@ export class MyWords {
     }
 
     private setUserWords(userWords: UserWords) {
-        if (userWords.Words) { 
+        if (userWords.Words) {
             this.wordsCount = userWords.TotalWords;
             this.words.push.apply(this.words, userWords.Words);
         }
     }
 
     private removedWord(word: Word) {
-        var wordIndex = this.words.indexOf(word);
+        let wordIndex = this.words.indexOf(word);
 
-        if (wordIndex == -1) {
+        if (wordIndex === -1) {
             return
         }
 
@@ -81,19 +81,19 @@ export class MyWords {
     // ************* EDIT LOGIC *********************
     private updateWordAfterEdit(...args: Array<any>) {
         if (args && args.length) {
-            var word = args[0][0];
-            var index = this.words.map(item => {
+            let word = args[0][0];
+            let index = this.words.map(item => {
                 return item.English;
             }).indexOf(word.English);
 
-            if (index != -1) {
+            if (index !== -1) {
                 this.words[index] = word;
             }
         }
     }
 
     private editWord(word: Word) {
-        var modalWindowModel = new ModalWindowModel();
+        let modalWindowModel = new ModalWindowModel();
         modalWindowModel.HeaderText = `Edit word: "${word.English}"`;
         modalWindowModel.IsCancelButton = false;
         modalWindowModel.InnerComponent = true;
@@ -108,7 +108,7 @@ export class MyWords {
     // ************* SORT LOGIC *********************
 
     private headerClick(sortKey: string) {
-        if (sortKey == this.sortKey) {
+        if (sortKey === this.sortKey) {
             this.sortAsc = !this.sortAsc;
         }
         else {
@@ -123,14 +123,14 @@ export class MyWords {
     // ************* END OF SORT LOGIC **************
 
     // ************* PAGING LOGIC (START START REGION) ****************
-    @HostListener('window:scroll', ['$event']) 
+    @HostListener('window:scroll', ['$event'])
     private scrollEvent (event) {
-        var scrollTop = (document.documentElement && document.documentElement.scrollTop)
+        let scrollTop = (document.documentElement && document.documentElement.scrollTop)
             || document.body.scrollTop;
-        var scrollHeight = document.body.scrollHeight;
-        var clientHeight = document.documentElement.clientHeight;
-        var tenPercents = (scrollTop + clientHeight) / 100 * 10;
-        
+        let scrollHeight = document.body.scrollHeight;
+        let clientHeight = document.documentElement.clientHeight;
+        let tenPercents = (scrollTop + clientHeight) / 100 * 10;
+
         if (scrollTop + clientHeight + tenPercents >= scrollHeight && this.canLoadPage()) {
             this.loadWords();
         }
@@ -144,14 +144,14 @@ export class MyWords {
     private loadWords () {
         this.startLoading();
 
-        var url = `${ConstantStorage.getWordsManagerController()}`;
+        let url = `${ConstantStorage.getWordsManagerController()}`;
         url += `?UserId=${ConstantStorage.getUserId()}`;
         url += `&CurrentWordsCount=${this.words.length}`;
         url += `&WordsPerPage=${this.wordsPerPage}`;
         url += `&sortKey=${this.sortKey}`;
         url += `&sortAsc=${this.sortAsc}`;
 
-        var result = this.httpService.processGet<UserWords>(url);
+        let result = this.httpService.processGet<UserWords>(url);
         result.then(
             json => { this.setUserWords(json); this.endLoading(); this.isNeedMoreWords(); },
             error => { this.endLoading(); alert('ERROR of loading words!!!'); });
@@ -159,14 +159,14 @@ export class MyWords {
 
     // when page is loaded but scroll is hidden
     private isNeedMoreWords () {
-        var self = this;
+        let self = this;
 
         // wait for render
         setTimeout(function () {
-            var scrollHeight = document.body.scrollHeight;
-            var clientHeight = document.documentElement.clientHeight;
+            let scrollHeight = document.body.scrollHeight;
+            let clientHeight = document.documentElement.clientHeight;
 
-            if (scrollHeight == clientHeight && self.canLoadPage()) {
+            if (scrollHeight === clientHeight && self.canLoadPage()) {
                 self.loadWords();
             }
         }, 300);
@@ -174,8 +174,8 @@ export class MyWords {
 
     private startLoading () {
         // disable scroll
-        var x=window.scrollX;
-        var y=window.scrollY;
+        let x = window.scrollX;
+        let y = window.scrollY;
         window.onscroll = function () { window.scrollTo(x, y); };
 
         this.isLoading = true;
@@ -193,7 +193,7 @@ export class MyWords {
     }
 
     private canLoadPage () {
-        return this.wordsCount > this.words.length && this.isLoading == false;
+        return this.wordsCount > this.words.length && this.isLoading === false;
     }
 
     // ************* PAGING LOGIC (END OF REGION) ****************

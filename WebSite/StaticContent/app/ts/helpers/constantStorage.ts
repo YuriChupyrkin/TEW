@@ -21,43 +21,43 @@
         return this.editWordController;
     }
 
-    public static getResetWordsLevelController(){
+    public static getResetWordsLevelController() {
         return this.resetWordsLevelContoller;
     }
 
-    public static getTewInfoContoller(){
+    public static getTewInfoContoller() {
         return this.tewInfoContoller;
     }
 
-    public static getWordsLevelUpdaterController(){
+    public static getWordsLevelUpdaterController() {
         return this.wordsLevelUpdaterController;
     }
 
-    public static getPickerTestsController(){
+    public static getPickerTestsController() {
         return this.pickerTestsController;
     }
 
-    public static getDeleteWordController(){
+    public static getDeleteWordController() {
         return this.deleteWordController;
     }
 
-    public static getUserStatController(){
+    public static getUserStatController() {
         return this.userStatController;
     }
 
-    public static getApplicationMessageController(){
+    public static getApplicationMessageController() {
         return this.applicationMessageController;
     }
 
-    public static getUserInfoController(){
+    public static getUserInfoController() {
         return this.userInfoController;
     }
 
-    public static getWordTranslaterController(){
+    public static getWordTranslaterController() {
         return this.wordTranslaterController;
     }
 
-    public static getWordsManagerController(){
+    public static getWordsManagerController() {
         return this.wordsManagerController;
     }
 

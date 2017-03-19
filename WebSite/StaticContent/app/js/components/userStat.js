@@ -24,7 +24,7 @@ var UserStat = (function () {
     UserStat.prototype.updateUserStat = function () {
         var _this = this;
         var userId = constantStorage_1.ConstantStorage.getUserId();
-        if (userId != 0 && userId != undefined) {
+        if (userId !== 0 && userId !== undefined) {
             this.httpService.processGet(constantStorage_1.ConstantStorage.getUserStatController() + "?userId=" + userId)
                 .then(function (result) { return _this.userStatModel = result; });
         }
@@ -38,7 +38,7 @@ var UserStat = (function () {
         var userId = constantStorage_1.ConstantStorage.getUserId();
         var user = new user_1.User();
         user.Id = userId;
-        if (userId != 0 && userId != undefined) {
+        if (userId !== 0 && userId !== undefined) {
             this.httpService.processPost(user, constantStorage_1.ConstantStorage.getResetWordsLevelController())
                 .then(function (r) { return _this.updateUserStat(); });
         }

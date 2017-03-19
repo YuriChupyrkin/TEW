@@ -15,13 +15,13 @@ export class Home implements OnInit  {
     private wordsCount: number;
     private userStatModel: UserStatModel;
 
-    constructor(private httpService: HttpService){
+    constructor(private httpService: HttpService) {
     }
 
     ngOnInit() {
         this.httpService.processGet<any>(ConstantStorage.getTewInfoContoller())
-            .then(response => { 
-                this.usersCount = response.Users; 
+            .then(response => {
+                this.usersCount = response.Users;
                 this.wordsCount = response.Words;
             });
     }

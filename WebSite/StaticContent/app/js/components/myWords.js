@@ -60,7 +60,7 @@ var MyWords = (function () {
     };
     MyWords.prototype.removedWord = function (word) {
         var wordIndex = this.words.indexOf(word);
-        if (wordIndex == -1) {
+        if (wordIndex === -1) {
             return;
         }
         this.words.splice(wordIndex, 1);
@@ -77,7 +77,7 @@ var MyWords = (function () {
             var index = this.words.map(function (item) {
                 return item.English;
             }).indexOf(word.English);
-            if (index != -1) {
+            if (index !== -1) {
                 this.words[index] = word;
             }
         }
@@ -94,7 +94,7 @@ var MyWords = (function () {
     // ************* END OF EDIT LOGIC **************
     // ************* SORT LOGIC *********************
     MyWords.prototype.headerClick = function (sortKey) {
-        if (sortKey == this.sortKey) {
+        if (sortKey === this.sortKey) {
             this.sortAsc = !this.sortAsc;
         }
         else {
@@ -139,7 +139,7 @@ var MyWords = (function () {
         setTimeout(function () {
             var scrollHeight = document.body.scrollHeight;
             var clientHeight = document.documentElement.clientHeight;
-            if (scrollHeight == clientHeight && self.canLoadPage()) {
+            if (scrollHeight === clientHeight && self.canLoadPage()) {
                 self.loadWords();
             }
         }, 300);
@@ -161,7 +161,7 @@ var MyWords = (function () {
         }
     };
     MyWords.prototype.canLoadPage = function () {
-        return this.wordsCount > this.words.length && this.isLoading == false;
+        return this.wordsCount > this.words.length && this.isLoading === false;
     };
     return MyWords;
 }());

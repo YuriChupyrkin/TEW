@@ -14,8 +14,8 @@ import { CommonHelper } from '../helpers/commonHelper';
 })
 
 export class PickerTest {
-    private readonly EnRuTest: string = "EnRuTest";
-    private readonly RuEnTest: string = "RuEnTest";
+    private readonly EnRuTest: string = 'EnRuTest';
+    private readonly RuEnTest: string = 'RuEnTest';
 
     private testSet: Array<PickerTestModel>;
     private testName: string;
@@ -42,9 +42,10 @@ export class PickerTest {
 
         this.firstTestNOTloaded = false;
         this.initEmptyCurrentTest();
-        this.testName = testName == this.EnRuTest ? this.EnRuTest : this.RuEnTest;
+        this.testName = testName === this.EnRuTest ? this.EnRuTest : this.RuEnTest;
 
-        var url = `${ConstantStorage.getPickerTestsController()}?userId=${ConstantStorage.getUserId()}&testType=${this.testName}`;
+        let url = `${ConstantStorage.getPickerTestsController()}?` +
+            `userId=${ConstantStorage.getUserId()}&testType=${this.testName}`;
         this.httpService.processGet<Array<PickerTestModel>>(url).then(
             response => this.startTest(response),
             error => {
@@ -55,7 +56,7 @@ export class PickerTest {
 
     private startTest(tests: Array<PickerTestModel>) {
         console.dir(tests);
-        if (!tests || tests.length == 0) {
+        if (!tests || tests.length === 0) {
             this.showError('"Your words" should be have than 4 words');
             return;
         }
@@ -90,10 +91,10 @@ export class PickerTest {
         }
 
         this.trueAnswer = this.currentTest.Answers[this.currentTest.AnswerId];
-        var isTrueAnswer = false;
+        let isTrueAnswer = false;
 
-        if (this.trueAnswer != answer) {
-            var message = `"${this.currentTest.Word}" = "${this.trueAnswer}"`;
+        if (this.trueAnswer !== answer) {
+            let message = `"${this.currentTest.Word}" = "${this.trueAnswer}"`;
             this.showMessageAndNext(message, true);
             this.failedCount++;
         } else {
@@ -108,7 +109,7 @@ export class PickerTest {
     }
 
     private sendTestResult(wordId: number, isTrueAnswer: boolean) {
-        var postObject = {
+        let postObject = {
             WordId: wordId,
             IsTrueAnswer: isTrueAnswer,
             TestType: this.testName
@@ -124,7 +125,7 @@ export class PickerTest {
         this.trueAnswer = '';
 
         this.testIndex++;
-        
+
         // set progress
         this.progress = Math.round(this.testIndex / this.testCount * 100);
 
@@ -146,7 +147,7 @@ export class PickerTest {
     }
 
     private helpPick() {
-        if (0 != this.currentTest.AnswerId) {
+        if (0 !== this.currentTest.AnswerId) {
             this.currentTest.Answers.splice(0, 1);
             this.currentTest.AnswerId--;
         } else {
@@ -155,21 +156,21 @@ export class PickerTest {
     }
 
     private deleteWord(pickerTestModel: PickerTestModel) {
-        var wordsCloudModel = new WordsCloudModel();
+        let wordsCloudModel = new WordsCloudModel();
         wordsCloudModel.UserName = ConstantStorage.getUserName();
-        var word = new Word();
+        let word = new Word();
         word.Id = pickerTestModel.WordId;
         word.English = pickerTestModel.Word;
         wordsCloudModel.Words = [word];
 
-        var result = this.httpService.processPost(wordsCloudModel, ConstantStorage.getDeleteWordController());
+        let result = this.httpService.processPost(wordsCloudModel, ConstantStorage.getDeleteWordController());
 
         result.then(response => console.dir(response));
         this.setNextTest();
     }
-     
+
     private showError(message: string) {
-        var modalWindowModel = new ModalWindowModel();
+        let modalWindowModel = new ModalWindowModel();
         modalWindowModel.HeaderText = 'PAGE ERROR';
         modalWindowModel.BodyText = message;
         modalWindowModel.IsCancelButton = true;
@@ -179,7 +180,7 @@ export class PickerTest {
     }
 
     private showIsDeleteModal(pickerTestModel: PickerTestModel) {
-        var modalWindowModel = CommonHelper.buildOkCancelModalConfig(
+        let modalWindowModel = CommonHelper.buildOkCancelModalConfig(
             `Remove word`,
             `Do you really want remove ${pickerTestModel.Word}`,
             this.deleteWord.bind(this, pickerTestModel));
@@ -188,7 +189,7 @@ export class PickerTest {
     }
 
     private showMessageAndNext (message: string, isError: boolean) {
-        var modalWindowModel = new ModalWindowModel();
+        let modalWindowModel = new ModalWindowModel();
         modalWindowModel.HeaderText = isError ? 'Error' : 'Done';
         modalWindowModel.BodyText = message;
         modalWindowModel.IsApplyButton = true;

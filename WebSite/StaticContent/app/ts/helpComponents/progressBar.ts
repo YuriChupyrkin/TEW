@@ -7,7 +7,7 @@ import { Component, Input  } from '@angular/core';
 
 export class ProgressBar {
     private currentProgress: number;
-   
+
     @Input() set progress(value) {
         let progress = this.validateProgress(value);
         this.currentProgress = progress;

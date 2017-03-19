@@ -29,28 +29,28 @@ export class EditMyWord {
     }
 
     private save(value: any): void {
-        var updateRussian = value['Russian'];
-        var updateExample = value['Example'];
+        let updateRussian = value['Russian'];
+        let updateExample = value['Example'];
 
-        if (updateRussian == this.word.Russian &&
-            updateExample == this.word.Example) {
+        if (updateRussian === this.word.Russian &&
+            updateExample === this.word.Example) {
             console.info('Not updated');
             ModalWindowServise.hideModalWindow();
             return;
         }
 
-        var updateWord = new Word();
+        let updateWord = new Word();
         updateWord.English = this.word.English;
         updateWord.Id = this.word.Id;
         updateWord.Russian = updateRussian;
         updateWord.Example = updateExample;
 
         // reset level if translate has been updated
-        updateWord.FailAnswerCount = updateRussian == this.word.Russian ? this.word.FailAnswerCount : 0;
-        updateWord.AnswerCount = updateRussian == this.word.Russian ? this.word.AnswerCount : 0;
-        updateWord.Level = updateRussian == this.word.Russian ? this.word.Level : 0;
+        updateWord.FailAnswerCount = updateRussian === this.word.Russian ? this.word.FailAnswerCount : 0;
+        updateWord.AnswerCount = updateRussian === this.word.Russian ? this.word.AnswerCount : 0;
+        updateWord.Level = updateRussian === this.word.Russian ? this.word.Level : 0;
 
-        var wordsCloudModel = new WordsCloudModel();
+        let wordsCloudModel = new WordsCloudModel();
         wordsCloudModel.Words = [updateWord];
         wordsCloudModel.UserId = ConstantStorage.getUserId();
 

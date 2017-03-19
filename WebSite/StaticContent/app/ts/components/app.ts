@@ -23,26 +23,27 @@ export class AppComponent implements OnInit {
 
     constructor(private httpService: HttpService, private router: Router) {
         this.isLoading = true;
-        ConstantStorage.setYandexTranslaterApiKey('dict.1.1.20160904T125311Z.5e2c6c9dfb5cd3c3.71b0d5220878e340d60dcfa0faf7f649af59c65f');
+        ConstantStorage.setYandexTranslaterApiKey
+            ('dict.1.1.20160904T125311Z.5e2c6c9dfb5cd3c3.71b0d5220878e340d60dcfa0faf7f649af59c65f');
 
         this.userName = '';
         this.httpService.processGet<User>(ConstantStorage.getUserInfoController())
             .then(
-                response => this.setUserInfo(response), 
+                response => this.setUserInfo(response),
                 error => this.isLoading = false);
     }
 
     ngOnInit() {
-        var self = this;
+        let self = this;
         ModalWindowServise.initModalWindowService(this);
 
         PubSub.Sub('loading', (...args: Array<any>) => {
-            if(args && args.length) {
+            if (args && args.length) {
                 args.forEach(x => {
-                    if (x === true){
+                    if (x === true) {
                         this.showLoadingArr.push(x);
                     }
-                    else if(this.showLoadingArr.length > 0){
+                    else if (this.showLoadingArr.length > 0) {
                         this.showLoadingArr.pop();
                     }
                 });
@@ -56,7 +57,7 @@ export class AppComponent implements OnInit {
             if (windowWidth < 768 ) {
                 JQueryHelper.getElement('.navbar-collapse').collapse('hide');
             }
-        }); 
+        });
     }
 
     public setModalConfig(config: ModalWindowModel) {
@@ -73,7 +74,7 @@ export class AppComponent implements OnInit {
     }
 
     private logOut() {
-        var modalWindowModel = CommonHelper.buildOkCancelModalConfig(
+        let modalWindowModel = CommonHelper.buildOkCancelModalConfig(
             `Sign out`,
             `Do you want sign out?`,
             CommonHelper.logOff);

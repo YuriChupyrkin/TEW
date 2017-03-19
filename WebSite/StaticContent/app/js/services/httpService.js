@@ -21,7 +21,7 @@ var HttpService = (function () {
         if (isExternalRequest === void 0) { isExternalRequest = false; }
         var headers = new http_1.Headers();
         var userId = constantStorage_1.ConstantStorage.getUserId();
-        if (isExternalRequest == false && userId) {
+        if (isExternalRequest === false && userId) {
             headers.append('Authorization', userId.toString());
         }
         // start loading...

@@ -15,7 +15,7 @@ var ModalWindow = ModalWindow_1 = (function () {
     function ModalWindow(viewContainerRef, resolver) {
         this.viewContainerRef = viewContainerRef;
         this.resolver = resolver;
-        this.modal_window_id = "tew-modal-window";
+        this.modal_window_id = 'tew-modal-window';
         this.windowApplied = new core_1.EventEmitter();
         this.windowCanceled = new core_1.EventEmitter();
         var self = this;
@@ -25,7 +25,7 @@ var ModalWindow = ModalWindow_1 = (function () {
             this.windowConfig = undefined;
         }
         jqueryHelper_1.JQueryHelper.getElement(document).on("hide.bs.modal", "#" + ModalWindow_1.MODAL_WINDOW_ID, function () {
-            if (self.dismissed == false) {
+            if (self.dismissed === false) {
                 self.closeWindow();
             }
         });
@@ -122,7 +122,7 @@ var ModalWindow = ModalWindow_1 = (function () {
     };
     return ModalWindow;
 }());
-ModalWindow.MODAL_WINDOW_ID = "tew-modal-window";
+ModalWindow.MODAL_WINDOW_ID = 'tew-modal-window';
 __decorate([
     core_1.Output(),
     __metadata("design:type", Object)

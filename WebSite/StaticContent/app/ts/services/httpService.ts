@@ -9,14 +9,14 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class HttpService {
 
-    constructor(private http: Http) { 
+    constructor(private http: Http) {
     }
 
     public processGet<T>(url: string, isExternalRequest = false): Promise<T> {
         let headers = new Headers();
         let userId = ConstantStorage.getUserId()
 
-        if (isExternalRequest == false && userId) {
+        if (isExternalRequest === false && userId) {
             headers.append('Authorization', userId.toString());
         }
 
@@ -30,8 +30,8 @@ export class HttpService {
                 r => {
                     PubSub.Pub(ConstantStorage.getLoadingEvent(), false);
                     resolve(r);
-                }, 
-                e => { 
+                },
+                e => {
                     console.log(`${url} (GET): request finished with error:`);
                     console.log(e);
                     PubSub.Pub(ConstantStorage.getLoadingEvent(), false);
@@ -40,7 +40,6 @@ export class HttpService {
             );
 
         });
-  
         return promise;
     }
 
@@ -56,14 +55,14 @@ export class HttpService {
         PubSub.Pub(ConstantStorage.getLoadingEvent(), true);
 
         let postRequest = this.http.post(url, object, { headers: headers });
-         
+
         let promise = new Promise((resolve, reject) => {
             postRequest.subscribe(
                 r => {
                     PubSub.Pub(ConstantStorage.getLoadingEvent(), false);
                     resolve(r);
-                }, 
-                e => { 
+                },
+                e => {
                     console.log(`${url} (POST): request finished with error:`);
                     console.log(e);
                     PubSub.Pub(ConstantStorage.getLoadingEvent(), false);

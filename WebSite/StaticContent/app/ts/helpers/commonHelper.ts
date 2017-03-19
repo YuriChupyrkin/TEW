@@ -7,8 +7,8 @@ export class CommonHelper {
 
     public static buildOkCancelModalConfig(
         header: string, text: string, applyCallback: any): ModalWindowModel {
-        
-        var modalWindowModel = new ModalWindowModel();
+
+        let modalWindowModel = new ModalWindowModel();
         modalWindowModel.HeaderText = header;
         modalWindowModel.BodyText = text;
         modalWindowModel.IsApplyButton = true;

@@ -34,7 +34,7 @@ export class AddWord implements OnInit {
     private focusOut() {
         let englishWord = this.addWordform.controls['english'].value;
 
-        if (this.translateFor != englishWord) {
+        if (this.translateFor !== englishWord) {
             this.translate();
         }
     }
@@ -42,13 +42,13 @@ export class AddWord implements OnInit {
     private translate() {
         let englishWord = this.addWordform.controls['english'].value;
 
-        if (!englishWord || this.translateFor == englishWord) {
+        if (!englishWord || this.translateFor === englishWord) {
             return;
         }
 
         this.translateFor = englishWord;
 
-        var englishWordWithoutSpaces = englishWord.replace(' ', '%20');
+        let englishWordWithoutSpaces = englishWord.replace(' ', '%20');
         this.clearTranslateResults(false);
 
         this.translateByYandex(englishWordWithoutSpaces);
@@ -56,42 +56,41 @@ export class AddWord implements OnInit {
     }
 
     private translateByExistsWords(englishWord: string) {
-        var url = `${ConstantStorage.getWordTranslaterController()}?word=${englishWord}`;
+        let url = `${ConstantStorage.getWordTranslaterController()}?word=${englishWord}`;
         this.httpService.processGet<Array<string>>(url).then(response => this.addTranslate(response));
     }
 
     private translateByYandex(englishWord: string) {
-        let url = "https://dictionary.yandex.net/api/v1/dicservice.json/lookup";
-        let translateLang = "en-ru";
+        let url = 'https://dictionary.yandex.net/api/v1/dicservice.json/lookup';
+        let translateLang = 'en-ru';
         let apiKey = ConstantStorage.getYandexTranslaterApiKey();
 
-        var resultUri = `${url}?key=${apiKey}&lang=${translateLang}&text=${englishWord}`;
+        let resultUri = `${url}?key=${apiKey}&lang=${translateLang}&text=${englishWord}`;
         this.httpService.processGet<JSON>(resultUri, true)
             .then(response => this.parseTranslate(response));
     }
 
     private parseTranslate(response: JSON) {
-        var def = response['def'];
+        let def = response['def'];
         if (def && def['0']) {
-            var defZero = def['0'];
+            let defZero = def['0'];
 
             if (defZero && defZero['tr'] && defZero['tr']['0']) {
-                var translate = defZero['tr']['0'];
-                console.log(translate);
+                let translate = defZero['tr']['0'];
 
                 if (translate['text']) {
                     this.addTranslate([translate['text']]);
                 }
 
                 if (translate['syn'] && translate['syn']['length']) {
-                    for (var i = 0; i < translate['syn']['length']; i++) {
-                        var syn = translate['syn'][i];
+                    for (let i = 0; i < translate['syn']['length']; i++) {
+                        let syn = translate['syn'][i];
                         this.addTranslate([syn['text']]);
                     }
                 }
 
                 if (translate && translate['ex'] && translate['ex'][0] && translate['ex'][0]['text']) {
-                    var example = translate['ex'][0]['text'];
+                    let example = translate['ex'][0]['text'];
                     this.addWordform.controls['example'].setValue(example.toString());
                 }
             }
@@ -113,10 +112,10 @@ export class AddWord implements OnInit {
     }
 
     private addTranslate(translates: Array<string>) {
-        var self = this;
+        let self = this;
 
         translates.forEach(translate => {
-            if (self.translates.indexOf(translate) == -1) {
+            if (self.translates.indexOf(translate) === -1) {
                 self.translates.push(translate);
             }
         });
@@ -124,19 +123,19 @@ export class AddWord implements OnInit {
 
     private save(englishWord: string, russianWord: string, example: string) {
         if (!englishWord || !russianWord) {
-            console.log("English and Translate are required!");
+            console.log('English and Translate are required!');
             return;
         }
 
-        if (englishWord != this.translateFor && this.translateFor != undefined){
+        if (englishWord !== this.translateFor && this.translateFor !== undefined) {
             this.clearTranslateResults(false);
             return;
         }
 
-        var wordCloudModel = new WordsCloudModel();
+        let wordCloudModel = new WordsCloudModel();
         wordCloudModel.UserName = ConstantStorage.getUserName();
 
-        var word = new Word();
+        let word = new Word();
         word.English = englishWord;
         word.Russian = russianWord;
         word.UpdateDate = new Date();
@@ -145,7 +144,7 @@ export class AddWord implements OnInit {
         wordCloudModel.Words = [word];
 
         this.httpService.processPost(wordCloudModel, ConstantStorage.getWordsManagerController())
-            .then(response => console.dir(response), error => alert("error"));
+            .then(response => console.dir(response), error => alert('error'));
 
         this.clearTranslateResults(true);
     }

@@ -32,13 +32,13 @@ var AddWord = (function () {
     };
     AddWord.prototype.focusOut = function () {
         var englishWord = this.addWordform.controls['english'].value;
-        if (this.translateFor != englishWord) {
+        if (this.translateFor !== englishWord) {
             this.translate();
         }
     };
     AddWord.prototype.translate = function () {
         var englishWord = this.addWordform.controls['english'].value;
-        if (!englishWord || this.translateFor == englishWord) {
+        if (!englishWord || this.translateFor === englishWord) {
             return;
         }
         this.translateFor = englishWord;
@@ -54,8 +54,8 @@ var AddWord = (function () {
     };
     AddWord.prototype.translateByYandex = function (englishWord) {
         var _this = this;
-        var url = "https://dictionary.yandex.net/api/v1/dicservice.json/lookup";
-        var translateLang = "en-ru";
+        var url = 'https://dictionary.yandex.net/api/v1/dicservice.json/lookup';
+        var translateLang = 'en-ru';
         var apiKey = constantStorage_1.ConstantStorage.getYandexTranslaterApiKey();
         var resultUri = url + "?key=" + apiKey + "&lang=" + translateLang + "&text=" + englishWord;
         this.httpService.processGet(resultUri, true)
@@ -67,7 +67,6 @@ var AddWord = (function () {
             var defZero = def['0'];
             if (defZero && defZero['tr'] && defZero['tr']['0']) {
                 var translate = defZero['tr']['0'];
-                console.log(translate);
                 if (translate['text']) {
                     this.addTranslate([translate['text']]);
                 }
@@ -98,17 +97,17 @@ var AddWord = (function () {
     AddWord.prototype.addTranslate = function (translates) {
         var self = this;
         translates.forEach(function (translate) {
-            if (self.translates.indexOf(translate) == -1) {
+            if (self.translates.indexOf(translate) === -1) {
                 self.translates.push(translate);
             }
         });
     };
     AddWord.prototype.save = function (englishWord, russianWord, example) {
         if (!englishWord || !russianWord) {
-            console.log("English and Translate are required!");
+            console.log('English and Translate are required!');
             return;
         }
-        if (englishWord != this.translateFor && this.translateFor != undefined) {
+        if (englishWord !== this.translateFor && this.translateFor !== undefined) {
             this.clearTranslateResults(false);
             return;
         }
@@ -121,7 +120,7 @@ var AddWord = (function () {
         word.Example = example;
         wordCloudModel.Words = [word];
         this.httpService.processPost(wordCloudModel, constantStorage_1.ConstantStorage.getWordsManagerController())
-            .then(function (response) { return console.dir(response); }, function (error) { return alert("error"); });
+            .then(function (response) { return console.dir(response); }, function (error) { return alert('error'); });
         this.clearTranslateResults(true);
     };
     return AddWord;

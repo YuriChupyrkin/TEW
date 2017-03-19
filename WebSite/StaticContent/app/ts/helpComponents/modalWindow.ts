@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
+import { Component, Input, Output, EventEmitter,
+    ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { JQueryHelper } from '../helpers/jqueryHelper';
 import { ModalWindowModel } from '../models/modalWindowModel';
 
@@ -8,10 +9,10 @@ import { ModalWindowModel } from '../models/modalWindowModel';
 })
 
 export class ModalWindow {
-    public static readonly MODAL_WINDOW_ID = "tew-modal-window";
-    private readonly modal_window_id = "tew-modal-window";
+    public static readonly MODAL_WINDOW_ID = 'tew-modal-window';
+    private readonly modal_window_id = 'tew-modal-window';
     private windowSizeClass: string;
-    
+
     @Output() public windowApplied = new EventEmitter();
     @Output() public windowCanceled = new EventEmitter();
     @ViewChild('innerComponent', {read: ViewContainerRef}) innerComponent: ViewContainerRef;
@@ -26,7 +27,7 @@ export class ModalWindow {
 
             if (value.InnerComponent) {
                  let factory = this.resolver.resolveComponentFactory(value.InnerComponentType);
-                 var component = this.innerComponent.createComponent(factory); 
+                 let component = this.innerComponent.createComponent(factory);
                  component.instance.options = value.InnerComponentOptions;
             }
 
@@ -50,7 +51,7 @@ export class ModalWindow {
     }
 
     constructor(private viewContainerRef: ViewContainerRef, private resolver: ComponentFactoryResolver ) {
-        var self = this;
+        let self = this;
         this.windowSizeClass = 'modal-sm'
         this.dismissed = false;
         if (!this.config) {
@@ -58,7 +59,7 @@ export class ModalWindow {
         }
 
         JQueryHelper.getElement(document).on(`hide.bs.modal`, `#${ModalWindow.MODAL_WINDOW_ID}`, function () {
-            if (self.dismissed == false) {
+            if (self.dismissed === false) {
                 self.closeWindow();
             }
         });
@@ -123,7 +124,7 @@ export class ModalWindow {
     }
 
     private buildDefaultConfig() {
-        var modalWindowModel = new ModalWindowModel();
+        let modalWindowModel = new ModalWindowModel();
         modalWindowModel.HeaderText = 'header';
         modalWindowModel.BodyText = 'body';
         modalWindowModel.IsApplyButton = false;

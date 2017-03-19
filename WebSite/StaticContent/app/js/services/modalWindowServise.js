@@ -10,7 +10,7 @@ var ModalWindowServise = (function () {
     };
     ModalWindowServise.showModalWindow = function (config) {
         if (!config || !this.appComponent) {
-            throw new Error("invalid config");
+            throw new Error('invalid config');
         }
         this.appComponent.setModalConfig(config);
         ModalWindow_1.ModalWindow.showWindow();
