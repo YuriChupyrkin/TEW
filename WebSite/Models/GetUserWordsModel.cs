@@ -7,5 +7,9 @@
     public int CurrentWordsCount { get; set; }
 
     public int WordsPerPage { get; set; }
+
+    public string SortKey { get; set; }
+
+    public bool SortAsc { get; set; }
   }
 }
