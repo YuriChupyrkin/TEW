@@ -48,16 +48,39 @@ namespace WebSite.Helpers
         .Where(r => r.UserId == getUserWordsModel.UserId);
 
       var totalWordsCount = enRuWords.Count();
+      var key = getUserWordsModel.SortKey;
+      var asc = getUserWordsModel.SortAsc;
 
-      // todo: sort logic
-      // .....
+      enRuWords = SortWords(enRuWords, key, asc);
 
-      // get needed words
       enRuWords = enRuWords.Skip(getUserWordsModel.CurrentWordsCount).Take(getUserWordsModel.WordsPerPage);
 
       // user name is not necessary
       var wordsCloudModel = CreateWordsCloudModel(string.Empty, enRuWords, totalWordsCount);
       return wordsCloudModel;
+    }
+
+    private IEnumerable<EnRuWord> SortWords(IEnumerable<EnRuWord> unsortWords, string key, bool asc)
+    {
+      switch (key)
+      {
+        case "english":
+          return asc ? unsortWords.OrderBy(r => r.EnglishWord.EnWord) :
+            unsortWords.OrderByDescending(r => r.EnglishWord.EnWord);
+        case "russian":
+          return asc ? unsortWords.OrderBy(r => r.RussianWord.RuWord) :
+            unsortWords.OrderByDescending(r => r.RussianWord.RuWord);
+        case "level":
+          return asc ? unsortWords.OrderBy(r => r.WordLevel) :
+            unsortWords.OrderByDescending(r => r.WordLevel);
+        case "answer":
+          return asc ? unsortWords.OrderBy(r => r.AnswerCount) :
+            unsortWords.OrderByDescending(r => r.AnswerCount);
+        case "fail":
+          return asc ? unsortWords.OrderBy(r => r.FailAnswerCount) :
+            unsortWords.OrderByDescending(r => r.FailAnswerCount);
+      }
+      return unsortWords;
     }
 
     public WordsFullModel CreateWordsCloudModel(
