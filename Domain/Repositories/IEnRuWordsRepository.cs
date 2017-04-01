@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Domain.Entities;
+using System.Linq;
 
 namespace Domain.Repositories
 {
 	public interface IEnRuWordsRepository : IGenericRepository
 	{
-		IEnumerable<string> GetTranslate(string enWord);
+    IQueryable<EnRuWord> AllEnRuWordsQueryable();
+    IEnumerable<string> GetTranslate(string enWord);
 
 		EnRuWord AddTranslate(string engWord, string ruWord, string example, int userId, DateTime? updateDate = null,
 			int level = 0, int answerCount = 0, int failAnswerCount = 1);

@@ -5,6 +5,7 @@ using Domain.Entities;
 using Domain.RepositoryFactories;
 using EnglishLearnBLL.Models;
 using WebSite.Models;
+using System.Linq.Expressions;
 
 namespace WebSite.Helpers
 {
@@ -44,14 +45,14 @@ namespace WebSite.Helpers
 
     public WordsFullModel GetUserWords(GetUserWordsModel getUserWordsModel)
     {
-      var enRuWords = _repositoryFactory.EnRuWordsRepository.AllEnRuWords()
-        .Where(r => r.UserId == getUserWordsModel.UserId);
+      var enRuWordsQueryable = _repositoryFactory.EnRuWordsRepository.AllEnRuWordsQueryable();
+      var orderedQuery = SortWords(
+        enRuWordsQueryable,
+        getUserWordsModel.SortKey,
+        getUserWordsModel.SortAsc);
 
+      var enRuWords = orderedQuery.Where(r => r.UserId == getUserWordsModel.UserId).AsEnumerable();
       var totalWordsCount = enRuWords.Count();
-      var key = getUserWordsModel.SortKey;
-      var asc = getUserWordsModel.SortAsc;
-
-      enRuWords = SortWords(enRuWords, key, asc);
 
       enRuWords = enRuWords.Skip(getUserWordsModel.CurrentWordsCount).Take(getUserWordsModel.WordsPerPage);
 
@@ -60,7 +61,10 @@ namespace WebSite.Helpers
       return wordsCloudModel;
     }
 
-    private IEnumerable<EnRuWord> SortWords(IEnumerable<EnRuWord> unsortWords, string key, bool asc)
+    private IOrderedQueryable<EnRuWord> SortWords(
+      IQueryable<EnRuWord> unsortWords,
+      string key,
+      bool asc)
     {
       switch (key)
       {
@@ -76,11 +80,10 @@ namespace WebSite.Helpers
         case "answer":
           return asc ? unsortWords.OrderBy(r => r.AnswerCount) :
             unsortWords.OrderByDescending(r => r.AnswerCount);
-        case "fail":
+        default:
           return asc ? unsortWords.OrderBy(r => r.FailAnswerCount) :
             unsortWords.OrderByDescending(r => r.FailAnswerCount);
       }
-      return unsortWords;
     }
 
     public WordsFullModel CreateWordsCloudModel(

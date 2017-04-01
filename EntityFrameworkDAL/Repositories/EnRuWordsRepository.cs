@@ -27,6 +27,11 @@ namespace EntityFrameworkDAL.Repositories
       return _context.EnRuWords.Where(predicate).AsEnumerable();
     }
 
+    public IQueryable<EnRuWord> AllEnRuWordsQueryable()
+    {
+      return _context.EnRuWords;
+    }
+
     public void DeleteEnRuWord(string enWord, int userId)
     {
       var enRuWord = _context.EnRuWords
