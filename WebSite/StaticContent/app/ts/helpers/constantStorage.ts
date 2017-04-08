@@ -91,4 +91,8 @@ export class ConstantStorage {
     public static getUserStatModel () {
         return this.userStatModel;
     }
+
+    public static getUserUniqueId () {
+        return this.userStatModel ? this.userStatModel.UniqueId : '';
+    }
 }

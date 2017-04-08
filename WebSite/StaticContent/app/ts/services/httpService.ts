@@ -13,12 +13,7 @@ export class HttpService {
     }
 
     public processGet<T>(url: string, isExternalRequest = false): Promise<T> {
-        let headers = new Headers();
-        let userId = ConstantStorage.getUserId()
-
-        if (isExternalRequest === false && userId) {
-            headers.append('Authorization', userId.toString());
-        }
+        let headers = this.buildAuthHeaders();
 
         // start loading...
         PubSub.Pub(ConstantStorage.getLoadingEvent(), true);
@@ -32,8 +27,8 @@ export class HttpService {
                     resolve(r);
                 },
                 e => {
-                    console.log(`${url} (GET): request finished with error:`);
-                    console.log(e);
+                    console.error(`${url} (GET): request finished with error:`);
+                    console.error(e);
                     PubSub.Pub(ConstantStorage.getLoadingEvent(), false);
                     reject(e);
                 }
@@ -44,12 +39,7 @@ export class HttpService {
     }
 
     public processPost(object: any, url: string) {
-        let headers = new Headers();
-
-        let userId = ConstantStorage.getUserId()
-        if (userId) {
-            headers.append('Authorization', userId.toString());
-        }
+        let headers = this.buildAuthHeaders();
 
         // start loading...
         PubSub.Pub(ConstantStorage.getLoadingEvent(), true);
@@ -63,8 +53,8 @@ export class HttpService {
                     resolve(r);
                 },
                 e => {
-                    console.log(`${url} (POST): request finished with error:`);
-                    console.log(e);
+                    console.error(`${url} (POST): request finished with error:`);
+                    console.error(e);
                     PubSub.Pub(ConstantStorage.getLoadingEvent(), false);
                     reject(e);
                 }
@@ -72,5 +62,17 @@ export class HttpService {
         });
 
         return promise;
+    }
+
+    private buildAuthHeaders () {
+        let headers = new Headers();
+
+        let userId = ConstantStorage.getUserId();
+        let uniqueId = ConstantStorage.getUserUniqueId();
+        if (userId && uniqueId) {
+            headers.append('Authorization', `${userId.toString()}|${uniqueId}`);
+        }
+
+        return headers;
     }
 }

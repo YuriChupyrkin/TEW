@@ -199,7 +199,7 @@
     <Compile Include="Controllers\Api\WordTranslaterController.cs" />
     <Compile Include="Controllers\Api\WriteTestsController.cs" />
     <Compile Include="Controllers\WordsUploaderController.cs" />
-    <Compile Include="FIlters\UserActivityFilter.cs" />
+    <Compile Include="FIlters\AuthSecurityFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

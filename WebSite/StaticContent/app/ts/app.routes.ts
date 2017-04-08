@@ -1,6 +1,5 @@
 ﻿import { Routes, RouterModule }   from '@angular/router';
 import { ModuleWithProviders }  from '@angular/core';
-import { Home } from './components/home';
 import { AddWord } from './components/addWord';
 import { MyWords } from './components/myWords';
 import { PickerTest } from './components/pickerTest';

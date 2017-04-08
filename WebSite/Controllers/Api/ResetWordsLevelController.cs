@@ -1,9 +1,11 @@
 ﻿using System.Web.Http;
 using Domain.Entities;
 using Domain.RepositoryFactories;
+using TewCloud.FIlters;
 
 namespace WebSite.Controllers.Api
 {
+  [UserActivityFilter]
   public class ResetWordsLevelController : ApiController
   {
     private readonly IRepositoryFactory _repositoryFactory;

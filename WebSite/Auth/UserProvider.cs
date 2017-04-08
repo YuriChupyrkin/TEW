@@ -3,21 +3,24 @@ using System.Text;
 using Domain.Entities;
 using Domain.RepositoryFactories;
 using Domain.UnitOfWork;
+using System.Collections.Generic;
 
 namespace WebSite.Auth
 {
 	internal class UserProvider
 	{
 		private const string SaltWord = "SaltWord";
+    private static readonly Dictionary<string, string> UsersUniqueIds
+      = new Dictionary<string, string>();
 
-		private readonly IUnitOfWork _unitOfWork;
+    private readonly IUnitOfWork _unitOfWork;
 		private readonly IRepositoryFactory _repositoryFactory;
 
 		public UserProvider(IRepositoryFactory repositoryFactory)
 		{
 			_repositoryFactory = repositoryFactory;
 			_unitOfWork = (IUnitOfWork)_repositoryFactory;
-		}
+    }
 
 		public User GetUser(string login)
 		{
@@ -167,7 +170,7 @@ namespace WebSite.Auth
 			return originalPassword == resultPass;
 		}
 
-		// Note: we used System.Web.Http for crypto. It obsoleted. 
+		// Note: we used System.Web.Http for crypto. It obsoleted.
 		private void ChangePasswordIfItHttpCrypto(User user)
 		{
 			var userPassword = user.Password;
@@ -206,5 +209,23 @@ namespace WebSite.Auth
 
 			return true;
 		}
+
+    public static string GetUserUniqueId(string userId)
+    {
+      if (UsersUniqueIds.ContainsKey(userId))
+      {
+        return UsersUniqueIds[userId];
+      }
+
+      var uniqId = BuildUserUniqueId(userId);
+      UsersUniqueIds.Add(userId, uniqId);
+
+      return uniqId;
+    }
+
+    private static string BuildUserUniqueId(string userId)
+    {
+      return userId.GetHashCode().ToString();
+    }
 	}
 }

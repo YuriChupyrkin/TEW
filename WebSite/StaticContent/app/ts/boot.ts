@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './components/app';
-import { Home } from './components/home';
 import { AddWord } from './components/addWord';
 import { MyWords } from './components/myWords';
 import { PickerTest } from './components/pickerTest';
@@ -27,7 +26,6 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
     declarations: [
         AppComponent,
-        Home,
         AddWord,
         MyWords,
         PickerTest,

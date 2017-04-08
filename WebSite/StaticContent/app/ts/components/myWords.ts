@@ -142,10 +142,16 @@ export class MyWords {
     }
 
     private loadWords () {
+        let userId = ConstantStorage.getUserId();
+
+        if (!userId) {
+            return;
+        }
+
         this.startLoading();
 
         let url = `${ConstantStorage.getWordsManagerController()}`;
-        url += `?UserId=${ConstantStorage.getUserId()}`;
+        url += `?UserId=${userId}`;
         url += `&CurrentWordsCount=${this.words.length}`;
         url += `&WordsPerPage=${this.wordsPerPage}`;
         url += `&sortKey=${this.sortKey}`;
@@ -154,7 +160,7 @@ export class MyWords {
         let result = this.httpService.processGet<UserWords>(url);
         result.then(
             json => { this.setUserWords(json); this.endLoading(); this.isNeedMoreWords(); },
-            error => { this.endLoading(); alert('ERROR of loading words!!!'); });
+            error => { this.endLoading(); alert('ERROR of loading words!'); });
     }
 
     // when page is loaded but scroll is hidden

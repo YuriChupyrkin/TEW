@@ -8,13 +8,14 @@ namespace WebSite.Providers
 {
 	public class TewMembershipProvider : MembershipProvider
 	{
-        internal UserProvider UserProvider
-        {
-            get
-            {
-                return new UserProvider((IRepositoryFactory)DependencyResolver.Current.GetService(typeof(IRepositoryFactory)));
-            }
-        }
+    internal UserProvider UserProvider
+    {
+      get
+      {
+        return new UserProvider((IRepositoryFactory)DependencyResolver
+          .Current.GetService(typeof(IRepositoryFactory)));
+      }
+    }
 
 		public bool CreateUser(string email, string password)
 		{
@@ -39,11 +40,11 @@ namespace WebSite.Providers
 			return user != null;
 		}
 
-        public User GetUserByEmail(string email)
-        {
-            var user = UserProvider.GetUser(email);
-            return new User { Email = user.Email, Id = user.Id };
-        }
+    public User GetUserByEmail(string email)
+    {
+        var user = UserProvider.GetUser(email);
+        return new User { Email = user.Email, Id = user.Id };
+    }
 
 		// Not necessary
 		public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)

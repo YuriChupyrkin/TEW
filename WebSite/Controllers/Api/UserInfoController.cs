@@ -2,9 +2,8 @@
 using Domain.RepositoryFactories;
 using EnglishLearnBLL.WordLevelManager;
 using System.Web.Http;
-using System.Web.Security;
+using WebSite.Auth;
 using WebSite.Models;
-using WebSite.Providers;
 
 namespace WebSite.Controllers.Api
 {
@@ -41,7 +40,8 @@ namespace WebSite.Controllers.Api
         Email = user.Email,
         LastActivityDate = user.LastActivity.ToShortDateString(),
         WordsLevel = wordLevel,
-        Id = user.Id
+        Id = user.Id,
+        UniqueId = UserProvider.GetUserUniqueId(user.Id.ToString())
       };
 
       return Json(userStatModel);

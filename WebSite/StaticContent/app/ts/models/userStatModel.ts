@@ -5,4 +5,5 @@ export class UserStatModel {
     Email: string;
     NickName: string;
     Id: number;
+    UniqueId: string;
 }

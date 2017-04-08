@@ -2,9 +2,11 @@
 using Domain.Entities;
 using Domain.RepositoryFactories;
 using WebSite.Auth;
+using TewCloud.FIlters;
 
 namespace WebSite.Controllers.Api
 {
+  [UserActivityFilter]
 	public class ChangePasswordController : ApiController
 	{
 		private readonly IRepositoryFactory _repositoryFactory;

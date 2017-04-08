@@ -3,9 +3,11 @@ using Domain.Entities;
 using Domain.RepositoryFactories;
 using EnglishLearnBLL.Models;
 using EnglishLearnBLL.WordLevelManager;
+using TewCloud.FIlters;
 
 namespace WebSite.Controllers.Api
 {
+  [UserActivityFilter]
   public class WordsLevelUpdaterController : ApiController
 	{
 		private readonly IRepositoryFactory _repositoryFactory;

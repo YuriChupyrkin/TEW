@@ -3,9 +3,11 @@ using System.Web.Http;
 using Domain.RepositoryFactories;
 using EnglishLearnBLL.Models;
 using WebSite.Helpers;
+using TewCloud.FIlters;
 
 namespace WebSite.Controllers.Api
 {
+  [UserActivityFilter]
   public class DeleteWordController : ApiController
   {
     private readonly IRepositoryFactory _repositoryFactory;

@@ -13,5 +13,7 @@
     public string NickName { get; set; }
 
     public int Id { get; set; }
+
+    public string UniqueId { get; set; }
   }
 }

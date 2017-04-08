@@ -1,16 +1,14 @@
 ﻿using Domain.Entities;
 using Domain.RepositoryFactories;
 using EnglishLearnBLL.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using TewCloud.FIlters;
 using WebSite.Helpers;
 
 namespace WebSite.Controllers.Api
 {
+  [UserActivityFilter]
   public class EditWordController : ApiController
   {
     private readonly IRepositoryFactory _repositoryFactory;
