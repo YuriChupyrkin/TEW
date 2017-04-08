@@ -225,3 +225,7 @@ acitve link > color: #5af35d
 .edit-word-buttons {
   margin: -15px;
 }
+
+.add-word-button {
+  margin-bottom: 30px;
+}

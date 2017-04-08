@@ -224,7 +224,6 @@
     <Content Include="Content\Images\multy-user.png" />
     <Content Include="Content\Images\users.png" />
     <Content Include="Content\Images\words.png" />
-    <Content Include="Content\Tew.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -265,6 +264,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="StaticContent\app\css\Tew.css" />
     <Content Include="StaticContent\app\js\app.routes.js" />
     <Content Include="StaticContent\app\js\boot.js" />
     <Content Include="StaticContent\app\js\components\addWord.js" />
