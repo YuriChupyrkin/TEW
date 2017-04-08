@@ -296,7 +296,6 @@
     <Content Include="StaticContent\app\js\services\pubSub.js" />
     <Content Include="StaticContent\app\templates\components\addWord.html" />
     <Content Include="StaticContent\app\templates\components\app.html" />
-    <Content Include="StaticContent\app\templates\components\home.html" />
     <Content Include="StaticContent\app\templates\components\irregularVerbs.html" />
     <Content Include="StaticContent\app\templates\components\myWords.html" />
     <Content Include="StaticContent\app\templates\components\pickerTest.html" />
