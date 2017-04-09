@@ -62,21 +62,21 @@ acitve link > color: #5af35d
     text-align: center;
 }
 
-.xs-visible {
-    visibility: hidden;
+.md-displayNone {
+    display: block !important;
 }
 
-.xs-hidden {
-    visibility: visible;
+.md-displayBlock {
+    display: none !important;
 }
 
 @media (max-width: 768px) {
-    .xs-visible {
-	    visibility: visible;
+    .md-displayNone {
+        display: none !important;
     }
 
-    .xs-hidden {
-        visibility: hidden;
+    .md-displayBlock {
+        display: block !important;
     }
 }
 

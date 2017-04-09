@@ -50,7 +50,9 @@
                     <textarea [formControl]="addWordform.controls['example']" class="form-control"></textarea>
                     <br />
                 </div>
-                <input type="submit" class="btn btn-success xs-hidden" [disabled]="!addWordform.valid" value="Add word" />
+                <input type="submit" class="btn btn-success md-displayNone"
+                    [disabled]="!addWordform.valid"
+                    value="Add word" />
             </div>
         </div>
 
@@ -70,7 +72,7 @@
                 </div>
             </div>
             <input type="submit"
-                class="btn btn-success xs-visible center-block add-word-button"
+                class="btn btn-success md-displayBlock center-block add-word-button"
                 [disabled]="!addWordform.valid"
                 value="Add word"/>
         </div>
