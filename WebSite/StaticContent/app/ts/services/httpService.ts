@@ -13,7 +13,7 @@ export class HttpService {
     }
 
     public processGet<T>(url: string, isExternalRequest = false): Promise<T> {
-        let headers = this.buildAuthHeaders();
+        let headers = isExternalRequest ? null : this.buildAuthHeaders();
 
         // start loading...
         PubSub.Pub(ConstantStorage.getLoadingEvent(), true);
