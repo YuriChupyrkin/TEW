@@ -1,5 +1,6 @@
 packages/
 **.ide/
+.vscode/
 
 # compiled js
 WebSite/StaticContent/app/js/
