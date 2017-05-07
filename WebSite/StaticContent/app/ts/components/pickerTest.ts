@@ -38,7 +38,7 @@ export class PickerTest {
     }
 
     private prepareTest(testName: string) {
-        this.progress = 5;
+        this.progress = 3;
 
         this.firstTestNOTloaded = false;
         this.initEmptyCurrentTest();
@@ -49,7 +49,7 @@ export class PickerTest {
         this.httpService.processGet<Array<PickerTestModel>>(url).then(
             response => this.startTest(response),
             error => {
-                this.showError('"Your words" should be have than 4 words');
+                CommonHelper.showError('"Your words" should be have than 4 words');
                 console.dir(error);
             });
     }
@@ -57,7 +57,7 @@ export class PickerTest {
     private startTest(tests: Array<PickerTestModel>) {
         console.dir(tests);
         if (!tests || tests.length === 0) {
-            this.showError('"Your words" should be have than 4 words');
+            CommonHelper.showError('"Your words" should be have than 4 words');
             return;
         }
 
@@ -169,15 +169,15 @@ export class PickerTest {
         this.setNextTest();
     }
 
-    private showError(message: string) {
-        let modalWindowModel = new ModalWindowModel();
-        modalWindowModel.HeaderText = 'PAGE ERROR';
-        modalWindowModel.BodyText = message;
-        modalWindowModel.IsCancelButton = true;
-        modalWindowModel.CancelButtonText = 'Cancel';
+    // private showError(message: string) {
+    //     let modalWindowModel = new ModalWindowModel();
+    //     modalWindowModel.HeaderText = 'PAGE ERROR';
+    //     modalWindowModel.BodyText = message;
+    //     modalWindowModel.IsCancelButton = true;
+    //     modalWindowModel.CancelButtonText = 'Cancel';
 
-       ModalWindowServise.showModalWindow(modalWindowModel);
-    }
+    //    ModalWindowServise.showModalWindow(modalWindowModel);
+    // }
 
     private showIsDeleteModal(pickerTestModel: PickerTestModel) {
         let modalWindowModel = CommonHelper.buildOkCancelModalConfig(

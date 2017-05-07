@@ -143,16 +143,6 @@ acitve link > color: #5af35d
     margin: 20px;
 }
 
-.field-validation-error {
-    font-size: 16px;
-    color: red;
-}
-
-.validation-summary-errors {
-    font-size: 18px;
-    color: red;
-}
-
 .tew-modal-title {
     font-size: 28px;
     font-weight: bold;

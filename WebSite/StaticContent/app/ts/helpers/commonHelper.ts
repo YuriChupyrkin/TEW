@@ -1,4 +1,5 @@
 ﻿import { ModalWindowModel } from '../models/modalWindowModel';
+import { ModalWindowServise } from '../services/modalWindowServise';
 
 export class CommonHelper {
     public static logOff() {
@@ -6,7 +7,10 @@ export class CommonHelper {
     }
 
     public static buildOkCancelModalConfig(
-        header: string, text: string, applyCallback: any): ModalWindowModel {
+        header: string,
+        text: string,
+        applyCallback: any,
+        cancelCallback?: any): ModalWindowModel {
 
         let modalWindowModel = new ModalWindowModel();
         modalWindowModel.HeaderText = header;
@@ -17,6 +21,20 @@ export class CommonHelper {
         modalWindowModel.CancelButtonText = 'Cancel';
         modalWindowModel.ApplyCallback = () => applyCallback();
 
+        if (cancelCallback) {
+            modalWindowModel.CancelCallback = () => cancelCallback();
+        }
+
         return modalWindowModel;
+    }
+
+    public static showError(message: string) {
+        let modalWindowModel = new ModalWindowModel();
+        modalWindowModel.HeaderText = 'PAGE ERROR';
+        modalWindowModel.BodyText = message;
+        modalWindowModel.IsCancelButton = true;
+        modalWindowModel.CancelButtonText = 'Cancel';
+
+        ModalWindowServise.showModalWindow(modalWindowModel);
     }
 }

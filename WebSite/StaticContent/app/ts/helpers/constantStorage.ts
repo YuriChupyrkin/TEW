@@ -17,6 +17,11 @@ export class ConstantStorage {
     private static readonly tewInfoContoller = '/api/TewInfo';
     private static readonly resetWordsLevelContoller = '/api/ResetWordsLevel';
     private static readonly editWordController = '/api/EditWord';
+    private static readonly writeTestsController = '/api/WriteTests'
+
+    public static getWriteTestsController() {
+        return this.writeTestsController;
+    }
 
     public static getEditWordController() {
         return this.editWordController;

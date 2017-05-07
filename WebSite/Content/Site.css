@@ -75,13 +75,23 @@ textarea {
     background-color: #686868;
 }
 
-.icons{
+.icons {
     width: 150px;
     height: 150px;
-	margin-top: 50px;
+    margin-top: 50px;
 }
 
-.download-icon{
+.download-icon {
     width: 300px;
-	margin-top: 50px;
+    margin-top: 50px;
+}
+
+.field-validation-error {
+    font-size: 16px;
+    color: red;
+}
+
+.validation-summary-errors {
+    font-size: 18px;
+    color: red;
 }

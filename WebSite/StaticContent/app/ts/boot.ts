@@ -17,6 +17,7 @@ import { UserStat } from './components/userStat';
 import { IrregularVerbs } from './components/irregularVerbs';
 import { MyWordsHeader } from './helpComponents/myWordsHeader';
 import { EditMyWord } from './helpComponents/editMyWord';
+import { WriteTest } from './components/writeTest';
 
 // For textbox binding
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
@@ -36,7 +37,8 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
         IrregularVerbs,
         LoadingLockDisplay,
         MyWordsHeader,
-        EditMyWord
+        EditMyWord,
+        WriteTest
     ],
 
     bootstrap: [AppComponent],
