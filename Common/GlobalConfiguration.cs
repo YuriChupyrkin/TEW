@@ -2,6 +2,6 @@
 {
 	public class GlobalConfiguration
 	{
-		public const bool IsDevelopmentEnvironment = true;
+    public const bool IsDevelopmentEnvironment = true;
 	}
 }

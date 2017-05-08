@@ -274,6 +274,7 @@
     <Content Include="StaticContent\app\js\components\myWords.js" />
     <Content Include="StaticContent\app\js\components\pickerTest.js" />
     <Content Include="StaticContent\app\js\components\userStat.js" />
+    <Content Include="StaticContent\app\js\components\writeTest.js" />
     <Content Include="StaticContent\app\js\helpComponents\editMyWord.js" />
     <Content Include="StaticContent\app\js\helpComponents\loadingAnimation.js" />
     <Content Include="StaticContent\app\js\helpComponents\loadingLockDisplay.js" />
@@ -291,6 +292,7 @@
     <Content Include="StaticContent\app\js\models\userWords.js" />
     <Content Include="StaticContent\app\js\models\Word.js" />
     <Content Include="StaticContent\app\js\models\wordsCloudModel.js" />
+    <Content Include="StaticContent\app\js\models\writeTestModel.js" />
     <Content Include="StaticContent\app\js\services\httpService.js" />
     <Content Include="StaticContent\app\js\services\modalWindowServise.js" />
     <Content Include="StaticContent\app\js\services\pubSub.js" />
@@ -300,6 +302,7 @@
     <Content Include="StaticContent\app\templates\components\myWords.html" />
     <Content Include="StaticContent\app\templates\components\pickerTest.html" />
     <Content Include="StaticContent\app\templates\components\userStat.html" />
+    <Content Include="StaticContent\app\templates\components\writeTest.html" />
     <Content Include="StaticContent\app\templates\helpComponents\editMyWord.html" />
     <Content Include="StaticContent\app\templates\helpComponents\loadingAnimation.html" />
     <Content Include="StaticContent\app\templates\helpComponents\loadingLockDisplay.html" />
