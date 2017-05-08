@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
     private isLoading = false;
 
     constructor(private httpService: HttpService, private router: Router) {
-        let url = `${ConstantStorage.getUserInfoController()}?userId=0`
+        let url = `${ConstantStorage.getUserInfoController()}?userId=0`;
         this.isLoading = true;
         ConstantStorage.setYandexTranslaterApiKey
             ('dict.1.1.20160904T125311Z.5e2c6c9dfb5cd3c3.71b0d5220878e340d60dcfa0faf7f649af59c65f');
@@ -72,7 +72,7 @@ export class AppComponent implements OnInit {
 
         this.userName = userStatModel.Email;
         this.router.navigate(['/user-stat']);
-        this.isLoading = false
+        this.isLoading = false;
     }
 
     private logOut() {

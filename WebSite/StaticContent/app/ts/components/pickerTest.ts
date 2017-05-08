@@ -169,16 +169,6 @@ export class PickerTest {
         this.setNextTest();
     }
 
-    // private showError(message: string) {
-    //     let modalWindowModel = new ModalWindowModel();
-    //     modalWindowModel.HeaderText = 'PAGE ERROR';
-    //     modalWindowModel.BodyText = message;
-    //     modalWindowModel.IsCancelButton = true;
-    //     modalWindowModel.CancelButtonText = 'Cancel';
-
-    //    ModalWindowServise.showModalWindow(modalWindowModel);
-    // }
-
     private showIsDeleteModal(pickerTestModel: PickerTestModel) {
         let modalWindowModel = CommonHelper.buildOkCancelModalConfig(
             `Remove word`,

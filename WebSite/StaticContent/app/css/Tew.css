@@ -219,3 +219,36 @@ acitve link > color: #5af35d
 .add-word-button {
   margin-bottom: 30px;
 }
+
+.write-test-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.write-test-input {
+    margin-bottom: 10px;
+    min-width: 250px;
+}
+
+.write-test-help {
+    margin: 10px 0 10px 0;
+}
+
+.write-test-help-word {
+    color: #ec971f;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.write-test-progress {
+    margin: 0 15px 0 10px
+}
+
+.text-button {
+    min-width: 65px;
+}
+
+.icon-button {
+    min-width: 55px;
+}

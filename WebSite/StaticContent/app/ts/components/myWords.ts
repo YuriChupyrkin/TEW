@@ -71,7 +71,7 @@ export class MyWords {
         let wordIndex = this.words.indexOf(word);
 
         if (wordIndex === -1) {
-            return
+            return;
         }
 
         this.words.splice(wordIndex, 1);
@@ -117,7 +117,7 @@ export class MyWords {
         }
 
         // reset words
-        this.words = []
+        this.words = [];
         this.loadWords();
     }
     // ************* END OF SORT LOGIC **************
@@ -144,7 +144,7 @@ export class MyWords {
     private loadWords () {
         let userId = ConstantStorage.getUserId();
 
-        if (!userId) {
+        if (!CommonHelper.isApplicationReady()) {
             return;
         }
 

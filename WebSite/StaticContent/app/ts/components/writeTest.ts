@@ -6,6 +6,7 @@ import { WriteTestModel } from '../models/writeTestModel';
 import { CommonHelper } from '../helpers/commonHelper';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalWindowServise } from '../services/modalWindowServise';
+import { ModalWindowModel } from '../models/modalWindowModel';
 
 @Component({
     selector: 'write-test',
@@ -17,6 +18,7 @@ export class WriteTest implements OnInit {
     private testCount: number;
     private testIndex: number;
     private failedCount: number;
+    private progress: number;
     private isHelpUsed: boolean;
     private helpWord: string;
     private currentTestModel: WriteTestModel;
@@ -32,12 +34,19 @@ export class WriteTest implements OnInit {
 
     ngOnInit() {
         this.answerForm = this.formBuilder.group({
-            answer: ['', Validators.compose([Validators.required, Validators.maxLength(25)])],
+            answer: ['', Validators.compose([Validators.required])],
         });
     }
 
     private prepareTest() {
+        this.progress = 3;
+        this.isHelpUsed = false;
         this.currentTestModel = new WriteTestModel();
+
+        if (!CommonHelper.isApplicationReady()) {
+            return;
+        }
+
         let url = `${ConstantStorage.getWriteTestsController()}?` +
             `userId=${ConstantStorage.getUserId()}`;
 
@@ -50,13 +59,13 @@ export class WriteTest implements OnInit {
     }
 
     private startTest(tests: Array<WriteTestModel>) {
-        console.dir(tests);
-
         this.testSet = tests;
         this.testCount = tests.length;
         this.testIndex = 0;
         this.failedCount = 0;
         this.currentTestModel = tests[0];
+        this.currentTestModel.Example
+            = this.hideWordInExample(this.currentTestModel.TrueAnswer, this.currentTestModel.Example);
     }
 
     private checkAnswer(value: any) {
@@ -66,14 +75,7 @@ export class WriteTest implements OnInit {
             return;
         }
 
-        console.log(answer);
-
         let isTrueAnser = this.currentTestModel.TrueAnswer.toLowerCase() === answer.toLowerCase();
-
-        if (!isTrueAnser) {
-            this.failedCount++;
-            console.log('failCount: ' + this.failedCount);
-        }
 
         let postObject = {
             WordId: this.currentTestModel.EnRuWordId,
@@ -85,16 +87,38 @@ export class WriteTest implements OnInit {
             .processPost(postObject, ConstantStorage.getWordsLevelUpdaterController())
             .then();
 
-        this.setNextTestModel();
+         if (!isTrueAnser) {
+            this.failedCount++;
+            this.showTrueAnswer(`"${this.currentTestModel.Word}" === "${this.currentTestModel.TrueAnswer}"`);
+        } else {
+            this.setNextTestModel();
+        }
     }
 
     private useHelp() {
         this.isHelpUsed = true;
-        this.helpWord = 'I am help world';
+        let answer = this.currentTestModel.TrueAnswer;
+
+        if (answer.length < 3) {
+            this.helpWord = '';
+            return;
+        }
+
+        let helpWord = answer;
+        let maxIteration = 30;
+        let iterationCount = 0;
+
+        while (helpWord === answer && maxIteration > iterationCount) {
+            helpWord = answer.split('').sort(() => 0.5 - Math.random()).join('');
+            iterationCount++;
+        }
+
+        this.helpWord = helpWord;
     }
 
     private setNextTestModel() {
         this.testIndex++;
+        this.progress = Math.round(this.testIndex / this.testCount * 100);
 
         if (this.testIndex >= this.testCount) {
             let modalWindowModel = CommonHelper.buildOkCancelModalConfig(
@@ -103,11 +127,45 @@ export class WriteTest implements OnInit {
                 this.prepareTest.bind(this),
                 () => this.router.navigate(['/user-stat']));
 
-            ModalWindowServise.showModalWindow(modalWindowModel);
+            setTimeout(() => {
+                ModalWindowServise.showModalWindow(modalWindowModel);
+            }, 300);
             return;
         }
 
         this.currentTestModel = this.testSet[this.testIndex];
+        this.currentTestModel.Example
+            = this.hideWordInExample(this.currentTestModel.TrueAnswer, this.currentTestModel.Example);
         this.isHelpUsed = false;
+    }
+
+    private hideWordInExample(word: string, example: string) {
+        if (!example || !word) {
+            return '';
+        }
+
+        // 70% length
+        let searchCriteriaLength = Math.round(word.length / 100 * 70);
+        let searchCriteria = word.substring(0, searchCriteriaLength).toLowerCase();
+        let exampleItems = example.split(' ');
+
+        let matches = exampleItems.filter((item) => {
+            return item.toLowerCase().indexOf(searchCriteria) === 0;
+        });
+
+        matches.forEach((match) => example = example.replace(new RegExp(match, 'g'), '***'));
+        return example;
+    }
+
+    private showTrueAnswer (message: string) {
+        let modalWindowModel = new ModalWindowModel();
+        modalWindowModel.HeaderText = 'Error';
+        modalWindowModel.BodyText = message;
+        modalWindowModel.IsApplyButton = true;
+        modalWindowModel.IsCancelButton = false;
+        modalWindowModel.ApplyButtonText = 'OK';
+        modalWindowModel.ApplyCallback = () => this.setNextTestModel();
+
+        ModalWindowServise.showModalWindow(modalWindowModel);
     }
 }

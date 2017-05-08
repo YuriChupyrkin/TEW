@@ -1,11 +1,15 @@
 ﻿<div class="center-block">
     <!-- buttons -->
     <div>
-        <button [disabled]="!currentTest.Word && !firstTestNOTloaded" (click)="prepareTest('EnRuTest')" class="btn btn-primary">
-            Eng-Rus
+        <button [disabled]="!currentTest.Word && !firstTestNOTloaded"
+            (click)="prepareTest('EnRuTest')"
+            class="btn btn-primary text-button">
+                Eng-Rus
         </button>
-        <button [disabled]="!currentTest.Word && !firstTestNOTloaded" (click)="prepareTest('RuEnTest')" class="btn btn-primary">
-            Rus-Eng
+        <button [disabled]="!currentTest.Word && !firstTestNOTloaded"
+            (click)="prepareTest('RuEnTest')"
+            class="btn btn-primary text-button">
+                Rus-Eng
         </button>
     </div>
 
@@ -35,14 +39,20 @@
                 <br />
 
                 <!-- disabled when set true answer (picked)-->
-                <button [disabled]="trueAnswer" (click)="pickAnswer(choosenAnswer)" class="btn btn-lg btn-success">
-                   <i class="fa fa-check" aria-hidden="true"></i>
+                <button [disabled]="trueAnswer"
+                    (click)="pickAnswer(choosenAnswer)"
+                    class="btn btn-lg btn-success icon-button">
+                        <i class="fa fa-check" aria-hidden="true"></i>
                 </button>
-                <button [disabled]="trueAnswer || currentTest.Answers.length < 4" class="btn btn-lg  btn-warning" (click)="helpPick()">
-                    <i class="fa fa-question" aria-hidden="true"></i>
+                <button [disabled]="trueAnswer || currentTest.Answers.length < 4"
+                    class="btn btn-lg btn-warning icon-button"
+                    (click)="helpPick()">
+                        <i class="fa fa-question" aria-hidden="true"></i>
                 </button>
-                <button  [disabled]="trueAnswer" (click)="showIsDeleteModal(currentTest)" class="btn btn-lg  btn-danger">
-                    <i class="fa fa-times" aria-hidden="true"></i>
+                <button  [disabled]="trueAnswer"
+                    (click)="showIsDeleteModal(currentTest)"
+                    class="btn btn-lg btn-danger icon-button">
+                        <i class="fa fa-times" aria-hidden="true"></i>
                 </button>
             </div>
         </div>

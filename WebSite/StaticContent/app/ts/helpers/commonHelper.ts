@@ -1,5 +1,6 @@
 ﻿import { ModalWindowModel } from '../models/modalWindowModel';
 import { ModalWindowServise } from '../services/modalWindowServise';
+import { ConstantStorage } from '../helpers/constantStorage';
 
 export class CommonHelper {
     public static logOff() {
@@ -36,5 +37,9 @@ export class CommonHelper {
         modalWindowModel.CancelButtonText = 'Cancel';
 
         ModalWindowServise.showModalWindow(modalWindowModel);
+    }
+
+    public static isApplicationReady() {
+        return !!ConstantStorage.getUserId();
     }
 }

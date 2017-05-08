@@ -3,7 +3,7 @@ import { ModalWindow } from '../helpComponents/ModalWindow';
 import { ModalWindowModel } from '../models/modalWindowModel';
 
 export class ModalWindowServise {
-    private static appComponent: AppComponent
+    private static appComponent: AppComponent;
 
     public static initModalWindowService(app: AppComponent) {
         if (!this.appComponent) {

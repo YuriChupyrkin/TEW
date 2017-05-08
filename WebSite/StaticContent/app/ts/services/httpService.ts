@@ -1,7 +1,7 @@
 ﻿import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { ConstantStorage } from '../helpers/constantStorage'
+import { ConstantStorage } from '../helpers/constantStorage';
 import { PubSub } from './pubSub';
 
 import 'rxjs/add/operator/map';

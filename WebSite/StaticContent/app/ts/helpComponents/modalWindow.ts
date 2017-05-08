@@ -31,7 +31,7 @@ export class ModalWindow {
                  component.instance.options = value.InnerComponentOptions;
             }
 
-            this.windowSizeClass = this.config.MediumWindowSize ? 'modal-md' : 'modal-sm'
+            this.windowSizeClass = this.config.MediumWindowSize ? 'modal-md' : 'modal-sm';
 
             if (this.config.IsApplyButton === undefined) {
                 this.config.IsApplyButton = false;
@@ -52,7 +52,7 @@ export class ModalWindow {
 
     constructor(private viewContainerRef: ViewContainerRef, private resolver: ComponentFactoryResolver ) {
         let self = this;
-        this.windowSizeClass = 'modal-sm'
+        this.windowSizeClass = 'modal-sm';
         this.dismissed = false;
         if (!this.config) {
             this.windowConfig = undefined;

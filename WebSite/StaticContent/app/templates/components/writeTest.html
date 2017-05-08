@@ -1,25 +1,29 @@
 <div>
-    TEST
-    <div>
-        <div>
-            Word: {{currentTestModel.Word}}
+    <div class="row center-block write-test-progress">
+        <progress-bar [progress]="progress"></progress-bar>
+    </div>
+    <div class="write-test-body">
+        <div class="tests-test-word">
+            {{currentTestModel.Word}}
         </div>
-        <div *ngIf="isHelpUsed">
-            Help word: {{helpWord}}
+        <div class="tests-test-example">
+            {{currentTestModel.Example}}
         </div>
-        <div *ngIf="!isHelpUsed">
-            <button (click)="useHelp()">HELP</button>
+        <div class="write-test-help">
+            <div *ngIf="isHelpUsed" class="write-test-help-word">
+                {{helpWord}}
+            </div>
+            <button *ngIf="!isHelpUsed" (click)="useHelp()" class="btn btn-warning text-button">HELP</button>
         </div>
-        <hr/>
-        <form [formGroup]="answerForm" (ngSubmit)="checkAnswer(answerForm.value)">
+        <form class="center-block" [formGroup]="answerForm" (ngSubmit)="checkAnswer(answerForm.value)">
             <input [formControl]="answerForm.controls['answer']"
                 type="text"
-                class="form-control"
+                class="form-control write-test-input"
                 (keyup.enter)="checkAnswer(answerForm.value)"/>
 
-            <input type="submit" class="btn btn-success"
-                    [disabled]="!answerForm.valid"
-                    value="OK" />
+            <input type="submit" class="btn btn-success text-button"
+                [disabled]="!answerForm.valid"
+                value="OK" />
         </form>
     </div>
 </div>
