@@ -63,9 +63,13 @@
                     <span class="field-label">Translates:</span>
                     <div *ngFor="let translate of translates;" class="list-items">
                         <div class="list-item cursor-pointer"
-                                [class.active-list-item]="translate == addWordform.controls['russian'].value"
-                                (click)="chooseTranslate(translate)">
-                            {{translate}}
+                                [class.list-item-green]="translate.IsUserTranslate"
+                                [class.active-list-item]="translate.Translate == addWordform.controls['russian'].value"
+                                (click)="chooseTranslate(translate.Translate)">
+                            {{translate.Translate}}
+                            <span *ngIf="translate.IsUserTranslate" class="translate-word-level">
+                                (level: {{translate.WordLevel}})
+                            </span>
                         </div>
                     </div>
                     <br/>

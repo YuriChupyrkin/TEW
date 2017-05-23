@@ -42,4 +42,8 @@ export class CommonHelper {
     public static isApplicationReady() {
         return !!ConstantStorage.getUserId();
     }
+
+    public static isStringEqualInLower(firstItem: string, secondItem: string) {
+        return firstItem.toLocaleLowerCase() === secondItem.toLocaleLowerCase();
+    }
 }

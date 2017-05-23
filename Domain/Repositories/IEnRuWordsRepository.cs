@@ -9,7 +9,7 @@ namespace Domain.Repositories
 	public interface IEnRuWordsRepository : IGenericRepository
 	{
     IQueryable<EnRuWord> AllEnRuWordsQueryable();
-    IEnumerable<string> GetTranslate(string enWord);
+    IEnumerable<EnRuWord> GetTranslate(string enWord);
 
 		EnRuWord AddTranslate(string engWord, string ruWord, string example, int userId, DateTime? updateDate = null,
 			int level = 0, int answerCount = 0, int failAnswerCount = 1);

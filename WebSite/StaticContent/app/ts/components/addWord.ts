@@ -4,6 +4,8 @@ import { HttpService } from '../services/httpService';
 import { WordsCloudModel } from '../models/wordsCloudModel';
 import { Word } from '../models/word';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { TranslateModel } from '../models/translateModel';
+import { CommonHelper } from '../helpers/commonHelper';
 
 @Component({
     selector: 'add-word',
@@ -11,12 +13,12 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 
 export class AddWord implements OnInit {
-    private translates: Array<string>;
+    private translates: Array<TranslateModel>;
     private addWordform: FormGroup;
     private translateFor: string;
 
     constructor(private formBuilder: FormBuilder, private httpService: HttpService) {
-        this.translates = new Array<string>();
+        this.translates = new Array<TranslateModel>();
     }
 
     ngOnInit() {
@@ -57,7 +59,8 @@ export class AddWord implements OnInit {
 
     private translateByExistsWords(englishWord: string) {
         let url = `${ConstantStorage.getWordTranslaterController()}?word=${englishWord}`;
-        this.httpService.processGet<Array<string>>(url).then(response => this.addTranslate(response));
+        this.httpService.processGet<Array<string>>(url)
+            .then(response => this.addInternalTranslate(response));
     }
 
     private translateByYandex(englishWord: string) {
@@ -79,13 +82,13 @@ export class AddWord implements OnInit {
                 let translate = defZero['tr']['0'];
 
                 if (translate['text']) {
-                    this.addTranslate([translate['text']]);
+                    this.addYandexTranslate([translate['text']]);
                 }
 
                 if (translate['syn'] && translate['syn']['length']) {
                     for (let i = 0; i < translate['syn']['length']; i++) {
                         let syn = translate['syn'][i];
-                        this.addTranslate([syn['text']]);
+                        this.addYandexTranslate([syn['text']]);
                     }
                 }
 
@@ -108,15 +111,43 @@ export class AddWord implements OnInit {
 
         this.addWordform.controls['russian'].reset();
         this.addWordform.controls['example'].reset();
-        this.translates = new Array<string>();
+        this.translates = new Array<TranslateModel>();
     }
 
-    private addTranslate(translates: Array<string>) {
+    private addYandexTranslate(translates: Array<string>) {
         let self = this;
 
         translates.forEach(translate => {
-            if (self.translates.indexOf(translate) === -1) {
-                self.translates.push(translate);
+            if (!self.translates.find(item => CommonHelper.isStringEqualInLower(item.Translate, translate))) {
+                self.translates.push(<TranslateModel>
+                    {
+                        Translate: translate,
+                        IsUserTranslate: false
+                    }
+                );
+            }
+        });
+    }
+
+    private addInternalTranslate(internalTranslates: Array<any>) {
+        let self = this;
+
+        internalTranslates.forEach(internalTranslate => {
+            let existedTranslate =
+                self.translates
+                    .find(item => CommonHelper.isStringEqualInLower(item.Translate, internalTranslate.Russian));
+
+            if (existedTranslate) {
+                existedTranslate.IsUserTranslate = internalTranslate.UserId === ConstantStorage.getUserId();
+                existedTranslate.WordLevel = internalTranslate.Level;
+            } else {
+                self.translates.push(<TranslateModel>
+                    {
+                        Translate: internalTranslate.Russian,
+                        IsUserTranslate: internalTranslate.UserId === ConstantStorage.getUserId(),
+                        WordLevel: internalTranslate.Level
+                    }
+                );
             }
         });
     }

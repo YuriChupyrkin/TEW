@@ -204,6 +204,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\UserHelper.cs" />
+    <Compile Include="Models\ChangePasswordModel.cs" />
     <Compile Include="Models\GetUserWordsModel.cs" />
     <Compile Include="Models\SignInModel.cs" />
     <Compile Include="Models\SignUpModel.cs" />
@@ -287,6 +288,7 @@
     <Content Include="StaticContent\app\js\main.js" />
     <Content Include="StaticContent\app\js\models\modalWindowModel.js" />
     <Content Include="StaticContent\app\js\models\pickerTestModel.js" />
+    <Content Include="StaticContent\app\js\models\translateModel.js" />
     <Content Include="StaticContent\app\js\models\User.js" />
     <Content Include="StaticContent\app\js\models\userStatModel.js" />
     <Content Include="StaticContent\app\js\models\userWords.js" />

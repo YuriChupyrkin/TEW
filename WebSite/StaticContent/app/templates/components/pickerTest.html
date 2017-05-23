@@ -30,7 +30,7 @@
                         <div (click)="setAnswer(answer)"
                              (dblclick)="pickAnswer(answer)"
                              [class.active-list-item]="answer == choosenAnswer"
-                             [class.list-item-error]="trueAnswer == answer"
+                             [class.list-item-green]="trueAnswer == answer"
                              class="list-item cursor-pointer">
                             {{answer}}
                         </div>

@@ -44,7 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\ChangePasswordModel.cs" />
     <Compile Include="Entities\EnglishWord.cs" />
     <Compile Include="Entities\EnRuWord.cs" />
     <Compile Include="Entities\Entity.cs" />

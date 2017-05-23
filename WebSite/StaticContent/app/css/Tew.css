@@ -98,7 +98,7 @@ acitve link > color: #5af35d
 }
 
 .active-list-item {
-    background-color: #737272;
+    background-color: #737272 !important;
     color: white;
 }
 
@@ -125,7 +125,7 @@ acitve link > color: #5af35d
     font-size: 20px;
 }
 
-.list-item-error {
+.list-item-green {
     background-color: #3c763d;
     color: white;
 }
@@ -251,4 +251,9 @@ acitve link > color: #5af35d
 
 .icon-button {
     min-width: 55px;
+}
+
+.translate-word-level {
+    font-style: italic;
+    margin: 0 15px 0 5px;
 }

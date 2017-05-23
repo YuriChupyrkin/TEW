@@ -54,13 +54,12 @@ namespace EntityFrameworkDAL.Repositories
       }
     }
 
-    public IEnumerable<string> GetTranslate(string enWord)
+    public IEnumerable<EnRuWord> GetTranslate(string enWord)
     {
       var russianWords = _context.EnRuWords
         .Where(r => r.EnglishWord.EnWord
           .Equals(enWord, StringComparison.OrdinalIgnoreCase))
-        .Select(r => r.RussianWord.RuWord)
-        .Distinct().AsEnumerable();
+        .AsEnumerable();
 
       return russianWords;
     }
