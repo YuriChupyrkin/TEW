@@ -7,6 +7,7 @@ import { WordsCloudModel } from '../models/wordsCloudModel';
 import { ModalWindowServise } from '../services/modalWindowServise';
 import { ModalWindowModel } from '../models/modalWindowModel';
 import { CommonHelper } from '../helpers/commonHelper';
+import { SelectableListItemModel } from '../models/selectableListItemModel';
 
 @Component({
     selector: 'picker-test',
@@ -23,14 +24,15 @@ export class PickerTest {
     private testCount: number;
     private failedCount: number;
     private currentTest: PickerTestModel;
-    private choosenAnswer: string;
-    private trueAnswer: string;
+    private choosenAnswer: SelectableListItemModel;
     private testIsFinished: boolean;
     private firstTestNOTloaded: boolean;
     private progress: number;
+    private selectableListItems: Array<SelectableListItemModel>;
 
     constructor(private httpService: HttpService) {
         this.testSet = new Array<PickerTestModel>();
+        this.selectableListItems = new Array<SelectableListItemModel>();
         this.progress = 3;
 
         this.firstTestNOTloaded = true;
@@ -66,35 +68,42 @@ export class PickerTest {
         this.testCount = tests.length;
         this.failedCount = 0;
         this.currentTest = tests[this.testIndex];
+        this.setSelectableListItems(this.currentTest);
     }
 
     private initEmptyCurrentTest() {
         this.currentTest = new PickerTestModel();
+        this.selectableListItems = new Array<SelectableListItemModel>();
         this.currentTest.Answers = [];
         this.currentTest.Word = '';
 
-        this.choosenAnswer = '';
-        this.trueAnswer = '';
+        this.choosenAnswer = new SelectableListItemModel();
     }
 
-    private setAnswer(answer: string) {
-        if (!answer || this.trueAnswer) {
+    private setAnswer(answer: SelectableListItemModel) {
+        if (!answer.Value) {
             return;
         }
 
         this.choosenAnswer = answer;
     }
 
-    private pickAnswer(answer: string) {
-        if (!answer || this.trueAnswer) {
+    private pickAnswer(answer: SelectableListItemModel) {
+        if (!answer.Value) {
             return;
         }
 
-        this.trueAnswer = this.currentTest.Answers[this.currentTest.AnswerId];
+        let trueAnswer = this.currentTest.Answers[this.currentTest.AnswerId];
         let isTrueAnswer = false;
 
-        if (this.trueAnswer !== answer) {
-            let message = `"${this.currentTest.Word}" = "${this.trueAnswer}"`;
+        if (trueAnswer !== answer.Value) {
+            let message = `"${this.currentTest.Word}" = "${trueAnswer}"`;
+
+            // highlight true answer
+            this.selectableListItems.forEach(item => {
+                item.IsHighlighted = item.Value === trueAnswer;
+            });
+
             this.showMessageAndNext(message, true);
             this.failedCount++;
         } else {
@@ -121,9 +130,7 @@ export class PickerTest {
     }
 
     private setNextTest() {
-        this.choosenAnswer = '';
-        this.trueAnswer = '';
-
+        this.choosenAnswer = new SelectableListItemModel();
         this.testIndex++;
 
         // set progress
@@ -132,7 +139,6 @@ export class PickerTest {
         if (this.testIndex >= this.testCount) {
             let message = `Errors count: ${this.failedCount}`;
             this.testIsFinished = true;
-            this.trueAnswer = 'disable pick button';
             this.showMessageAndNext(message, false);
 
             // reset progress
@@ -144,15 +150,25 @@ export class PickerTest {
         }
 
         this.currentTest = this.testSet[this.testIndex];
+        this.setSelectableListItems(this.currentTest);
     }
 
     private helpPick() {
-        if (0 !== this.currentTest.AnswerId) {
+        if (this.currentTest.AnswerId !== 0) {
             this.currentTest.Answers.splice(0, 1);
             this.currentTest.AnswerId--;
         } else {
             this.currentTest.Answers.splice(1, 1);
         }
+
+        this.choosenAnswer = new SelectableListItemModel();
+        this.setSelectableListItems(this.currentTest);
+    }
+
+    private setSelectableListItems(pickerTestModel: PickerTestModel) {
+        this.selectableListItems = pickerTestModel.Answers.map(answer => {
+            return <SelectableListItemModel> { Value: answer, IsHighlighted: false };
+        });
     }
 
     private deleteWord(pickerTestModel: PickerTestModel) {

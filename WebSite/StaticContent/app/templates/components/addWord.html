@@ -36,7 +36,11 @@
                             Max length should be less than 25 symbols
                         </span>
                     </div>
-                    <input [formControl]="addWordform.controls['russian']" class="form-control" type="text" (keyup.enter)="submitForm(addWordform.value)" />
+                    <input [formControl]="addWordform.controls['russian']"
+                        class="form-control"
+                        type="text"
+                        (change)="translateChange($event)"
+                        (keyup.enter)="submitForm(addWordform.value)" />
                     <br />
                 </div>
                 <div>
@@ -56,29 +60,18 @@
             </div>
         </div>
 
-        <!-- second column -->
         <div class="col-lg-6 col-md-6 col-sm-7 col-xs-12">
-            <div [hidden]="translates.length < 1">
-                <div class="center-block">
-                    <span class="field-label">Translates:</span>
-                    <div *ngFor="let translate of translates;" class="list-items">
-                        <div class="list-item cursor-pointer"
-                                [class.list-item-green]="translate.IsUserTranslate"
-                                [class.active-list-item]="translate.Translate == addWordform.controls['russian'].value"
-                                (click)="chooseTranslate(translate.Translate)">
-                            {{translate.Translate}}
-                            <span *ngIf="translate.IsUserTranslate" class="translate-word-level">
-                                (level: {{translate.WordLevel}})
-                            </span>
-                        </div>
-                    </div>
-                    <br/>
-                </div>
-            </div>
-            <input type="submit"
-                class="btn btn-success md-displayBlock center-block add-word-button"
-                [disabled]="!addWordform.valid"
-                value="Add word"/>
+            <selectable-list
+                (itemClick)="chooseTranslate($event)"
+                header="Translates:"
+                showSecondary="true"
+                [items]="translates">
+            </selectable-list>
         </div>
+
+        <input type="submit"
+            class="btn btn-success md-displayBlock center-block add-word-button"
+            [disabled]="!addWordform.valid"
+            value="Add word"/>
     </form>
 </div>

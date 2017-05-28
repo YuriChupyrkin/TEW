@@ -19,6 +19,7 @@ import { MyWordsHeader } from './helpComponents/myWordsHeader';
 import { EditMyWord } from './helpComponents/editMyWord';
 import { WriteTest } from './components/writeTest';
 import { Toolbar } from './components/toolbar';
+import { SelectableList } from './components/selectableList';
 
 // For textbox binding
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
@@ -40,7 +41,8 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
         MyWordsHeader,
         EditMyWord,
         WriteTest,
-        Toolbar
+        Toolbar,
+        SelectableList
     ],
 
     bootstrap: [AppComponent],

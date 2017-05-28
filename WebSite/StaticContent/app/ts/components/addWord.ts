@@ -6,6 +6,7 @@ import { Word } from '../models/word';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TranslateModel } from '../models/translateModel';
 import { CommonHelper } from '../helpers/commonHelper';
+import { SelectableListItemModel } from '../models/selectableListItemModel';
 
 @Component({
     selector: 'add-word',
@@ -13,12 +14,13 @@ import { CommonHelper } from '../helpers/commonHelper';
 })
 
 export class AddWord implements OnInit {
-    private translates: Array<TranslateModel>;
+    private translates: Array<SelectableListItemModel>;
     private addWordform: FormGroup;
     private translateFor: string;
+    private testTrasnlates: Array<SelectableListItemModel>;
 
     constructor(private formBuilder: FormBuilder, private httpService: HttpService) {
-        this.translates = new Array<TranslateModel>();
+        this.translates = new Array<SelectableListItemModel>();
     }
 
     ngOnInit() {
@@ -100,8 +102,8 @@ export class AddWord implements OnInit {
         }
     }
 
-    private chooseTranslate(translate: string) {
-        this.addWordform.controls['russian'].setValue(translate);
+    private chooseTranslate(item: SelectableListItemModel) {
+        this.addWordform.controls['russian'].setValue(item.Value);
     }
 
     private clearTranslateResults(isClearEnglishWord: boolean) {
@@ -111,18 +113,18 @@ export class AddWord implements OnInit {
 
         this.addWordform.controls['russian'].reset();
         this.addWordform.controls['example'].reset();
-        this.translates = new Array<TranslateModel>();
+        this.translates = new Array<SelectableListItemModel>();
     }
 
     private addYandexTranslate(translates: Array<string>) {
         let self = this;
 
         translates.forEach(translate => {
-            if (!self.translates.find(item => CommonHelper.isStringEqualInLower(item.Translate, translate))) {
-                self.translates.push(<TranslateModel>
+            if (!self.translates.find(item => CommonHelper.isStringEqualInLower(item.Value, translate))) {
+                self.translates.push(<SelectableListItemModel>
                     {
-                        Translate: translate,
-                        IsUserTranslate: false
+                        Value: translate,
+                        IsHighlighted: false
                     }
                 );
             }
@@ -135,17 +137,20 @@ export class AddWord implements OnInit {
         internalTranslates.forEach(internalTranslate => {
             let existedTranslate =
                 self.translates
-                    .find(item => CommonHelper.isStringEqualInLower(item.Translate, internalTranslate.Russian));
+                    .find(item => CommonHelper.isStringEqualInLower(item.Value, internalTranslate.Russian));
+            let isUserWord = internalTranslate.UserId === ConstantStorage.getUserId();
 
             if (existedTranslate) {
-                existedTranslate.IsUserTranslate = internalTranslate.UserId === ConstantStorage.getUserId();
-                existedTranslate.WordLevel = internalTranslate.Level;
+                if (!existedTranslate.IsHighlighted) {
+                    existedTranslate.IsHighlighted = isUserWord;
+                    existedTranslate.SecondaryValue = isUserWord ? `Level: ${internalTranslate.Level}` : '';
+                }
             } else {
-                self.translates.push(<TranslateModel>
+                self.translates.push(<SelectableListItemModel>
                     {
-                        Translate: internalTranslate.Russian,
-                        IsUserTranslate: internalTranslate.UserId === ConstantStorage.getUserId(),
-                        WordLevel: internalTranslate.Level
+                        Value: internalTranslate.Russian,
+                        IsHighlighted: isUserWord,
+                        SecondaryValue: isUserWord ? `Level: ${internalTranslate.Level}` : ''
                     }
                 );
             }
@@ -178,5 +183,15 @@ export class AddWord implements OnInit {
             .then(response => console.dir(response), error => alert('error'));
 
         this.clearTranslateResults(true);
+    }
+
+    private translateChange(value: any) {
+        console.log('translateChange');
+        console.log(value);
+
+        let translate = this.addWordform.controls['russian'].value;
+        this.translates.forEach(item => {
+            item.IsActive = item.Value === translate;
+        });
     }
 }

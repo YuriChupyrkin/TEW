@@ -22,25 +22,15 @@
             <!-- test area -->
             <div [hidden]="!currentTest.Word">
                 <div class="tests-test-word">{{currentTest.Word}}</div>
-                <div *ngIf="testName != RuEnTest" class="tests-test-example">{{currentTest.Example}}</div>
-                <br />
-
-                <div>
-                    <div *ngFor="let answer of currentTest.Answers;" class="list-items">
-                        <div (click)="setAnswer(answer)"
-                             (dblclick)="pickAnswer(answer)"
-                             [class.active-list-item]="answer == choosenAnswer"
-                             [class.list-item-green]="trueAnswer == answer"
-                             class="list-item cursor-pointer">
-                            {{answer}}
-                        </div>
-                    </div>
-                </div>
+                <selectable-list
+                    (itemClick)="setAnswer($event)"
+                    (itemDbclick)="pickAnswer($event)"
+                    bindon-items="selectableListItems">
+                </selectable-list>
                 <br />
 
                 <!-- disabled when set true answer (picked)-->
-                <button [disabled]="trueAnswer"
-                    (click)="pickAnswer(choosenAnswer)"
+                <button (click)="pickAnswer(choosenAnswer)"
                     class="btn btn-lg btn-success icon-button">
                         <i class="fa fa-check" aria-hidden="true"></i>
                 </button>
