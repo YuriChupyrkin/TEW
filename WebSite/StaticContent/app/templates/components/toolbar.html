@@ -1,0 +1,36 @@
+<div class="toolbar" [ngClass]="{'opened-toolbar': isLinkVisible && !desktopMode }">
+    <div class="toolbar-container">
+        <div class="toolbar-body" [ngClass]="desktopMode ? 'desktop-toolbar-body': 'mobile-toolbar-body'">
+            <div *ngIf="!desktopMode" class="menu">
+                <div class="menu-icon" (click)="showHideLinks()">
+                    <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+                </div >
+            </div>
+            <div  class="toolbar-links">
+                <a routerLink="/add-word" class="toolbar-link" routerLinkActive="active" (click)="linkClick()">
+                    Add word
+                </a>
+                <a routerLink="/my-words" class="toolbar-link" routerLinkActive="active" (click)="linkClick()">
+                    My words
+                </a>
+                <a routerLink="/picker-test" class="toolbar-link" routerLinkActive="active" (click)="linkClick()">
+                    Picker test
+                </a>
+                <a routerLink="/write-test" class="toolbar-link" routerLinkActive="active" (click)="linkClick()">
+                    Write test
+                </a>
+                <a routerLink="/irregular-verbs" class="toolbar-link" routerLinkActive="active"(click)="linkClick()">
+                    Irregular verbs
+                </a>
+                <a routerLink="/user-stat" class="toolbar-link" routerLinkActive="active" (click)="linkClick()">
+                    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                    {{UserName}}
+                </a> 
+                <a class="toolbar-link" (click)="logOut()">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    Log out
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -44,11 +44,6 @@ acitve link > color: #5af35d
   font-size: 20px;
 }
 
-.active-menu-item {
-	font-size: 20px;
-	color: #39e82e !important;
-}
-
 .error-field {
     color: red;
     font-size: 14px;

@@ -1,0 +1,96 @@
+.toolbar {
+    background: gray;
+    position: relative;
+    height: 60px;
+    transition: height 0.3s ease-in;
+
+    &.opened-toolbar {
+        height: 400px;
+    }
+
+    &:not(.opened-toolbar) {
+        .mobile-toolbar-body {
+            .toolbar-links {
+                opacity: 0 !important;
+            }
+        }
+    }
+
+    .toolbar-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    .toolbar-body {
+        padding: 0 20px;
+
+        .toolbar-links {
+            .toolbar-link {
+                font-size: 18px;
+                color: white;
+                text-decoration: none;
+                cursor: pointer;
+
+                &.active {
+                    font-size: 20px;
+                    color: #39e82e !important;
+                }
+            }
+        }
+
+        &.desktop-toolbar-body {
+            .toolbar-links {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                min-height: 60px;
+                flex-wrap: wrap;
+
+                .toolbar-link {
+                    flex: 1 1 160px;
+                    display: flex;
+                    line-height: 18px;
+                    flex-wrap: nowrap;
+
+                    .fa {
+                        margin-right: 5px;
+                    }
+
+                    &:hover {
+                        color: yellow;
+                    }
+                }
+            }
+        }
+
+        &.mobile-toolbar-body {
+            .menu {
+                position: relative;
+                height: 50px;
+
+                .menu-icon {
+                    position: absolute;
+                    top: 12px;
+                }
+            }
+
+            .toolbar-links {
+                transition: opacity 0.3s ease-in;
+                padding-left: 10px;
+                opacity: 1;
+                margin: 5px 0;
+
+                .toolbar-link {
+                    font-size: 26px;
+                    display: block;
+                }
+
+                &.active {
+                    font-size: 28px;
+                }
+            }
+        }
+    }
+}
