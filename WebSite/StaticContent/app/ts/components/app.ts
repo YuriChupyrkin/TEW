@@ -70,7 +70,7 @@ export class AppComponent implements OnInit {
     private setUserInfo(userStatModel: UserStatModel) {
         ConstantStorage.setUserStatModel(userStatModel);
 
-        this.userName = userStatModel.Email;
+        this.userName = userStatModel.Email.split('@')[0];
         this.router.navigate(['/user-stat']);
         this.isLoading = false;
     }

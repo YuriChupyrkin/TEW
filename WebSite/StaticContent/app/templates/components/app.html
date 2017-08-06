@@ -1,8 +1,8 @@
-﻿<div class="container">
+﻿<div>
     <modal-window [windowConfig]="modalConfig"></modal-window>
     <toolbar [Logout]="logOut" [UserName]="userName">
     </toolbar>
-    <div class="tew-body">
+    <div class="tew-body container">
         <div [style.visibility]="showLoadingArr.length > 0 ? 'visible' : 'hidden'">
             <loading-animation></loading-animation>
         </div>

@@ -13,16 +13,16 @@ acitve link > color: #5af35d
 
 ***/
 
-
-.tew-body {
-	margin-top: 40px;
+/* OVERRIDE BOOTSTRAP */
+@media (max-width: 767px) {
+    body {
+        padding: 0;
+    }
 }
 
-@media (max-width: 979px) {
-    .tew-body {
-	    margin-top: 0px;
-    }
-} 
+.tew-body {
+	margin-top: 60px;
+}
 
 .responsive-menu {
 	margin-left: 5px;
