@@ -75,28 +75,6 @@ acitve link > color: #5af35d
     }
 }
 
-.list-items {
-    background-color: #e0e0e0;
-    border-radius: 10px;
-    font-size: 24px;
-
-    /* No selection after double click */
-    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
-    -moz-user-select: none; /* mozilla browsers */
-    -ms-user-select: none; /* IE10+ */
-}
-
-.list-item {
-    width: 100%;
-    border-radius: 10px;
-    word-wrap: break-word;
-}
-
-.active-list-item {
-    background-color: #737272 !important;
-    color: white;
-}
-
 .cursor-pointer {
     cursor: pointer;
 }
@@ -136,19 +114,6 @@ acitve link > color: #5af35d
 
 .margin-20 {
     margin: 20px;
-}
-
-.tew-modal-title {
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.tew-modal-body {
-    font-size: 20px;
-}
-
-.tew-modal-button {
-    min-width: 80px;
 }
 
 .irregular-verbs-rus {
@@ -202,13 +167,9 @@ acitve link > color: #5af35d
   text-decoration: underline;
 }
 
-.modal-window-footer {
-  text-align: right;
-  padding: 15px;
-}
-
 .edit-word-buttons {
-  margin: -15px;
+  text-align: right;
+  padding-top: 15px;
 }
 
 .add-word-button {

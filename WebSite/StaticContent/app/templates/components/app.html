@@ -1,5 +1,5 @@
 ﻿<div>
-    <modal-window [windowConfig]="modalConfig"></modal-window>
+    <modal-window *ngIf="isModalOpen" [windowConfig]="modalConfig"></modal-window>
     <toolbar [Logout]="logOut" [UserName]="userName">
     </toolbar>
     <div class="tew-body container">

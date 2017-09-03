@@ -265,6 +265,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="StaticContent\app\css\components\modalWindow.css" />
     <Content Include="StaticContent\app\css\components\selectableList.css" />
     <Content Include="StaticContent\app\css\components\toolbar.css" />
     <Content Include="StaticContent\app\css\Tew.css" />

@@ -21,6 +21,8 @@ export class AppComponent implements OnInit {
     private modalConfig: ModalWindowModel;
     private showLoadingArr = [];
     private isLoading = false;
+    private isModalOpen = false;
+    private JQueryModalExpression = '.modal-container';
 
     constructor(private httpService: HttpService, private router: Router) {
         let url = `${ConstantStorage.getUserInfoController()}?userId=0`;
@@ -56,11 +58,30 @@ export class AppComponent implements OnInit {
         // auto toggle
         let windowWidth = JQueryHelper.getElement(window).width();
 
-        JQueryHelper.getElement('.navbar-collapse a:not(.dropdown-toggle)').click(function(){
-            if (windowWidth < 768 ) {
-                JQueryHelper.getElement('.navbar-collapse').collapse('hide');
-            }
+        PubSub.Sub('modalClose', () => {
+            this.hideModal();
         });
+    }
+
+    public hideModal() {
+        let modal = JQueryHelper.getElement(this.JQueryModalExpression);
+        modal.removeClass('modal-container-visible');
+        setTimeout(() => this.isModalOpen = false, 200);
+    }
+
+    public showModal(config: ModalWindowModel) {
+        let modal;
+        this.modalConfig = config;
+
+        // wait for closing of prev window
+        setTimeout(() =>  {
+            this.isModalOpen = true;
+
+            setTimeout(() => {
+                modal = JQueryHelper.getElement(this.JQueryModalExpression);
+                modal.addClass('modal-container-visible');
+            }, 200);
+        }, 500);
     }
 
     public setModalConfig(config: ModalWindowModel) {

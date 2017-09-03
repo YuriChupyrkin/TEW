@@ -2,15 +2,15 @@ import { Component, Input, Output, EventEmitter,
     ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { JQueryHelper } from '../helpers/jqueryHelper';
 import { ModalWindowModel } from '../models/modalWindowModel';
+import { PubSub } from '../services/pubSub';
 
 @Component({
     selector: 'modal-window',
-    templateUrl: '../../StaticContent/app/templates/helpComponents/modalWindow.html'
+    templateUrl: '../../StaticContent/app/templates/helpComponents/modalWindow.html',
+    styleUrls: ['../StaticContent/app/css/components/modalWindow.css']
 })
 
 export class ModalWindow {
-    public static readonly MODAL_WINDOW_ID = 'tew-modal-window';
-    private readonly modal_window_id = 'tew-modal-window';
     private windowSizeClass: string;
 
     @Output() public windowApplied = new EventEmitter();
@@ -57,29 +57,6 @@ export class ModalWindow {
         if (!this.config) {
             this.windowConfig = undefined;
         }
-
-        JQueryHelper.getElement(document).on(`hide.bs.modal`, `#${ModalWindow.MODAL_WINDOW_ID}`, function () {
-            if (self.dismissed === false) {
-                self.closeWindow();
-            }
-        });
-    }
-
-    public static showWindow() {
-        let element = JQueryHelper.getElementById(this.MODAL_WINDOW_ID);
-
-        if (element && element.modal) {
-            // wait for previous modal if they were...
-            setTimeout(() => element.modal(), 550);
-        }
-    }
-
-    public static closeWindow() {
-        let element = JQueryHelper.getElementById(this.MODAL_WINDOW_ID);
-
-        if (element && element.modal) {
-            element.modal('hide');
-        }
     }
 
     private applyWindow() {
@@ -120,7 +97,15 @@ export class ModalWindow {
     }
 
     private dismiss() {
-        this.innerComponent.clear();
+        if (this.innerComponent) {
+            this.innerComponent.clear();
+        }
+
+        this.triggerCloseEvent();
+    }
+
+    private triggerCloseEvent() {
+        PubSub.Pub('modalClose');
     }
 
     private buildDefaultConfig() {

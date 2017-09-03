@@ -28,14 +28,17 @@ export class EditMyWord {
     constructor(private formBuilder: FormBuilder, private httpService: HttpService) {
     }
 
+    private cancel(): void {
+        PubSub.Pub('modalClose');
+    }
+
     private save(value: any): void {
         let updateRussian = value['Russian'];
         let updateExample = value['Example'];
 
         if (updateRussian === this.word.Russian &&
             updateExample === this.word.Example) {
-            console.info('Not updated');
-            ModalWindowServise.hideModalWindow();
+            PubSub.Pub('modalClose');
             return;
         }
 
@@ -57,6 +60,6 @@ export class EditMyWord {
         this.httpService.processPost(wordsCloudModel, ConstantStorage.getEditWordController());
 
         PubSub.Pub('editWord', updateWord);
-        ModalWindowServise.hideModalWindow();
+        PubSub.Pub('modalClose');
     }
 }

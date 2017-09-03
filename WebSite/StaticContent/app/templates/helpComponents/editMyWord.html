@@ -39,9 +39,13 @@
             <textarea [formControl]="editWordform.controls['Example']" class="form-control"></textarea>
             <br />
         </div>
-        <div class="modal-window-footer edit-word-buttons">
-            <input type="submit" [disabled]="!editWordform.valid" class="btn btn-success tew-modal-button" value="Save"/>
-            <button class="btn btn-danger tew-modal-button" type="button" data-dismiss="modal">
+        <div class="edit-word-buttons">
+            <input type="submit"
+                [disabled]="!editWordform.valid"
+                class="btn btn-success"
+                value="Save"/>
+
+            <button class="btn btn-danger" (click)="cancel()">
                 Cancel
             </button>
         </div>

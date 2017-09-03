@@ -40,6 +40,11 @@
                 font-style: italic;
                 margin-right: 8px;
             }
+
+            &.active-list-item {
+                background-color: #737272 !important;
+                color: white;
+            }
         }
     }
 }

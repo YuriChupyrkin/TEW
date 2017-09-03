@@ -16,11 +16,6 @@ export class ModalWindowServise {
             throw new Error('invalid config');
         }
 
-        this.appComponent.setModalConfig(config);
-        ModalWindow.showWindow();
-    }
-
-    public static hideModalWindow() {
-        ModalWindow.closeWindow();
+        this.appComponent.showModal(config);
     }
 }
