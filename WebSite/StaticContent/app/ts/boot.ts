@@ -16,7 +16,7 @@ import { ModalWindow } from './helpComponents/modalWindow';
 import { UserStat } from './components/userStat';
 import { IrregularVerbs } from './components/irregularVerbs';
 import { MyWordsHeader } from './helpComponents/myWordsHeader';
-import { EditMyWord } from './helpComponents/editMyWord';
+import { EditMyWord } from './components/editMyWord';
 import { WriteTest } from './components/writeTest';
 import { Toolbar } from './components/toolbar';
 import { SelectableList } from './components/selectableList';

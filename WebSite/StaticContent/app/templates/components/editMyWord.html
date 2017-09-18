@@ -1,19 +1,22 @@
-<div>
+<div class="edit-word">
     <div>
-        <span class="field-label">English: {{word.English}}</span>
-    <div>
-    <div>
-        <span class="field-label">Level: {{word.Level}}</span>
+        <span class="edit-word-label">English: </span>
+        <span class="field-label">{{word.English}}</span>
     <div>
     <div>
-        <span class="field-label">Answers count: {{word.AnswerCount}}</span>
+        <span class="edit-word-label">Level: </span>
+        <span class="field-label">{{word.Level}}</span>
     <div>
     <div>
-        <span class="field-label">Fails count: {{word.FailAnswerCount}}</span>
+        <span class="edit-word-label">Answers count: </span>
+        <span class="field-label">{{word.AnswerCount}}</span>
     <div>
-    <br/>
+    <div>
+        <span class="edit-word-label">Fails count: </span>
+        <span class="field-label">{{word.FailAnswerCount}}</span>
+    <div>
 
-    <form [formGroup]="editWordform" (ngSubmit)="save(editWordform.value)">
+    <form class="edit-word-form" [formGroup]="editWordform" (ngSubmit)="save(editWordform.value)">
         <div>
             <span class="field-label">Russian:</span>
             <br />
@@ -25,7 +28,7 @@
                     Max length should be less than 25 symbols
                 </span>
             </div>
-            <input [formControl]="editWordform.controls['Russian']" type="text" class="form-control"/>
+            <input [formControl]="editWordform.controls['Russian']" type="text" class="form-input"/>
             <br/>
         </div>
         <div>
@@ -36,16 +39,16 @@
                     Max length should be less than 50 symbols
                 </span>
             </div>
-            <textarea [formControl]="editWordform.controls['Example']" class="form-control"></textarea>
+            <textarea [formControl]="editWordform.controls['Example']" class="form-input text-area"></textarea>
             <br />
         </div>
         <div class="edit-word-buttons">
             <input type="submit"
                 [disabled]="!editWordform.valid"
-                class="btn btn-success"
+                class="button button-green"
                 value="Save"/>
 
-            <button class="btn btn-danger" (click)="cancel()">
+            <button class="button button-red" (click)="cancel()">
                 Cancel
             </button>
         </div>

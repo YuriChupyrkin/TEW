@@ -9,9 +9,10 @@ import { ConstantStorage } from '../helpers/constantStorage';
 
 @Component({
     selector: 'edit-my-word',
-    templateUrl: '../../StaticContent/app/templates/helpComponents/editMyWord.html',
+    templateUrl: '../../StaticContent/app/templates/components/editMyWord.html',
     styleUrls: [
-        '../StaticContent/app/css/components/common.css'
+        '../StaticContent/app/css/components/common.css',
+        '../StaticContent/app/css/components/editMyWord.css'
     ]
 })
 

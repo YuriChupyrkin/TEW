@@ -153,11 +153,6 @@ acitve link > color: #5af35d
   text-decoration: underline;
 }
 
-.edit-word-buttons {
-  text-align: right;
-  padding-top: 15px;
-}
-
 .write-test-body {
     display: flex;
     flex-direction: column;

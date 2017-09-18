@@ -1,9 +1,9 @@
 $red: red;
 $white: white;
-$redBtn: red;
+$redBtn: #d9534f;
 $controlBorderColor: #d0d0d0;
 $blueBtn: blue;
-$btnGreen: green;
+$btnGreen: #449d44;
 $lightBlueBtn: #34A2FC;
 $black: black;
 $controlBorderRadius: 5px;
@@ -25,7 +25,8 @@ $controlBorderRadius: 5px;
     outline: none;
     border: 1px $controlBorderColor solid;
     padding: 0 10px;
-    min-width: 240px;
+    width: 240px;
+    font-size: 16px;
 
     &:focus {
         box-shadow: inset 0px 0px 0px 1px #66afe9;
@@ -45,7 +46,7 @@ $controlBorderRadius: 5px;
     display: flex;
 
     .form-input {
-        min-width: 200px;
+        width: 200px;
         border-right: none;
         border-radius: $controlBorderRadius 0 0 $controlBorderRadius;
     }
@@ -87,13 +88,13 @@ $controlBorderRadius: 5px;
     }
   
     &.button-red {
-        background: $red;
+        background: $redBtn;
         color: $white;
     
         &:hover,
         &:focus,
         &:active {
-            background: mix($white, $redBtn, 30%);
+            background: mix($red, $redBtn, 30%);
         }
     }
   
@@ -131,7 +132,7 @@ $controlBorderRadius: 5px;
         &:hover,
         &:focus,
         &:active {
-            background: mix($white, $btnGreen, 30%);
+            background: mix($black, $btnGreen, 30%);
         }
     }
   

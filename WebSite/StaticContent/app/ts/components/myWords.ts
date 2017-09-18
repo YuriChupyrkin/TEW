@@ -6,7 +6,7 @@ import { WordsCloudModel } from '../models/wordsCloudModel';
 import { ConstantStorage } from '../helpers/constantStorage';
 import { ModalWindowModel } from '../models/modalWindowModel';
 import { ModalWindowServise } from '../services/modalWindowServise';
-import { EditMyWord } from '../helpComponents/editMyWord';
+import { EditMyWord } from '../components/editMyWord';
 import { PubSub } from '../services/pubSub';
 import { CommonHelper } from '../helpers/commonHelper';
 
