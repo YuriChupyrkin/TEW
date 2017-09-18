@@ -1,4 +1,4 @@
-﻿<div class="center-block page-title">
+﻿<div class="page-title">
     My words
     <span *ngIf="wordsCount > 0 && isLoading == false"> ({{wordsCount}})</span>
 </div>
@@ -8,92 +8,52 @@
 </div>
 
 <div>
-    <div class="visible-desktop">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th (click)="headerClick('english')">
-                        <my-words-header [SortProperty]="sortKey" [Asc]="sortAsc"
-                            Title="English" SortKey="english">
-                        </my-words-header>
-                    </th>
-                    <th (click)="headerClick('russian')">
-                        <my-words-header [SortProperty]="sortKey" [Asc]="sortAsc"
-                            Title="Russian" SortKey="russian">
-                        </my-words-header>
-                    </th>
-                    <th (click)="headerClick('level')">
-                        <my-words-header [SortProperty]="sortKey" [Asc]="sortAsc"
-                            Title="Level" SortKey="level">
-                        </my-words-header>
-                    </th>
-                    <th (click)="headerClick('answer')">
-                        <my-words-header [SortProperty]="sortKey" [Asc]="sortAsc"
-                            Title="Answer count" SortKey="answer">
-                        </my-words-header>
-                    </th>
-                    <th (click)="headerClick('fail')">
-                        <my-words-header [SortProperty]="sortKey" [Asc]="sortAsc"
-                            Title="Fails count" SortKey="fail">
-                        </my-words-header>
-                    </th>
-                    <th>Example</th>
-                </tr>
-            </thead>
-            <tbody *ngFor="let word of words;">
-                <tr [hidden]="word.Hidden" class="my-words-tr">
-                    <td>
-                        <i class="fa fa-times fa-lg cursor-pointer" aria-hidden="true" (click)="askRemoveWord(word)"></i>
-                    </td>
-                    <td (click)="editWord(word)">
-                        <a href="javascript:;">{{word.English}}</a>
-                    </td>
-                    <td>{{word.Russian}}</td>
-                    <td>{{word.Level}}</td>
-                    <td>{{word.AnswerCount}}</td>
-                    <td>{{word.FailAnswerCount}}</td>
-                    <td>{{word.Example}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- mobile -->
-    <div class="visible-phone visible-tablet">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th (click)="headerClick('english')">
-                        <my-words-header [SortProperty]="sortKey" [Asc]="sortAsc"
-                            Title="English" SortKey="english">
-                        </my-words-header>
-                    </th>
-                    <th (click)="headerClick('russian')">
-                        <my-words-header [SortProperty]="sortKey" [Asc]="sortAsc"
-                            Title="Russian" SortKey="russian">
-                        </my-words-header>
-                    </th>
-                    <th (click)="headerClick('level')">
-                        <my-words-header [SortProperty]="sortKey" [Asc]="sortAsc"
-                            Title="Level" SortKey="level">
-                        </my-words-header>
-                    </th>
-                </tr>
-            </thead>
-            <tbody *ngFor="let word of words;">
-                <tr [hidden]="word.Hidden">
-                    <td>
-                        <i class="fa fa-times fa-lg cursor-pointer" aria-hidden="true" (click)="askRemoveWord(word)"></i>
-                    </td>
-                    <td (click)="editWord(word)">
-                        <a href="javascript:;">{{word.English}}</a>
-                    </td>
-                    <td>{{word.Russian}}</td>
-                    <td>{{word.Level}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <table class="tew-table tew-table-hover">
+        <thead>
+            <tr>
+                <th></th>
+                <th (click)="headerClick('english')">
+                    <my-words-header [SortProperty]="sortKey" [Asc]="sortAsc"
+                        Title="English" SortKey="english">
+                    </my-words-header>
+                </th>
+                <th (click)="headerClick('russian')">
+                    <my-words-header [SortProperty]="sortKey" [Asc]="sortAsc"
+                        Title="Russian" SortKey="russian">
+                    </my-words-header>
+                </th>
+                <th (click)="headerClick('level')">
+                    <my-words-header [SortProperty]="sortKey" [Asc]="sortAsc"
+                        Title="Level" SortKey="level">
+                    </my-words-header>
+                </th>
+                <th  class="optional-column" (click)="headerClick('answer')">
+                    <my-words-header [SortProperty]="sortKey" [Asc]="sortAsc"
+                        Title="Answer count" SortKey="answer">
+                    </my-words-header>
+                </th>
+                <th  class="optional-column" (click)="headerClick('fail')">
+                    <my-words-header [SortProperty]="sortKey" [Asc]="sortAsc"
+                        Title="Fails count" SortKey="fail">
+                    </my-words-header>
+                </th>
+                <th  class="optional-column">Example</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let word of words;">
+            <tr [hidden]="word.Hidden">
+                <td>
+                    <i class="fa fa-times fa-lg cursor-pointer" aria-hidden="true" (click)="askRemoveWord(word)"></i>
+                </td>
+                <td (click)="editWord(word)">
+                    <a href="javascript:;">{{word.English}}</a>
+                </td>
+                <td>{{word.Russian}}</td>
+                <td>{{word.Level}}</td>
+                <td class="optional-column">{{word.AnswerCount}}</td>
+                <td class="optional-column">{{word.FailAnswerCount}}</td>
+                <td class="optional-column">{{word.Example}}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>

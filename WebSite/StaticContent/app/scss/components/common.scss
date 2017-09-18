@@ -60,6 +60,22 @@ $controlBorderRadius: 5px;
     }
 }
 
+.page-title {
+    font-style: italic;
+    font-size: 22px;
+    display: flex;
+    justify-content: center;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.irregular-verbs-rus {
+    font-weight: bold;
+    font-style: italic;
+}
+
 /* buttons */
 
 .button {

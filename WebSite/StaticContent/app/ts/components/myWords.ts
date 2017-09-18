@@ -12,7 +12,11 @@ import { CommonHelper } from '../helpers/commonHelper';
 
 @Component({
     selector: 'my-words',
-    templateUrl: '../StaticContent/app/templates/components/myWords.html'
+    templateUrl: '../StaticContent/app/templates/components/myWords.html',
+    styleUrls: [
+        '../StaticContent/app/css/components/tewTable.css',
+        '../StaticContent/app/css/components/common.css'
+    ]
 })
 
 export class MyWords {

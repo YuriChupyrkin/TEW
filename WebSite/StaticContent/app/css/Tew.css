@@ -66,18 +66,9 @@ acitve link > color: #5af35d
     }
 }
 
-.cursor-pointer {
-    cursor: pointer;
-}
-
 .progress-bar {
     border-radius: 5px;
     min-width: 1%;
-}
-
-.page-title {
-    font-style: italic;
-    font-size: 22px;
 }
 
 .tests-test-word {
@@ -100,14 +91,6 @@ acitve link > color: #5af35d
 
 .margin-20 {
     margin: 20px;
-}
-
-.irregular-verbs-rus {
-    font: bold italic 130% serif;
-}
-
-.my-words-tr {
-    font-size: 17px;
 }
 
 .loading-lock-overlay {
