@@ -1,77 +1,80 @@
-<div class="row">
+<div class="add-word">
     <form [formGroup]="addWordform" (ngSubmit)="submitForm(addWordform.value)">
-        <!-- first column -->
-        <div class="col-lg-6 col-md-6 col-sm-5 col-xs-12">
-            <div>
+        <div class="add-word-row">
+            <!-- first column -->
+            <div class="add-word-column">
                 <div>
-                    <span class="field-label">English word:</span>
-                    <br />
-                    <div class="error-field">
-                        <span *ngIf="addWordform.controls['english'].hasError('required') && addWordform.controls['english'].touched">
-                            Enter english word
-                        </span>
-                        <span *ngIf="addWordform.controls['english'].hasError('maxlength') && addWordform.controls['english'].touched">
-                            Max length should be less than 25 symbols
-                        </span>
+                    <div class="form-item">
+                        <div class="field-label">English word:</div>
+                        <div class="error-field">
+                            <span *ngIf="addWordform.controls['english'].hasError('required') && addWordform.controls['english'].touched">
+                                Enter english word
+                            </span>
+                            <span *ngIf="addWordform.controls['english'].hasError('maxlength') && addWordform.controls['english'].touched">
+                                Max length should be less than 25 symbols
+                            </span>
+                        </div>
+
+                        <div class="input-with-icon">
+                                <input [formControl]="addWordform.controls['english']"
+                                    type="text"
+                                    class="form-input"
+                                    (keyup.enter)="translate()"
+                                    (focusout)="focusOut()"/>
+
+                                <!-- type="button" uses for prevent of submit form -->
+                                <button class="button button-gray button-icon"
+                                    type="button"
+                                    (click)="translate()">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </button>
+                            </div>
                     </div>
-                    <div class="input-group">
-                        <input [formControl]="addWordform.controls['english']" type="text" 
-                            class="form-control" (keyup.enter)="translate()" (focusout)="focusOut()"/>
-                        <span class="input-group-btn" style="width:0;">
-                            <button class="btn btn-default"  type="button" (click)="translate()">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                            </button>
-                        </span>
+                    <div class="form-item">
+                        <div class="field-label">Your translate:</div>
+                        <div class="error-field">
+                            <span *ngIf="addWordform.controls['russian'].hasError('required') && addWordform.controls['russian'].touched">
+                                Enter translate
+                            </span>
+                            <span *ngIf="addWordform.controls['russian'].hasError('maxlength') && addWordform.controls['russian'].touched">
+                                Max length should be less than 25 symbols
+                            </span>
+                        </div>
+                        <input [formControl]="addWordform.controls['russian']"
+                            class="form-input"
+                            type="text"
+                            (change)="translateChange($event)"
+                            (keyup.enter)="submitForm(addWordform.value)" />
                     </div>
-                    <br/>
+                    <div class="form-item">
+                        <div class="field-label">Example of use:</div>
+                        <div class="error-field">
+                            <span *ngIf="addWordform.controls['example'].hasError('maxlength') && addWordform.controls['example'].touched">
+                                Max length should be less than 50 symbols
+                            </span>
+                        </div>
+                        <textarea [formControl]="addWordform.controls['example']" class="form-input text-area"></textarea>
+                    </div>
                 </div>
-                <div>
-                    <span class="field-label">Your translate:</span>
-                    <br />
-                    <div class="error-field">
-                        <span *ngIf="addWordform.controls['russian'].hasError('required') && addWordform.controls['russian'].touched">
-                            Enter translate
-                        </span>
-                        <span *ngIf="addWordform.controls['russian'].hasError('maxlength') && addWordform.controls['russian'].touched">
-                            Max length should be less than 25 symbols
-                        </span>
-                    </div>
-                    <input [formControl]="addWordform.controls['russian']"
-                        class="form-control"
-                        type="text"
-                        (change)="translateChange($event)"
-                        (keyup.enter)="submitForm(addWordform.value)" />
-                    <br />
-                </div>
-                <div>
-                    <span class="field-label">Example of use:</span>
-                    <br />
-                    <div class="error-field">
-                        <span *ngIf="addWordform.controls['example'].hasError('maxlength') && addWordform.controls['example'].touched">
-                            Max length should be less than 50 symbols
-                        </span>
-                    </div>
-                    <textarea [formControl]="addWordform.controls['example']" class="form-control"></textarea>
-                    <br />
-                </div>
-                <input type="submit" class="btn btn-success md-displayNone"
-                    [disabled]="!addWordform.valid"
-                    value="Add word" />
+            </div>
+
+            <!-- second column -->
+
+            <div class="add-word-column">
+                <selectable-list
+                    (itemClick)="chooseTranslate($event)"
+                    header="Translates:"
+                    showSecondary="true"
+                    [items]="translates">
+                </selectable-list>
             </div>
         </div>
 
-        <div class="col-lg-6 col-md-6 col-sm-7 col-xs-12">
-            <selectable-list
-                (itemClick)="chooseTranslate($event)"
-                header="Translates:"
-                showSecondary="true"
-                [items]="translates">
-            </selectable-list>
+        <div class="add-word-button">
+            <input type="submit"
+                class="button button-green"
+                [disabled]="!addWordform.valid"
+                value="Add word"/>
         </div>
-
-        <input type="submit"
-            class="btn btn-success md-displayBlock center-block add-word-button"
-            [disabled]="!addWordform.valid"
-            value="Add word"/>
     </form>
 </div>

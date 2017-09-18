@@ -10,7 +10,11 @@ import { SelectableListItemModel } from '../models/selectableListItemModel';
 
 @Component({
     selector: 'add-word',
-    templateUrl: '../StaticContent/app/templates/components/addWord.html'
+    templateUrl: '../StaticContent/app/templates/components/addWord.html',
+    styleUrls: [
+        '../StaticContent/app/css/components/addWord.css',
+        '../StaticContent/app/css/components/common.css'
+    ]
 })
 
 export class AddWord implements OnInit {

@@ -44,15 +44,6 @@ acitve link > color: #5af35d
   font-size: 20px;
 }
 
-.error-field {
-    color: red;
-    font-size: 14px;
-}
-
-.field-label {
-    font-size: 16px;
-}
-
 .center-block {
     text-align: center;
 }
@@ -96,11 +87,6 @@ acitve link > color: #5af35d
 
 .tests-test-example {
     font-size: 20px;
-}
-
-.list-item-green {
-    background-color: #3c763d;
-    color: white;
 }
 
 .picker-test-message {
@@ -170,10 +156,6 @@ acitve link > color: #5af35d
 .edit-word-buttons {
   text-align: right;
   padding-top: 15px;
-}
-
-.add-word-button {
-  margin-bottom: 30px;
 }
 
 .write-test-body {

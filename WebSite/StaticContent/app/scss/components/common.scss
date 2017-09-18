@@ -1,0 +1,151 @@
+$red: red;
+$white: white;
+$redBtn: red;
+$controlBorderColor: #d0d0d0;
+$blueBtn: blue;
+$btnGreen: green;
+$lightBlueBtn: #34A2FC;
+$black: black;
+$controlBorderRadius: 5px;
+
+.error-field {
+    color: red;
+    font-size: 14px;
+}
+
+.field-label {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.form-input {
+    height: 34px;
+    border-radius: 5px;
+    box-shadow: none;
+    outline: none;
+    border: 1px $controlBorderColor solid;
+    padding: 0 10px;
+    min-width: 240px;
+
+    &:focus {
+        box-shadow: inset 0px 0px 0px 1px #66afe9;
+    }
+
+    &.text-area {
+        padding: 5px 10px;
+        min-height: 70px;
+    }
+}
+
+.form-item {
+  margin-bottom: 10px;
+}
+
+.input-with-icon {
+    display: flex;
+
+    .form-input {
+        min-width: 200px;
+        border-right: none;
+        border-radius: $controlBorderRadius 0 0 $controlBorderRadius;
+    }
+
+    .button-icon {
+        color: gray;
+        height: auto;
+        width: 40px;
+        border-color: $controlBorderColor;
+        border-radius: 0 $controlBorderRadius $controlBorderRadius 0;
+    }
+}
+
+/* buttons */
+
+.button {
+    height: 30px;
+    font-size: 16px;
+    background: $white;
+    color: $black;
+    outline: none;
+    border-radius: 4px;
+    font-weight: normal;
+    border: 1px solid transparent;
+    transition: background 0.2s linear;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: none;
+    box-shadow: none;
+
+  
+    &[disabled], &.disabled {
+        opacity: 0.25;
+    }
+  
+    &:focus {
+        outline: none;
+    }
+  
+    &.button-red {
+        background: $red;
+        color: $white;
+    
+        &:hover,
+        &:focus,
+        &:active {
+            background: mix($white, $redBtn, 30%);
+        }
+    }
+  
+    &.button-white, &.button-gray {
+        border-color: $controlBorderColor;
+    
+        &:hover,
+        &:focus,
+        &:active {
+            background: mix($black, $white, 6%);
+        }
+    
+        &:focus {
+            box-shadow: 0 1px 3px 1px rgba(125, 125, 125, 0.2);
+        }
+    }
+  
+    &.button-lightBlue {
+        background: $lightBlueBtn;
+        border-color: $lightBlueBtn;
+        color: $white;
+    
+        &:hover,
+        &:focus,
+        &:active {
+            background: mix($white, $lightBlueBtn, 30%);
+        }
+    }
+  
+    &.button-green {
+        background: $btnGreen;
+        border-color: $btnGreen;
+        color: $white;
+    
+        &:hover,
+        &:focus,
+        &:active {
+            background: mix($white, $btnGreen, 30%);
+        }
+    }
+  
+    &.button-darkBlue {
+        background: $blueBtn;
+        border-color: $blueBtn;
+        color: $white;
+    
+        &:hover,
+        &:focus,
+        &:active {
+            background: mix($white, $blueBtn, 30%);
+        }
+    }
+}
+
+/* buttons */

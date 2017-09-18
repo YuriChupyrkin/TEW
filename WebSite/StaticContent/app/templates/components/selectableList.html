@@ -2,7 +2,7 @@
     <div *ngIf="header && items.length" class="selectable-list-header">{{header}}</div>
     <div *ngFor="let item of items;" class="selectable-list-item-row">
         <div class="selectable-list-item"
-                [class.list-item-green]="item.IsHighlighted"
+                [class.green-list-item]="item.IsHighlighted"
                 [class.active-list-item]="item.IsActive"
                 (dblclick)="dbclick(item)"
                 (click)="click(item)">

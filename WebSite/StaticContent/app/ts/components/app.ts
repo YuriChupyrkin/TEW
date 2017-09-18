@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ConstantStorage } from '../helpers/constantStorage';
 import { HttpService } from '../services/httpService';
-import { User } from '../models/user';
 import { Router} from '@angular/router';
 import { PubSub } from '../services/pubSub';
 import { CommonHelper } from '../helpers/commonHelper';
-import { ModalWindow } from '../helpComponents/modalWindow';
 import { ModalWindowServise } from '../services/modalWindowServise';
 import { JQueryHelper } from '../helpers/jQueryHelper';
 import { ModalWindowModel } from '../models/modalWindowModel';

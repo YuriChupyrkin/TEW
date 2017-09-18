@@ -1,0 +1,18 @@
+.add-word {
+    .add-word-row {
+        display: flex;
+        flex-wrap: wrap;
+        flex: 1 1;
+        justify-content: space-between;
+
+        .add-word-column {
+            display: flex;
+        }
+    }
+
+    .add-word-button {
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: center;
+    }
+}

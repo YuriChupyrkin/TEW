@@ -59,4 +59,4 @@ gulp.task('ts_tslint', function (done) {
 });
 
 gulp.task('build', ['css', 'ts']);
-gulp.task('default', ['ts_tslint', 'css']);
+gulp.task('default', ['css', 'ts_tslint']);
