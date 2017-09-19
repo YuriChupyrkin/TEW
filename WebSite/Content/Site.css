@@ -1,97 +1,116 @@
-﻿body {
-
+﻿html {
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
 
-.main-body{
-    padding-top: 50px;
-    padding-bottom: 20px;
-
-    font-family: 'Proxima Nova';
-
-    background: url(Images/ballBackground.jpg); 
-    background-size: cover;
- 	background-attachment: fixed, fixed;
-
-    color: white;
-}
-
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
-}
-
-.display-block {
-    display: block;
-}
-
-.display-none {
-    display: none;
-}
-
-.image-resize {
-    margin-bottom: 50px;
-    margin-top: 50px;
-    max-width: 100%;
-    height: auto;
-    width: auto\9; /* ie8 */
-
-    -moz-box-shadow: 0 0 10px #ccc; 
-    -webkit-box-shadow: 0 0 10px #ccc;
-    box-shadow: 0 0 10px #ccc;
-}
-
-.stat-block {
-    margin-bottom: 50px;
-    margin-top: 50px;
-}
-
-.big-size-text{
-    font-size: 48px;
-}
-
-.title-text {
-    color: white;
-    font-family: 'Comic Sans MS';
-}
-
-.main-text {
-    font-size: 28px;
-}
-
-.link-text {
-    font-style: italic;
-    text-decoration: underline;
-}
-
-.header-with-image{
-    background-color: #686868;
-}
-
-.icons {
-    width: 150px;
-    height: 150px;
-    margin-top: 50px;
-}
-
-.download-icon {
-    width: 300px;
-    margin-top: 50px;
+body {
+  margin: 0;
 }
 
 .field-validation-error {
-    font-size: 16px;
-    color: red;
+  font-size: 16px;
+  color: red;
 }
 
 .validation-summary-errors {
     font-size: 18px;
     color: red;
+}
+
+.account-form-input {
+  height: 34px;
+  border-radius: 5px;
+  box-shadow: none;
+  outline: none;
+  border: 1px #d0d0d0 solid;
+  padding: 0 10px;
+  width: 240px;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  display: block;
+  width: 100%;
+}
+
+.account-form-input:focus {
+  box-shadow: inset 0px 0px 0px 1px #66afe9;
+}
+
+.account-form-fieldset {
+  border: none;
+  min-width: 400px;
+}
+
+.account-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.account-form-link {
+  color: #008bab;
+  font-size: 18px;
+}
+
+.welcome-tew {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.welcome-tew-title {
+  display: flex;
+  font-size: 40px;
+  font-weight: bold;
+  align-self: center;
+}
+
+.welcome-tew-link {
+  align-self: flex-end;
+  margin-right: 30px;
+  margin-top: 5px;
+}
+
+.account-form-button {
+  height: 30px;
+  font-size: 16px;
+  background: $white;
+  color: white;
+  outline: none;
+  border-radius: 4px;
+  font-weight: normal;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: none;
+  box-shadow: none;
+  background: #449d44;
+  border-color: #449d44;
+}
+
+.account-form-button:hover {
+  background: #306e30;
+}
+
+.account-form-button-section {
+  display: flex;
+  justify-content: center;
+}
+
+.account-checkbox {
+  margin-bottom: 10px;
+}
+
+.editor-field {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-label {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2px;
+  font-weight: bold;
 }

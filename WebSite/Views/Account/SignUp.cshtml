@@ -6,47 +6,48 @@
 @model WebSite.Models.SignUpModel
 
 
-<div class="container">
-    <h2>Sign up</h2>
-    <br/>
+<div class="account-form">
+  <div class="welcome-tew">
+    <div class="welcome-tew-link">
+      @Html.ActionLink("Вход", "SignIn", new { }, new { @class = "account-form-link" })
+    </div>
+    <div class="welcome-tew-title">TEW!</div>
+  </div>
 
-	@using (Html.BeginForm())
-	{
-		@Html.ValidationSummary(true)
+  @using (Html.BeginForm())
+  {
+    @Html.ValidationSummary(true)
 
-		<div>
-			<fieldset>
-				<div class="editor-label">
-					@Html.LabelFor(m => m.Email)
-				</div>
-				<div class="editor-field">
-					@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-					@Html.ValidationMessageFor(m => m.Email)
-				</div>
-        <br/>
+    <div>
+      <fieldset class="account-form-fieldset">
+        <div class="editor-label">
+          @Html.LabelFor(m => m.Email)
+        </div>
+        <div class="editor-field">
+          @Html.ValidationMessageFor(m => m.Email)
+          @Html.TextBoxFor(m => m.Email, new { @class = "account-form-input" })
+        </div>
 
-				<div class="editor-label">
-					@Html.LabelFor(m => m.Password)
-				</div>
-				<div class="editor-field">
-					@Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-					@Html.ValidationMessageFor(m => m.Password)
-				</div>
-        <br />
+        <div class="editor-label">
+          @Html.LabelFor(m => m.Password)
+        </div>
+        <div class="editor-field">
+          @Html.ValidationMessageFor(m => m.Password)
+          @Html.PasswordFor(m => m.Password, new { @class = "account-form-input" })
+        </div>
 
-				<div class="editor-label">
-					@Html.LabelFor(m => m.ConfirmPassword)
-				</div>
-				<div class="editor-field">
-					@Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-					@Html.ValidationMessageFor(m => m.ConfirmPassword)
-				</div>
-        <br />
+        <div class="editor-label">
+          @Html.LabelFor(m => m.ConfirmPassword)
+        </div>
+        <div class="editor-field">
+          @Html.ValidationMessageFor(m => m.ConfirmPassword)
+          @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "account-form-input" })
+        </div>
 
-				<input class="btn btn-success" type="submit" value="Sign Up" />
-				@Html.ActionLink("Sign in", "SignIn", new { }, new { @class = "btn btn-primary" })
-			</fieldset>
-		</div>
-	}
-
+        <div class="account-form-button-section">
+          <input class="account-form-button" type="submit" value="Регистрация" />
+        </div>
+      </fieldset>
+    </div>
+  }
 </div>

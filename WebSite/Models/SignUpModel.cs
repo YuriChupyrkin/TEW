@@ -5,9 +5,9 @@ namespace WebSite.Models
 	public class SignUpModel : SignInModel
 	{
 		[Required]
-		[Display(Name = "Confirm Password")]
+		[Display(Name = "Подтверждение пароля")]
 		[DataType(DataType.Password)]
-		[Compare("Password", ErrorMessage = "Confirm password doesn't match, Type again!")]
+		[Compare("Password", ErrorMessage = "Пароли не совпадают")]
 		public string ConfirmPassword { get; set; }
 	}
 }

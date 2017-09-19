@@ -38,10 +38,7 @@ namespace WebSite
                 "~/Content/font-awesome.css"));
 
       bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Content/site.css"));
-
-      bundles.Add(new StyleBundle("~/Content/tewLayout").Include(
-                "~/Content/TewLayout.css"));
+                "~/Content/Site.css"));
 
       // Set EnableOptimizations to false for debugging. For more information,
       // visit http://go.microsoft.com/fwlink/?LinkId=301862

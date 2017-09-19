@@ -225,7 +225,6 @@
     <Content Include="Content\Images\multy-user.png" />
     <Content Include="Content\Images\users.png" />
     <Content Include="Content\Images\words.png" />
-    <Content Include="Content\TewLayout.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

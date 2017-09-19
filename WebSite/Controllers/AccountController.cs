@@ -24,7 +24,7 @@ namespace WebSite.Controllers
 
                 if (isCreated == false)
                 {
-                    ModelState.AddModelError("", "User with that email already exists.");
+                    ModelState.AddModelError("", "Пользователь с таким e-mail уже существует");
                     return View();
                 }
 
@@ -52,7 +52,7 @@ namespace WebSite.Controllers
 
                 if (isValidated == false)
                 {
-                    ModelState.AddModelError("", "Email or password is incorrect.");
+                    ModelState.AddModelError("", "Неверный e-mail или пароль");
                     return View();
                 }
 
