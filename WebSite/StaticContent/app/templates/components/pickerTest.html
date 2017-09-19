@@ -1,51 +1,50 @@
-﻿<div class="center-block">
-    <!-- buttons -->
-    <div>
-        <button [disabled]="!currentTest.Word && !firstTestNOTloaded"
-            (click)="prepareTest('EnRuTest')"
-            class="btn btn-primary text-button">
-                Eng-Rus
-        </button>
-        <button [disabled]="!currentTest.Word && !firstTestNOTloaded"
-            (click)="prepareTest('RuEnTest')"
-            class="btn btn-primary text-button">
-                Rus-Eng
-        </button>
-    </div>
+﻿<div class="tew-test">
+    <div class="tew-test-body">
+        <div>
+            <button [disabled]="!currentTest.Word && !firstTestNOTloaded"
+                (click)="prepareTest('EnRuTest')"
+                class="button button-lightBlue tew-test-button">
+                    Eng-Rus
+            </button>
+            <button [disabled]="!currentTest.Word && !firstTestNOTloaded"
+                (click)="prepareTest('RuEnTest')"
+                class="button button-lightBlue tew-test-button">
+                    Rus-Eng
+            </button>
+        </div>
 
-    <div class="row center-block margin-20">
-        <progress-bar [progress]="progress"></progress-bar>
-    </div>
+        <div class="tew-test-progress">
+            {{progress}}
+        </div>
 
-    <div class="row">
-        <div class="picker-test-block">
-            <!-- test area -->
-            <div [hidden]="!currentTest.Word">
-                <div class="tests-test-word">{{currentTest.Word}}</div>
+        <!-- test area -->
+        <div [hidden]="!currentTest.Word">
+            <div>
+                <div class="tew-test-word">{{currentTest.Word}}</div>
                 <selectable-list
                     (itemClick)="setAnswer($event)"
                     (itemDbclick)="pickAnswer($event)"
                     bindon-items="selectableListItems">
                 </selectable-list>
-                <br />
+            </div>
 
+            <div class="tew-test-center-row">
                 <!-- disabled when set true answer (picked)-->
                 <button (click)="pickAnswer(choosenAnswer)"
-                    class="btn btn-lg btn-success icon-button">
+                    class="button button-green tew-test-control">
                         <i class="fa fa-check" aria-hidden="true"></i>
                 </button>
                 <button [disabled]="trueAnswer || currentTest.Answers.length < 4"
-                    class="btn btn-lg btn-warning icon-button"
+                    class="button button-orange tew-test-control"
                     (click)="helpPick()">
                         <i class="fa fa-question" aria-hidden="true"></i>
                 </button>
                 <button  [disabled]="trueAnswer"
                     (click)="showIsDeleteModal(currentTest)"
-                    class="btn btn-lg btn-danger icon-button">
+                    class="button button-red tew-test-control">
                         <i class="fa fa-times" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
     </div>
-
 </div>

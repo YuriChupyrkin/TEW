@@ -10,7 +10,11 @@ import { ModalWindowModel } from '../models/modalWindowModel';
 
 @Component({
     selector: 'write-test',
-    templateUrl: '../StaticContent/app/templates/components/writeTest.html'
+    templateUrl: '../StaticContent/app/templates/components/writeTest.html',
+    styleUrls: [
+        '../StaticContent/app/css/components/common.css',
+        '../StaticContent/app/css/components/tewTest.css'
+    ]
 })
 
 export class WriteTest implements OnInit {
@@ -18,7 +22,7 @@ export class WriteTest implements OnInit {
     private testCount: number;
     private testIndex: number;
     private failedCount: number;
-    private progress: number;
+    private progress: string;
     private isHelpUsed: boolean;
     private helpWord: string;
     private currentTestModel: WriteTestModel;
@@ -39,7 +43,7 @@ export class WriteTest implements OnInit {
     }
 
     private prepareTest() {
-        this.progress = 3;
+        this.progress = '';
         this.isHelpUsed = false;
         this.currentTestModel = new WriteTestModel();
 
@@ -66,6 +70,8 @@ export class WriteTest implements OnInit {
         this.currentTestModel = tests[0];
         this.currentTestModel.Example
             = this.hideWordInExample(this.currentTestModel.TrueAnswer, this.currentTestModel.Example);
+
+        this.progress = `${this.testIndex + 1}/${this.testCount}`;
     }
 
     private checkAnswer(value: any) {
@@ -118,7 +124,6 @@ export class WriteTest implements OnInit {
 
     private setNextTestModel() {
         this.testIndex++;
-        this.progress = Math.round(this.testIndex / this.testCount * 100);
 
         if (this.testIndex >= this.testCount) {
             let modalWindowModel = CommonHelper.buildOkCancelModalConfig(
@@ -133,6 +138,7 @@ export class WriteTest implements OnInit {
             return;
         }
 
+        this.progress = `${this.testIndex + 1}/${this.testCount}`;
         this.currentTestModel = this.testSet[this.testIndex];
         this.currentTestModel.Example
             = this.hideWordInExample(this.currentTestModel.TrueAnswer, this.currentTestModel.Example);

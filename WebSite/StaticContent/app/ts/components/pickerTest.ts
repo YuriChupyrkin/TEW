@@ -11,7 +11,11 @@ import { SelectableListItemModel } from '../models/selectableListItemModel';
 
 @Component({
     selector: 'picker-test',
-    templateUrl: '../StaticContent/app/templates/components/pickerTest.html'
+    templateUrl: '../StaticContent/app/templates/components/pickerTest.html',
+    styleUrls: [
+        '../StaticContent/app/css/components/common.css',
+        '../StaticContent/app/css/components/tewTest.css'
+    ]
 })
 
 export class PickerTest {
@@ -27,20 +31,20 @@ export class PickerTest {
     private choosenAnswer: SelectableListItemModel;
     private testIsFinished: boolean;
     private firstTestNOTloaded: boolean;
-    private progress: number;
+    private progress: string;
     private selectableListItems: Array<SelectableListItemModel>;
 
     constructor(private httpService: HttpService) {
         this.testSet = new Array<PickerTestModel>();
         this.selectableListItems = new Array<SelectableListItemModel>();
-        this.progress = 3;
+        this.progress = '';
 
         this.firstTestNOTloaded = true;
         this.initEmptyCurrentTest();
     }
 
     private prepareTest(testName: string) {
-        this.progress = 3;
+        this.progress = '';
 
         this.firstTestNOTloaded = false;
         this.initEmptyCurrentTest();
@@ -69,6 +73,8 @@ export class PickerTest {
         this.failedCount = 0;
         this.currentTest = tests[this.testIndex];
         this.setSelectableListItems(this.currentTest);
+
+        this.progress = `${this.testIndex + 1}/${this.testCount}`;
     }
 
     private initEmptyCurrentTest() {
@@ -134,7 +140,7 @@ export class PickerTest {
         this.testIndex++;
 
         // set progress
-        this.progress = Math.round(this.testIndex / this.testCount * 100);
+        this.progress = `${this.testIndex + 1}/${this.testCount}`;
 
         if (this.testIndex >= this.testCount) {
             let message = `Errors count: ${this.failedCount}`;
@@ -142,7 +148,7 @@ export class PickerTest {
             this.showMessageAndNext(message, false);
 
             // reset progress
-            this.progress = 0;
+            this.progress = '';
             this.firstTestNOTloaded = true;
             this.initEmptyCurrentTest();
 

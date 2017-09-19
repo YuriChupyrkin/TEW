@@ -71,15 +71,6 @@ acitve link > color: #5af35d
     min-width: 1%;
 }
 
-.tests-test-word {
-    font-size: 40px;
-    font-weight: bold;
-}
-
-.tests-test-example {
-    font-size: 20px;
-}
-
 .picker-test-message {
     font-size: 26px;
     margin-bottom: 30px;
@@ -129,47 +120,4 @@ acitve link > color: #5af35d
 .sortable-title {
   cursor: pointer;
   text-decoration: underline;
-}
-
-.english-word {
-  cursor: pointer;
-  text-decoration: underline;
-}
-
-.write-test-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.write-test-input {
-    margin-bottom: 10px;
-    min-width: 250px;
-}
-
-.write-test-help {
-    margin: 10px 0 10px 0;
-}
-
-.write-test-help-word {
-    color: #ec971f;
-    font-weight: bold;
-    font-size: 22px;
-}
-
-.write-test-progress {
-    margin: 0 15px 0 10px
-}
-
-.text-button {
-    min-width: 65px;
-}
-
-.icon-button {
-    min-width: 55px;
-}
-
-.translate-word-level {
-    font-style: italic;
-    margin: 0 15px 0 5px;
 }

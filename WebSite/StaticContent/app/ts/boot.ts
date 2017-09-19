@@ -11,7 +11,6 @@ import { APP_BASE_HREF } from '@angular/common';
 import { HttpService } from './services/httpService';
 import { LoadingAnimation } from './helpComponents/loadingAnimation';
 import { LoadingLockDisplay } from './helpComponents/loadingLockDisplay';
-import { ProgressBar } from './helpComponents/progressBar';
 import { ModalWindow } from './helpComponents/modalWindow';
 import { UserStat } from './components/userStat';
 import { IrregularVerbs } from './components/irregularVerbs';
@@ -33,7 +32,6 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
         MyWords,
         PickerTest,
         LoadingAnimation,
-        ProgressBar,
         ModalWindow,
         UserStat,
         IrregularVerbs,

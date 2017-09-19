@@ -2,9 +2,9 @@ $red: red;
 $white: white;
 $redBtn: #d9534f;
 $controlBorderColor: #d0d0d0;
-$blueBtn: blue;
 $btnGreen: #449d44;
-$lightBlueBtn: #34A2FC;
+$lightBlueBtn: #0ba5e0;
+$btnOrange: #f0ad4e;
 $black: black;
 $controlBorderRadius: 5px;
 
@@ -102,7 +102,7 @@ $controlBorderRadius: 5px;
     &:focus {
         outline: none;
     }
-  
+
     &.button-red {
         background: $redBtn;
         color: $white;
@@ -114,7 +114,7 @@ $controlBorderRadius: 5px;
         }
     }
   
-    &.button-white, &.button-gray {
+    &.button-gray {
         border-color: $controlBorderColor;
     
         &:hover,
@@ -151,16 +151,16 @@ $controlBorderRadius: 5px;
             background: mix($black, $btnGreen, 30%);
         }
     }
-  
-    &.button-darkBlue {
-        background: $blueBtn;
-        border-color: $blueBtn;
+
+    &.button-orange {
+        background: $btnOrange;
+        border-color: $btnOrange;
         color: $white;
-    
+
         &:hover,
         &:focus,
         &:active {
-            background: mix($white, $blueBtn, 30%);
+            background: mix(orangered, $btnOrange, 30%);
         }
     }
 }

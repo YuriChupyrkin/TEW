@@ -1,0 +1,53 @@
+.tew-test {
+    .tew-test-center-row {
+        display: flex;
+        justify-content: center;
+    }
+
+    .tew-test-button {
+        min-width: 65px;
+        margin: 5px;
+    }
+
+    .tew-test-control {
+        margin: 5px;
+        min-width: 55px;
+        height: 46px;
+    }
+
+    .tew-test-progress {
+        margin-top: 10px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .tew-test-word {
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+    .tew-test-example {
+        font-size: 20px;
+    }
+
+    .tew-test-help {
+        margin: 10px 0 10px 0;
+    
+        .tew-test-help-word {
+            color: #ec971f;
+            font-weight: bold;
+            font-size: 22px;
+        }
+    }
+
+    .tew-test-input {
+        margin-bottom: 10px;
+        min-width: 250px;
+    }
+
+    .tew-test-body, .tew-test-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

@@ -1,29 +1,36 @@
-<div>
-    <div class="row center-block write-test-progress">
-        <progress-bar [progress]="progress"></progress-bar>
-    </div>
-    <div class="write-test-body">
-        <div class="tests-test-word">
+<div class="tew-test">
+    <div class="tew-test-body">
+        <div class="tew-test-progress">
+                {{progress}}
+        </div>
+        <div class="tew-test-word">
             {{currentTestModel.Word}}
         </div>
-        <div class="tests-test-example">
+        <div class="tew-test-example">
             {{currentTestModel.Example}}
         </div>
-        <div class="write-test-help">
-            <div *ngIf="isHelpUsed" class="write-test-help-word">
+        <div class="tew-test-help">
+            <div *ngIf="isHelpUsed" class="tew-test-help-word">
                 {{helpWord}}
             </div>
-            <button *ngIf="!isHelpUsed" (click)="useHelp()" class="btn btn-warning text-button">HELP</button>
         </div>
-        <form class="center-block" [formGroup]="answerForm" (ngSubmit)="checkAnswer(answerForm.value)">
+        <form class="tew-test-form" [formGroup]="answerForm" (ngSubmit)="checkAnswer(answerForm.value)">
             <input [formControl]="answerForm.controls['answer']"
                 type="text"
-                class="form-control write-test-input"
+                class="form-input tew-test-input"
                 (keyup.enter)="checkAnswer(answerForm.value)"/>
+            <div>
+                <button [disabled]="!answerForm.valid"
+                    class="button button-green tew-test-control">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                </button>
 
-            <input type="submit" class="btn btn-success text-button"
-                [disabled]="!answerForm.valid"
-                value="OK" />
+                <button [disabled]="isHelpUsed"
+                    (click)="useHelp()"
+                    class="button button-orange tew-test-control">
+                        <i class="fa fa-question" aria-hidden="true"></i>
+                </button>
+            </div>
         </form>
     </div>
 </div>
