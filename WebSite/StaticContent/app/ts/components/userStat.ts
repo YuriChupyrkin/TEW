@@ -9,7 +9,8 @@ import { CommonHelper } from '../helpers/commonHelper';
 
 @Component({
     selector: 'user-stat',
-    templateUrl: '../StaticContent/app/templates/components/userStat.html'
+    templateUrl: '../StaticContent/app/templates/components/userStat.html',
+    styleUrls: ['../StaticContent/app/css/components/common.css']
 })
 
 export class UserStat implements OnInit  {

@@ -11,11 +11,11 @@
             <template #innerComponent></template>
         </div>
         <div *ngIf="config.IsCancelButton || config.IsApplyButton" class="modal-container__footer">
-            <button *ngIf="config.IsApplyButton" class="btn btn-success modal-container__footer-button"
+            <button *ngIf="config.IsApplyButton" class="button button-green modal-container__footer-button"
                 (click)="applyWindow()">
                 {{config.ApplyButtonText}}
             </button>
-            <button *ngIf="config.IsCancelButton" class="btn btn-danger modal-container__footer-button"
+            <button *ngIf="config.IsCancelButton" class="button button-red modal-container__footer-button"
                 (click)="cancelWindow()">
                 {{config.CancelButtonText}}
             </button> 

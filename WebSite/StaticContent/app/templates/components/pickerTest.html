@@ -20,7 +20,9 @@
         <!-- test area -->
         <div [hidden]="!currentTest.Word">
             <div>
-                <div class="tew-test-word">{{currentTest.Word}}</div>
+                <div class="tew-test-word tew-test-center-row">
+                    {{currentTest.Word}}
+                </div>
                 <selectable-list
                     (itemClick)="setAnswer($event)"
                     (itemDbclick)="pickAnswer($event)"

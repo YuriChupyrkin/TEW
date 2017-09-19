@@ -8,6 +8,10 @@ $btnOrange: #f0ad4e;
 $black: black;
 $controlBorderRadius: 5px;
 
+.tew-body {
+    margin-top: 60px;
+}
+
 .error-field {
     color: red;
     font-size: 14px;
@@ -76,8 +80,16 @@ $controlBorderRadius: 5px;
     font-style: italic;
 }
 
-/* buttons */
+.sortable-title {
+    cursor: pointer;
+    text-decoration: underline;
+}
 
+.center-block {
+    text-align: center;
+}
+
+/* buttons */
 .button {
     height: 30px;
     font-size: 16px;

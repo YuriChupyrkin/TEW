@@ -7,7 +7,10 @@ import { PubSub } from '../services/pubSub';
 @Component({
     selector: 'modal-window',
     templateUrl: '../../StaticContent/app/templates/helpComponents/modalWindow.html',
-    styleUrls: ['../StaticContent/app/css/components/modalWindow.css']
+    styleUrls: [
+        '../StaticContent/app/css/components/modalWindow.css',
+        '../StaticContent/app/css/components/common.css'
+    ]
 })
 
 export class ModalWindow {

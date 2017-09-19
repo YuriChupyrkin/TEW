@@ -1,4 +1,4 @@
- <h1>User stat</h1>
+<h1>User stat</h1>
 <div *ngIf="userStatModel != null">
     <ul>
         <li>User email: {{userStatModel.Email}}</li>
@@ -7,5 +7,5 @@
     </ul>
 </div>
 <div>
-    <button class="btn btn-danger" (click)="resetUserWords()">Reset words level</button>
+    <button class="button button-red" (click)="resetUserWords()">Reset words level</button>
 </div>

@@ -2,7 +2,8 @@ import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'my-words-header',
-    templateUrl: '../../StaticContent/app/templates/helpComponents/myWordsHeader.html'
+    templateUrl: '../../StaticContent/app/templates/helpComponents/myWordsHeader.html',
+    styleUrls: ['../StaticContent/app/css/components/common.css']
 })
 
 export class MyWordsHeader {
