@@ -9,8 +9,6 @@
     }
 
     .selectable-list-item-row {
-        background-color: #e0e0e0;
-        border-radius: 10px;
         font-size: 24px;
         margin-bottom: 1px;
 
@@ -20,17 +18,25 @@
         -ms-user-select: none; /* IE10+ */
         
         .selectable-list-item {
+            border: 1px #cecece solid;
+            border-radius: 10px;
+            background-color: #e0e0e0;
+
             display: flex;
             align-items: center;
             width: 100%;
             border-radius: 10px;
             word-wrap: break-word;
             cursor: pointer;
-            border: 1px #d8d0d0 solid;
 
             .selectable-list-item-value {
                 flex-grow: 5;
                 margin-left: 8px;
+
+                &.center-position {
+                    display: flex;
+                    justify-content: center;
+                }
             }
 
             .selectable-list-item-secondary {
@@ -45,8 +51,8 @@
 
             &.green-list-item {
                 background-color: #3c763d;
+                border-color: green;
                 color: white;
-                border-color: #0b4401;
             }
 
             &.active-list-item {

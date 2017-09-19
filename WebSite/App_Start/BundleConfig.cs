@@ -30,14 +30,18 @@ namespace WebSite
                  "~/StaticContent/node_modules/reflect-metadata/temp/Reflect.js",
                  "~/StaticContent/node_modules/systemjs/dist/system.src.js"));
 
+      bundles.Add(new StyleBundle("~/Content/bootstrap").Include(
+          "~/Content/bootstrap.css",
+          "~/Content/bootstrap-responsive.css"));
+
+      bundles.Add(new StyleBundle("~/Content/awesome").Include(
+                "~/Content/font-awesome.css"));
+
       bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Content/bootstrap.css",
-                "~/Content/bootstrap-responsive.css",
-                "~/Content/font-awesome.css",
                 "~/Content/site.css"));
 
-      bundles.Add(new StyleBundle("~/Content/tew").Include(
-                "~/StaticContent/app/css/Tew.css"));
+      bundles.Add(new StyleBundle("~/Content/tewLayout").Include(
+                "~/Content/TewLayout.css"));
 
       // Set EnableOptimizations to false for debugging. For more information,
       // visit http://go.microsoft.com/fwlink/?LinkId=301862

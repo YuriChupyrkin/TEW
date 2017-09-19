@@ -6,8 +6,9 @@
                 [class.active-list-item]="item.IsActive"
                 (dblclick)="dbclick(item)"
                 (click)="click(item)">
-            <span class="selectable-list-item-value">
-                {{item.Value}}
+            <span class="selectable-list-item-value"
+                [class.center-position]="!showSecondary">
+                    {{item.Value}}
             </span>
             <span *ngIf="showSecondary" class="selectable-list-item-secondary">
                 {{item.SecondaryValue}}

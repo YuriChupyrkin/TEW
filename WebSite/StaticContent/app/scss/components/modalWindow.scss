@@ -28,10 +28,24 @@
 
         .modal-container__header {
             border-bottom: 1px solid #dad6d6;
+            display: flex;
+            justify-content: space-between;
+            min-height: 46px;
 
             .modal-container__header-title {
                 font-size: 28px;
                 font-weight: bold;
+                display: flex;
+                align-self: flex-end;
+                margin-bottom: 5px;
+            }
+
+            .modal-container__header-close {
+                font-size: 20px;
+                display: flex;
+                align-self: flex-start;
+                margin-left: 15px;
+                opacity: 0.4;
             }
         }
 

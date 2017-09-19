@@ -3,13 +3,37 @@ $white: white;
 $redBtn: #d9534f;
 $controlBorderColor: #d0d0d0;
 $btnGreen: #449d44;
-$lightBlueBtn: #0ba5e0;
+$lightBlueBtn: #06b1d8;
 $btnOrange: #f0ad4e;
 $black: black;
+$link: #008bab;
 $controlBorderRadius: 5px;
 
 .tew-body {
+    max-width: 1200px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
     margin-top: 60px;
+}
+
+@media (max-width: 1200px) {
+    .tew-body {
+        max-width: 1100px;
+    }
+}
+
+@media (max-width: 990px) {
+    .tew-body {
+        max-width: 910px;
+    }
+}
+
+@media (max-width: 780px) {
+    .tew-body {
+        max-width: 780px;
+    }
 }
 
 .error-field {
@@ -31,6 +55,7 @@ $controlBorderRadius: 5px;
     padding: 0 10px;
     width: 240px;
     font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
 
     &:focus {
         box-shadow: inset 0px 0px 0px 1px #66afe9;
@@ -87,6 +112,10 @@ $controlBorderRadius: 5px;
 
 .center-block {
     text-align: center;
+}
+
+.link {
+    color: $link;
 }
 
 /* buttons */
@@ -176,5 +205,3 @@ $controlBorderRadius: 5px;
         }
     }
 }
-
-/* buttons */
