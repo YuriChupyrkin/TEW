@@ -1,0 +1,42 @@
+.user-stat {
+    .user-stat-info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+
+        .user-stat-title {
+            font-size: 34px;
+        }
+
+        .user-stat-value {
+            font-weight: bold;
+        }
+
+        .user-stat-label {
+            font-size: 20px;
+        }
+
+        .user-stat-block {
+            margin-bottom: 10px;
+        }
+
+        .user-stat-reset-button {
+            width: 170px;
+            height: 40px;
+            font-size: 18px;
+        }
+    }
+
+    .user-stat-words {
+        margin-bottom: 40px;
+        border: 1px #d6d1d1 solid;
+        border-radius: 5px;
+
+        .user-stat-words-title {
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+        }
+    }
+}

@@ -262,6 +262,7 @@
     <Content Include="StaticContent\app\css\components\tewTable.css" />
     <Content Include="StaticContent\app\css\components\tewTest.css" />
     <Content Include="StaticContent\app\css\components\toolbar.css" />
+    <Content Include="StaticContent\app\css\components\userStat.css" />
     <Content Include="StaticContent\app\js\app.routes.js" />
     <Content Include="StaticContent\app\js\boot.js" />
     <Content Include="StaticContent\app\js\components\addWord.js" />

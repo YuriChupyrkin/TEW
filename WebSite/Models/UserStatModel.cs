@@ -1,11 +1,10 @@
-﻿namespace WebSite.Models
+﻿using EnglishLearnBLL.Models;
+using System.Collections.Generic;
+
+namespace WebSite.Models
 {
   public class UserStatModel
   {
-    public string LastActivityDate { get; set; }
-
-    public long ActivityLevel { get; set; }
-
     public long WordsLevel { get; set; }
 
     public string Email { get; set; }
@@ -15,5 +14,9 @@
     public int Id { get; set; }
 
     public string UniqueId { get; set; }
+
+    public IList<WordModelModel> MostFailedWords { get; set; }
+
+    public IList<WordModelModel> MostStudiedWords { get; set; }
   }
 }

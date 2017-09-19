@@ -1,11 +1,129 @@
+<div class="user-stat" *ngIf="userStatModel != null">
+    <div class="user-stat-info">
+        <div>
+            <div class="user-stat-block">
+                <span class="user-stat-title">
+                    User:
+                </span>
+                <span class="user-stat-value user-stat-title">
+                    {{userStatModel.Email}}
+                </span>
+            </div>
+            <div class="user-stat-block">
+                <span class="user-stat-label">
+                    Words level:
+                </span>
+                <span class="user-stat-value user-stat-label">
+                    {{userStatModel.WordsLevel}}
+                </span>
+            </div>
+        </div>
+        <div>
+            <button class="button button-red user-stat-reset-button"
+                (click)="resetUserWords()">
+                    Reset words level
+            </button>
+        </div>
+    </div>
+
+    <div *ngIf="userStatModel.MostFailedWords.length" class="user-stat-words">
+        <div class="user-stat-words-title">
+            Most failed words
+        </div>
+        <div>
+            <table class="tew-table tew-table-striped">
+                <thead>
+                    <tr>
+                        <th>English</th>
+                        <th>Russian</th>
+                        <th class="optional-column">Level</th>
+                        <th class="optional-column">Answer count</th>
+                        <th>Fails count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let word of userStatModel.MostFailedWords;">
+                        <td>{{word.English}}</td>
+                        <td>{{word.Russian}}</td>
+                        <td class="optional-column">{{word.Level}}</td>
+                        <td class="optional-column">{{word.AnswerCount}}</td>
+                        <td>{{word.FailAnswerCount}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div *ngIf="userStatModel.MostStudiedWords.length" class="user-stat-words">
+        <div class="user-stat-words-title">
+            Most studied words
+        </div>
+        <div>
+            <table class="tew-table tew-table-striped">
+                <thead>
+                    <tr>
+                        <th>English</th>
+                        <th>Russian</th>
+                        <th>Level</th>
+                        <th class="optional-column">Answer count</th>
+                        <th class="optional-column">Fails count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let word of userStatModel.MostStudiedWords;">
+                        <td>{{word.English}}</td>
+                        <td>{{word.Russian}}</td>
+                        <td>{{word.Level}}</td>
+                        <td class="optional-column">{{word.AnswerCount}}</td>
+                        <td class="optional-column">{{word.FailAnswerCount}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- 
 <h1>User stat</h1>
 <div *ngIf="userStatModel != null">
     <ul>
         <li>User email: {{userStatModel.Email}}</li>
         <li>Words level: {{userStatModel.WordsLevel}}</li>
-        <!--<li>Last activity date: {{userStatModel.LastActivityDate}}</li>-->
     </ul>
+
+    <div *ngIf="userStatModel.MostFailedWords.length">
+        <div>Most failed</div>
+        <div>
+            <table class="tew-table tew-table-striped">
+                <thead>
+                    <tr>
+                        <th>English</th>
+                        <th>Russian</th>
+                        <th>Level</th>
+                        <th>Answer count</th>
+                        <th>Fails count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let word of userStatModel.MostFailedWords;">
+                        <td>{{word.English}}</td>
+                        <td>{{word.Russian}}</td>
+                        <td>{{word.Level}}</td>
+                        <td>{{word.AnswerCount}}</td>
+                        <td>{{word.FailAnswerCount}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 <div>
     <button class="button button-red" (click)="resetUserWords()">Reset words level</button>
-</div>
+</div> -->

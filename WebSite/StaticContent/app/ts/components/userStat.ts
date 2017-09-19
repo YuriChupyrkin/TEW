@@ -10,7 +10,11 @@ import { CommonHelper } from '../helpers/commonHelper';
 @Component({
     selector: 'user-stat',
     templateUrl: '../StaticContent/app/templates/components/userStat.html',
-    styleUrls: ['../StaticContent/app/css/components/common.css']
+    styleUrls: [
+        '../StaticContent/app/css/components/common.css',
+        '../StaticContent/app/css/components/tewTable.css',
+        '../StaticContent/app/css/components/userStat.css'
+    ]
 })
 
 export class UserStat implements OnInit  {

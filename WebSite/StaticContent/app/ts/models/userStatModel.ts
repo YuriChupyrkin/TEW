@@ -1,3 +1,5 @@
+import { Word } from './word';
+
 export class UserStatModel {
     LastActivityDate: string;
     ActivityLevel: number;
@@ -6,4 +8,6 @@ export class UserStatModel {
     NickName: string;
     Id: number;
     UniqueId: string;
+    MostFailedWords: Array<Word>;
+    MostStudiedWords: Array<Word>;
 }
