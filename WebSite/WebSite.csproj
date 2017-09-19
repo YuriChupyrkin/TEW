@@ -198,7 +198,6 @@
     <Compile Include="Controllers\Api\WordsLevelUpdaterController.cs" />
     <Compile Include="Controllers\Api\WordTranslaterController.cs" />
     <Compile Include="Controllers\Api\WriteTestsController.cs" />
-    <Compile Include="Controllers\WordsUploaderController.cs" />
     <Compile Include="FIlters\AuthSecurityFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -215,23 +214,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
-    <Content Include="Content\bootstrap-responsive.css" />
-    <Content Include="Content\bootstrap.css" />
     <Content Include="Content\font-awesome.css" />
-    <Content Include="Content\Images\ajax-loader.gif" />
-    <Content Include="Content\Images\ballBackground.jpg" />
-    <Content Include="Content\Images\downloadButton.jpg" />
-    <Content Include="Content\Images\irregularVerbs.png" />
-    <Content Include="Content\Images\multy-user.png" />
-    <Content Include="Content\Images\users.png" />
-    <Content Include="Content\Images\words.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="irregular_verbs.html" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
@@ -4665,8 +4653,6 @@
     <Content Include="StaticContent\node_modules\systemjs\LICENSE" />
     <Content Include="StaticContent\node_modules\systemjs\package.json" />
     <Content Include="StaticContent\node_modules\systemjs\README.md" />
-    <Content Include="Views\WordsUploader\Index.cshtml" />
-    <Content Include="Views\WordsUploader\AddUserWords.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -4687,8 +4673,6 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -4702,7 +4686,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="_bin_deployableAssemblies\amd64\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
     <None Include="_bin_deployableAssemblies\x86\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />

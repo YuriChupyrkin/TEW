@@ -20,19 +20,11 @@ namespace WebSite
       bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                   "~/Scripts/modernizr-*"));
 
-      bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                "~/Scripts/bootstrap.js",
-                "~/Scripts/respond.js"));
-
       bundles.Add(new ScriptBundle("~/bundles/angular2").Include(
                  "~/StaticContent/node_modules/core-js/client/shim.min.js",
                  "~/StaticContent/node_modules/zone.js/dist/zone.js",
                  "~/StaticContent/node_modules/reflect-metadata/temp/Reflect.js",
                  "~/StaticContent/node_modules/systemjs/dist/system.src.js"));
-
-      bundles.Add(new StyleBundle("~/Content/bootstrap").Include(
-          "~/Content/bootstrap.css",
-          "~/Content/bootstrap-responsive.css"));
 
       bundles.Add(new StyleBundle("~/Content/awesome").Include(
                 "~/Content/font-awesome.css"));
