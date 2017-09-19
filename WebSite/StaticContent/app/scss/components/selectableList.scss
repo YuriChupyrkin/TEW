@@ -11,6 +11,7 @@
     .selectable-list-item-row {
         font-size: 24px;
         margin-bottom: 1px;
+        min-width: 260px;
 
         /* No selection after double click */
         -webkit-user-select: none; /* webkit (safari, chrome) browsers */

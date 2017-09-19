@@ -38,7 +38,7 @@ body {
 
 .account-form-fieldset {
   border: none;
-  min-width: 400px;
+  width: 300px;
 }
 
 .account-form {

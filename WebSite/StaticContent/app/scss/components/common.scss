@@ -110,8 +110,12 @@ $controlBorderRadius: 5px;
     text-decoration: underline;
 }
 
-.center-block {
+.loading-spinner {
     text-align: center;
+
+    .loading-spinner-icon {
+        margin-top: 4px;
+    }
 }
 
 .link {
