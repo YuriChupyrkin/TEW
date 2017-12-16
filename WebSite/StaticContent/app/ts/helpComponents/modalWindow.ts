@@ -3,14 +3,12 @@ import { Component, Input, Output, EventEmitter,
 import { JQueryHelper } from '../helpers/jqueryHelper';
 import { ModalWindowModel } from '../models/modalWindowModel';
 import { PubSub } from '../services/pubSub';
+import '../../scss/components/common.scss';
+import '../../scss/components/modalWindow.scss';
 
 @Component({
     selector: 'modal-window',
     templateUrl: '../../StaticContent/app/templates/helpComponents/modalWindow.html',
-    styleUrls: [
-        '../StaticContent/app/css/components/modalWindow.css',
-        '../StaticContent/app/css/components/common.css'
-    ]
 })
 
 export class ModalWindow {

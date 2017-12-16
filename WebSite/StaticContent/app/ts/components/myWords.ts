@@ -9,14 +9,12 @@ import { ModalWindowServise } from '../services/modalWindowServise';
 import { EditMyWord } from '../components/editMyWord';
 import { PubSub } from '../services/pubSub';
 import { CommonHelper } from '../helpers/commonHelper';
+import '../../scss/components/common.scss';
+import '../../scss/components/tewTable.scss';
 
 @Component({
     selector: 'my-words',
     templateUrl: '../StaticContent/app/templates/components/myWords.html',
-    styleUrls: [
-        '../StaticContent/app/css/components/tewTable.css',
-        '../StaticContent/app/css/components/common.css'
-    ]
 })
 
 export class MyWords {

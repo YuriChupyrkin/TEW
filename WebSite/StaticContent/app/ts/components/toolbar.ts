@@ -1,9 +1,9 @@
 import { Component, HostListener, Input } from '@angular/core';
+import '../../scss/components/toolbar.scss';
 
 @Component({
     selector: 'toolbar',
     templateUrl: '../StaticContent/app/templates/components/toolbar.html',
-    styleUrls: ['../StaticContent/app/css/components/toolbar.css']
 })
 
 export class Toolbar {

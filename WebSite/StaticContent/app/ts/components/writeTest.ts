@@ -7,14 +7,12 @@ import { CommonHelper } from '../helpers/commonHelper';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalWindowServise } from '../services/modalWindowServise';
 import { ModalWindowModel } from '../models/modalWindowModel';
+import '../../scss/components/common.scss';
+import '../../scss/components/tewTest.scss';
 
 @Component({
     selector: 'write-test',
     templateUrl: '../StaticContent/app/templates/components/writeTest.html',
-    styleUrls: [
-        '../StaticContent/app/css/components/common.css',
-        '../StaticContent/app/css/components/tewTest.css'
-    ]
 })
 
 export class WriteTest implements OnInit {

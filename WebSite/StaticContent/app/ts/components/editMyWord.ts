@@ -6,14 +6,12 @@ import { ModalWindowServise } from '../services/modalWindowServise';
 import { PubSub } from '../services/pubSub';
 import { WordsCloudModel } from '../models/wordsCloudModel';
 import { ConstantStorage } from '../helpers/constantStorage';
+import '../../scss/components/common.scss';
+import '../../scss/components/editMyWord.scss';
 
 @Component({
     selector: 'edit-my-word',
     templateUrl: '../../StaticContent/app/templates/components/editMyWord.html',
-    styleUrls: [
-        '../StaticContent/app/css/components/common.css',
-        '../StaticContent/app/css/components/editMyWord.css'
-    ]
 })
 
 export class EditMyWord {

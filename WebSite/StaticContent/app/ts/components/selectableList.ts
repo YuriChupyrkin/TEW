@@ -1,10 +1,10 @@
 import { Component, Input, Output, EventEmitter} from '@angular/core';
 import { SelectableListItemModel } from '../models/selectableListItemModel';
+import '../../scss/components/selectableList.scss';
 
 @Component({
     selector: 'selectable-list',
     templateUrl: '../../StaticContent/app/templates/components/selectableList.html',
-    styleUrls: ['../StaticContent/app/css/components/selectableList.css']
 })
 
 export class SelectableList {

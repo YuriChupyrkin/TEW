@@ -7,14 +7,12 @@ import { User } from '../models/user';
 import { ModalWindowModel } from '../models/modalWindowModel';
 import { CommonHelper } from '../helpers/commonHelper';
 import '../../scss/components/userStat.scss';
+import '../../scss/components/common.scss';
+import '../../scss/components/tewTable.scss';
 
 @Component({
     selector: 'user-stat',
     templateUrl: '../StaticContent/app/templates/components/userStat.html',
-    styleUrls: [
-        '../StaticContent/app/css/components/common.css',
-        '../StaticContent/app/css/components/tewTable.css',
-    ]
 })
 
 export class UserStat implements OnInit  {

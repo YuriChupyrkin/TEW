@@ -8,14 +8,12 @@ import { ModalWindowServise } from '../services/modalWindowServise';
 import { ModalWindowModel } from '../models/modalWindowModel';
 import { CommonHelper } from '../helpers/commonHelper';
 import { SelectableListItemModel } from '../models/selectableListItemModel';
+import '../../scss/components/common.scss';
+import '../../scss/components/tewTest.scss';
 
 @Component({
     selector: 'picker-test',
     templateUrl: '../StaticContent/app/templates/components/pickerTest.html',
-    styleUrls: [
-        '../StaticContent/app/css/components/common.css',
-        '../StaticContent/app/css/components/tewTest.css'
-    ]
 })
 
 export class PickerTest {

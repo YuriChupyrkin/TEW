@@ -7,14 +7,12 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TranslateModel } from '../models/translateModel';
 import { CommonHelper } from '../helpers/commonHelper';
 import { SelectableListItemModel } from '../models/selectableListItemModel';
+import '../../scss/components/addWord.scss';
+import '../../scss/components/common.scss';
 
 @Component({
     selector: 'add-word',
     templateUrl: '../StaticContent/app/templates/components/addWord.html',
-    styleUrls: [
-        '../StaticContent/app/css/components/addWord.css',
-        '../StaticContent/app/css/components/common.css'
-    ]
 })
 
 export class AddWord implements OnInit {

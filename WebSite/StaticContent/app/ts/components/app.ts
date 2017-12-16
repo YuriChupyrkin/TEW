@@ -8,11 +8,11 @@ import { ModalWindowServise } from '../services/modalWindowServise';
 import { JQueryHelper } from '../helpers/jQueryHelper';
 import { ModalWindowModel } from '../models/modalWindowModel';
 import { UserStatModel } from '../models/userStatModel';
+import '../../scss/components/common.scss';
 
 @Component({
     selector: 'my-app',
     templateUrl: '../StaticContent/app/templates/components/app.html',
-    styleUrls: ['../StaticContent/app/css/components/common.css']
 })
 
 export class AppComponent implements OnInit {

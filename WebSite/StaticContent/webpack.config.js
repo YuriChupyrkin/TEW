@@ -4,24 +4,26 @@ const webpack = require('webpack');
 module.exports = {
   entry: './app/ts/main.ts',
   module: {
-    rules: [
+    loaders: [
       {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/
+        test: /\.ts$/,
+        enforce: 'pre',
+        loader: ['tslint-loader', 'ts-loader'],
       },
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader?sourceMap','sass-loader?sourceMap'],
+        loader: ['style-loader', 'css-loader?sourceMap','sass-loader?sourceMap'],
       }
-    ],
+    ]
   },
   resolve: {
     extensions: ['.scss', '.tsx', '.ts', '.js' ]
   },
   // Add minification
   plugins: [
-    new webpack.optimize.UglifyJsPlugin()
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true
+    })
   ],
   // Turn on sourcemaps
   devtool: 'source-map',
