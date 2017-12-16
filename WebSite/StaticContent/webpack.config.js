@@ -8,7 +8,7 @@ module.exports = {
       {
         test: /\.ts$/,
         enforce: 'pre',
-        loader: ['tslint-loader', 'ts-loader'],
+        loader: ['ts-loader', 'tslint-loader'],
       },
       {
         test: /\.scss$/,
