@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "name": "aspnet",
+  "name": "TEW",
   "private": true,
   "scripts": {
     "postinstall": "typings install",
@@ -34,8 +34,10 @@
     "gulp-tsc": "^1.2.0",
     "gulp-tslint": "^7.1.0",
     "gulp-typescript": "^2.13.6",
+    "node-sass": "^4.7.2",
     "path": "^0.12.7",
     "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.1",
     "ts-loader": "^3.2.0",
     "tslint": "^4.5.1",
     "typescript": "^2.6.2",

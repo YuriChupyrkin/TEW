@@ -6,6 +6,7 @@ import { ModalWindowServise } from '../services/modalWindowServise';
 import { User } from '../models/user';
 import { ModalWindowModel } from '../models/modalWindowModel';
 import { CommonHelper } from '../helpers/commonHelper';
+import '../../scss/components/userStat.scss';
 
 @Component({
     selector: 'user-stat',
@@ -13,7 +14,6 @@ import { CommonHelper } from '../helpers/commonHelper';
     styleUrls: [
         '../StaticContent/app/css/components/common.css',
         '../StaticContent/app/css/components/tewTable.css',
-        '../StaticContent/app/css/components/userStat.css'
     ]
 })
 

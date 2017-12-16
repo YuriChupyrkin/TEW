@@ -9,11 +9,15 @@ module.exports = {
         test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/
+      },
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader?sourceMap','sass-loader?sourceMap'],
       }
-    ]
+    ],
   },
   resolve: {
-    extensions: [ '.tsx', '.ts', '.js' ]
+    extensions: ['.scss', '.tsx', '.ts', '.js' ]
   },
   // Add minification
   plugins: [
@@ -24,5 +28,5 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'app/bundles')
-  }
+  },
 };
