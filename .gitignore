@@ -2,6 +2,12 @@ packages/
 **.ide/
 .vscode/
 
+# package-lock
+WebSite/StaticContent/package-lock.json
+
+# JS and CSS bundles
+WebSite/StaticContent/app/bundles/
+
 # compiled js
 WebSite/StaticContent/app/js/
 
