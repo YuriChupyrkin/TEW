@@ -50,6 +50,7 @@
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\RussianWord.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Models\SimpleWordModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IEnRuWordsRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />

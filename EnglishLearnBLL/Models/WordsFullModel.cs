@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Domain.RepositoryFactories.Models;
+using System.Collections.Generic;
 
 namespace EnglishLearnBLL.Models
 {
@@ -6,7 +7,7 @@ namespace EnglishLearnBLL.Models
     {
         public WordsFullModel()
         {
-            Words = new List<WordModelModel>();
+            Words = new List<SimpleWordModel>();
         }
 
         public string UserName { get; set; }
@@ -15,6 +16,6 @@ namespace EnglishLearnBLL.Models
 
         public int TotalWords { get; set; }
         
-        public IList<WordModelModel> Words { get; set; }
+        public IList<SimpleWordModel> Words { get; set; }
     }
 }

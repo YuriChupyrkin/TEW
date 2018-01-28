@@ -5,6 +5,7 @@ using Domain.Entities;
 using Domain.RepositoryFactories;
 using EnglishLearnBLL.Models;
 using WebSite.Models;
+using Domain.RepositoryFactories.Models;
 
 namespace WebSite.Helpers
 {
@@ -95,11 +96,11 @@ namespace WebSite.Helpers
         UserName = userName
       };
 
-      var words = new List<WordModelModel>();
+      var words = new List<SimpleWordModel>();
 
       foreach (var word in enRuWords)
       {
-        var viewModel = new WordModelModel
+        var viewModel = new SimpleWordModel
         {
           English = word.EnglishWord.EnWord,
           Russian = word.RussianWord.RuWord,

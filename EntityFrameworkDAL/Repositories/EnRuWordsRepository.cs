@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using Domain.Entities;
 using Domain.Repositories;
 using EntityFrameworkDAL.Context;
+using Domain.RepositoryFactories.Models;
 
 namespace EntityFrameworkDAL.Repositories
 {
@@ -64,30 +65,25 @@ namespace EntityFrameworkDAL.Repositories
       return russianWords;
     }
 
-    public EnRuWord AddTranslate(
-      string engWord,
-      string ruWord,
-      string example,
-      int userId,
-      DateTime? updateDate = null,
-      int level = 0,
-      int answerCount = 0,
-      int failAnswerCount = 1)
+    public EnRuWord AddTranslate(SimpleWordModel wordModel)
     {
-      int engId = AddEngWord(engWord);
-      int ruId = AddRusWord(ruWord);
+      var engWord = wordModel.English;
+      var ruWord = wordModel.Russian;
+      var engId = AddEngWord(engWord);
+      var ruId = AddRusWord(ruWord);
 
       var enRuWordFromDb = _context.EnRuWords
-        .FirstOrDefault(r => r.EnglishWord.EnWord == engWord && r.UserId == userId);
+        .FirstOrDefault(
+          r => r.EnglishWord.EnWord == engWord &&r.UserId == wordModel.UserId);
 
       if (enRuWordFromDb != null)
       {
         enRuWordFromDb.RussianWordId = ruId;
-        enRuWordFromDb.WordLevel = level;
-        enRuWordFromDb.Example = example ?? string.Empty;
-        enRuWordFromDb.UpdateDate = updateDate ?? new DateTime(1990, 5, 5);
-        enRuWordFromDb.AnswerCount = answerCount;
-        enRuWordFromDb.FailAnswerCount = failAnswerCount;
+        enRuWordFromDb.WordLevel = wordModel.Level;
+        enRuWordFromDb.Example = wordModel.Example ?? string.Empty;
+        enRuWordFromDb.UpdateDate = wordModel.UpdateDate ?? new DateTime(1990, 5, 5);
+        enRuWordFromDb.AnswerCount = wordModel.AnswerCount;
+        enRuWordFromDb.FailAnswerCount = wordModel.FailAnswerCount;
         _context.SaveChanges();
 
         return enRuWordFromDb;
@@ -97,12 +93,12 @@ namespace EntityFrameworkDAL.Repositories
       {
         RussianWordId = ruId,
         EnglishWordId = engId,
-        Example = example ?? string.Empty,
-        UserId = userId,
-        WordLevel = level,
-        UpdateDate = updateDate ?? new DateTime(1990, 5, 5),
-        AnswerCount = answerCount,
-        FailAnswerCount = failAnswerCount
+        Example = wordModel.Example ?? string.Empty,
+        UserId = wordModel.UserId,
+        WordLevel = wordModel.Level,
+        UpdateDate = wordModel.UpdateDate ?? new DateTime(1990, 5, 5),
+        AnswerCount = wordModel.AnswerCount,
+        FailAnswerCount = wordModel.FailAnswerCount
       };
 
       _context.EnRuWords.Add(enRuWord);

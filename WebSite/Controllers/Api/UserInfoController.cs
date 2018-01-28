@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.RepositoryFactories;
+using Domain.RepositoryFactories.Models;
 using EnglishLearnBLL.Models;
 using EnglishLearnBLL.WordLevelManager;
 using System.Linq;
@@ -60,7 +61,8 @@ namespace WebSite.Controllers.Api
         .Take(10)
         .OrderBy(r => r.WordLevel)
         .Take(5)
-        .Select(r => new WordModelModel {
+        .Select(r => new SimpleWordModel
+        {
           English = r.EnglishWord.EnWord,
           Russian = r.RussianWord.RuWord,
           FailAnswerCount = r.FailAnswerCount,
@@ -74,7 +76,7 @@ namespace WebSite.Controllers.Api
         .Take(10)
         .OrderBy(r => r.FailAnswerCount)
         .Take(5)
-        .Select(r => new WordModelModel
+        .Select(r => new SimpleWordModel
         {
           English = r.EnglishWord.EnWord,
           Russian = r.RussianWord.RuWord,

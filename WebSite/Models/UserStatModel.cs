@@ -1,4 +1,5 @@
-﻿using EnglishLearnBLL.Models;
+﻿using Domain.RepositoryFactories.Models;
+using EnglishLearnBLL.Models;
 using System.Collections.Generic;
 
 namespace WebSite.Models
@@ -15,8 +16,8 @@ namespace WebSite.Models
 
     public string UniqueId { get; set; }
 
-    public IList<WordModelModel> MostFailedWords { get; set; }
+    public IList<SimpleWordModel> MostFailedWords { get; set; }
 
-    public IList<WordModelModel> MostStudiedWords { get; set; }
+    public IList<SimpleWordModel> MostStudiedWords { get; set; }
   }
 }
