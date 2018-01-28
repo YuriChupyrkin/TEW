@@ -74,7 +74,7 @@ namespace EntityFrameworkDAL.Repositories
 
       var enRuWordFromDb = _context.EnRuWords
         .FirstOrDefault(
-          r => r.EnglishWord.EnWord == engWord &&r.UserId == wordModel.UserId);
+          r => r.EnglishWord.EnWord == engWord && r.UserId == wordModel.UserId);
 
       if (enRuWordFromDb != null)
       {
@@ -190,15 +190,15 @@ namespace EntityFrameworkDAL.Repositories
         word.UpdateDate = DateTime.UtcNow;
         word.AnswerCount++;
 
-        if(levelShift < 0)
+        if (levelShift < 0)
         {
           word.FailAnswerCount++;
         }
 
-	      if (word.WordLevel < 0)
-	      {
-		      word.WordLevel = 0;
-	      }
+        if (word.WordLevel < 0)
+        {
+          word.WordLevel = 0;
+        }
 
         _context.SaveChanges();
       }

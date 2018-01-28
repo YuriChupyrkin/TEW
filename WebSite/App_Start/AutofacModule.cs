@@ -31,6 +31,5 @@ namespace WebSite
       var resolver = new AutofacWebApiDependencyResolver(container);
       config.DependencyResolver = resolver;
     }
-
   }
 }

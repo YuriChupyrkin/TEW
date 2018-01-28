@@ -7,20 +7,20 @@ namespace WebSite.Controllers.Api
 {
   [UserActivityFilter]
   public class WriteTestsController : ApiController
-	{
-		private readonly IRepositoryFactory _repositoryFactory;
+  {
+    private readonly IRepositoryFactory _repositoryFactory;
 
-		public WriteTestsController(IRepositoryFactory repositoryFactory)
-		{
-			_repositoryFactory = repositoryFactory;
-		}
+    public WriteTestsController(IRepositoryFactory repositoryFactory)
+    {
+      _repositoryFactory = repositoryFactory;
+    }
 
-		public IHttpActionResult GetWriteTestSet(int userId)
-		{
-			var testCreator = new TestCreator(_repositoryFactory);
-			var testSet = testCreator.WriteTest(userId);
+    public IHttpActionResult GetWriteTestSet(int userId)
+    {
+      var testCreator = new TestCreator(_repositoryFactory);
+      var testSet = testCreator.WriteTest(userId);
 
-			return Json(testSet);
-		}
-	}
+      return Json(testSet);
+    }
+  }
 }

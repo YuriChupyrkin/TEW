@@ -9,39 +9,39 @@ namespace WebSite.Controllers.Api
 {
   [UserActivityFilter]
   public class WordsLevelUpdaterController : ApiController
-	{
-		private readonly IRepositoryFactory _repositoryFactory;
+  {
+    private readonly IRepositoryFactory _repositoryFactory;
 
-		public WordsLevelUpdaterController(IRepositoryFactory repositoryFactory)
-		{
-			_repositoryFactory = repositoryFactory;
-		}
+    public WordsLevelUpdaterController(IRepositoryFactory repositoryFactory)
+    {
+      _repositoryFactory = repositoryFactory;
+    }
 
-		[HttpPost]
-		public IHttpActionResult UpdateWordStatus([FromBody] WordUpdateModel wordUpdateModel)
-		{
-			var wordLevelManager = new WordLevelManager(_repositoryFactory);
+    [HttpPost]
+    public IHttpActionResult UpdateWordStatus([FromBody] WordUpdateModel wordUpdateModel)
+    {
+      var wordLevelManager = new WordLevelManager(_repositoryFactory);
 
-			var resultWord = wordLevelManager.SetWordLevel(
-				wordUpdateModel.WordId, 
-				wordUpdateModel.IsTrueAnswer, wordUpdateModel.TestType);
+      var resultWord = wordLevelManager.SetWordLevel(
+        wordUpdateModel.WordId,
+        wordUpdateModel.IsTrueAnswer, wordUpdateModel.TestType);
 
-			var responseModel = new ResponseModel();
+      var responseModel = new ResponseModel();
 
-			if (resultWord == null)
-			{
-				responseModel.IsError = true;
-				responseModel.ErrorMessage = "Error occurred! Word was not updated";
-			}
+      if (resultWord == null)
+      {
+        responseModel.IsError = true;
+        responseModel.ErrorMessage = "Error occurred! Word was not updated";
+      }
 
-			return Json(responseModel);
-		}
+      return Json(responseModel);
+    }
 
-		[HttpDelete]
-		public IHttpActionResult ResetWordsLevel([FromBody] User user)
-		{
-			_repositoryFactory.EnRuWordsRepository.ResetWordLevel(user.Id);
-			return Json(true);
-		}
-	}
+    [HttpDelete]
+    public IHttpActionResult ResetWordsLevel([FromBody] User user)
+    {
+      _repositoryFactory.EnRuWordsRepository.ResetWordLevel(user.Id);
+      return Json(true);
+    }
+  }
 }

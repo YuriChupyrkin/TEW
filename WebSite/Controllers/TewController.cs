@@ -2,12 +2,12 @@
 
 namespace WebSite.Controllers
 {
-	public class TewController : Controller
-	{
-		[Authorize]
-		public ActionResult Index()
-		{
-			return View();
-		}
-	}
+  public class TewController : Controller
+  {
+    [Authorize]
+    public ActionResult Index()
+    {
+      return View();
+    }
+  }
 }

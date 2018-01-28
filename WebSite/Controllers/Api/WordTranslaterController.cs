@@ -5,13 +5,13 @@ using System.Linq;
 namespace WebSite.Controllers.Api
 {
   public class WordTranslaterController : ApiController
-	{
-		private readonly IRepositoryFactory _repositoryFactory;
+  {
+    private readonly IRepositoryFactory _repositoryFactory;
 
-		public WordTranslaterController(IRepositoryFactory repositoryFactory)
-		{
-			_repositoryFactory = repositoryFactory;
-		}
+    public WordTranslaterController(IRepositoryFactory repositoryFactory)
+    {
+      _repositoryFactory = repositoryFactory;
+    }
 
     public IHttpActionResult GetWordTranslates(string word)
     {
@@ -30,7 +30,7 @@ namespace WebSite.Controllers.Api
           }
         );
 
-			return Json(translates);
-		}
-	}
+      return Json(translates);
+    }
+  }
 }

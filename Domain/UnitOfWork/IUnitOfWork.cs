@@ -2,9 +2,9 @@
 
 namespace Domain.UnitOfWork
 {
-    public interface IUnitOfWork: IDisposable
-    {
-        void Commit();
-        void RollBack();
-    }
+  public interface IUnitOfWork : IDisposable
+  {
+    void Commit();
+    void RollBack();
+  }
 }

@@ -70,124 +70,124 @@ namespace EnglishLearnBLL.Tests
       }
     }
 
-		public IEnumerable<PickerTestModel> EnglishRussianTest(int userId)
-		{
-			return PickerTest(userId, true);
-		}
+    public IEnumerable<PickerTestModel> EnglishRussianTest(int userId)
+    {
+      return PickerTest(userId, true);
+    }
 
-		public IEnumerable<PickerTestModel> RussianEnglishTest(int userId)
-		{
-			return PickerTest(userId, false);
-		}
+    public IEnumerable<PickerTestModel> RussianEnglishTest(int userId)
+    {
+      return PickerTest(userId, false);
+    }
 
-		private IList<EnRuWord> Get10EnRuWords(int userId, int wordCount)
-		{
-			var enRuWords = _repositoryFactory.EnRuWordsRepository.AllEnRuWords()
-				.Where(r => r.UserId == userId).ToList();
+    private IList<EnRuWord> Get10EnRuWords(int userId, int wordCount)
+    {
+      var enRuWords = _repositoryFactory.EnRuWordsRepository.AllEnRuWords()
+        .Where(r => r.UserId == userId).ToList();
 
-			if (enRuWords.Count() < wordCount)
-			{
-				wordCount = enRuWords.Count();
+      if (enRuWords.Count() < wordCount)
+      {
+        wordCount = enRuWords.Count();
 
-				if (wordCount < 1)
-				{
-					return new List<EnRuWord>();
-				}
-			}
+        if (wordCount < 1)
+        {
+          return new List<EnRuWord>();
+        }
+      }
 
-			var enRuWordsForTest = enRuWords
-					.OrderBy(r => (double)r.AnswerCount / (r.FailAnswerCount == 0 ? 1 : r.FailAnswerCount))
-					.OrderBy(r => r.WordLevel)
-					.Take(wordCount).ToList();
+      var enRuWordsForTest = enRuWords
+          .OrderBy(r => (double)r.AnswerCount / (r.FailAnswerCount == 0 ? 1 : r.FailAnswerCount))
+          .OrderBy(r => r.WordLevel)
+          .Take(wordCount).ToList();
 
-			var maxLevel = enRuWordsForTest.Last().WordLevel;
+      var maxLevel = enRuWordsForTest.Last().WordLevel;
 
-			var wordsWithMaxLvlCount = enRuWords.Count(r => r.WordLevel == maxLevel);
+      var wordsWithMaxLvlCount = enRuWords.Count(r => r.WordLevel == maxLevel);
 
-			if (wordCount == WordCount)
-			{
-				var rnd = new Random();
-				for (var i = 0; i < wordCount; i++)
-				{
-					if (enRuWordsForTest[i].WordLevel == maxLevel && wordsWithMaxLvlCount > 10)
-					{
-						enRuWordsForTest[i] = enRuWords
-							.Where(r => r.WordLevel == maxLevel && !enRuWordsForTest.Contains(r))
-							.OrderBy(r => rnd.Next()).ToList().First();
-					}
-				}
-			}
-			return enRuWordsForTest;
-		}
+      if (wordCount == WordCount)
+      {
+        var rnd = new Random();
+        for (var i = 0; i < wordCount; i++)
+        {
+          if (enRuWordsForTest[i].WordLevel == maxLevel && wordsWithMaxLvlCount > 10)
+          {
+            enRuWordsForTest[i] = enRuWords
+              .Where(r => r.WordLevel == maxLevel && !enRuWordsForTest.Contains(r))
+              .OrderBy(r => rnd.Next()).ToList().First();
+          }
+        }
+      }
+      return enRuWordsForTest;
+    }
 
-		private IEnumerable<PickerTestModel> PickerTest(int userId, bool isEnRuTest)
-		{
-			var enRuWordsForTest = Get10EnRuWords(userId, WordCount);
-			var wordCount = enRuWordsForTest.Count;
+    private IEnumerable<PickerTestModel> PickerTest(int userId, bool isEnRuTest)
+    {
+      var enRuWordsForTest = Get10EnRuWords(userId, WordCount);
+      var wordCount = enRuWordsForTest.Count;
 
-			var pickerModels = new List<PickerTestModel>();
+      var pickerModels = new List<PickerTestModel>();
 
-			if (!enRuWordsForTest.Any())
-			{
-				return pickerModels;
-			}
+      if (!enRuWordsForTest.Any())
+      {
+        return pickerModels;
+      }
 
-			var random = new Random();
-			for (int i = 0; i < wordCount; i++)
-			{
-				var answerIndex = random.Next(4);
+      var random = new Random();
+      for (int i = 0; i < wordCount; i++)
+      {
+        var answerIndex = random.Next(4);
 
-                var answer = isEnRuTest ? enRuWordsForTest[i].RussianWord.RuWord : enRuWordsForTest[i].EnglishWord.EnWord;
-                var tested = isEnRuTest ? enRuWordsForTest[i].EnglishWord.EnWord : enRuWordsForTest[i].RussianWord.RuWord;
+        var answer = isEnRuTest ? enRuWordsForTest[i].RussianWord.RuWord : enRuWordsForTest[i].EnglishWord.EnWord;
+        var tested = isEnRuTest ? enRuWordsForTest[i].EnglishWord.EnWord : enRuWordsForTest[i].RussianWord.RuWord;
 
-				if (tested == null || answer == null)
-				{
-					return pickerModels;
-				}
+        if (tested == null || answer == null)
+        {
+          return pickerModels;
+        }
 
-				var randAnswer = Get4RandonWords(answer, i, userId, isEnRuTest);
+        var randAnswer = Get4RandonWords(answer, i, userId, isEnRuTest);
 
-				var pickerTestModel = new PickerTestModel
-				{
-					AnswerId = answerIndex,
-					Word = tested,
-					WordId = enRuWordsForTest[i].Id,
-					Answers = randAnswer.ToList(),
-					Example = enRuWordsForTest[i].Example
-				};
+        var pickerTestModel = new PickerTestModel
+        {
+          AnswerId = answerIndex,
+          Word = tested,
+          WordId = enRuWordsForTest[i].Id,
+          Answers = randAnswer.ToList(),
+          Example = enRuWordsForTest[i].Example
+        };
 
-				pickerTestModel.Answers[answerIndex] = answer;
+        pickerTestModel.Answers[answerIndex] = answer;
 
-				pickerModels.Add(pickerTestModel);
-			}
+        pickerModels.Add(pickerTestModel);
+      }
 
-			return pickerModels;
-		}
+      return pickerModels;
+    }
 
-		private IEnumerable<string> Get4RandonWords(string trueAnswer, int iteration, int userId, bool isEnRuTest)
-		{
+    private IEnumerable<string> Get4RandonWords(string trueAnswer, int iteration, int userId, bool isEnRuTest)
+    {
       IEnumerable<Entity<int>> answers;
 
       if (isEnRuTest)
       {
-          var words = _repositoryFactory.EnRuWordsRepository.AllEnRuWords().Where(r => r.UserId == userId)
-              .Where(r => r.RussianWord.RuWord != trueAnswer)
-              .OrderBy(r => (double)r.AnswerCount / (r.FailAnswerCount == 0 ? 1 : r.FailAnswerCount));
+        var words = _repositoryFactory.EnRuWordsRepository.AllEnRuWords().Where(r => r.UserId == userId)
+            .Where(r => r.RussianWord.RuWord != trueAnswer)
+            .OrderBy(r => (double)r.AnswerCount / (r.FailAnswerCount == 0 ? 1 : r.FailAnswerCount));
 
-          answers = words.Select(r => r.RussianWord);
+        answers = words.Select(r => r.RussianWord);
       }
       else
       {
-          var words = _repositoryFactory.EnRuWordsRepository.AllEnRuWords().Where(r => r.UserId == userId)
-              .Where(r => r.EnglishWord.EnWord != trueAnswer)
-              .OrderBy(r => (double)r.AnswerCount / (r.FailAnswerCount == 0 ? 1 : r.FailAnswerCount));
+        var words = _repositoryFactory.EnRuWordsRepository.AllEnRuWords().Where(r => r.UserId == userId)
+            .Where(r => r.EnglishWord.EnWord != trueAnswer)
+            .OrderBy(r => (double)r.AnswerCount / (r.FailAnswerCount == 0 ? 1 : r.FailAnswerCount));
 
-          answers = words.Select(r => r.EnglishWord);
+        answers = words.Select(r => r.EnglishWord);
       }
 
       if (answers.Count() < 4)
       {
-          throw new Exception("Need more english words in data base");
+        throw new Exception("Need more english words in data base");
       }
 
       var skip = 3 * iteration;
@@ -205,6 +205,6 @@ namespace EnglishLearnBLL.Tests
       {
         return ((IEnumerable<EnglishWord>)answers).Skip(skip).Take(4).Select(r => r.EnWord);
       }
-		}
-	}
+    }
+  }
 }
