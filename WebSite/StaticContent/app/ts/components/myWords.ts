@@ -80,7 +80,7 @@ export class MyWords {
         this.wordsCount--;
     }
 
-    // ************* EDIT LOGIC *********************
+    // #region EDIT LOGIC
     private updateWordAfterEdit(...args: Array<any>) {
         if (args && args.length) {
             let word = args[0][0];
@@ -104,11 +104,9 @@ export class MyWords {
 
         ModalWindowServise.showModalWindow(modalWindowModel);
     }
+    // #endregion
 
-    // ************* END OF EDIT LOGIC **************
-
-    // ************* SORT LOGIC *********************
-
+    // #region SORT LOGIC
     private headerClick(sortKey: string) {
         if (sortKey === this.sortKey) {
             this.sortAsc = !this.sortAsc;
@@ -122,9 +120,9 @@ export class MyWords {
         this.words = [];
         this.loadWords();
     }
-    // ************* END OF SORT LOGIC **************
+    // #endregion
 
-    // ************* PAGING LOGIC (START START REGION) ****************
+    // #region PAGING LOGIC (START START REGION)
     @HostListener('window:scroll', ['$event'])
     private scrollEvent (event) {
         let scrollTop = (document.documentElement && document.documentElement.scrollTop)
@@ -203,6 +201,5 @@ export class MyWords {
     private canLoadPage () {
         return this.wordsCount > this.words.length && this.isLoading === false;
     }
-
-    // ************* PAGING LOGIC (END OF REGION) ****************
+    // #endregion
 }
