@@ -8,6 +8,8 @@ namespace WebSite.Models
   {
     public long WordsLevel { get; set; }
 
+    public int WordsCount { get; set; }
+
     public string Email { get; set; }
 
     public string NickName { get; set; }

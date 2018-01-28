@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Domain.Entities;
 using Domain.RepositoryFactories;
+using System;
 
 namespace EnglishLearnBLL.WordLevelManager
 {
@@ -61,13 +62,13 @@ namespace EnglishLearnBLL.WordLevelManager
 			return word;
 		}
 
-	  public long GetUserWordsLevel(int userId)
-	  {
-	    var userWords = _repositoryFactory.EnRuWordsRepository.AllEnRuWords(r => r.UserId == userId);
+    public Tuple<int, long> GetUserWordsStat(int userId)
+    {
+      var userWords = _repositoryFactory.EnRuWordsRepository.AllEnRuWords(r => r.UserId == userId);
+      long level = userWords.Sum(r => r.WordLevel);
 
-	    long level = userWords.Sum(r => r.WordLevel);
-	    return level;
-	  }
+      return new Tuple<int, long>(userWords.Count(), level);
+    }
 
 		private EnRuWord LevelUp(EnRuWord word, int maxLevel)
 		{

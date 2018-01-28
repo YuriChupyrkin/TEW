@@ -1,7 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.RepositoryFactories;
 using Domain.RepositoryFactories.Models;
-using EnglishLearnBLL.Models;
 using EnglishLearnBLL.WordLevelManager;
 using System.Linq;
 using System.Web.Http;
@@ -34,13 +33,14 @@ namespace WebSite.Controllers.Api
       }
 
       var wordLevelManager = new WordLevelManager(_repositoryFactory);
-      var wordLevel = wordLevelManager.GetUserWordsLevel(user.Id);
+      var wordStat = wordLevelManager.GetUserWordsStat(user.Id);
 
       var userStatModel = new UserStatModel
       {
         NickName = user.NickName,
         Email = user.Email,
-        WordsLevel = wordLevel,
+        WordsCount = wordStat.Item1,
+        WordsLevel = wordStat.Item2,
         Id = user.Id,
         UniqueId = UserProvider.GetUserUniqueId(user.Id.ToString())
       };

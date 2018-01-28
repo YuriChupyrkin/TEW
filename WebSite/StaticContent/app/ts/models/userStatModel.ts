@@ -4,6 +4,7 @@ export class UserStatModel {
     LastActivityDate: string;
     ActivityLevel: number;
     WordsLevel: number;
+    WordsCount: number;
     Email: string;
     NickName: string;
     Id: number;
