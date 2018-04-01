@@ -7,6 +7,7 @@ using EnglishLearnBLL.Models;
 
 namespace EnglishLearnBLL.Tests
 {
+  [Obsolete("Use TestBuilder instead")]
   public class TestCreator
   {
     private const int WordCount = 10;

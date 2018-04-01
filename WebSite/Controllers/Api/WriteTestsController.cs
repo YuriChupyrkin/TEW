@@ -2,6 +2,7 @@
 using Domain.RepositoryFactories;
 using EnglishLearnBLL.Tests;
 using TewCloud.FIlters;
+using System;
 
 namespace WebSite.Controllers.Api
 {
@@ -17,8 +18,8 @@ namespace WebSite.Controllers.Api
 
     public IHttpActionResult GetWriteTestSet(int userId)
     {
-      var testCreator = new TestCreator(_repositoryFactory);
-      var testSet = testCreator.WriteTest(userId);
+      var testCreator = new TestBuilder(_repositoryFactory, userId, 10);
+      var testSet = testCreator.GetWriteTestCollection();
 
       return Json(testSet);
     }
