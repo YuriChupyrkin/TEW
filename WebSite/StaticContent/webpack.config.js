@@ -22,7 +22,7 @@ module.exports = {
   // Add minification
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true
+      sourceMap: true // dev environment
     })
   ],
   // Turn on sourcemaps
