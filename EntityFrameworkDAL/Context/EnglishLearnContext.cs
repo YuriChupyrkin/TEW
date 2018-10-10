@@ -1,13 +1,12 @@
-﻿using System.Data.Entity;
-using Common;
+﻿using System.Configuration;
+using System.Data.Entity;
 using Domain.Entities;
 
 namespace EntityFrameworkDAL.Context
 {
   public class EnglishLearnContext : DbContext
   {
-    internal EnglishLearnContext()
-      : base(GlobalConfiguration.IsDevelopmentEnvironment ? "EnglishLearnContext_Dev" : "EnglishLearnContext")
+    internal EnglishLearnContext() : base(DataBaseName)
     {
       Database.SetInitializer(new EnglishLearnContextInitializer());
     }
@@ -22,6 +21,13 @@ namespace EntityFrameworkDAL.Context
     {
       modelBuilder.Configurations.Add(new EnRuWordsMapper());
     }
-
+    
+    private static string DataBaseName
+    {
+      get {
+        var dataBaseName = ConfigurationManager.AppSettings["DataBaseName"];
+        return dataBaseName;
+      }
+    }
   }
 }

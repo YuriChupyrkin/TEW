@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -1911,9 +1912,6 @@
     <Content Include="StaticContent\node_modules\core-js\library\modules\es7.object.define-getter.js" />
     <Content Include="StaticContent\node_modules\core-js\library\modules\es7.object.define-setter.js" />
     <Content Include="StaticContent\node_modules\core-js\library\modules\es7.object.entries.js" />
-    <Content Include="StaticContent\node_modules\core-js\library\modules\es7.object.enumerable-entries.js" />
-    <Content Include="StaticContent\node_modules\core-js\library\modules\es7.object.enumerable-keys.js" />
-    <Content Include="StaticContent\node_modules\core-js\library\modules\es7.object.enumerable-values.js" />
     <Content Include="StaticContent\node_modules\core-js\library\modules\es7.object.get-own-property-descriptors.js" />
     <Content Include="StaticContent\node_modules\core-js\library\modules\es7.object.lookup-getter.js" />
     <Content Include="StaticContent\node_modules\core-js\library\modules\es7.object.lookup-setter.js" />
@@ -2233,9 +2231,6 @@
     <Content Include="StaticContent\node_modules\core-js\modules\es7.object.define-getter.js" />
     <Content Include="StaticContent\node_modules\core-js\modules\es7.object.define-setter.js" />
     <Content Include="StaticContent\node_modules\core-js\modules\es7.object.entries.js" />
-    <Content Include="StaticContent\node_modules\core-js\modules\es7.object.enumerable-entries.js" />
-    <Content Include="StaticContent\node_modules\core-js\modules\es7.object.enumerable-keys.js" />
-    <Content Include="StaticContent\node_modules\core-js\modules\es7.object.enumerable-values.js" />
     <Content Include="StaticContent\node_modules\core-js\modules\es7.object.get-own-property-descriptors.js" />
     <Content Include="StaticContent\node_modules\core-js\modules\es7.object.lookup-getter.js" />
     <Content Include="StaticContent\node_modules\core-js\modules\es7.object.lookup-setter.js" />
@@ -2417,55 +2412,7 @@
     <Content Include="StaticContent\node_modules\reflect-metadata\reflect-metadata.d.ts" />
     <Content Include="StaticContent\node_modules\reflect-metadata\Reflect.d.ts" />
     <Content Include="StaticContent\node_modules\reflect-metadata\Reflect.js" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\Reflect.ts" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\spec\css\elements.css" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\spec\index-out.html" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\spec\index.html" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\spec\typescript-out.html" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\spec\typescript.html" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\Reflect.d.ts" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\Reflect.js" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\harness.d.ts" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\harness.js" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-decorate.d.ts" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-decorate.js" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-definemetadata.d.ts" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-definemetadata.js" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-deletemetadata.d.ts" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-deletemetadata.js" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-getmetadata.d.ts" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-getmetadata.js" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-getmetadatakeys.d.ts" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-getmetadatakeys.js" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-getownmetadata.d.ts" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-getownmetadata.js" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-getownmetadatakeys.d.ts" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-getownmetadatakeys.js" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-hasmetadata.d.ts" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-hasmetadata.js" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-hasownmetadata.d.ts" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-hasownmetadata.js" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-metadata.d.ts" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-metadata.js" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\run.d.ts" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\run.js" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\spec.d.ts" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\spec.js" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\test\harness.ts" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\test\reflect\reflect-decorate.ts" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\test\reflect\reflect-definemetadata.ts" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\test\reflect\reflect-deletemetadata.ts" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\test\reflect\reflect-getmetadata.ts" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\test\reflect\reflect-getmetadatakeys.ts" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\test\reflect\reflect-getownmetadata.ts" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\test\reflect\reflect-getownmetadatakeys.ts" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\test\reflect\reflect-hasmetadata.ts" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\test\reflect\reflect-hasownmetadata.ts" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\test\reflect\reflect-metadata.ts" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\test\run.ts" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\test\spec.ts" />
     <Content Include="StaticContent\node_modules\reflect-metadata\typings.d.ts" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\typings\node.d.ts" />
     <Content Include="StaticContent\node_modules\rxjs\add\observable\bindCallback.d.ts" />
     <Content Include="StaticContent\node_modules\rxjs\add\observable\bindCallback.js" />
     <Content Include="StaticContent\node_modules\rxjs\add\observable\bindNodeCallback.d.ts" />
@@ -4230,29 +4177,10 @@
     <Content Include="StaticContent\node_modules\core-js\LICENSE" />
     <Content Include="StaticContent\node_modules\core-js\package.json" />
     <Content Include="StaticContent\node_modules\reflect-metadata\.npmignore" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\bower.json" />
     <Content Include="StaticContent\node_modules\reflect-metadata\LICENSE" />
     <Content Include="StaticContent\node_modules\reflect-metadata\package.json" />
     <Content Include="StaticContent\node_modules\reflect-metadata\README.md" />
     <Content Include="StaticContent\node_modules\reflect-metadata\Reflect.js.map" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\spec\biblio.json" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\spec\metadata.md" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\Reflect.js.map" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\harness.js.map" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-decorate.js.map" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-definemetadata.js.map" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-deletemetadata.js.map" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-getmetadata.js.map" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-getmetadatakeys.js.map" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-getownmetadata.js.map" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-getownmetadatakeys.js.map" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-hasmetadata.js.map" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-hasownmetadata.js.map" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\reflect\reflect-metadata.js.map" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\run.js.map" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\temp\test\spec.js.map" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\test\tsconfig.json" />
-    <Content Include="StaticContent\node_modules\reflect-metadata\tsconfig.json" />
     <Content Include="StaticContent\node_modules\rxjs\add\observable\bindCallback.js.map" />
     <Content Include="StaticContent\node_modules\rxjs\add\observable\bindNodeCallback.js.map" />
     <Content Include="StaticContent\node_modules\rxjs\add\observable\combineLatest.js.map" />
@@ -4612,6 +4540,9 @@
     <Content Include="StaticContent\node_modules\systemjs\LICENSE" />
     <Content Include="StaticContent\node_modules\systemjs\package.json" />
     <Content Include="StaticContent\node_modules\systemjs\README.md" />
+    <None Include="Web.Base.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -4684,6 +4615,12 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dev|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Base|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
@@ -4709,10 +4646,11 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Target Name="BeforeBuild">
+    <TransformXml Source="Web.Base.config" Transform="Web.$(Configuration).config" Destination="Web.config" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
   <Target Name="AfterBuild">
   </Target> -->
 </Project>
