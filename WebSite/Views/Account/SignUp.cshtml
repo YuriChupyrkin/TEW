@@ -11,7 +11,10 @@
     <div class="welcome-tew-link">
       @Html.ActionLink("Вход", "SignIn", new { }, new { @class = "account-form-link" })
     </div>
-    <div class="welcome-tew-title">TEW!</div>
+    <div class="welcome-tew-title">
+      TEW!
+      <span class="welcome-tew-title-version">v1.0.0</span>
+    </div>
   </div>
 
   @using (Html.BeginForm())

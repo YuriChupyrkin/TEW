@@ -65,6 +65,12 @@ body {
   align-self: center;
 }
 
+.welcome-tew-title .welcome-tew-title-version {
+  opacity: 0.1;
+  font-size: 14px;
+  margin-left: 4px;
+}
+
 .welcome-tew-link {
   align-self: flex-end;
   margin-right: 30px;
