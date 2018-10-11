@@ -5,6 +5,8 @@
 }
 @model WebSite.Models.SignUpModel
 
+@using System.Configuration;
+
 
 <div class="account-form">
   <div class="welcome-tew">
@@ -13,7 +15,9 @@
     </div>
     <div class="welcome-tew-title">
       TEW!
-      <span class="welcome-tew-title-version">v1.0.0</span>
+      <span class="welcome-tew-title-version">
+        @ConfigurationManager.AppSettings["Version"]
+      </span>
     </div>
   </div>
 

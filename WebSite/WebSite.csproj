@@ -3501,6 +3501,7 @@
     <Content Include="StaticContent\node_modules\zone.js\lib\zone-spec\wtf.ts" />
     <Content Include="StaticContent\node_modules\zone.js\lib\zone.ts" />
     <Content Include="StaticContent\systemjs.config.js" />
+    <Content Include="StaticContent\webpack.config.js" />
     <Content Include="Views\Shared\DownloadView.cshtml" />
     <Content Include="Views\Tew\Index.cshtml" />
     <Content Include="Views\Shared\_TewLayout.cshtml" />
@@ -4540,6 +4541,24 @@
     <Content Include="StaticContent\node_modules\systemjs\LICENSE" />
     <Content Include="StaticContent\node_modules\systemjs\package.json" />
     <Content Include="StaticContent\node_modules\systemjs\README.md" />
+    <Content Include="StaticContent\app\scss\components\addWord.scss" />
+    <Content Include="StaticContent\app\scss\components\common.scss" />
+    <Content Include="StaticContent\app\scss\components\editMyWord.scss" />
+    <Content Include="StaticContent\app\scss\components\loadingLockDisplay.scss" />
+    <Content Include="StaticContent\app\scss\components\modalWindow.scss" />
+    <Content Include="StaticContent\app\scss\components\selectableList.scss" />
+    <Content Include="StaticContent\app\scss\components\tewTable.scss" />
+    <Content Include="StaticContent\app\scss\components\tewTest.scss" />
+    <Content Include="StaticContent\app\scss\components\toolbar.scss" />
+    <Content Include="StaticContent\app\scss\components\userStat.scss" />
+    <Content Include="StaticContent\typings\globals\core-js\typings.json" />
+    <Content Include="StaticContent\typings\globals\jasmine\typings.json" />
+    <Content Include="StaticContent\typings\globals\node\typings.json" />
+    <Content Include="StaticContent\package-lock.json" />
+    <Content Include="StaticContent\package.json" />
+    <Content Include="StaticContent\tsconfig.json" />
+    <Content Include="StaticContent\tslint.json" />
+    <Content Include="StaticContent\typings.json" />
     <None Include="Web.Base.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -4610,6 +4629,48 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="StaticContent\app\ts\app.routes.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\boot.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\components\addWord.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\components\app.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\components\editMyWord.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\components\irregularVerbs.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\components\myWords.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\components\pickerTest.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\components\selectableList.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\components\toolbar.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\components\userStat.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\components\writeTest.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\helpComponents\loadingAnimation.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\helpComponents\loadingLockDisplay.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\helpComponents\modalWindow.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\helpComponents\myWordsHeader.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\helpers\commonHelper.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\helpers\constantStorage.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\helpers\jqueryHelper.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\main.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\models\modalWindowModel.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\models\pickerTestModel.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\models\selectableListItemModel.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\models\translateModel.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\models\user.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\models\userStatModel.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\models\userWords.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\models\word.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\models\wordsCloudModel.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\models\writeTestModel.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\services\httpService.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\services\modalWindowServise.ts" />
+    <TypeScriptCompile Include="StaticContent\app\ts\services\pubSub.ts" />
+    <TypeScriptCompile Include="StaticContent\typings\globals\core-js\index.d.ts" />
+    <TypeScriptCompile Include="StaticContent\typings\globals\jasmine\index.d.ts" />
+    <TypeScriptCompile Include="StaticContent\typings\globals\node\index.d.ts" />
+    <TypeScriptCompile Include="StaticContent\typings\index.d.ts" />
+    <TypeScriptCompile Include="StaticContent\typings\main.d.ts" />
+    <TypeScriptCompile Include="StaticContent\typings\main\ambient\es6-shim\index.d.ts" />
+    <TypeScriptCompile Include="StaticContent\typings\main\ambient\jasmine\index.d.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -4,51 +4,54 @@
     Layout = "~/Views/Shared/_WebAppLayout.cshtml";
 }
 @model WebSite.Models.SignInModel
+@using System.Configuration;
 
 <div class="account-form">
-  <div class="welcome-tew">
-    <div class="welcome-tew-link">
-      @Html.ActionLink("Регистрация", "SignUp", new { }, new { @class = "account-form-link" })
+    <div class="welcome-tew">
+        <div class="welcome-tew-link">
+            @Html.ActionLink("Регистрация", "SignUp", new { }, new { @class = "account-form-link" })
+        </div>
+        <div class="welcome-tew-title">
+            TEW!
+            <span class="welcome-tew-title-version">
+                @ConfigurationManager.AppSettings["Version"]
+            </span>
+        </div>
     </div>
-    <div class="welcome-tew-title">
-      TEW!
-      <span class="welcome-tew-title-version">v1.0.0</span>
-    </div>
-  </div>
 
-  @using (Html.BeginForm())
-  {
-    @Html.ValidationSummary(true)
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
 
-    <div>
-      <fieldset class="account-form-fieldset">
-        <div class="editor-label">
-          @Html.LabelFor(m => m.Email)
+        <div>
+            <fieldset class="account-form-fieldset">
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.Email)
+                </div>
+                <div class="editor-field">
+                    @Html.ValidationMessageFor(m => m.Email)
+                    @Html.TextBoxFor(m => m.Email, new { @class = "account-form-input" })
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.Password)
+                </div>
+
+                <div class="editor-field">
+                    @Html.ValidationMessageFor(m => m.Password)
+                    @Html.PasswordFor(m => m.Password, new { @class = "account-form-input" })
+                </div>
+
+
+                <div class="account-checkbox">
+                    @Html.CheckBoxFor(m => m.StayInLogin)
+                    @Html.LabelFor(m => m.StayInLogin)
+                </div>
+
+                <div class="account-form-button-section">
+                    <input class="account-form-button" type="submit" value="Вход" />
+                </div>
+            </fieldset>
         </div>
-        <div class="editor-field">
-          @Html.ValidationMessageFor(m => m.Email)
-          @Html.TextBoxFor(m => m.Email, new { @class = "account-form-input" })
-        </div>
-
-        <div class="editor-label">
-          @Html.LabelFor(m => m.Password)
-        </div>
-
-        <div class="editor-field">
-          @Html.ValidationMessageFor(m => m.Password)
-          @Html.PasswordFor(m => m.Password, new { @class = "account-form-input" })
-        </div>
-
-
-        <div class="account-checkbox">
-          @Html.CheckBoxFor(m => m.StayInLogin)
-          @Html.LabelFor(m => m.StayInLogin)
-        </div>
-
-        <div class="account-form-button-section">
-          <input class="account-form-button" type="submit" value="Вход" />
-        </div>
-      </fieldset>
-    </div>
-  }
+    }
 </div>
