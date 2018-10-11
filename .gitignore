@@ -172,6 +172,7 @@ $RECYCLE.BIN/
 .DS_Store
 /packages
 /.vs/config
+/.vs/Tew
 
 # npm
 node_modules/
